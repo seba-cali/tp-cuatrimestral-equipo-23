@@ -22,3 +22,31 @@ La aplicación debe manejar seguridad y perfiles de acceso.
 Administrador: Puede ver y manipular todo 
 Recepcionista: Puede administrar pacientes y médicos y dar de alta turnos. 
 Médicos: Sólo podrán ver sus turnos asociados y modificarlos para agregar las observaciones sobre el diagnóstico del paciente.
+
+//ETAPAS DE ENTREGA//
+
+ETAPA 1
+Para la primera etapa del TPC se solicita:
+•	La arquitectura de clases (modelo de dominio),
+•	Armado de pantallas de la aplicación (SIN funcionalidad, sólo ventanas, algunos controles y navegación) y
+•	Lectura desde base de datos de al menos UNA entidad.
+
+ETAPA 2
+Para la segunda etapa del TPC se solicita:
+•	Completar y corregir las cuestiones pendientes de la primera etapa.
+•	Desarrollar los ABMs y listados de las entidades administradas de la aplicación, pero NO de las que correspondan a la funcionalidad core (Turnos, Incidencia, Venta, etc)
+Nota: Tener en cuenta validaciones, diseño visual, seguir ampliando/corrigiendo el modelo.
+
+ETAPA 3
+Para la tercera etapa del TPC deberán construir:
+•	La funcionalidad del core de la aplicación (turnos: nuevo, reprogramar, mesa: abrir, generar pedido, cerrar; ventas: comprar, vender, etc.)
+•	Las funcionalidades que aportan valor agreado al core (búsquedas dinámicas, registrarse, olvidé mi pass, etc.)
+•	Validaciones a lo largo de la aplicación: tipos de datos, requeridos, formatos.
+
+ETAPA FINAL
+Para la cuarta y última entrega del TPC deberán:
+•	Cerrar toda la funcionalidad pendiente (abms y filtrados en todas las entidades).
+•	Validaciones a lo largo de toda la aplicación (web y escritorio).
+•	Seguridad y perfiles de usuario, con la funcionalidad correspondiente para cada perfil (web y escritorio).
+•	Optimización del diseño visual de cara al usuario (colorcitos, botoncitos lindos, etc). Principalmente en web, pero aplica a escritorio también.
+
