@@ -71,8 +71,8 @@ class Especialidad{
     +void setDescripcion(String descripcion)
 }
 class HoraLaboral{
-    -String horaEntrada
-    -String horaSalida
+    -Date horaEntrada
+    -Date horaSalida
     -String Dias
     -String estado
     +String getHora()
