@@ -1,22 +1,36 @@
 ﻿@startuml
 'https://plantuml.com/class-diagram
 !theme mono 
-Turnos --- Paciente
-Turnos --- Medico
-Persona <|-- Medico
-Persona <|-- Paciente
+Turno --- Paciente
+Turno --- Medico
+
 Medico --- Especialidad
 Medico --- HoraLaboral
 
-class Turnos{
+
+Administracion --- Usuario
+Paciente --- Usuario
+Medico --- Usuario
+Usuario --- TipoUsuario
+
+
+
+
+class Usuario{
+-int id
+-String name
+-String email
+-String password
+-TipoUsuario tipoUsuario
+}
+class Turno{
     -int id
-    -String fecha
-    -String hora
+    -Date fecha
     -String estado
     -String descripcion
     -Medico medico
     -Paciente paciente
-    +int getId()
+  /'  +int getId()
     +void setId(int id)
     +String getFecha()
     +void setFecha(String fecha)
@@ -29,7 +43,7 @@ class Turnos{
     +Medico getMedico()
     +void setMedico(Medico medico)
     +Paciente getPaciente()
-    +void setPaciente(Paciente paciente)
+    +void setPaciente(Paciente paciente)'/
     }
 
 class Persona{
@@ -44,16 +58,17 @@ class Persona{
     +int getEdad()
     +void setEdad(int edad)
 }
-class Medico{
-    -list<Especialidad> especialidad
-    +String getNombre()
-    +void setNombre(String nombre)
-    +int getEdad()
-    +void setEdad(int edad)
-    +String getEspecialidad()
-    +void setEspecialidad(String especialidad)
+
+class Administracion extends Persona{
+    -String usuario
+    -String password
+    +String getUsuario()
+    +void setUsuario(String usuario)
+    +String getPassword()
+    +void setPassword(String password)
+
 }
-class Paciente{
+class Paciente extends Persona{
     
     +String getNombre()
     +void setNombre(String nombre)
@@ -61,6 +76,15 @@ class Paciente{
     +void setEdad(int edad)
     +String getPadecimiento()
     +void setPadecimiento(String padecimiento)
+}
+class Medico extends Persona{
+    -list<Especialidad> especialidad
+    +String getNombre()
+    +void setNombre(String nombre)
+    +int getEdad()
+    +void setEdad(int edad)
+    +String getEspecialidad()
+    +void setEspecialidad(String especialidad)
 }
 class Especialidad{
     -String nombre
@@ -79,6 +103,14 @@ class HoraLaboral{
     +void setHora(String hora)
     +String getEstado()
     +void setEstado(String estado)
+}
+class TipoUsuario{
+    -int Id
+    -String Tipo
+    +Bool Estado
+    +void setNombre(String nombre)
+    +String getDescripcion()
+    +void setDescripcion(String descripcion)
 }
 
 @enduml
