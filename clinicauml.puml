@@ -1,0 +1,84 @@
+﻿@startuml
+'https://plantuml.com/class-diagram
+!theme mono 
+Turnos --- Paciente
+Turnos --- Medico
+Persona <|-- Medico
+Persona <|-- Paciente
+Medico --- Especialidad
+Medico --- HoraLaboral
+
+class Turnos{
+    -int id
+    -String fecha
+    -String hora
+    -String estado
+    -String descripcion
+    -Medico medico
+    -Paciente paciente
+    +int getId()
+    +void setId(int id)
+    +String getFecha()
+    +void setFecha(String fecha)
+    +String getHora()
+    +void setHora(String hora)
+    +String getEstado()
+    +void setEstado(String estado)
+    +String getDescripcion()
+    +void setDescripcion(String descripcion)
+    +Medico getMedico()
+    +void setMedico(Medico medico)
+    +Paciente getPaciente()
+    +void setPaciente(Paciente paciente)
+    }
+
+class Persona{
+    -String nombre
+    -int edad
+    -String sexo
+    -String direccion
+    -String telefono
+    -String correo
+    +String getNombre()
+    +void setNombre(String nombre)
+    +int getEdad()
+    +void setEdad(int edad)
+}
+class Medico{
+    -list<Especialidad> especialidad
+    +String getNombre()
+    +void setNombre(String nombre)
+    +int getEdad()
+    +void setEdad(int edad)
+    +String getEspecialidad()
+    +void setEspecialidad(String especialidad)
+}
+class Paciente{
+    
+    +String getNombre()
+    +void setNombre(String nombre)
+    +int getEdad()
+    +void setEdad(int edad)
+    +String getPadecimiento()
+    +void setPadecimiento(String padecimiento)
+}
+class Especialidad{
+    -String nombre
+    -String descripcion
+    +String getNombre()
+    +void setNombre(String nombre)
+    +String getDescripcion()
+    +void setDescripcion(String descripcion)
+}
+class HoraLaboral{
+    -String horaEntrada
+    -String horaSalida
+    -String Dias
+    -String estado
+    +String getHora()
+    +void setHora(String hora)
+    +String getEstado()
+    +void setEstado(String estado)
+}
+
+@enduml
