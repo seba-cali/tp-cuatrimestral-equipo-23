@@ -1,2 +1,0 @@
-﻿<%@ Master Language="C#" MasterPageFile="MasterPage" CodeBehind="lala.aspx.cs" Inherits="Clinica_WebApp.Admin.lala" %>
-
