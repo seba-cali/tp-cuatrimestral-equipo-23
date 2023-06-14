@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApplication2
+namespace WebApplication2.Admin
 {
 
 
-    public partial class _Default
+    public partial class Prueba
     {
 
         /// <summary>

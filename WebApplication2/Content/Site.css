@@ -5,6 +5,21 @@
     padding-left: 15px;
     padding-right: 15px;
 }
+body {
+    font-family: "Open Sans", sans-serif;
+    color: #444444;
+    overflow-x:hidden;
+}
+
+a {
+    color: #1977cc;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #3291e6;
+    text-decoration: none;
+}
 
 /* Set widths on the form inputs since otherwise they're 100% wide */
 input,
@@ -18,4 +33,48 @@ textarea {
     .body-content {
         padding: 0;
     }
+}
+#fondo {
+    width: 100%;
+    height: 90vh;
+    background: url("../assets/img/1.jpg") top center;
+    background-size: cover;
+    margin-bottom: -200px;
+}
+#fondo .container {
+    position: relative;
+}
+
+#fondo h1 {
+    margin: 0;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 56px;
+    text-transform: uppercase;
+    color: #0DCAF0;
+}
+
+#fondo h2 {
+    color: #0DCAF0;
+    margin: 10px 0 0 0;
+    font-size: 24px;
+}
+
+#fondo .btn-get-started {
+    font-family: "Raleway", sans-serif;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 12px 35px;
+    margin-top: 30px;
+    border-radius: 50px;
+    transition: 0.5s;
+    color: #fff;
+    background: #0DCAF0;
+}
+
+#fondo .btn-get-started:hover {
+    background: #3291e6;
 }
