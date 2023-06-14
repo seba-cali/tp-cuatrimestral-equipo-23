@@ -13,9 +13,6 @@ Paciente --- Usuario
 Medico --- Usuario
 Usuario --- TipoUsuario
 
-
-
-
 class Usuario{
 -int id
 -String name
@@ -27,7 +24,7 @@ class Turno{
     -int id
     -Date fecha
     -String estado
-    -String descripcion
+    -String observacion
     -Medico medico
     -Paciente paciente
   /'  +int getId()
