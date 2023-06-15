@@ -19,7 +19,7 @@ namespace Negocio
 			try
 			{
 
-				db.setearConsulta("SELECT ID_ESP, NOMBRE, DESCRIPCIÓN FROM ESPECIALIDADES");
+				db.setearConsulta("SELECT ID_ESP, NOMBRE, DESCRIPCION FROM ESPECIALIDADES");
 				db.ejecutarLectura();
 
 				while (db.Lector.Read())
