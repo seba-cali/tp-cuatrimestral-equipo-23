@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Title" Language="C#" MasterPageFile="Panel.master" CodeBehind="login.aspx.cs" Inherits="WebApplication2.Admin.login" %>
+﻿<%@ Page Title="Title" Language="C#" MasterPageFile="Panel.master" CodeBehind="~/Admin/Default.aspx.cs" Inherits="WebApplication2.Admin.Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
      <div id="layoutAuthentication">

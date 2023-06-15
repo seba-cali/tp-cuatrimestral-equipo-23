@@ -11,7 +11,7 @@ namespace WebApplication2.Admin
 {
 
 
-    public partial class login
+    public partial class Default
     {
 
         /// <summary>

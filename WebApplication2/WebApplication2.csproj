@@ -104,7 +104,7 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="Admin\index.aspx" />
-    <Content Include="Admin\login.aspx" />
+    <Content Include="Admin\Default.aspx" />
     <Content Include="Admin\Panel.master" />
     <Content Include="Admin\Prueba.aspx" />
     <Content Include="assets\porla" />
@@ -200,12 +200,12 @@
     <Compile Include="Admin\index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\login.aspx.cs">
+    <Compile Include="Admin\Default.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
-      <DependentUpon>login.aspx</DependentUpon>
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\login.aspx.designer.cs">
-      <DependentUpon>login.aspx</DependentUpon>
+    <Compile Include="Admin\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Panel.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
