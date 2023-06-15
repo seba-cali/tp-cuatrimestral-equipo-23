@@ -106,6 +106,7 @@
     <Content Include="Admin\Contact.aspx" />
     <Content Include="Admin\Prueba.aspx" />
     <Content Include="assets\porla" />
+    <Content Include="Cartilla.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -213,6 +214,13 @@
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Cartilla.aspx.cs">
+      <DependentUpon>Cartilla.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cartilla.aspx.designer.cs">
+      <DependentUpon>Cartilla.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
