@@ -17,3 +17,5 @@ VALUES('Odontología', 'Especialidad en dientes'),
 ('Otorrinonaringología', 'Especialidad en oídos, nariz y garganta'),
 ('Gastroenterología', 'Especialidad en aparato digestivo');
 GO
+
+select * from ESPECIALIDADES
