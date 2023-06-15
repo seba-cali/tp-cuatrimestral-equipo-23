@@ -103,7 +103,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
-    <Content Include="Admin\Contact.aspx" />
+    <Content Include="Admin\index.aspx" />
+    <Content Include="Admin\login.aspx" />
+    <Content Include="Admin\Panel.master" />
     <Content Include="Admin\Prueba.aspx" />
     <Content Include="assets\porla" />
     <Content Include="Contact.aspx" />
@@ -161,6 +163,7 @@
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\script.js" />
     <Content Include="Scripts\WebForms\DetailsView.js" />
     <Content Include="Scripts\WebForms\Focus.js" />
     <Content Include="Scripts\WebForms\GridView.js" />
@@ -189,12 +192,26 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Admin\Contact.aspx.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
+    <Compile Include="Admin\index.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>index.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Contact.aspx.designer.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
+    <Compile Include="Admin\index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\login.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\login.aspx.designer.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Panel.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>Panel.master</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Panel.master.designer.cs">
+      <DependentUpon>Panel.master</DependentUpon>
     </Compile>
     <Compile Include="Admin\Prueba.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
