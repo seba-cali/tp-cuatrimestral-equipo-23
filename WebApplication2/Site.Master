@@ -52,7 +52,7 @@
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/">Inicio</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Cartilla">Cartilla Médica</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/About">Acerca de</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Contact">Contacto</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Turnos">Turnos</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="m-2"><a class="btn btn-xs btn-success" href="">Ver Turno <i class="fa fa-search"></i></a></li>

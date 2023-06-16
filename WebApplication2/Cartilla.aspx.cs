@@ -17,5 +17,11 @@ namespace WebApplication2
 			ListaEspecialidades = negocioEspecialidad.listar();
 
 		}
+
+
+
+
+
+
 	}
 }
