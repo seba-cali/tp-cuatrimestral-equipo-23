@@ -15,6 +15,24 @@ namespace WebApplication2.Admin
     {
 
         /// <summary>
+        /// DNIUSER control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox DNIUSER;
+
+        /// <summary>
+        /// PASSWORDUSER control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox PASSWORDUSER;
+
+        /// <summary>
         /// Master property.
         /// </summary>
         /// <remarks>

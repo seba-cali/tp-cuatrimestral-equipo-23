@@ -20,11 +20,11 @@ namespace WebApplication2.Admin
         /// <remarks>
         /// Auto-generated property.
         /// </remarks>
-        public new WebApplication2.SiteMaster Master
+        public new WebApplication2.Admin.Panel Master
         {
             get
             {
-                return ((WebApplication2.SiteMaster)(base.Master));
+                return ((WebApplication2.Admin.Panel)(base.Master));
             }
         }
     }

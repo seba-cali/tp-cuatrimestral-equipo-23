@@ -1,2 +1,2 @@
-﻿<%@ Page Title="Title" Language="C#" MasterPageFile="~/Site.Master" CodeBehind="Prueba.aspx.cs" Inherits="WebApplication2.Admin.Prueba" %>
+﻿<%@ Page Title="Title" Language="C#" MasterPageFile="Panel.Master" CodeBehind="Panel.aspx.cs" Inherits="WebApplication2.Admin.Prueba" %>
 
