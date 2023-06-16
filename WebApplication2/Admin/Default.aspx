@@ -1,12 +1,13 @@
 ﻿<%@ Page Title="Title" AutoEventWireup="true" Language="C#" MasterPageFile="~/Admin/Panel.master" CodeBehind="~/Default.aspx.cs" Inherits="WebApplication2.Admin.Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+
      <div id="layoutAuthentication">
                 <div id="layoutAuthentication_content">
                     <main class="text-center">
                         <div class="container-xl px-4">
                             <div class="row justify-content-center">
-                                <div class="col-lg-5">
+                                <div class="col-lg-12">
                                     
                                     <div class="card shadow-lg border-0 rounded-lg mt-5">
                                         <div class="card-header justify-content-center"><h3 class="fw-light my-4">Sistema V1.0</h3></div>
@@ -52,4 +53,6 @@
                 </div>
                 
             </div>
+            
+     
 </asp:Content>
