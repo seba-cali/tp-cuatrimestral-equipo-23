@@ -28,7 +28,7 @@ namespace WebApplication2.Admin
                 {
                     Session.Remove("error");
                     Session.Add("usuario", usuuario);
-                    Response.Redirect("Prueba.aspx", false);
+                    Response.Redirect("~/Admin/Tablero.aspx", false);
                 }
                 else
                 {
