@@ -20,7 +20,7 @@ namespace WebApplication2
 
             foreach(Dominio.Especialidad item in ListaEspecialidades)
             {
-                //txtEspecialidad.Items.Add(item.nombre.ToString());
+                txtEspecialidad.Items.Add(item.nombre.ToString());
             }
 
 
@@ -30,7 +30,7 @@ namespace WebApplication2
         protected void txtEspecialidad_TextChanged(object sender, EventArgs e)
         {
             List<Especialidad> lista = (List<Especialidad>)Session["ListaEspecialidades"];
-            //List<Especialidad> listaFiltrada = lista.FindAll(x => x.nombre == txtEspecialidad.Text);
+            List<Especialidad> listaFiltrada = lista.FindAll(x => x.nombre == txtEspecialidad.Text);
         }
     }
 }
