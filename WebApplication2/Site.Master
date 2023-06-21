@@ -56,7 +56,7 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="m-2"><a class="btn btn-xs btn-success" href="">Ver Turno <i class="fa fa-search"></i></a></li>
-                        <li class="m-2"><a class="btn btn-xs btn-success" href="">Ingresar <i class="fas fa-shopping-cart"></i></a></li>
+                        <li class="m-2"><a class="btn btn-xs btn-success" runat="server" href="~/Admin/Default">Ingresar <i class="fas fa-user"></i></a></li>
                     </ul>
                 </div>
             </div>

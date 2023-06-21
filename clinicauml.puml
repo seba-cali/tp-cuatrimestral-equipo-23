@@ -8,7 +8,7 @@ Medico --- Especialidad
 Medico --- HoraLaboral
 
 
-Administracion --- Usuario
+
 Paciente --- Usuario
 Medico --- Usuario
 Usuario --- TipoUsuario
@@ -56,17 +56,9 @@ class Persona{
     +void setEdad(int edad)
 }
 
-class Administracion extends Persona{
-    -String usuario
-    -String password
-    +String getUsuario()
-    +void setUsuario(String usuario)
-    +String getPassword()
-    +void setPassword(String password)
 
-}
 class Paciente extends Persona{
-    
+    -int idPrepaga
     +String getNombre()
     +void setNombre(String nombre)
     +int getEdad()
@@ -75,6 +67,7 @@ class Paciente extends Persona{
     +void setPadecimiento(String padecimiento)
 }
 class Medico extends Persona{
+    -int matricula
     -list<Especialidad> especialidad
     +String getNombre()
     +void setNombre(String nombre)

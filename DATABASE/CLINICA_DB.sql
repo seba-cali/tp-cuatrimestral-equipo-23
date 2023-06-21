@@ -130,3 +130,15 @@ VALUES
     ('2023/06/25','10:00',1,1,1),
     ('2023/01/27','10:00',1,2,2),
     ('2023/01/18','10:00',1,1,3);
+go
+create procedure RegistrarUsuario
+    @dni varchar(50),
+    @password varchar(50),
+    @correo varchar(50),
+    @estado bit,
+    @tipousuario int
+
+as
+insert into Usuario (dni, PASSWORD, CORREO,ESTADO,ID_TIPOUSUARIO) output inserted.ID_Usuario values (@dni, @password, @correo,@estado, @tipousuario)
+go
+

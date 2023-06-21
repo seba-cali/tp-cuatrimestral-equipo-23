@@ -19,13 +19,13 @@ namespace ConexionDB
 
 
 			//NICO
-			//conexion = new SqlConnection("server=127.0.0.1;database=CLINICA_DB;uid=sa;pwd=Nicosj999@;encrypt=false");
+			conexion = new SqlConnection("server=127.0.0.1;database=CLINICA_DB;uid=sa;pwd=Nicosj999@;encrypt=false");
 
 
 			////ERIK
 
 
-			conexion = new SqlConnection("server=localhost\\lab3sv;database=CLINICA_DB;uid=sa;pwd=0856;encrypt=false");
+			//conexion = new SqlConnection("server=localhost\\lab3sv;database=CLINICA_DB;uid=sa;pwd=0856;encrypt=false");
 
 
 
@@ -41,6 +41,12 @@ namespace ConexionDB
 		{
 			comando.CommandType = System.Data.CommandType.Text;
 			comando.CommandText = consulta;
+		}
+		public void setearProcedimiento(string sp)
+		{
+			comando.CommandType = System.Data.CommandType.StoredProcedure;
+			comando.CommandText = sp;
+
 		}
 		public void setearConsultaInt(string consulta)
 		{
@@ -68,8 +74,7 @@ namespace ConexionDB
 			try
 			{
 				conexion.Open();
-				lector = comando.ExecuteReader();
-				return Int32.Parse(lector["Id"].ToString());
+				return Int32.Parse(comando.ExecuteScalar().ToString());
 			}
 			catch (Exception ex)
 			{
