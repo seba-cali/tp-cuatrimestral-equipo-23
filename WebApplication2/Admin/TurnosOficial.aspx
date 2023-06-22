@@ -1,6 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Turnos.aspx.cs" Inherits="WebApplication2.Turnos" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Panel.master" AutoEventWireup="true" CodeBehind="TurnosOficial.aspx.cs" Inherits="WebApplication2.TurnosOficial" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+
+
+
+
 
     <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
@@ -17,37 +20,34 @@
         <div class="tab-pane fade show active" id="MisTurnos" role="tabpanel" aria-labelledby="MisTurnos-tab">Seba</div>
         <div class="tab-pane fade" id="NuevoTurno" role="tabpanel" aria-labelledby="NuevoTurno-tab">
 
+
             <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col">
-                        </div>
-                        <div class="col">
-                            <asp:TextBox runat="server" ID="txtObraSocial" AutoPostBack="true" CssClass="form-control " placeholder="Obra Social" />
-                        </div>
-                    <div class="col">
+                <div class="row  my-2">
+                        <div class="col-6 offset-md-3">
+                            <asp:TextBox runat="server" ID="txtObraSocial" AutoPostBack="false" CssClass="form-control form-control-sm" style="text-align:center" placeholder="---Obra Social---" />
                         </div>
                 </div>
+            </div>
 
-                    <div class="row">
-                        <div class="col-3">
-                            <asp:DropDownList runat="server" ID="txtEspecialidad" AutoPostBack="true" CssClass="form-control" placeholder="Especialidad" OnTextChanged="txtEspecialidad_TextChanged" />
-
+                    <div class="row my-2">
+                        <div class="col-2 offset-md-4">
+                            <asp:DropDownList runat="server" ID="txtEspecialidad" AutoPostBack="false" CssClass="form-control form-control-sm" placeholder="Especialidad" style="text-align:center" OnClick="txtEspecialidad_TextChanged" />
                         </div>
                         <div class="col-2">
-                            <asp:TextBox runat="server" ID="txtMedico" AutoPostBack="true" CssClass="form-control" placeholder="Medico" />
+                            <asp:TextBox runat="server" ID="txtMedico" AutoPostBack="false" CssClass="form-control form-control-sm" placeholder="Medico" />
                     </div>
-
                         </div>
-
-                        <div class="col">
-                            <asp:TextBox runat="server" ID="txtFecha" AutoPostBack="true" CssClass="form-control" placeholder="Fecha" />
+            <div class="row my-2">
+                        <div class="col-2 offset-md-4">
+                            <asp:TextBox runat="server" ID="txtFecha" AutoPostBack="false" CssClass="form-control form-control-sm" placeholder="Fecha" />
                         </div>
-                        <div class="col">
-                            <asp:TextBox runat="server" ID="txtHora" AutoPostBack="true" CssClass="form-control" placeholder="Hora" />
+                        <div class="col-2">
+                            <asp:TextBox runat="server" ID="txtHora" AutoPostBack="false" CssClass="form-control form-control-sm" placeholder="Hora" />
                         </div>
-            </div>
         </div>
         </div>
+    </div>
             <div class="tab-pane fade" id="Estudios" role="tabpanel" aria-labelledby="Estudios-tab">1234</div>
   
+
 </asp:Content>

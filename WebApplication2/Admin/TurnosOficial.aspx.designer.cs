@@ -11,7 +11,7 @@ namespace WebApplication2
 {
 
 
-    public partial class Turnos
+    public partial class TurnosOficial
     {
 
         /// <summary>
