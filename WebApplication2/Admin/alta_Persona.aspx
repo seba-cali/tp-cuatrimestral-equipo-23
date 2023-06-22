@@ -10,6 +10,9 @@
 			justify-content: flex-start;
 			height: 100vh;
 			margin-top: 50px;
+			background-image: url("https://i.imgur.com/a4UOksY.jpg");
+			background-repeat: no-repeat;
+			background-size:cover;
 		}
 
 		.form-control {
