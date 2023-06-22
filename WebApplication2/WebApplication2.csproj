@@ -103,7 +103,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
-    <Content Include="Admin\Clientes\Default.aspx" />
     <Content Include="Admin\Default.aspx" />
     <Content Include="Admin\Panel.master" />
     <Content Include="Admin\Tablero.aspx" />
@@ -195,13 +194,6 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Admin\Clientes\Default.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
-      <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Clientes\Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Admin\Default.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Default.aspx</DependentUpon>
@@ -288,6 +280,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Admin\Administracion\" />
+    <Folder Include="Admin\Clientes\" />
     <Folder Include="App_Data\" />
     <Folder Include="assets\img\" />
   </ItemGroup>

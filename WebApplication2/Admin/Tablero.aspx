@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="Title" Language="C#" MasterPageFile="Panel.Master" CodeBehind="Panel.aspx.cs" Inherits="WebApplication2.Admin.Tablero" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">.
+
     <div id="layoutSidenav_content">
                                         <main>
                                             <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
