@@ -8,6 +8,29 @@ CREATE TABLE ESPECIALIDADES(
                                DESCRIPCION VARCHAR(100) NOT NULL,
                                PRIMARY KEY(ID_ESP)
 );
+ALTER TABLE ESPECIALIDADES
+ADD URL_IMG_ESP VARCHAR(255);
+go
+UPDATE ESPECIALIDADES
+SET URL_IMG_ESP = 'https://cdn4.iconfinder.com/data/icons/dental-54/64/implant-premolar-odontology-dental-dentist-512.png'
+WHERE ID_ESP = 1;
+UPDATE ESPECIALIDADES
+SET URL_IMG_ESP = 'https://cdn3.iconfinder.com/data/icons/rheumatology/2039/polymyositis_inflammation_muscles_body-512.png'
+WHERE ID_ESP = 2;
+UPDATE ESPECIALIDADES
+SET URL_IMG_ESP = 'https://cdn4.iconfinder.com/data/icons/optometrist-5/64/dry_eye_symptom_optometrist_ophtalmology_allergy-512.png'
+WHERE ID_ESP = 3;
+UPDATE ESPECIALIDADES
+SET URL_IMG_ESP = 'https://cdn4.iconfinder.com/data/icons/medical-3-color-shadow/128/orthopedics_orthopedic-surgery_traumatology_bones-512.png'
+WHERE ID_ESP = 4;
+UPDATE ESPECIALIDADES
+SET URL_IMG_ESP = 'https://cdn3.iconfinder.com/data/icons/medical-healthcare-thick-colored-outline/33/medical-07-512.png'
+WHERE ID_ESP = 5;
+UPDATE ESPECIALIDADES
+SET URL_IMG_ESP = 'https://cdn3.iconfinder.com/data/icons/gastroenterology-and-hepatology-1/100/all24_05_16_severe_heartburn_stomach_pain_gastroenterology_hepatology_department-512.png'
+WHERE ID_ESP = 6;
+
+
 GO
 INSERT INTO ESPECIALIDADES(NOMBRE, DESCRIPCION)
 VALUES('Odontología', 'Especialidad en dientes'),
