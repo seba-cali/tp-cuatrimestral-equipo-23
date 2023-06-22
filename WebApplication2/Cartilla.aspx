@@ -6,7 +6,7 @@
 	<p>En esta sección podrás encontrar los profesionales que se encuentran disponibles para atenderte.</p>
 
 
-	<div class="row row-cols-1 row-cols-md-3 g-4">
+	<div class="row row-cols-1 row-cols-md-4 g-4">
 
 		<%
 			foreach (Dominio.Especialidad espe in ListaEspecialidades)
@@ -16,7 +16,7 @@
 		<div class="col">
 			<div class="card">
 
-				<img src="<%:espe.url_img_esp.ToString()%>" class="card-img-top" alt="..." style="object-fit: cover">
+				<img src="<%:espe.url_img_esp.ToString()%>" class="card-img-top" alt="https://i.imgur.com/oWi25iT.png" style="object-fit: cover">
 
 				<div class="card-body">
 					<h5 class="card-title"><%:espe.nombre %></h5>

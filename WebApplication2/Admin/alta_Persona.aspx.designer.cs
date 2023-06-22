@@ -11,8 +11,26 @@ namespace WebApplication2.Admin
 {
 
 
-	public partial class Registrar
+	public partial class alta_Persona
 	{
+
+		/// <summary>
+		/// inputNombres control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.TextBox inputNombres;
+
+		/// <summary>
+		/// inputApellidos control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.TextBox inputApellidos;
 
 		/// <summary>
 		/// inputDNI control.
@@ -24,6 +42,15 @@ namespace WebApplication2.Admin
 		protected global::System.Web.UI.WebControls.TextBox inputDNI;
 
 		/// <summary>
+		/// inputFechaNacimiento control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.TextBox inputFechaNacimiento;
+
+		/// <summary>
 		/// inputTelefono control.
 		/// </summary>
 		/// <remarks>
@@ -33,30 +60,21 @@ namespace WebApplication2.Admin
 		protected global::System.Web.UI.WebControls.TextBox inputTelefono;
 
 		/// <summary>
-		/// inputCorreo control.
+		/// inputEmail control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.TextBox inputCorreo;
+		protected global::System.Web.UI.WebControls.TextBox inputEmail;
 
 		/// <summary>
-		/// inputPassword control.
+		/// inputDireccion control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.TextBox inputPassword;
-
-		/// <summary>
-		/// inputConfirmPassword control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.TextBox inputConfirmPassword;
+		protected global::System.Web.UI.WebControls.TextBox inputDireccion;
 	}
 }
