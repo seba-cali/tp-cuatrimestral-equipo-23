@@ -39,6 +39,16 @@
 				outline: none;
 				box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 			}
+
+		.inline-checkboxes {
+			display: flex;
+			flex-direction: row;
+		}
+
+			.inline-checkboxes .form-check {
+				margin-right: 10px;
+				margin-bottom: 10px;
+			}
 	</style>
 
 	<div class="container">
@@ -68,6 +78,30 @@
 		<asp:TextBox CssClass="form-control" ID="inputTelefono" type="text" placeholder="Teléfono" runat="server" />
 		<asp:TextBox CssClass="form-control" ID="inputEmail" type="email" placeholder="Email" runat="server" />
 		<asp:TextBox CssClass="form-control" ID="inputDireccion" type="text" placeholder="Dirección" runat="server" />
+
+		<%--marcar casillas para determinar que especialidades tiene el medico--%>
+		<p>Marque las especialidades del Médico</p>
+
+		<div class="inline-checkboxes">
+			<div class="form-check form-switch">
+				<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault1">
+				<label class="form-check-label" for="flexSwitchCheckDefault1">Kinesiología</label>
+			</div>
+			<div class="form-check form form-switch">
+				<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault2">
+				<label class="form-check-label" for="flexSwitchCheckDefault2">Oftalmología</label>
+			</div>
+		</div>
+
+		<%--		<div class="form-check form-switch"> XXX ESTO ES PARA QUE NAZCA YA CHECKEADO
+			<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+			<label class="form-check-label" for="flexSwitchCheckChecked">Checked switch checkbox input</label>
+		</div>--%>
+
+		<%--		<div class="form-check form-switch">  XXX ESTO ES PARA TENER ALGUNO DISABLEADO
+			<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckCheckedDisabled" checked disabled>
+			<label class="form-check-label" for="flexSwitchCheckCheckedDisabled">Disabled checked switch checkbox input</label>
+		</div>--%>
 
 		<%--generar el evento onclick para el boton submit--%>
 
