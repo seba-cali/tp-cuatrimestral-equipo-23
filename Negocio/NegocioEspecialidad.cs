@@ -19,7 +19,7 @@ namespace Negocio
 			try
 			{
 
-				db.setearConsulta("SELECT ID_ESP, NOMBRE, DESCRIPCION FROM ESPECIALIDADES");
+				db.setearConsulta("SELECT ID_ESP, NOMBRE, DESCRIPCION, URL_IMG_ESP FROM ESPECIALIDADES");
 				db.ejecutarLectura();
 
 				while (db.Lector.Read())
@@ -28,6 +28,7 @@ namespace Negocio
 					aux.id = db.Lector.GetInt32(0);
 					aux.nombre = db.Lector.GetString(1);
 					aux.descripcion = db.Lector.GetString(2);
+					aux.url_img_esp = db.Lector.GetString(3);
 
 					especialidades.Add(aux);
 				}
