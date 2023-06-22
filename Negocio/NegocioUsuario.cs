@@ -89,7 +89,7 @@ namespace Negocio
         			}
         		}
         
-        		public void eliminar(int id)
+	    public void eliminar(int id)
         		{
         			try
         			{
@@ -104,6 +104,33 @@ namespace Negocio
         				throw ex;
         			}
         
-        		}
+        		} 
+	    public int RegistrarUsuario(Usuario nuevo)
+                {
+	                DBConnection db = new DBConnection();
+
+	                try
+	                {
+		                
+		                db.setearProcedimiento("RegistrarUsuario");
+		                db.setearParametro("@dni", nuevo.DNI);
+		                db.setearParametro("@correo", nuevo.CORREO);
+		                db.setearParametro("@password", nuevo.PASSWORD);
+		                db.setearParametro("@estado", 1);
+		                db.setearParametro("@tipoUsuario", 4);
+		                return db.ejecutarLecturaInt();
+	                }
+	                catch (Exception ex)
+	                {
+		                Console.WriteLine("error manito");
+		                throw ex;
+	                }
+	                finally
+	                {
+		                db.cerrarConexion();
+	                }
+
+                }
+
     }
 }

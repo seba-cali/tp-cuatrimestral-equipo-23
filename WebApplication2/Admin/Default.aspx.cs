@@ -7,10 +7,12 @@ namespace WebApplication2.Admin
 {
     public partial class Default : Page
     {
+        protected Usuario usuario;
         protected void Page_Load(object sender, EventArgs e)
         {
             
-            
+            usuario= (Usuario)Session["usuario"];
+
         }
         protected void btn_Login(object sender, EventArgs e)
         {

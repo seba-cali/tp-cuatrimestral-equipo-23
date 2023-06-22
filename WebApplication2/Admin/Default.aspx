@@ -1,7 +1,8 @@
 ﻿<%@ Page Title="Title" AutoEventWireup="true" Language="C#" MasterPageFile="~/Admin/Panel.master" CodeBehind="~/Default.aspx.cs" Inherits="WebApplication2.Admin.Default" %>
 
-<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-
+    <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    <% if (usuario == null)
+    { %>
      <div id="layoutAuthentication">
                 <div id="layoutAuthentication_content">
                     <main class="text-center">
@@ -33,7 +34,7 @@
                                                 <%
                                                     if (Session["error"] != null)
                                                     {
-                                                        %>
+                                                %>
                                                     <div class="alert alert-danger" role="alert">
                                                         <%: Session["error"] %>
                                                     </div>
@@ -54,5 +55,8 @@
                 
             </div>
             
-     
-</asp:Content>
+     <% }
+      
+           
+     %>
+   </asp:Content>
