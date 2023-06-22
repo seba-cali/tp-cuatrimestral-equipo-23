@@ -11,7 +11,7 @@ namespace WebApplication2.Admin
 {
 
 
-    public partial class Prueba
+    public partial class Tablero
     {
 
         /// <summary>

@@ -20,12 +20,15 @@ namespace WebApplication2.Admin
                 Usuario usuario = new Usuario();
                 NegocioUsuario usuarioNegocio = new NegocioUsuario();
                 EmailService emailService = new EmailService();
+                
                 //Template email
                 StreamReader str = new StreamReader(Server.MapPath(@"~/assets/template/correo.html"));  
                 string temlate = str.ReadToEnd();  
                 str.Close();  
                 temlate = temlate.Replace("[dni]", inputDNI.Text.Trim());
                 temlate = temlate.Replace("[password]", inputPassword.Text.Trim());
+                //Fin template email
+                
                 usuario.DNI = inputDNI.Text;
                 usuario.CORREO = inputCorreo.Text;
                 usuario.PASSWORD = inputPassword.Text;
@@ -33,8 +36,9 @@ namespace WebApplication2.Admin
                 usuario.ID_USUARIO = usuarioNegocio.RegistrarUsuario(usuario);
                 Session.Add("usuario", usuario);                
 
-                emailService.preparaCorreo(usuario.CORREO, "Bienvenida a Dr. Seba", temlate);
+                emailService.preparaCorreo(usuario.CORREO, "Bienvenido a Dr. Seba", temlate);
                 emailService.enviarEmail();
+                
                 Response.Redirect("Default.aspx", false);
 
             }

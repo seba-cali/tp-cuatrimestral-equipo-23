@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Net;
 using System.Net.Mail;
 
@@ -8,7 +9,8 @@ namespace Negocio
     {
         private MailMessage email;
         private SmtpClient server;
-
+        
+        
         public EmailService()
         {
             server = new SmtpClient();
@@ -24,6 +26,7 @@ namespace Negocio
 
         public void preparaCorreo(string emailDestino, string asunto, string cuerpo)
         {
+            
             email = new MailMessage();
             email.From = new MailAddress("noresponder@drseba.ar");
             email.To.Add(emailDestino);

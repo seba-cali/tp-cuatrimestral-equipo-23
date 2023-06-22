@@ -106,7 +106,7 @@
     <Content Include="Admin\Clientes\Default.aspx" />
     <Content Include="Admin\Default.aspx" />
     <Content Include="Admin\Panel.master" />
-    <Content Include="Admin\Prueba.aspx" />
+    <Content Include="Admin\Tablero.aspx" />
     <Content Include="Admin\Registrar.aspx" />
     <Content Include="assets\porla" />
     <Content Include="assets\template\correo.html" />
@@ -216,12 +216,12 @@
     <Compile Include="Admin\Panel.master.designer.cs">
       <DependentUpon>Panel.master</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Prueba.aspx.cs">
+    <Compile Include="Admin\Tablero.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
-      <DependentUpon>Prueba.aspx</DependentUpon>
+      <DependentUpon>Tablero.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Prueba.aspx.designer.cs">
-      <DependentUpon>Prueba.aspx</DependentUpon>
+    <Compile Include="Admin\Tablero.aspx.designer.cs">
+      <DependentUpon>Tablero.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Registrar.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
