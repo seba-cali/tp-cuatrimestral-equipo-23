@@ -28,7 +28,7 @@ namespace ConexionDB
 
 
 			//SEBA
-			conexion = new SqlConnection("server=localhost\\LABO3; database=CLINICA_DB; integrated security = false; user=sa; password=123xx;");
+			//conexion = new SqlConnection("server=localhost\\LABO3; database=CLINICA_DB; integrated security = false; user=sa; password=123xx;");
 
 
 			comando = new SqlCommand();
