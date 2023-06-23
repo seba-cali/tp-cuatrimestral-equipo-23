@@ -29,6 +29,12 @@ WHERE ID_ESP = 5;
 UPDATE ESPECIALIDADES
 SET URL_IMG_ESP = 'https://cdn3.iconfinder.com/data/icons/gastroenterology-and-hepatology-1/100/all24_05_16_severe_heartburn_stomach_pain_gastroenterology_hepatology_department-512.png'
 WHERE ID_ESP = 6;
+UPDATE ESPECIALIDADES
+SET URL_IMG_ESP = 'https://cdn0.iconfinder.com/data/icons/scenarium-vol-10/128/019-512.png'
+WHERE ID_ESP = 7;
+UPDATE ESPECIALIDADES
+SET URL_IMG_ESP = 'https://cdn0.iconfinder.com/data/icons/addiction-vivid-vol-1/256/Intoxication-512.png'
+WHERE ID_ESP = 8;
 
 
 GO
@@ -39,6 +45,12 @@ VALUES('Odontología', 'Especialidad en dientes'),
       ('Traumatología', 'Especialidad en lesiones óseas'),
       ('Otorrinonaringología', 'Especialidad en oídos, nariz y garganta'),
       ('Gastroenterología', 'Especialidad en aparato digestivo');
+
+INSERT INTO ESPECIALIDADES(NOMBRE, DESCRIPCION)
+VALUES('ErikVilaplankología', 'Especialidad en motos'),
+      ('NicoSanjuanología', 'Especialidad en pérdidas de la memoria por borrachera');
+
+
 
 GO
 

@@ -43,15 +43,16 @@
 				box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 			}
 
-		.inline-checkboxes {
-			display: flex;
-			flex-direction: row;
-		}
+        .inline-checkboxes {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; /* Centra los elementos horizontalmente */
+        }
 
-			.inline-checkboxes .form-check {
-				margin-right: 10px;
-				margin-bottom: 10px;
-			}
+        .inline-checkboxes .form-check {
+            flex-basis: calc(100% / 6 - 20px); /* Divide el espacio en 6 columnas y ajusta el margen derecho e izquierdo */
+            margin: 10px;
+        }
 
 		.fixed-size-btn {
 			width: 200px; /* Ajusta el tamaño según tus necesidades */
@@ -78,7 +79,6 @@
 			<option selected>Sexo</option>
 			<option value="1">M</option>
 			<option value="2">F</option>
-			<option value="3">NoBooleano</option>
 		</select>
 
 		<asp:TextBox CssClass="form-control" ID="inputDNI" type="text" placeholder="DNI" runat="server" />
@@ -90,56 +90,23 @@
 		<%--marcar casillas para determinar que especialidades tiene el medico--%>
 		<p>Marque las especialidades del Médico</p>
 
-		<%
-			int contador = 0;
-			foreach (Dominio.Especialidad espe in ListaEspecialidades)
-			{
-				if (contador % 6 == 0)
-				{
-					if (contador > 0)
-					{
-		%>
-	</div>
-	<%
-		}
-	%><div class="row">
-		<%
-			}
-		%>
-		<div class="col-md-2">
-			<div class="inline-checkboxes">
-				<div class="form-check form-switch">
-					<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault<%=contador+1%>">
-					<label class="form-check-label" for="flexSwitchCheckDefault<%=contador+1%>"><%:espe.nombre %></label>
-				</div>
-			</div>
-		</div>
-		<%    
-				contador++;
-			}
-		%>
-		<% 
-			// Cierre final de la etiqueta </div> si es necesario
-			if (contador > 0 && contador % 6 != 0)
-			{
-		%>
-	</div>
-	<%
-		}
-	%>
+		        <div class="inline-checkboxes">
+            <% 
+                int contador = 0;
+                foreach (Dominio.Especialidad espe in ListaEspecialidades)
+                {
+            %>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault<%=contador+1%>">
+                <label class="form-check-label" for="flexSwitchCheckDefault<%=contador+1%>"><%:espe.nombre %></label>
+            </div>
+            <%    
+                    contador++;
+                }
+            %>
+        </div>
 
-	<%--		<div class="form-check form-switch"> XXX ESTO ES PARA QUE NAZCA YA CHECKEADO
-			<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
-			<label class="form-check-label" for="flexSwitchCheckChecked">Checked switch checkbox input</label>
-		</div>--%>
-
-	<%--		<div class="form-check form-switch">  XXX ESTO ES PARA TENER ALGUNO DISABLEADO
-			<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckCheckedDisabled" checked disabled>
-			<label class="form-check-label" for="flexSwitchCheckCheckedDisabled">Disabled checked switch checkbox input</label>
-		</div>--%>
-
-	<%--generar el evento onclick para el boton submit--%>
-
-	<asp:Button CssClass="btn-submit fixed-size-btn" ID="btnSubmit" runat="server" Text="Dar de Alta" />
+        <asp:Button CssClass="btn-submit fixed-size-btn" ID="btnSubmit" runat="server" Text="Dar de Alta" />
+    </div>
 </asp:Content>
 
