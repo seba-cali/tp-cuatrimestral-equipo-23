@@ -12,7 +12,7 @@
 			margin-top: 50px;
 			background-image: url("https://i.imgur.com/a4UOksY.jpg");
 			background-repeat: no-repeat;
-			background-size:cover;
+			background-size: cover;
 		}
 
 		.form-control {
@@ -52,6 +52,11 @@
 				margin-right: 10px;
 				margin-bottom: 10px;
 			}
+
+		.fixed-size-btn {
+			width: 200px; /* Ajusta el tamaño según tus necesidades */
+			height: 40px; /* Ajusta el tamaño según tus necesidades */
+		}
 	</style>
 
 	<div class="container">
@@ -85,30 +90,56 @@
 		<%--marcar casillas para determinar que especialidades tiene el medico--%>
 		<p>Marque las especialidades del Médico</p>
 
-		<div class="inline-checkboxes">
-			<div class="form-check form-switch">
-				<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault1">
-				<label class="form-check-label" for="flexSwitchCheckDefault1">Kinesiología</label>
-			</div>
-			<div class="form-check form form-switch">
-				<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault2">
-				<label class="form-check-label" for="flexSwitchCheckDefault2">Oftalmología</label>
+		<%
+			int contador = 0;
+			foreach (Dominio.Especialidad espe in ListaEspecialidades)
+			{
+				if (contador % 6 == 0)
+				{
+					if (contador > 0)
+					{
+		%>
+	</div>
+	<%
+		}
+	%><div class="row">
+		<%
+			}
+		%>
+		<div class="col-md-2">
+			<div class="inline-checkboxes">
+				<div class="form-check form-switch">
+					<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault<%=contador+1%>">
+					<label class="form-check-label" for="flexSwitchCheckDefault<%=contador+1%>"><%:espe.nombre %></label>
+				</div>
 			</div>
 		</div>
+		<%    
+				contador++;
+			}
+		%>
+		<% 
+			// Cierre final de la etiqueta </div> si es necesario
+			if (contador > 0 && contador % 6 != 0)
+			{
+		%>
+	</div>
+	<%
+		}
+	%>
 
-		<%--		<div class="form-check form-switch"> XXX ESTO ES PARA QUE NAZCA YA CHECKEADO
+	<%--		<div class="form-check form-switch"> XXX ESTO ES PARA QUE NAZCA YA CHECKEADO
 			<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
 			<label class="form-check-label" for="flexSwitchCheckChecked">Checked switch checkbox input</label>
 		</div>--%>
 
-		<%--		<div class="form-check form-switch">  XXX ESTO ES PARA TENER ALGUNO DISABLEADO
+	<%--		<div class="form-check form-switch">  XXX ESTO ES PARA TENER ALGUNO DISABLEADO
 			<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckCheckedDisabled" checked disabled>
 			<label class="form-check-label" for="flexSwitchCheckCheckedDisabled">Disabled checked switch checkbox input</label>
 		</div>--%>
 
-		<%--generar el evento onclick para el boton submit--%>
+	<%--generar el evento onclick para el boton submit--%>
 
-		<asp:Button CssClass="btn-submit" ID="btnSubmit" runat="server" Text="Dar de Alta" />
-	</div>
+	<asp:Button CssClass="btn-submit fixed-size-btn" ID="btnSubmit" runat="server" Text="Dar de Alta" />
 </asp:Content>
 
