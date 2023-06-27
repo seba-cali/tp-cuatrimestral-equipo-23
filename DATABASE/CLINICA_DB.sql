@@ -11,6 +11,10 @@ CREATE TABLE ESPECIALIDADES(
 ALTER TABLE ESPECIALIDADES
 ADD URL_IMG_ESP VARCHAR(255);
 go
+--modificar la tabla ESPECIALIDADES para que URL_IMG_ESP no acepte valores nulos
+alter table ESPECIALIDADES
+alter column URL_IMG_ESP varchar(255) not null
+go
 UPDATE ESPECIALIDADES
 SET URL_IMG_ESP = 'https://cdn4.iconfinder.com/data/icons/dental-54/64/implant-premolar-odontology-dental-dentist-512.png'
 WHERE ID_ESP = 1;
@@ -176,4 +180,7 @@ create procedure RegistrarUsuario
 as
 insert into Usuario (dni, PASSWORD, CORREO,ESTADO,ID_TIPOUSUARIO) output inserted.ID_Usuario values (@dni, @password, @correo,@estado, @tipousuario)
 go
+
+select * from ESPECIALIDADES
+
 
