@@ -12,17 +12,14 @@
                                 <div class="page-header-icon">
                                     <i data-feather="users"></i>
                                 </div>
-                                Groups List
+                                Lista de Especialidades
                             </h1>
                         </div>
                         <div class="col-12 col-xl-auto mb-3">
-                            <a class="btn btn-sm btn-light text-primary" href="user-management-list.html">
-                                <i class="me-1" data-feather="user"></i>
-                                Manage Users
-                            </a>
+                            
                             <button class="btn btn-sm btn-light text-primary" type="button" data-bs-toggle="modal" data-bs-target="#createGroupModal">
                                 <i class="me-1" data-feather="plus"></i>
-                                Create New Group
+                                Crear Nueva Especialidad
                             </button>
                         </div>
                     </div>
@@ -187,16 +184,13 @@
     </main>
     <script >
     		$(function() {
-                //var inputBox = $('#datatablesSimple input[type="text"]').length;
-                var row = $('#datatablesSimple tbody tr').length;
-                var column = $('#datatablesSimple tbody tr:first td').length;
+                
+               
             
-                // Vertical
+               
                 $('.editar').click(function() {
                      var self = $(this);
-                    //alert($('#datatablesSimple tbody tr:nth-child(2) td:nth-child(2)').text());
-                    //alert(self.attr('id'));
-                    //var name=$("#datatablesSimple tbody tr:nth-child( 2 ) td:nth-child(2)").text();
+               
                         var index=self.attr('id');                
                         $('.formGroupId').attr('value', index);
                         $('.formGroupNameEdit').attr('value',$("#datatablesSimple tbody tr:nth-child( "+ index +" ) td:nth-child(2)").text());
@@ -209,9 +203,7 @@
                 $('.delete').click(function() {
                     
                     var self = $(this);
-                                        //alert($('#datatablesSimple tbody tr:nth-child(2) td:nth-child(2)').text());
-                                        //alert(self.attr('id'));
-                                        //var name=$("#datatablesSimple tbody tr:nth-child( 2 ) td:nth-child(2)").text();
+               
                                             var index=self.attr('id');                
                                             $('.formGroupIdDelete').attr('value', index);
                                             $('.elemento').attr('value', index);
