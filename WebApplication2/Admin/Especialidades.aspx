@@ -206,7 +206,7 @@
                
                                             var index=self.attr('id');                
                                             $('.formGroupIdDelete').attr('value', index);
-                                            $('.elemento').attr('value', index);
+                                            $('.elemento').text(index);
                                             
                 });
             });
