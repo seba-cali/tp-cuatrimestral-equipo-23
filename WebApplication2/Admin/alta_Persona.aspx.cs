@@ -22,7 +22,6 @@ namespace WebApplication2.Admin
 			{
 				check = new CheckBox();
 				check.ID = pivot.id.ToString();
-				check.
 				check.CssClass = "form-check-input";
 				/*btn.Text = "Agregar al carrito 🛒";
 				btn.ID = index.ToString();

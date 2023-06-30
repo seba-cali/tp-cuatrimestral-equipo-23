@@ -179,8 +179,53 @@ create procedure RegistrarUsuario
 
 as
 insert into Usuario (dni, PASSWORD, CORREO,ESTADO,ID_TIPOUSUARIO) output inserted.ID_Usuario values (@dni, @password, @correo,@estado, @tipousuario)
-go
 
+go
+create procedure ActualizarUsuario
+    @Id_Usuario int,
+    @dni varchar(50),
+    @password varchar(50),
+    @correo varchar(50),
+    @estado bit,
+    @tipousuario int
+
+as
+UPDATE Usuario SET dni = @dni, PASSWORD = @password, CORREO = @correo, ESTADO = @estado, ID_TIPOUSUARIO = @tipousuario WHERE ID_Usuario = @Id_Usuario
+
+go
+create procedure RegistrarEspecialidad
+    @nombre varchar(50),
+    @descripcion varchar(50)
+    
+
+as
+insert into ESPECIALIDADES (NOMBRE, DESCRIPCION) output inserted.ID_ESP values (@nombre, @descripcion) 
+go
+create procedure ActualizaEspecialidad
+    @Id_Esp int,
+    @nombre varchar(50),
+    @descripcion varchar(50)
+
+as
+UPDATE ESPECIALIDADES SET NOMBRE = @nombre, DESCRIPCION = @descripcion WHERE ID_ESP = @Id_Esp
+go
 select * from ESPECIALIDADES
 
 
+alter procedure RegistrarEspecialidad
+    @nombre varchar(50),
+    @descripcion varchar(50),
+    @url_img_esp varchar(150)
+
+
+as
+insert into ESPECIALIDADES (NOMBRE, DESCRIPCION,URL_IMG_ESP) output inserted.ID_ESP values (@nombre, @descripcion,@url_img_esp)
+go
+alter procedure ActualizaEspecialidad
+    @Id_Esp int,
+    @nombre varchar(50),
+    @descripcion varchar(50),
+    @url_img_esp varchar(150)
+
+as
+UPDATE ESPECIALIDADES SET NOMBRE = @nombre, DESCRIPCION = @descripcion, URL_IMG_ESP=@url_img_esp WHERE ID_ESP = @Id_Esp

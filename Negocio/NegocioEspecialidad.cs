@@ -61,6 +61,39 @@ namespace Negocio
 			}
 
 		}
+		
+		public int RegistrarEspecialidad(Especialidad nuevo, int id = 0)
+		{
+			DBConnection db = new DBConnection();
+			try
+			{
+				if(id!=0)
+				{
+					db.setearProcedimiento("ActualizarEspecialidad");
+					db.setearParametro("@id", id);
+					db.setearParametro("@nombre", nuevo.nombre);
+					db.setearParametro("@descripcion", nuevo.descripcion);
+
+
+				}else{
+		                
+					db.setearProcedimiento("RegistrarEspecialidad");
+					db.setearParametro("@nombre", nuevo.nombre);
+					db.setearParametro("@descripcion", nuevo.descripcion);
+				}
+				return db.ejecutarLecturaInt();
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine("error manito");
+				throw ex;
+			}
+			finally
+			{
+				db.cerrarConexion();
+			}
+
+		}
 
 	}
 }
