@@ -27,13 +27,16 @@ namespace WebApplication2.Admin
                 str.Close();  
                 temlate = temlate.Replace("[dni]", inputDNI.Text.Trim());
                 temlate = temlate.Replace("[password]", inputPassword.Text.Trim());
-                //Fin template email
                 
+                //Fin template email
+                //setea tipo usuario
                 usuario.DNI = inputDNI.Text;
                 usuario.CORREO = inputCorreo.Text;
                 usuario.PASSWORD = inputPassword.Text;
                 usuario.telefono = inputTelefono.Text;
+                //asigna id de usuario y lo guarda en session
                 usuario.ID_USUARIO = usuarioNegocio.RegistrarUsuario(usuario);
+                
                 Session.Add("usuario", usuario);                
 
                 emailService.preparaCorreo(usuario.CORREO, "Bienvenido a Dr. Seba", temlate);

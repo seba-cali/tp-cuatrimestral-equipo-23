@@ -23,7 +23,7 @@ namespace Negocio
 			    db.ejecutarLectura();
 
 
-			    if (db.Lector.Read()!=false)
+			    if (db.Lector.Read())
 			    {
 				    
 				    usuario.ID_USUARIO = db.Lector.GetInt32(0);
