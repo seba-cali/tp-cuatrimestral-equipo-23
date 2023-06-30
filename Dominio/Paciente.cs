@@ -4,7 +4,7 @@ namespace Dominio
 {
     public class Paciente : Persona
     {
-        protected int ID_PACIENTE {get; set; }
+        public int ID_PACIENTE {get; set; }
         public int ID_USUARIO {get; set; }
 
         public Paciente() { }

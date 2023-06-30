@@ -78,11 +78,11 @@
 		<asp:TextBox CssClass="form-control" ID="inputPassword" type="text" placeholder="Password" runat="server" />
 		<asp:TextBox CssClass="form-control" ID="inputRePassword" type="text" placeholder="Re PAssword" runat="server" />
 
-		<select class="form-select" aria-label="Sexo">
-			<option selected>Sexo</option>
-			<option value="1">M</option>
-			<option value="2">F</option>
-		</select>
+		<asp:DropDownList ID="inputSexo" runat="server" CssClass="form-control">
+		<asp:ListItem Text="Sexo" Value="" Selected="True"></asp:ListItem>
+		<asp:ListItem Text="M" Value="1"></asp:ListItem>
+		<asp:ListItem Text="F" Value="2"></asp:ListItem>
+		</asp:DropDownList>
 
 		<asp:TextBox CssClass="form-control" ID="inputDNI" type="text" placeholder="DNI" runat="server" />
 		<asp:TextBox CssClass="form-control" ID="inputFechaNacimiento" type="date" placeholder="Fecha de Nacimiento" runat="server" />
@@ -95,9 +95,9 @@
 
 		        <div class="inline-checkboxes">
             <% 
-                int contador = 0;
-                foreach (Dominio.Especialidad espe in ListaEspecialidades)
-                {
+				int contador = 0;
+				foreach (Dominio.Especialidad espe in ListaEspecialidades)
+				{
             %>
             <div class="form-check form-switch">
 	            <asp:CheckBox CssClass="form-check-input" runat="server"/>
@@ -110,7 +110,7 @@
             %>
         </div>
 
-        <asp:Button CssClass="btn-submit fixed-size-btn" ID="btnSubmit" runat="server" Text="Dar de Alta" />
+        <asp:Button CssClass="btn-submit fixed-size-btn" ID="btnSubmit" runat="server" Text="Dar de Alta" Onclick="Button1_Click" />
     </div>
 </asp:Content>
 
