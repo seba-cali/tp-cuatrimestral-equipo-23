@@ -62,17 +62,19 @@ namespace Negocio
 
 		}
 		
-		public int RegistrarEspecialidad(Especialidad nuevo, int id = 0)
+		public int RegistrarEspecialidad(Especialidad nuevo, int id )
 		{
 			DBConnection db = new DBConnection();
 			try
 			{
-				if(id!=0)
+				Console.WriteLine(id+"aasdasd");
+				if(id >0)
 				{
-					db.setearProcedimiento("ActualizarEspecialidad");
-					db.setearParametro("@id", id);
+					db.setearProcedimiento("ActualizaEspecialidad");
+					db.setearParametro("@Id_Esp", id);
 					db.setearParametro("@nombre", nuevo.nombre);
 					db.setearParametro("@descripcion", nuevo.descripcion);
+					db.setearParametro("@url_img_esp", nuevo.url_img_esp);
 
 
 				}else{
@@ -80,6 +82,7 @@ namespace Negocio
 					db.setearProcedimiento("RegistrarEspecialidad");
 					db.setearParametro("@nombre", nuevo.nombre);
 					db.setearParametro("@descripcion", nuevo.descripcion);
+					db.setearParametro("@url_img_esp", nuevo.url_img_esp);
 				}
 				return db.ejecutarLecturaInt();
 			}

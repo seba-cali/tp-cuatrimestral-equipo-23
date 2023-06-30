@@ -68,7 +68,7 @@
                                     <a id="<%= espe.id %>"  class="btn btn-datatable btn-icon btn-transparent-dark editar me-2" type="button"   data-bs-toggle="modal" data-bs-target="#editGroupModal">
                                         <i data-feather="edit"></i>
                                     </a>
-                                    <a class="btn btn-datatable btn-icon btn-transparent-dark" href="#!">
+                                    <a id="<%= espe.id %>" class="btn btn-datatable btn-icon btn-transparent-dark delete" type="button"   data-bs-toggle="modal" data-bs-target="#eliminaGroupModal">
                                         <i data-feather="trash-2"></i>
                                     </a>
                                 </td>
@@ -84,11 +84,12 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="createGroupModalLabel">Nueva Especialidad</h5>
+                        <h5 class="modal-title" id="createGroupModal">Crear o Editar Especialidad</h5>
                         <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
+                    
                     <div class="modal-body">
-
+                        
                         <div class="mb-0">
                             <label class="mb-1 small text-muted" for="formGroupName">Nombre</label>
                             <asp:TextBox class="form-control" id="formGroupName" type="text" placeholder="nombre..." runat="server"/>
@@ -101,16 +102,27 @@
                             <label class="mb-1 small text-muted" for="formGroupURL">Imagen</label>
                             <asp:TextBox class="form-control" id="formGroupURL" type="text" placeholder="url imagen" runat="server"/>
                         </div>
+                        <div class="mb-0">
+                        <% if (Session["OK"] != null)
+                           { %>
+                                <div class="alert alert-success" role="alert">
+                                									<%: Session["OK"] %>
+                                								</div>
+                                <% } %>
+                        </div>
 
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-danger-soft text-danger" type="button" data-bs-dismiss="modal">Cerrar</button>
                         <asp:Button ID="Button1" runat="server" Text="Crear Nueva Especialidad" CssClass="btn btn-primary-soft text-primary" OnClick="AltaEscpecialidad"/>
                     </div>
+                     
                 </div>
+                
             </div>
         </div>
         <!-- Edit group modal-->
+        
         <div class="modal fade" id="editGroupModal" tabindex="-1" role="dialog" aria-labelledby="editGroupModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -118,11 +130,12 @@
                         <h5 class="modal-title" id="editGroupModalLabel">Edit Group</h5>
                         <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
+                    
                     <div class="modal-body">
-
+                        
                         <div class="mb-0">
                             <label class="mb-1 small text-muted" for="formGroupName">Id</label>
-                            <asp:TextBox class="form-control formGroupId" id="formGroupId" type="text" value="999" placeholder="Id..." runat="server"/>
+                            <asp:TextBox class="form-control formGroupId" id="formGroupId" type="text" hidden  runat="server"/>
                         </div>
                         <div class="mb-0">
                             <label class="mb-1 small text-muted" for="formGroupName">Nombre</label>
@@ -137,16 +150,37 @@
                             <asp:TextBox class="form-control formGroupURLEdit" id="formGroupURLEdit" type="text" placeholder="url imagen" runat="server"/>
                         </div>
                         <div class="mb-0">
-                            <img  class="img-fluid w-25 imagen" alt="">
+                            <img class="img-fluid w-25 imagen" alt="">
                         </div>
 
 
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-danger-soft text-danger" type="button" data-bs-dismiss="modal">Cerrar</button>
-                        <%--<button class="btn btn-primary-soft text-primary" type="button">Edtar</button>--%>
-                        <asp:Button ID="Button2" runat="server" Text="Crear Nueva Especialidad" CssClass="btn btn-primary-soft text-primary" OnClick="EditarEscpecialidad"/>
+                        <asp:Button ID="Button2" runat="server" Text="Modificar Especialidad" CssClass="btn btn-primary-soft text-primary" OnClick="EditarEscpecialidad"/>
                     </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="eliminaGroupModal" tabindex="-1" role="dialog" aria-labelledby="eliminaGroupModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="eliminaGroupModal">Edit Group</h5>
+                        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                        
+                    <div class="modal-body">
+                        <h1>Eliminar el elemento?</h1>
+                        <h1 class="elemento"></h1>
+                            <asp:TextBox class="form-control formGroupIdDelete" id="formGroupIdDelete" type="text" hidden  runat="server"/>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-danger-soft text-danger" type="button" data-bs-dismiss="modal">Cerrar</button>
+                        <asp:Button ID="Button3" runat="server" Text="Eliminar Especialidad" CssClass="btn btn-primary-soft text-primary" OnClick="EliminaEscpecialidad"/>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -170,8 +204,18 @@
                         $('.formGroupURLEdit').attr('value',$("#datatablesSimple tbody tr:nth-child( "+ index +" ) td:nth-child(4) img").attr("src"));
                         $('.imagen').attr('src',$("#datatablesSimple tbody tr:nth-child( "+ index +" ) td:nth-child(4) img").attr("src"));
                     
+ 
+                });
+                $('.delete').click(function() {
                     
-                    
+                    var self = $(this);
+                                        //alert($('#datatablesSimple tbody tr:nth-child(2) td:nth-child(2)').text());
+                                        //alert(self.attr('id'));
+                                        //var name=$("#datatablesSimple tbody tr:nth-child( 2 ) td:nth-child(2)").text();
+                                            var index=self.attr('id');                
+                                            $('.formGroupIdDelete').attr('value', index);
+                                            $('.elemento').attr('value', index);
+                                            
                 });
             });
     		
