@@ -74,6 +74,9 @@
 
 		<asp:TextBox CssClass="form-control" ID="inputNombres" type="text" placeholder="Nombres" runat="server" />
 		<asp:TextBox CssClass="form-control" ID="inputApellidos" type="text" placeholder="Apellidos" runat="server" />
+		<asp:TextBox CssClass="form-control" ID="inputUsuario" type="text" placeholder="Usuario" runat="server" />
+		<asp:TextBox CssClass="form-control" ID="inputPassword" type="text" placeholder="Password" runat="server" />
+		<asp:TextBox CssClass="form-control" ID="inputRePassword" type="text" placeholder="Re PAssword" runat="server" />
 
 		<select class="form-select" aria-label="Sexo">
 			<option selected>Sexo</option>
@@ -97,6 +100,7 @@
                 {
             %>
             <div class="form-check form-switch">
+	            <asp:CheckBox CssClass="form-check-input" runat="server"/>
                 <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault<%=contador+1%>">
                 <label class="form-check-label" for="flexSwitchCheckDefault<%=contador+1%>"><%:espe.nombre %></label>
             </div>

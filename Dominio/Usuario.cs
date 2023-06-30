@@ -1,26 +1,23 @@
-﻿using System.Security.Cryptography;
+﻿using System;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace Dominio
 {
     public class Usuario : Persona
     {
-        public int ID_USUARIO { get; set; }
-        public string DNI{ get; set; }
-        public string PASSWORD { get ; set; }
-        public string CORREO{ get; set; }
-        public bool ESTADO{ get; set; }
-        public int ID_TIPOUSUARIO{ get; set; }
+        public int ID_USUARIO;
+        public string name;
 
+        public string PASSWORD;
+
+        public int ID_TIPOUSUARIO;
+        
         public Usuario(){}
-        public Usuario(string dni, string password, string correo, bool estado, int idTipousuario)
+        public Usuario(string dni, string nombres, string apellidos, string direccion, string telefono, string email, DateTime fechaNacimiento, string sexo, bool estado) : base(dni, nombres, apellidos, direccion, telefono, email, fechaNacimiento, sexo, estado)
         {
-            DNI = dni;
-            PASSWORD = password;
-            CORREO = correo;
-            ESTADO = estado;
-            ID_TIPOUSUARIO = idTipousuario;
         }
+        
         
         public static string MD5Hash(string text)  
         {  
@@ -41,6 +38,8 @@ namespace Dominio
             }  
 
             return strBuilder.ToString();  
-        }  
+        }
+
+        
     }
 }

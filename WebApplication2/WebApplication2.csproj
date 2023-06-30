@@ -108,9 +108,12 @@
     <Content Include="Admin\alta_Persona.aspx" />
 
     <Content Include="Admin\Default.aspx" />
+
+    <Content Include="Admin\Especialidades.aspx" />
     <Content Include="Admin\Panel.master" />
     <Content Include="Admin\Tablero.aspx" />
     <Content Include="Admin\Registrar.aspx" />
+    <Content Include="Admin\Usuarios.aspx" />
     <Content Include="assets\porla" />
     <Content Include="assets\template\correo.html" />
     <Content Include="Cartilla.aspx" />
@@ -213,6 +216,13 @@
     <Compile Include="Admin\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Especialidades.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>Especialidades.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Especialidades.aspx.designer.cs">
+      <DependentUpon>Especialidades.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Panel.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Panel.master</DependentUpon>
@@ -233,6 +243,13 @@
     </Compile>
     <Compile Include="Admin\Registrar.aspx.designer.cs">
       <DependentUpon>Registrar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Usuarios.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>Usuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Usuarios.aspx.designer.cs">
+      <DependentUpon>Usuarios.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">

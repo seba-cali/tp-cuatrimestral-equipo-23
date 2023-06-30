@@ -104,20 +104,64 @@ namespace Negocio
         				throw ex;
         			}
         
-        		} 
-	    public int RegistrarUsuario(Usuario nuevo)
+        		}
+
+	    public Usuario BuscarXId(int val)
+	    {
+		    DBConnection db = new DBConnection();
+		    Usuario aux = new Usuario();
+		    try
+		    {
+			    db.setearConsulta("SELECT ID_USUARIO, DNI, PASSWORD, CORREO, ESTADO, ID_TIPOUSUARIO FROM USUARIO WHERE ID_USUARIO= @id");
+			    db.setearParametro("@id", val);
+			    db.ejecutarLectura();
+			    if (db.Lector.Read())
+			    {
+
+				    aux.ID_USUARIO = db.Lector.GetInt32(0);
+				    aux.DNI = db.Lector.GetString(1);
+				    aux.PASSWORD = db.Lector.GetString(2);
+				    aux.CORREO = db.Lector.GetString(3);
+				    aux.ESTADO = db.Lector.GetBoolean(4);
+				    aux.ID_USUARIO = db.Lector.GetInt32(5);
+				    db.cerrarConexion();
+				    return aux;
+
+			    }
+		    }
+		    catch (Exception e)
+		    {
+			    
+			    Console.WriteLine(e);
+			    throw;
+		    }
+		    return null;
+	    }
+	    public int RegistrarUsuario(Usuario nuevo, int id = 0)
                 {
 	                DBConnection db = new DBConnection();
-
 	                try
 	                {
+		                if(id!=0)
+		                {
+								db.setearProcedimiento("ActualizarUsuario");
+				                db.setearParametro("@id", id);
+				                db.setearParametro("@dni", nuevo.DNI);
+				                db.setearParametro("@correo", nuevo.CORREO);
+				                db.setearParametro("@password", nuevo.PASSWORD);
+				                db.setearParametro("@estado", 1);
+				                db.setearParametro("@tipoUsuario", 4);
+				                
+			                
+		                }else{
 		                
-		                db.setearProcedimiento("RegistrarUsuario");
-		                db.setearParametro("@dni", nuevo.DNI);
-		                db.setearParametro("@correo", nuevo.CORREO);
-		                db.setearParametro("@password", nuevo.PASSWORD);
-		                db.setearParametro("@estado", 1);
-		                db.setearParametro("@tipoUsuario", 4);
+			                db.setearProcedimiento("RegistrarUsuario");
+			                db.setearParametro("@dni", nuevo.DNI);
+			                db.setearParametro("@correo", nuevo.CORREO);
+			                db.setearParametro("@password", nuevo.PASSWORD);
+			                db.setearParametro("@estado", 1);
+			                db.setearParametro("@tipoUsuario", 4);
+		                }
 		                return db.ejecutarLecturaInt();
 	                }
 	                catch (Exception ex)
