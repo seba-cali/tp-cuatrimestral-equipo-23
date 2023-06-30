@@ -11,6 +11,10 @@ CREATE TABLE ESPECIALIDADES(
 ALTER TABLE ESPECIALIDADES
 ADD URL_IMG_ESP VARCHAR(255);
 go
+--modificar la tabla ESPECIALIDADES para que URL_IMG_ESP no acepte valores nulos
+alter table ESPECIALIDADES
+alter column URL_IMG_ESP varchar(255) not null
+go
 UPDATE ESPECIALIDADES
 SET URL_IMG_ESP = 'https://cdn4.iconfinder.com/data/icons/dental-54/64/implant-premolar-odontology-dental-dentist-512.png'
 WHERE ID_ESP = 1;
@@ -29,6 +33,12 @@ WHERE ID_ESP = 5;
 UPDATE ESPECIALIDADES
 SET URL_IMG_ESP = 'https://cdn3.iconfinder.com/data/icons/gastroenterology-and-hepatology-1/100/all24_05_16_severe_heartburn_stomach_pain_gastroenterology_hepatology_department-512.png'
 WHERE ID_ESP = 6;
+UPDATE ESPECIALIDADES
+SET URL_IMG_ESP = 'https://cdn0.iconfinder.com/data/icons/scenarium-vol-10/128/019-512.png'
+WHERE ID_ESP = 7;
+UPDATE ESPECIALIDADES
+SET URL_IMG_ESP = 'https://cdn0.iconfinder.com/data/icons/addiction-vivid-vol-1/256/Intoxication-512.png'
+WHERE ID_ESP = 8;
 
 
 GO
@@ -39,6 +49,12 @@ VALUES('Odontología', 'Especialidad en dientes'),
       ('Traumatología', 'Especialidad en lesiones óseas'),
       ('Otorrinonaringología', 'Especialidad en oídos, nariz y garganta'),
       ('Gastroenterología', 'Especialidad en aparato digestivo');
+
+INSERT INTO ESPECIALIDADES(NOMBRE, DESCRIPCION)
+VALUES('ErikVilaplankología', 'Especialidad en motos'),
+      ('NicoSanjuanología', 'Especialidad en pérdidas de la memoria por borrachera');
+
+
 
 GO
 
@@ -164,4 +180,7 @@ create procedure RegistrarUsuario
 as
 insert into Usuario (dni, PASSWORD, CORREO,ESTADO,ID_TIPOUSUARIO) output inserted.ID_Usuario values (@dni, @password, @correo,@estado, @tipousuario)
 go
+
+select * from ESPECIALIDADES
+
 

@@ -10,6 +10,9 @@
 			justify-content: flex-start;
 			height: 100vh;
 			margin-top: 50px;
+			background-image: url("https://i.imgur.com/a4UOksY.jpg");
+			background-repeat: no-repeat;
+			background-size: cover;
 		}
 
 		.form-control {
@@ -39,6 +42,22 @@
 				outline: none;
 				box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 			}
+
+        .inline-checkboxes {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; /* Centra los elementos horizontalmente */
+        }
+
+        .inline-checkboxes .form-check {
+            flex-basis: calc(100% / 6 - 20px); /* Divide el espacio en 6 columnas y ajusta el margen derecho e izquierdo */
+            margin: 10px;
+        }
+
+		.fixed-size-btn {
+			width: 200px; /* Ajusta el tamaño según tus necesidades */
+			height: 40px; /* Ajusta el tamaño según tus necesidades */
+		}
 	</style>
 
 	<div class="container">
@@ -60,7 +79,6 @@
 			<option selected>Sexo</option>
 			<option value="1">M</option>
 			<option value="2">F</option>
-			<option value="3">NoBooleano</option>
 		</select>
 
 		<asp:TextBox CssClass="form-control" ID="inputDNI" type="text" placeholder="DNI" runat="server" />
@@ -69,9 +87,26 @@
 		<asp:TextBox CssClass="form-control" ID="inputEmail" type="email" placeholder="Email" runat="server" />
 		<asp:TextBox CssClass="form-control" ID="inputDireccion" type="text" placeholder="Dirección" runat="server" />
 
-		<%--generar el evento onclick para el boton submit--%>
+		<%--marcar casillas para determinar que especialidades tiene el medico--%>
+		<p>Marque las especialidades del Médico</p>
 
-		<asp:Button CssClass="btn-submit" ID="btnSubmit" runat="server" Text="Dar de Alta" />
-	</div>
+		        <div class="inline-checkboxes">
+            <% 
+                int contador = 0;
+                foreach (Dominio.Especialidad espe in ListaEspecialidades)
+                {
+            %>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault<%=contador+1%>">
+                <label class="form-check-label" for="flexSwitchCheckDefault<%=contador+1%>"><%:espe.nombre %></label>
+            </div>
+            <%    
+                    contador++;
+                }
+            %>
+        </div>
+
+        <asp:Button CssClass="btn-submit fixed-size-btn" ID="btnSubmit" runat="server" Text="Dar de Alta" />
+    </div>
 </asp:Content>
 
