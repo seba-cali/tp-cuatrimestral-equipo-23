@@ -39,35 +39,13 @@ namespace WebApplication2.Admin
 
 		}
 
-        protected void AltaPaciente(object sender, EventArgs e)
+        protected void Button1_Click(object sender, EventArgs e)
         {
-            Session.Add("OK", "");
-            try
-            {
-
-                Paciente paciente = new Paciente();
-				paciente.nombres = inputNombres.Text;
-                paciente.apellidos = inputApellidos.Text;
-				//no existe paciente.Usuario ni Password
-                paciente.sexo = inputSexo.Text;
-				paciente.fechaNacimiento = Convert.ToDateTime(inputFechaNacimiento.Text);
-				paciente.telefono = inputTelefono.Text;
-				paciente.CORREO = inputEmail.Text;  //va o copia de usuario?
-				paciente.direccion = inputDireccion.Text;
-				paciente.ID_USUARIO = negocioPaciente.RegistrarPaciente(paciente, 0);
-                Session.Add("OK", "SE CREO EL PACIENTE CON EXITO");
-
-            }
-            catch (Exception exception)
-            {
-                Session.Add("Error", "Que paso Manito");
-                Console.WriteLine(exception);
-                throw;
-            }
+           
 
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void Button2_Click(object sender, EventArgs e)
 		{
 			try
 			{
@@ -98,5 +76,32 @@ namespace WebApplication2.Admin
 				throw;
 			}
 		}
-	}
+
+        public void btnSubmit_Click(object sender, EventArgs e)
+        {
+            Session.Add("OK", "");
+            try
+            {
+
+                Paciente paciente = new Paciente();
+                paciente.nombres = inputNombres.Text;
+                paciente.apellidos = inputApellidos.Text;
+                //no existe paciente.Usuario ni Password
+                paciente.sexo = inputSexo.Text;
+                paciente.fechaNacimiento = Convert.ToDateTime(inputFechaNacimiento.Text);
+                paciente.telefono = inputTelefono.Text;
+                paciente.CORREO = inputEmail.Text;  //va o copia de usuario?
+                paciente.direccion = inputDireccion.Text;
+                paciente.ID_USUARIO = negocioPaciente.RegistrarPaciente(paciente, 0);
+                Session.Add("OK", "SE CREO EL PACIENTE CON EXITO");
+
+            }
+            catch (Exception exception)
+            {
+                Session.Add("Error", "Que paso Manito");
+                Console.WriteLine(exception);
+                throw;
+            }
+        }
+    }
 }
