@@ -67,7 +67,7 @@ namespace Negocio
 			DBConnection db = new DBConnection();
 			try
 			{
-				Console.WriteLine(id+"aasdasd");
+				Console.WriteLine(id);
 				if(id >0)
 				{
 					db.setearProcedimiento("ActualizaEspecialidad");

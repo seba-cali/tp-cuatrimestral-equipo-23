@@ -52,7 +52,7 @@
                         <tbody>
                         <% 
                             foreach (Dominio.Especialidad espe in ListaEspecialidades)
-                           {  %>
+                            {  %>
                             <tr>
                                 <td class="esp<%= espe.id %>"><%: espe.id %></td>
                                 <td class="esp<%= espe.nombre%>"><%: espe.nombre %></td>

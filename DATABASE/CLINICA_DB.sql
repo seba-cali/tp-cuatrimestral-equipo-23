@@ -229,3 +229,8 @@ alter procedure ActualizaEspecialidad
 
 as
 UPDATE ESPECIALIDADES SET NOMBRE = @nombre, DESCRIPCION = @descripcion, URL_IMG_ESP=@url_img_esp WHERE ID_ESP = @Id_Esp
+
+-------------- 30/06/2023 Agregar DNI a PACIENTE--------
+ALTER TABLE PACIENTE
+ADD DNI VARCHAR(10);
+
