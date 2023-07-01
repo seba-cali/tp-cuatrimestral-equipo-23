@@ -2,6 +2,7 @@
 using System.IO;
 using System.Web.UI;
 using Dominio;
+using Microsoft.Ajax.Utilities;
 using Negocio;
 
 namespace WebApplication2.Admin
@@ -20,6 +21,7 @@ namespace WebApplication2.Admin
                 Usuario usuario = new Usuario();
                 NegocioUsuario usuarioNegocio = new NegocioUsuario();
                 EmailService emailService = new EmailService();
+                
                 
                 //Template email
                 StreamReader str = new StreamReader(Server.MapPath(@"~/assets/template/correo.html"));  

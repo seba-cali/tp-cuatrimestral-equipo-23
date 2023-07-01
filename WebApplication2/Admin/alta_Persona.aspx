@@ -101,7 +101,7 @@
             %>
             <div class="form-check form-switch">
 	            <asp:CheckBox CssClass="form-check-input" runat="server"/>
-                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault<%=contador+1%>">
+                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault<%=contador+1%>">
                 <label class="form-check-label" for="flexSwitchCheckDefault<%=contador+1%>"><%:espe.nombre %></label>
             </div>
             <%    
@@ -110,7 +110,7 @@
             %>
         </div>
 
-        <asp:Button CssClass="btn-submit fixed-size-btn" ID="btnSubmit" runat="server" Text="Dar de Alta" />
+        <asp:Button CssClass="btn-submit fixed-size-btn"  runat="server" Text="Dar de Alta" OnClick="Button1_Click" />
     </div>
 </asp:Content>
 

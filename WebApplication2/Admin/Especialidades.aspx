@@ -89,15 +89,15 @@
                         
                         <div class="mb-0">
                             <label class="mb-1 small text-muted" for="formGroupName">Nombre</label>
-                            <asp:TextBox class="form-control" id="formGroupName" type="text" placeholder="nombre..." runat="server"/>
+                            <asp:TextBox class="form-control formGroupName" id="formGroupName" type="text" placeholder="nombre..." runat="server"/>
                         </div>
                         <div class="mb-0">
                             <label class="mb-1 small text-muted" for="formGroupDesc">Descripcion</label>
-                            <asp:TextBox class="form-control" id="formGroupDesc" type="text" placeholder="descripcion..." runat="server"/>
+                            <asp:TextBox class="form-control formGroupDesc" id="formGroupDesc" type="text" placeholder="descripcion..." runat="server"/>
                         </div>
                         <div class="mb-0">
                             <label class="mb-1 small text-muted" for="formGroupURL">Imagen</label>
-                            <asp:TextBox class="form-control" id="formGroupURL" type="text" placeholder="url imagen" runat="server"/>
+                            <asp:TextBox class="form-control formGroupURL" id="formGroupURL" type="text" placeholder="url imagen" runat="server"/>
                         </div>
                         <div class="mb-0">
                         <% if (Session["OK"] != null)
@@ -111,7 +111,7 @@
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-danger-soft text-danger" type="button" data-bs-dismiss="modal">Cerrar</button>
-                        <asp:Button ID="Button1" runat="server" Text="Crear Nueva Especialidad" CssClass="btn btn-primary-soft text-primary" OnClick="AltaEscpecialidad"/>
+                        <asp:Button ID="Button1" runat="server" Text="Crear Nueva Especialidad"  CssClass="btn btn-primary-soft text-primary limpia" OnClick="AltaEscpecialidad"/>
                     </div>
                      
                 </div>
@@ -200,6 +200,7 @@
                     
  
                 });
+                
                 $('.delete').click(function() {
                     
                     var self = $(this);
