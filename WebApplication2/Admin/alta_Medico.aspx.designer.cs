@@ -11,106 +11,97 @@ namespace WebApplication2.Admin
 {
 
 
-	public partial class alta_Persona
+	public partial class alta_Medico
 	{
 
 		/// <summary>
-		/// inputNombres control.
+		/// inputMedName control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.TextBox inputNombres;
+		protected global::System.Web.UI.WebControls.TextBox inputMedName;
 
 		/// <summary>
-		/// inputApellidos control.
+		/// inputMedLastName control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.TextBox inputApellidos;
+		protected global::System.Web.UI.WebControls.TextBox inputMedLastName;
 
 		/// <summary>
-		/// inputUsuario control.
+		/// inputMedAddress control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.TextBox inputUsuario;
+		protected global::System.Web.UI.WebControls.TextBox inputMedAddress;
 
 		/// <summary>
-		/// inputPassword control.
+		/// inputMedBirthDate control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.TextBox inputPassword;
+		protected global::System.Web.UI.WebControls.TextBox inputMedBirthDate;
 
 		/// <summary>
-		/// inputRePassword control.
+		/// rb_Masculino control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.TextBox inputRePassword;
+		protected global::System.Web.UI.WebControls.RadioButton rb_Masculino;
 
 		/// <summary>
-		/// inputSexo control.
+		/// rb_Femenino control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.DropDownList inputSexo;
+		protected global::System.Web.UI.WebControls.RadioButton rb_Femenino;
 
 		/// <summary>
-		/// inputDNI control.
+		/// inputMedPhone control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.TextBox inputDNI;
+		protected global::System.Web.UI.WebControls.TextBox inputMedPhone;
 
 		/// <summary>
-		/// inputFechaNacimiento control.
+		/// inputMedSpec control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.TextBox inputFechaNacimiento;
+		protected global::System.Web.UI.WebControls.DropDownList inputMedSpec;
 
 		/// <summary>
-		/// inputTelefono control.
+		/// inputMedUser control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.TextBox inputTelefono;
+		protected global::System.Web.UI.WebControls.DropDownList inputMedUser;
 
 		/// <summary>
-		/// inputEmail control.
+		/// btnAltaMed control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.TextBox inputEmail;
-
-		/// <summary>
-		/// inputDireccion control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.TextBox inputDireccion;
+		protected global::System.Web.UI.WebControls.Button btnAltaMed;
 	}
 }
