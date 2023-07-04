@@ -234,3 +234,43 @@ UPDATE ESPECIALIDADES SET NOMBRE = @nombre, DESCRIPCION = @descripcion, URL_IMG_
 ALTER TABLE PACIENTE
 ADD DNI VARCHAR(10);
 
+ALTER TABLE MEDICO
+ADD DNI VARCHAR(10);
+
+ALTER TABLE MEDICO
+ADD MATRICULA VARCHAR(10);
+
+  go
+create procedure RegistrarPaciente
+    @nombre varchar(50),
+    @apellido varchar(50),
+    @direccion varchar(50),
+    @fecha_nacimiento date,
+    @sexo varchar(20),
+    @estado bit,
+    @telefono varchar(20),
+    @id_usuario int,
+    @dni varchar(10)
+
+as
+insert into PACIENTE (NOMBRE,APELLIDO,DIRECCION,FECHA_NACIMIENTO,SEXO,ESTADO,TELEFONO,ID_USUARIO,DNI) output inserted.ID_PACIENTE
+values (@nombre, @apellido, @direccion, @fecha_nacimiento, @sexo,@estado,@telefono,@id_usuario,@dni) 
+go
+create procedure ActualizaPaciente
+    @Id_Paciente int,
+    @nombre varchar(50),
+    @apellido varchar(50),
+    @direccion varchar(50),
+    @fecha_nacimiento date,
+    @sexo varchar(20),
+    @estado bit,
+    @telefono varchar(20),
+    @id_usuario int,
+    @dni varchar(10)
+
+as
+UPDATE PACIENTE SET NOMBRE=@nombre, APELLIDO=@apellido, DIRECCION=@direccion, FECHA_NACIMIENTO=@fecha_nacimiento,
+SEXO=@sexo, ESTADO=@estado, TELEFONO=@telefono, ID_USUARIO=@id_usuario, DNI=@dni WHERE ID_PACIENTE = @Id_Paciente
+go
+
+

@@ -62,14 +62,7 @@
 
 	<div class="container">
 		<h1>Alta de Persona</h1>
-		<h4>Seleccione si la Persona a dar de alta es Médico o Paciente</h4>
-
-		<select class="form-select" aria-label="...">
-			<option selected>Paciente o Médico?</option>
-			<option value="1">Paciente</option>
-			<option value="2">Médico</option>
-		</select>
-
+		
 		<p>Ingrese los datos de la Persona</p>
 
 		<asp:TextBox CssClass="form-control" ID="inputNombres" type="text" placeholder="Nombres" runat="server" />
@@ -80,8 +73,8 @@
 
 		<asp:DropDownList ID="inputSexo" runat="server" CssClass="form-control">
 			<asp:ListItem Text="Sexo" Value="" Selected="True"></asp:ListItem>
-			<asp:ListItem Text="M" Value="1"></asp:ListItem>
-			<asp:ListItem Text="F" Value="2"></asp:ListItem>
+			<asp:ListItem Text="M" Value="M"></asp:ListItem>
+			<asp:ListItem Text="F" Value="F"></asp:ListItem>
 		</asp:DropDownList>
 
 		<asp:TextBox CssClass="form-control" ID="inputDNI" type="text" placeholder="DNI" runat="server" />
@@ -89,6 +82,15 @@
 		<asp:TextBox CssClass="form-control" ID="inputTelefono" type="text" placeholder="Teléfono" runat="server" />
 		<asp:TextBox CssClass="form-control" ID="inputEmail" type="email" placeholder="Email" runat="server" />
 		<asp:TextBox CssClass="form-control" ID="inputDireccion" type="text" placeholder="Dirección" runat="server" />
+
+		<asp:CheckBox Text="El Usuario es Medico?" CssClass="" ID="chkMedico"
+					runat="server" AutoPostBack="true" OnCheckedChanged="chkMedico_CheckedChanged" />
+
+		<% if (MedicoElegido)
+			{
+			%>
+
+		<asp:TextBox CssClass="form-control" ID="inputMatricula" type="text" placeholder="Matricula" runat="server" />
 
 		<%--marcar casillas para determinar que especialidades tiene el medico--%>
 		<p>Marque las especialidades del Médico</p>
@@ -101,18 +103,24 @@
 			%>
 			<div class="form-check form-switch">
 				<asp:CheckBox CssClass="form-check-input" runat="server" />
-				<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault<%=contador+1%>">
-				<label class="form-check-label" for="flexSwitchCheckDefault<%=contador+1%>"><%:espe.nombre %></label>
+				<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault<%=contador + 1%>">
+				<label class="form-check-label" for="flexSwitchCheckDefault<%=contador + 1%>"><%:espe.nombre %></label>
 			</div>
 			<%    
 					contador++;
 				}
 			%>
 		</div>
+		<asp:Button CssClass="btn-submit fixed-size-btn" runat="server" Text="Dar de Alta Medico" OnClick="AltaMedico_Click" />
 
+		<%} %>
 
-		<asp:Button CssClass="btn-submit fixed-size-btn" runat="server" Text="Dar de Alta" OnClick="Button1_Click" />
+		<% if (!MedicoElegido)
+			{
+			%>
+		<asp:Button CssClass="btn-submit fixed-size-btn" runat="server" Text="Dar de Alta" OnClick="btnSubmit_Click" />
 
+		<% }%>
 	</div>
 </asp:Content>
 
