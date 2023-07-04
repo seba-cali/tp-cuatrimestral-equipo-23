@@ -49,6 +49,41 @@ namespace Negocio
 			}
 		}
 
+		public List<Paciente> listarConSp()
+		{
+			List<Paciente> lista = new List<Paciente>();
+			DBConnection datos = new DBConnection();
+			try
+			{
+				datos.setearProcedimiento("sp_listarPaciente");
+				datos.ejecutarLectura();
+				while (datos.Lector.Read())
+				{
+					Paciente aux = new Paciente();
+
+					aux.id = datos.Lector.GetInt32(0);
+					aux.nombres = datos.Lector.GetString(1);
+					aux.apellidos = datos.Lector.GetString(2);
+					aux.direccion = datos.Lector.GetString(3);
+					aux.fechaNacimiento = Convert.ToDateTime(datos.Lector.GetDateTime(4));
+					aux.sexo = datos.Lector.GetString(5);
+					aux.ESTADO = datos.Lector.GetBoolean(6);
+					aux.telefono = datos.Lector.GetString(7);
+					aux.ID_USUARIO = datos.Lector.GetInt32(8);
+					aux.DNI = datos.Lector.GetString(9);
+					lista.Add(aux);
+
+				}
+				return lista;
+
+			}
+			catch (Exception ex)
+			{
+
+				throw ex;
+			}
+		}
+
 		public void eliminarPaciente(int id)
 		{
 			try

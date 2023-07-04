@@ -3,7 +3,23 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
 
-<ul class="list-group">
+   <asp:GridView ID="dgvPacientes" runat="server" CssClass="table"></asp:GridView>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%--<ul class="list-group">
     <li class="list-group-item">Pacientes</li>
     <%foreach (Dominio.Paciente paci in listPacientes)
         {%>
@@ -13,7 +29,7 @@
         <asp:Button ID="btnBorrar" runat="server" CssClass="btn btn-danger btn-sm" Text="💀" OnClick="btnBorrar_Click"  />
     </li>
     <%}%>
-</ul>
+</ul>--%>
 
 
 
