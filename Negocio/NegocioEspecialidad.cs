@@ -62,41 +62,48 @@ namespace Negocio
 
 		}
 		
-		public int RegistrarEspecialidad(Especialidad nuevo, int id )
+		public int RegistrarEspecialidad(Especialidad nuevo, int id=0 )
 		{
-			DBConnection db = new DBConnection();
-			try
-			{
+			
 				Console.WriteLine(id);
-				if(id >0)
+				DBConnection db = new DBConnection();
+				try
 				{
-					db.setearProcedimiento("ActualizaEspecialidad");
-					db.setearParametro("@Id_Esp", id);
-					db.setearParametro("@nombre", nuevo.nombre);
-					db.setearParametro("@descripcion", nuevo.descripcion);
-					db.setearParametro("@url_img_esp", nuevo.url_img_esp);
+					if (id > 0)
+					{
+						db.setearProcedimiento("ActualizaEspecialidad");
+						db.setearParametro("@Id_Esp", id);
+						db.setearParametro("@nombre", nuevo.nombre);
+						db.setearParametro("@descripcion", nuevo.descripcion);
+						db.setearParametro("@url_img_esp", nuevo.url_img_esp);
 
 
-				}else{
-		                
-					db.setearProcedimiento("RegistrarEspecialidad");
-					db.setearParametro("@nombre", nuevo.nombre);
-					db.setearParametro("@descripcion", nuevo.descripcion);
-					db.setearParametro("@url_img_esp", nuevo.url_img_esp);
+					}
+					else
+					{
+
+						db.setearProcedimiento("RegistrarEspecialidad");
+						db.setearParametro("@nombre", nuevo.nombre);
+						db.setearParametro("@descripcion", nuevo.descripcion);
+						db.setearParametro("@url_img_esp", nuevo.url_img_esp);
+					}
+
+					return db.ejecutarLecturaInt();
 				}
-				return db.ejecutarLecturaInt();
-			}
-			catch (Exception ex)
-			{
-				Console.WriteLine("error manito");
-				throw ex;
-			}
-			finally
-			{
-				db.cerrarConexion();
-			}
+				catch (Exception ex)
+				{
+					Console.WriteLine("error manito");
+					Console.WriteLine(ex.ToString());
+					return 0;
+					
+				}
+				finally
+				{
+					db.cerrarConexion();
+				}
 
 		}
 
+		
 	}
 }

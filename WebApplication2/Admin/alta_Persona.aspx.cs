@@ -40,12 +40,22 @@ namespace WebApplication2.Admin
 
 		}
 
+
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+           Console.WriteLine("asdasdasd **************");
+
+        }
+
+
         public bool MedicoElegido { get; set; }
         protected void chkMedico_CheckedChanged(object sender, EventArgs e)
         {
             MedicoElegido = chkMedico.Checked;
          
         }
+
 
 
 

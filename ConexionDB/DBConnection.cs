@@ -19,7 +19,7 @@ namespace ConexionDB
 
 
 			//NICO
-			//conexion = new SqlConnection("server=127.0.0.1;database=CLINICA_DB;uid=sa;pwd=Nicosj999@;encrypt=false");
+			conexion = new SqlConnection("server=127.0.0.1;database=CLINICA_DB;uid=sa;pwd=Nicosj999@;encrypt=false");
 
 
 			////ERIK
@@ -30,7 +30,7 @@ namespace ConexionDB
 
 
 			//SEBA
-			conexion = new SqlConnection("server=localhost\\LABO3; database=CLINICA_DB; integrated security = false; user=sa; password=123xx;");
+			//conexion = new SqlConnection("server=localhost\\LABO3; database=CLINICA_DB; integrated security = false; user=sa; password=123xx;");
 
 
 			comando = new SqlCommand();

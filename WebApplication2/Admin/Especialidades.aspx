@@ -99,19 +99,11 @@
                             <label class="mb-1 small text-muted" for="formGroupURL">Imagen</label>
                             <asp:TextBox class="form-control formGroupURL" id="formGroupURL" type="text" placeholder="url imagen" runat="server"/>
                         </div>
-                        <div class="mb-0">
-                        <% if (Session["OK"] != null)
-                           { %>
-                                <div class="alert alert-success" role="alert">
-                                									<%: Session["OK"] %>
-                                								</div>
-                                <% } %>
-                        </div>
 
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-danger-soft text-danger" type="button" data-bs-dismiss="modal">Cerrar</button>
-                        <asp:Button ID="Button1" runat="server" Text="Crear Nueva Especialidad"  CssClass="btn btn-primary-soft text-primary limpia" OnClick="AltaEscpecialidad"/>
+                        <asp:Button ID="Button1" CausesValidation="False"  runat="server" Text="Crear Nueva Especialidad"   CssClass="btn btn-primary-soft text-primary" OnClientClick="return ;" OnClick="AltaEscpecialidad"/>
                     </div>
                      
                 </div>
@@ -132,7 +124,8 @@
                         
                         <div class="mb-0">
                             <label class="mb-1 small text-muted" for="formGroupName">Id</label>
-                            <asp:TextBox class="form-control formGroupId" id="formGroupId" type="text" hidden  runat="server"/>
+                            <h3 class="elementoedit"></h3>
+                            <asp:TextBox class="form-control formGroupId" id="formGroupId" type="text"   runat="server"/>
                         </div>
                         <div class="mb-0">
                             <label class="mb-1 small text-muted" for="formGroupName">Nombre</label>
@@ -154,7 +147,7 @@
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-danger-soft text-danger" type="button" data-bs-dismiss="modal">Cerrar</button>
-                        <asp:Button ID="Button2" runat="server" Text="Modificar Especialidad" CssClass="btn btn-primary-soft text-primary" OnClick="EditarEscpecialidad"/>
+                        <asp:Button ID="Button2" runat="server" Text="Modificar Especialidad" CausesValidation="False" OnClientClick="return ;" CssClass="btn btn-primary-soft text-primary" OnClick="EditarEscpecialidad"/>
                     </div>
                     
                 </div>
@@ -175,33 +168,74 @@
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-danger-soft text-danger" type="button" data-bs-dismiss="modal">Cerrar</button>
-                        <asp:Button ID="Button3" runat="server" Text="Eliminar Especialidad" CssClass="btn btn-primary-soft text-primary" OnClick="EliminaEscpecialidad"/>
+                        <asp:Button ID="Button3" runat="server"  Text="Eliminar Especialidad" CssClass="btn btn-primary-soft text-primary" CausesValidation="False" OnClick="EliminaEscpecialidad"/>
                     </div>
 
                 </div>
             </div>
+            
         </div>
+        <%
+            if (Session["OK"] != null)
+            {
+        %>
+        <div style="position: absolute; bottom: 1rem; right: 1rem; visibility : <%: Session["OK"] == null? "hidden": "visible" %> ">
+            <!-- Toast -->
+            <div class="toast " id="toastBasic" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
+                <div class="toast-header bg-info">
+                    <i data-feather="bell"></i>
+                    <strong class="mr-auto">Alerta</strong>
+                    <small class="text-muted ml-2">Exito:</small>
+                    <button class="ml-2 mb-1 btn-close" type="button" data-bs-dismiss="toast" aria-label="Close">                                                                </button>
+                </div>
+                <div class="toast-body"><%: Session["OK"]%></div>
+            </div>
+        </div>
+            <% } %>
+        <%
+                    if (Session["error"] != null)
+                    {
+                %>
+                <div style="position: absolute; bottom: 1rem; right: 1rem; visibility : <%: Session["error"] == null? "hidden": "visible" %> ">
+                    <!-- Toast -->
+                    <div class="toast " id="toastBasic" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
+                        <div class="toast-header bg-info">
+                            <i data-feather="bell"></i>
+                            <strong class="mr-auto">Alerta</strong>
+                            <small class="text-muted ml-2">Error: </small>
+                            <button class="ml-2 mb-1 btn-close" type="button" data-bs-dismiss="toast" aria-label="Close">                                                                </button>
+                        </div>
+                        <div class="toast-body"><%: Session["error"]%></div>
+                    </div>
+                </div>
+                    <% } %>
     </main>
     <script >
-    		$(function() {
+ 		$(function() {
+             
                 
+                    $("#toastBasic").toast("show");
+                
+              
+       
                
-            
+                $('.editar').on('click',function() {
+                     
                
-                $('.editar').click(function() {
-                     var self = $(this);
-               
-                        var index=self.attr('id');                
+                        var index=$(this).attr('id');             
+                        var indextab=$(this).closest('tr').attr('data-index');
+                        indextab++
+                        $('.elementoedit').text(indextab);
                         $('.formGroupId').attr('value', index);
-                        $('.formGroupNameEdit').attr('value',$("#datatablesSimple tbody tr:nth-child( "+ index +" ) td:nth-child(2)").text());
-                        $('.formGroupDescEdit').attr('value',$("#datatablesSimple tbody tr:nth-child( "+ index +" ) td:nth-child(3)").text());
-                        $('.formGroupURLEdit').attr('value',$("#datatablesSimple tbody tr:nth-child( "+ index +" ) td:nth-child(4) img").attr("src"));
-                        $('.imagen').attr('src',$("#datatablesSimple tbody tr:nth-child( "+ index +" ) td:nth-child(4) img").attr("src"));
+                        $('.formGroupNameEdit').attr('value',$("#datatablesSimple tbody tr:nth-child( "+ indextab +" ) td:nth-child(2)").text());
+                        $('.formGroupDescEdit').attr('value',$("#datatablesSimple tbody tr:nth-child( "+ indextab +" ) td:nth-child(3)").text());
+                        $('.formGroupURLEdit').attr('value',$("#datatablesSimple tbody tr:nth-child( "+ indextab +" ) td:nth-child(4) img").attr("src"));
+                        $('.imagen').attr('src',$("#datatablesSimple tbody tr:nth-child( "+ indextab +" ) td:nth-child(4) img").attr("src"));
                     
  
                 });
                 
-                $('.delete').click(function() {
+                $('.delete').on('click',function() {
                     
                     var self = $(this);
                
@@ -212,6 +246,9 @@
                 });
             });
     		
-    		
+    		//elimina el parametro de la url previene el reenvio del formulario
+            if ( window.history.replaceState ) {
+              window.history.replaceState( null, null, window.location.href );
+            }
     </script>
 </asp:Content>
