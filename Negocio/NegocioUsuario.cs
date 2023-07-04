@@ -142,7 +142,7 @@ namespace Negocio
 	                DBConnection db = new DBConnection();
 	                try
 	                {
-		                if(id!=0)
+		                if(id > 0)
 		                {
 								db.setearProcedimiento("ActualizarUsuario");
 				                db.setearParametro("@id", id);

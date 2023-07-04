@@ -103,12 +103,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
-
-
+    <Content Include="Admin\alta_Medico.aspx" />
     <Content Include="Admin\alta_Persona.aspx" />
-
     <Content Include="Admin\Default.aspx" />
-
     <Content Include="Admin\Especialidades.aspx" />
     <Content Include="Admin\Panel.master" />
     <Content Include="Admin\Tablero.aspx" />
@@ -201,6 +198,13 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\alta_Medico.aspx.cs">
+      <DependentUpon>alta_Medico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\alta_Medico.aspx.designer.cs">
+      <DependentUpon>alta_Medico.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\alta_Persona.aspx.cs">
       <DependentUpon>alta_Persona.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -208,7 +212,6 @@
     <Compile Include="Admin\alta_Persona.aspx.designer.cs">
       <DependentUpon>alta_Persona.aspx</DependentUpon>
     </Compile>
-
     <Compile Include="Admin\Default.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Default.aspx</DependentUpon>

@@ -11,8 +11,9 @@ namespace WebApplication2.Admin
 {
 
 
-    public partial class alta_Persona
-    {
+	public partial class alta_Persona
+	{
+
 
         /// <summary>
         /// Control inputNombres.
@@ -113,4 +114,6 @@ namespace WebApplication2.Admin
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox inputDireccion;
     }
+
+
 }
