@@ -10,18 +10,12 @@ namespace WebApplication2
 {
 	public partial class Cartilla : System.Web.UI.Page
 	{
-        public List<Especialidad> ListaEspecialidades { get; set; }
-        protected void Page_Load(object sender, EventArgs e)
+		public List<Especialidad> ListaEspecialidades { get; set; }
+		protected void Page_Load(object sender, EventArgs e)
 		{
 			NegocioEspecialidad negocioEspecialidad = new NegocioEspecialidad();
 			ListaEspecialidades = negocioEspecialidad.listar();
 
 		}
-
-
-
-
-
-
 	}
 }

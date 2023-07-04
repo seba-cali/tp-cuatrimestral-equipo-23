@@ -11,6 +11,7 @@ namespace WebApplication2.Admin
 {
 
 
+
 	public partial class alta_Persona
 	{
 
@@ -113,7 +114,28 @@ namespace WebApplication2.Admin
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox inputDireccion;
-    }
 
+
+
+
+
+        /// <summary>
+        /// Control chkMedico.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkMedico;
+
+        /// <summary>
+        /// Control inputMatricula.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox inputMatricula;
+    }
 
 }

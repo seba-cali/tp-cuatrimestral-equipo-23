@@ -103,6 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="Admin\Administrar_Personas.aspx" />
     <Content Include="Admin\alta_Medico.aspx" />
     <Content Include="Admin\alta_Persona.aspx" />
     <Content Include="Admin\Default.aspx" />
@@ -198,6 +199,13 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\Administrar_Personas.aspx.cs">
+      <DependentUpon>Administrar_Personas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Administrar_Personas.aspx.designer.cs">
+      <DependentUpon>Administrar_Personas.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\alta_Medico.aspx.cs">
       <DependentUpon>alta_Medico.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
