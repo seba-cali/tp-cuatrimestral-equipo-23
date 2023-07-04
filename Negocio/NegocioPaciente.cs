@@ -54,8 +54,8 @@ namespace Negocio
 			try
 			{
 				DBConnection datos = new DBConnection();
-				datos.setearConsulta("DELETE FROM PACIENTE where ID_PACIENTE = @id");
 				datos.setearParametro("@id", id);
+				datos.setearConsulta("UPDATE PACIENTE SET ESTADO=0 where ID=@id");
 				datos.ejecutarAccion();
 			}
 			catch (Exception ex)
@@ -112,6 +112,5 @@ namespace Negocio
 			}
 
 		}
-
 	}
 }

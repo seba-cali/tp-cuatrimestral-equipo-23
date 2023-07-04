@@ -134,6 +134,14 @@ VALUES
     ('PEPE','HONGITO', '12345678','1977/01/01','V',1,'2644000000',8),
     ('PEPE','HONGITO', '12345678','1977/01/01','V',1,'2644000000',9);
 
+USE CLINICA_DB
+GO
+
+UPDATE Paciente
+SET DNI = '34555666'
+WHERE SEXO = 'V';
+
+alter table PACIENTE 
 GO
 CREATE TABLE MEDICO(
                        ID_MEDICO INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
@@ -201,7 +209,7 @@ create procedure RegistrarEspecialidad
 as
 insert into ESPECIALIDADES (NOMBRE, DESCRIPCION) output inserted.ID_ESP values (@nombre, @descripcion) 
 go
-create procedure ActualizaEspecialidad
+create procedure ActualizarEspecialidad
     @Id_Esp int,
     @nombre varchar(50),
     @descripcion varchar(50)
@@ -212,7 +220,7 @@ go
 select * from ESPECIALIDADES
 
 
-alter procedure RegistrarEspecialidad
+create procedure RegistrarEspecialidad
     @nombre varchar(50),
     @descripcion varchar(50),
     @url_img_esp varchar(150)
@@ -221,7 +229,7 @@ alter procedure RegistrarEspecialidad
 as
 insert into ESPECIALIDADES (NOMBRE, DESCRIPCION,URL_IMG_ESP) output inserted.ID_ESP values (@nombre, @descripcion,@url_img_esp)
 go
-alter procedure ActualizaEspecialidad
+create procedure ActualizarEspecialidad
     @Id_Esp int,
     @nombre varchar(50),
     @descripcion varchar(50),
@@ -256,7 +264,7 @@ as
 insert into PACIENTE (NOMBRE,APELLIDO,DIRECCION,FECHA_NACIMIENTO,SEXO,ESTADO,TELEFONO,ID_USUARIO,DNI) output inserted.ID_PACIENTE
 values (@nombre, @apellido, @direccion, @fecha_nacimiento, @sexo,@estado,@telefono,@id_usuario,@dni) 
 go
-create procedure ActualizaPaciente
+create procedure ActualizarPaciente
     @Id_Paciente int,
     @nombre varchar(50),
     @apellido varchar(50),
