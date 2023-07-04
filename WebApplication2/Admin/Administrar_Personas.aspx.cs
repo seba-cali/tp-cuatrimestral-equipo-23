@@ -30,8 +30,34 @@ namespace WebApplication2.Admin
 
 		}
 
-		protected void btnBorrar_Click(object sender, EventArgs e)
+		protected void btnEliminar_Click(object sender, EventArgs e)
 		{
+			{
+				Button btnEliminar = (Button)sender;
+				string idPaciente = btnEliminar.CommandArgument;
+
+				NegocioPaciente negocioPaciente = new NegocioPaciente();
+				negocioPaciente.eliminarPaciente(int.Parse(idPaciente));
+				Response.Redirect("Administrar_Personas.aspx");
+
+
+
+				// Perform deletion operations using the ID value
+
+
+				// Example: Call a method to delete the patient based on the ID
+				// DeletePatient(idPaciente);
+			}
+		}
+
+		protected void btnReactivar_Click(object sender, EventArgs e)
+		{
+			Button btnReactivar = (Button)sender;
+			string idPaciente = btnReactivar.CommandArgument;
+
+			NegocioPaciente negocioPaciente = new NegocioPaciente();
+			negocioPaciente.reactivarPaciente(int.Parse(idPaciente));
+			Response.Redirect("Administrar_Personas.aspx");
 
 		}
 	}

@@ -90,7 +90,7 @@ namespace Negocio
 			{
 				DBConnection datos = new DBConnection();
 				datos.setearParametro("@id", id);
-				datos.setearConsulta("UPDATE PACIENTE SET ESTADO=0 where ID=@id");
+				datos.setearConsulta("UPDATE PACIENTE SET ESTADO=0 where ID_PACIENTE=@id");
 				datos.ejecutarAccion();
 			}
 			catch (Exception ex)
@@ -146,6 +146,22 @@ namespace Negocio
 				db.cerrarConexion();
 			}
 
+		}
+
+		public void reactivarPaciente(int id)
+		{
+			try
+			{
+				DBConnection datos = new DBConnection();
+				datos.setearParametro("@id", id);
+				datos.setearConsulta("UPDATE PACIENTE SET ESTADO=1 where ID_PACIENTE=@id");
+				datos.ejecutarAccion();
+			}
+			catch (Exception ex)
+			{
+
+				throw ex;
+			}
 		}
 	}
 }
