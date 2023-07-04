@@ -64,8 +64,6 @@ namespace Negocio
 		
 		public int RegistrarEspecialidad(Especialidad nuevo, int id )
 		{
-			DBConnection db = new DBConnection();
-			try
 			{
 				Console.WriteLine(id);
 				if(id >0)
