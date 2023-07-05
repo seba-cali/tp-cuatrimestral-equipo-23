@@ -288,4 +288,51 @@ select ID_PACIENTE, NOMBRE, APELLIDO, DIRECCION, FECHA_NACIMIENTO, SEXO, ESTADO,
 FROM PACIENTE
 
 
+--04/07/2022
+--SP DE CREAR MEDICOS y eso
+  go
+create procedure RegistrarMedico
+    @nombre varchar(50),
+    @apellido varchar(50),
+    @direccion varchar(50),
+    @fecha_nacimiento date,
+    @sexo varchar(20),
+    @estado bit,
+    @telefono varchar(20),
+    @id_usuario int,
+    @dni varchar(10),
+    @matricula varchar(10)
+
+as
+insert into MEDICO (NOMBRE,APELLIDO,DIRECCION,FECHA_NACIMIENTO,SEXO,ESTADO,TELEFONO,ID_USUARIO,DNI,MATRICULA) output inserted.ID_MEDICO
+values (@nombre, @apellido, @direccion, @fecha_nacimiento, @sexo,@estado,@telefono,@id_usuario,@dni,@matricula) 
+
+
+
+go
+create procedure ActualizarMedico
+    @Id_Medico int,
+    @nombre varchar(50),
+    @apellido varchar(50),
+    @direccion varchar(50),
+    @fecha_nacimiento date,
+    @sexo varchar(20),
+    @estado bit,
+    @telefono varchar(20),
+    @id_usuario int,
+    @dni varchar(10),
+    @matricula varchar (10)
+    
+as
+UPDATE MEDICO SET NOMBRE=@nombre, APELLIDO=@apellido, DIRECCION=@direccion, FECHA_NACIMIENTO=@fecha_nacimiento,
+SEXO=@sexo, ESTADO=@estado, TELEFONO=@telefono, ID_USUARIO=@id_usuario, DNI=@dni, MATRICULA=@matricula WHERE ID_MEDICO = @Id_Medico
+go
+
+  -- Borrar FK_Key de ID_ESP
+ALTER TABLE MEDICO
+DROP CONSTRAINT FK__MEDICO__ID_ESP__571DF1D5;
+
+-- Borrar columna
+ALTER TABLE MEDICO
+DROP COLUMN ID_ESP;
 
