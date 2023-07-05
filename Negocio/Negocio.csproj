@@ -41,6 +41,7 @@
     <Compile Include="Class1.cs" />
     <Compile Include="EmailService.cs" />
     <Compile Include="NegocioEspecialidad.cs" />
+    <Compile Include="NegocioEspecialidadxMedico.cs" />
     <Compile Include="NegocioMedico.cs" />
     <Compile Include="NegocioPaciente.cs" />
     <Compile Include="NegocioUsuario.cs" />
