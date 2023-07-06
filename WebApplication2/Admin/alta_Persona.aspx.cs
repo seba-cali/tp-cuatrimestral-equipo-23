@@ -18,24 +18,62 @@ namespace WebApplication2.Admin
 		public NegocioMedico negocioMedico;
 		protected void Page_Load(object sender, EventArgs e)
 		{
-			Session.Add("OK", null);
-			NegocioPaciente negocioPaciente = new NegocioPaciente();
-			NegocioEspecialidad negocioEspecialidad = new NegocioEspecialidad();
-			ListaEspecialidades = negocioEspecialidad.listar();
-			negocioPaciente = new NegocioPaciente();
-			foreach (Especialidad pivot in ListaEspecialidades)
-			{
-				check = new CheckBox();
-				check.ID = pivot.id.ToString();
-				check.CssClass = "form-check-input";
-				/*btn.Text = "Agregar al carrito 🛒";
-				btn.ID = index.ToString();
-				btn.Click += new EventHandler(btnAddCarro_Click);
-				btn.CommandArgument= item.Id.ToString();
-				btn.CssClass = "btn btn-primary botonHidenPrincipal";
-				heroP.Controls.Add(btn);
-				index++;*/
 
+			bool esPaciente = false;
+			Session.Add("OK", null);
+			string idPaciente = Request.QueryString["idPaciente"] != null ? Request.QueryString["idPaciente"].ToString() : "";
+			string idUsuario = Request.QueryString["idUsuario"] != null ? Request.QueryString["idUsuario"].ToString() : "";
+			if (idPaciente != "" && idUsuario != "")
+			{
+				esPaciente = true;
+				NegocioPaciente negocio = new NegocioPaciente();
+				NegocioUsuario usuario = new NegocioUsuario();
+				//List<Paciente> listaPacientes = negocio.listar(idPaciente);
+				//Paciente seleccionado = listaPacientes[0];		
+				Paciente seleccionado = (negocio.listar(idPaciente))[0];
+				Usuario usuarioseleccionado = (usuario.listar(idUsuario))[0];
+				inputUsuario.Text = usuarioseleccionado.DNI;
+				inputPassword.Text = usuarioseleccionado.PASSWORD;
+				inputRePassword.Text = usuarioseleccionado.PASSWORD;
+				
+	
+				inputEmail.Text = usuarioseleccionado.CORREO;
+
+
+	
+				inputNombres.Text = seleccionado.nombres;
+				inputApellidos.Text = seleccionado.apellidos;
+				//precargar fecha de nacimiento	
+				DateTime fechaNacimiento = seleccionado.fechaNacimiento;
+				inputFechaNacimiento.Text = fechaNacimiento.ToString("yyyy-MM-dd");
+				//precargar combobox sexo
+				inputSexo.SelectedValue = seleccionado.sexo;
+				inputTelefono.Text = seleccionado.telefono;
+				inputDireccion.Text = seleccionado.direccion;
+				inputDNI.Text = seleccionado.DNI;
+				
+
+			}
+			else
+			{
+				NegocioPaciente negocioPaciente = new NegocioPaciente();
+				NegocioEspecialidad negocioEspecialidad = new NegocioEspecialidad();
+				ListaEspecialidades = negocioEspecialidad.listar();
+				negocioPaciente = new NegocioPaciente();
+				foreach (Especialidad pivot in ListaEspecialidades)
+				{
+					check = new CheckBox();
+					check.ID = pivot.id.ToString();
+					check.CssClass = "form-check-input";
+					/*btn.Text = "Agregar al carrito 🛒";
+					btn.ID = index.ToString();
+					btn.Click += new EventHandler(btnAddCarro_Click);
+					btn.CommandArgument= item.Id.ToString();
+					btn.CssClass = "btn btn-primary botonHidenPrincipal";
+					heroP.Controls.Add(btn);
+					index++;*/
+
+				}
 			}
 
 		}
@@ -55,6 +93,8 @@ namespace WebApplication2.Admin
             MedicoElegido = chkMedico.Checked;
          
         }
+
+			
 
 
 
@@ -88,6 +128,14 @@ namespace WebApplication2.Admin
 				paciente.DNI = inputDNI.Text;
 				paciente.ID_PACIENTE = negocioPaciente.RegistrarPaciente(paciente,0);
 				Session.Add("OK", "SE CREO EL PACIENTE CON EXITO");
+
+
+				//modificar paciente
+				
+				
+
+
+
 
 			}
 			catch (Exception exception)

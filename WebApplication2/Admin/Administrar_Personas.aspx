@@ -8,13 +8,20 @@
 			<RowStyle VerticalAlign="Middle" HorizontalAlign="Center" />
 			<Columns>
 				<asp:BoundField HeaderText="ID Paciente" DataField="id" />
+				<asp:BoundField HeaderText="ID Usuario" Datafield="ID_USUARIO"/>
 				<asp:BoundField HeaderText="Nombres" DataField="nombres" />
 				<asp:BoundField HeaderText="Apellidos" DataField="apellidos" />
 				<asp:BoundField HeaderText="DNI" DataField="dni" />
 				<asp:CheckBoxField HeaderText="Estado" DataField="ESTADO" />
 				<asp:TemplateField HeaderText="Acciones">
 					<ItemTemplate>
-						<asp:Button ID="btnModificar" runat="server" CssClass="btn btn-primary btn-sm" Text="Modificar" />
+
+
+						<asp:Button ID="btnModificar" runat="server" CssClass="btn btn-primary btn-sm" Text="Modificar" OnClick="btnModificar_Click"  CommandArgument='<%# Eval("id") + "," + Eval("ID_USUARIO") %>'/>
+
+
+
+
 						<asp:Button ID="btnEliminar" runat="server" CssClass="btn btn-danger btn-sm" Text="Eliminar" OnClick="btnEliminar_Click" CommandArgument='<%# Eval("id") %>' />
 						<asp:Button ID="btnReactivar" runat="server" CssClass="btn btn-secondary btn-sm" Text="Reactivar" OnClick="btnReactivar_Click" CommandArgument='<%# Eval("id") %>' />
 					</ItemTemplate>
