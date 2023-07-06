@@ -80,13 +80,6 @@ namespace WebApplication2.Admin
 
 
 
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-           Console.WriteLine("asdasdasd **************");
-
-        }
-
-
         public bool MedicoElegido { get; set; }
         protected void chkMedico_CheckedChanged(object sender, EventArgs e)
         {
@@ -171,6 +164,7 @@ namespace WebApplication2.Admin
                 medico.ESTADO = true;
                 medico.ID_USUARIO = usuario.ID_USUARIO;
                 medico.DNI = inputDNI.Text;
+				medico.Matricula = inputMatricula.Text;
 				medico.ID_MEDICO = negocioMedico.RegistrarMedico(medico, 0);
                 Session.Add("OK", "SE CREO EL PACIENTE CON EXITO");
 
