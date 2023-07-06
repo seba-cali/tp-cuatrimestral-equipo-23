@@ -109,9 +109,13 @@
     <Content Include="Admin\Default.aspx" />
     <Content Include="Admin\Especialidades.aspx" />
     <Content Include="Admin\Panel.master" />
+    <Content Include="Admin\Recuperar.aspx" />
+    <Content Include="Admin\ResetPassword.aspx" />
+    <Content Include="Admin\SisTurnos.aspx" />
     <Content Include="Admin\Tablero.aspx" />
     <Content Include="Admin\Registrar.aspx" />
     <Content Include="Admin\Usuarios.aspx" />
+    <Content Include="assets\daypilot\daypilot-all.min.js" />
     <Content Include="assets\porla" />
     <Content Include="assets\template\correo.html" />
     <Content Include="Cartilla.aspx" />
@@ -241,6 +245,27 @@
     <Compile Include="Admin\Panel.master.designer.cs">
       <DependentUpon>Panel.master</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Recuperar.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>Recuperar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Recuperar.aspx.designer.cs">
+      <DependentUpon>Recuperar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ResetPassword.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ResetPassword.aspx.designer.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\SisTurnos.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>SisTurnos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\SisTurnos.aspx.designer.cs">
+      <DependentUpon>SisTurnos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Tablero.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Tablero.aspx</DependentUpon>
@@ -348,6 +373,9 @@
       <Project>{f5f1571a-a830-4fc3-adc9-df971117d351}</Project>
       <Name>Negocio</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="assets\daypilot\daypilot-all.min.d.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

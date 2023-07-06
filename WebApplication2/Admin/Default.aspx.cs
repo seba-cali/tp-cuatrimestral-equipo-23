@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web.UI;
 using Dominio;
 using Negocio;
@@ -17,14 +19,21 @@ namespace WebApplication2.Admin
         protected void btn_Login(object sender, EventArgs e)
         {
             
-            Usuario usuuario= new Usuario();
-            NegocioUsuario negocioUsuario = new NegocioUsuario();
+            
             
             try
             {
+                Usuario usuuario= new Usuario();
+                NegocioUsuario negocioUsuario = new NegocioUsuario();    
                 usuuario.DNI= DNIUSER.Text;
-                usuuario.PASSWORD = PASSWORDUSER.Text;
-                if (negocioUsuario.login(usuuario) != null)
+                usuuario.PASSWORD = usuuario.encriptar(PASSWORDUSER.Text);
+                
+                if(usuuario.DNI.Length<=4|| usuuario.PASSWORD.Length<=8)
+                {
+                    Session.Add("error", "DNI incorrecto o password incorrecto");
+                    Response.Redirect("Default.aspx", false);
+                }
+                else if (negocioUsuario.login(usuuario) != null)
                 {
                     Session.Remove("error");
                     Session.Add("usuario", usuuario);
@@ -47,5 +56,6 @@ namespace WebApplication2.Admin
             }
 
         }
+       
     }
 }

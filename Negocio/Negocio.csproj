@@ -43,6 +43,7 @@
     <Compile Include="NegocioEspecialidad.cs" />
     <Compile Include="NegocioMedico.cs" />
     <Compile Include="NegocioPaciente.cs" />
+    <Compile Include="NegocioResetPassword.cs" />
     <Compile Include="NegocioUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
