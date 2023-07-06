@@ -62,7 +62,7 @@
 
 	<div class="container">
 		<h1>Alta de Persona</h1>
-		
+
 		<p>Ingrese los datos de la Persona</p>
 
 		<asp:TextBox CssClass="form-control" ID="inputNombres" type="text" placeholder="Nombres" runat="server" />
@@ -83,13 +83,14 @@
 		<asp:TextBox CssClass="form-control" ID="inputRePassword" type="text" placeholder="Re Password" runat="server" />
 		<asp:TextBox CssClass="form-control" ID="inputEmail" type="email" placeholder="Email" runat="server" />
 
-
+		<%if (!esPaciente) {%>  
 		<asp:CheckBox Text="El Usuario es Medico?" CssClass="" ID="chkMedico"
-					runat="server" AutoPostBack="true" OnCheckedChanged="chkMedico_CheckedChanged" />
+			runat="server" AutoPostBack="true" OnCheckedChanged="chkMedico_CheckedChanged" />
+		<%}%>
 
-		<% if (MedicoElegido)
+		<% if (MedicoElegido && !esPaciente)
 			{
-			%>
+		%>
 
 		<asp:TextBox CssClass="form-control" ID="inputMatricula" type="text" placeholder="Matricula" runat="server" />
 
@@ -116,12 +117,16 @@
 
 		<%} %>
 
-		<% if (!MedicoElegido)
+		<% if (!MedicoElegido && !esPaciente)
 			{
-			%>
+		%>
 		<asp:Button CssClass="btn-submit fixed-size-btn" runat="server" Text="Dar de Alta" OnClick="btnSubmit_Click" />
 
-		<% }%>
+		<% }else if (esPaciente)
+			{%>
+			<asp:Button CssClass="btn-Actualizar fixed-size-btn" ID="btnActualizarPaciente" runat="server" Text="Actualizar Paciente" Onclick="btnActualizarPaciente_Click"/><%
+
+			}%>
 	</div>
 </asp:Content>
 

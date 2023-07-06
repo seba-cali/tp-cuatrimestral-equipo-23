@@ -3,6 +3,7 @@ using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -18,8 +19,8 @@ namespace WebApplication2.Admin
 		public NegocioMedico negocioMedico;
 		protected void Page_Load(object sender, EventArgs e)
 		{
-
-			bool esPaciente = false;
+			
+			
 			Session.Add("OK", null);
 			string idPaciente = Request.QueryString["idPaciente"] != null ? Request.QueryString["idPaciente"].ToString() : "";
 			string idUsuario = Request.QueryString["idUsuario"] != null ? Request.QueryString["idUsuario"].ToString() : "";
@@ -56,6 +57,7 @@ namespace WebApplication2.Admin
 			}
 			else
 			{
+				esPaciente = false;
 				NegocioPaciente negocioPaciente = new NegocioPaciente();
 				NegocioEspecialidad negocioEspecialidad = new NegocioEspecialidad();
 				ListaEspecialidades = negocioEspecialidad.listar();
@@ -77,6 +79,7 @@ namespace WebApplication2.Admin
 			}
 
 		}
+			public bool esPaciente { get; set; }
 
 
 
@@ -86,6 +89,8 @@ namespace WebApplication2.Admin
             MedicoElegido = chkMedico.Checked;
          
         }
+
+
 
 			
 
@@ -176,5 +181,45 @@ namespace WebApplication2.Admin
                 throw;
             }
         }
-    }
+
+		protected void btnActualizarPaciente_Click(object sender, EventArgs e)
+		{
+			int IDPACIENTE = Convert.ToInt32(Request.QueryString["idPaciente"]);
+			Session.Add("OK", "");
+			try
+			{
+
+				Paciente paciente = new Paciente();
+				Usuario usuario = new Usuario();
+				NegocioUsuario negocioUsuario = new NegocioUsuario();
+				negocioPaciente = new NegocioPaciente();
+
+				usuario.DNI = inputDNI.Text;
+				usuario.PASSWORD = inputPassword.Text;
+				usuario.CORREO = inputEmail.Text;
+				usuario.ID_TIPOUSUARIO = 4;
+				usuario.ID_USUARIO = negocioUsuario.RegistrarUsuario(usuario);
+				paciente.nombres = inputNombres.Text;
+				paciente.apellidos = inputApellidos.Text;
+				paciente.sexo = inputSexo.Text;
+				paciente.fechaNacimiento = Convert.ToDateTime(inputFechaNacimiento.Text);
+				paciente.telefono = inputTelefono.Text;
+				paciente.CORREO = inputEmail.Text;  //va o copia de usuario?
+				paciente.direccion = inputDireccion.Text;
+				paciente.ESTADO = true;
+				paciente.ID_USUARIO = usuario.ID_USUARIO;
+				paciente.DNI = inputDNI.Text;
+				paciente.ID_PACIENTE = negocioPaciente.RegistrarPaciente(paciente, IDPACIENTE);
+				Session.Add("OK", "SE ACTUALIZO EL PACIENTE CON EXITO");
+
+
+			}
+			catch (Exception exception)
+			{
+				Session.Add("Error", "Que paso Manito");
+				Console.WriteLine(exception);
+				throw;
+			}
+		}
+	}
 }
