@@ -24,7 +24,7 @@ namespace ConexionDB
 
 			////ERIK
 
-			conexion = new SqlConnection("server=localhost\\lab3sv;database=CLINICA_DB;uid=sa;pwd=0856;encrypt=false");
+			//conexion = new SqlConnection("server=localhost\\lab3sv;database=CLINICA_DB;uid=sa;pwd=0856;encrypt=false");
 
 
 

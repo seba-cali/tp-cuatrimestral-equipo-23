@@ -97,10 +97,8 @@
 
 		<%--marcar casillas para determinar que especialidades tiene el medico--%>
 		<p>Marque las especialidades del Médico</p>
-		<asp:ListBox runat="server" ID="lblMultiSelect" SelectionMode="multiple">
-            <%foreach %>
+			<asp:PlaceHolder ID="loco" runat="server"></asp:PlaceHolder>
 		
-		</asp:ListBox>
 		<asp:Button CssClass="btn-submit fixed-size-btn" runat="server" Text="Dar de Alta Medico" OnClick="AltaMedico_Click" />
 
 		<%} %>

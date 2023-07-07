@@ -58,20 +58,25 @@ namespace WebApplication2.Admin
 			}
 			else
 			{
-				esPaciente = false;
-				NegocioPaciente negocioPaciente = new NegocioPaciente();
-				NegocioEspecialidad negocioEspecialidad = new NegocioEspecialidad();
-				ListaEspecialidades = negocioEspecialidad.listar();
-				negocioPaciente = new NegocioPaciente();
-				foreach (Especialidad pivot in ListaEspecialidades)
-				{
-                    ListBox checkBox = new Listbox();
-					checkBox.Text = pivot.nombre;
-                    checkBox.ID = pivot.id.ToString();
-                    heroP.Controls.Add(checkBox);
-                  
-
-                }
+				
+					esPaciente = false;
+					
+					NegocioPaciente negocioPaciente = new NegocioPaciente();
+					NegocioEspecialidad negocioEspecialidad = new NegocioEspecialidad();
+					ListaEspecialidades = negocioEspecialidad.listar();
+					negocioPaciente = new NegocioPaciente();
+					loco.Controls.Clear();
+					ListBox checkBox = new ListBox();
+					checkBox.ID = "nery";
+					checkBox.SelectionMode = ListSelectionMode.Multiple;
+					checkBox.CssClass = "form-control";				
+					foreach (Especialidad pivot in ListaEspecialidades)
+					{
+						checkBox.Items.Add(new ListItem(pivot.nombre, pivot.id.ToString()));
+						
+						loco.Controls.Add(checkBox);
+					}
+				
 			}
 
 		}
