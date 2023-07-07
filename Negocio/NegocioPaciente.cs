@@ -117,7 +117,7 @@ namespace Negocio
 				Console.WriteLine(id);
 				if (id > 0)
 				{
-					db.setearProcedimiento("ActualizaPaciente");
+					db.setearProcedimiento("ActualizarPaciente");
 					db.setearParametro("@Id_Paciente", id);
 					db.setearParametro("@nombre", nuevo.nombres);
 					db.setearParametro("@apellido", nuevo.apellidos);
