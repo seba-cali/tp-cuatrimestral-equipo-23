@@ -184,14 +184,14 @@ namespace Negocio
 				if (id > 0)
 				{
 					db.setearProcedimiento("ActualizarUsuario");
-					db.setearParametro("@id", id);
+					db.setearParametro("@Id_Usuario", id);
 					db.setearParametro("@dni", nuevo.DNI);
 					db.setearParametro("@correo", nuevo.CORREO);
 					db.setearParametro("@password", nuevo.PASSWORD);
 					db.setearParametro("@estado", 1);
 					db.setearParametro("@tipoUsuario", 4);
-
-
+					db.ejecutarLectura();
+					return 0;
 				}
 				else
 				{
@@ -202,8 +202,8 @@ namespace Negocio
 					db.setearParametro("@password", nuevo.PASSWORD);
 					db.setearParametro("@estado", 1);
 					db.setearParametro("@tipoUsuario", 4);
-				}
 				return db.ejecutarLecturaInt();
+				}
 			}
 			catch (Exception ex)
 			{
