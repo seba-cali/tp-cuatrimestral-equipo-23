@@ -3,6 +3,7 @@ using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 using System.Web;
 using System.Web.UI;
@@ -20,11 +21,11 @@ namespace WebApplication2.Admin
 		protected void Page_Load(object sender, EventArgs e)
 		{
 			
-			
-			Session.Add("OK", null);
+
+            Session.Add("OK", null);
 			string idPaciente = Request.QueryString["idPaciente"] != null ? Request.QueryString["idPaciente"].ToString() : "";
 			string idUsuario = Request.QueryString["idUsuario"] != null ? Request.QueryString["idUsuario"].ToString() : "";
-			if (idPaciente != "" && idUsuario != "")
+			if (idPaciente != "" && idUsuario != "" && !IsPostBack)
 			{
 				esPaciente = true;
 				NegocioPaciente negocio = new NegocioPaciente();
@@ -64,18 +65,13 @@ namespace WebApplication2.Admin
 				negocioPaciente = new NegocioPaciente();
 				foreach (Especialidad pivot in ListaEspecialidades)
 				{
-					check = new CheckBox();
-					check.ID = pivot.id.ToString();
-					check.CssClass = "form-check-input";
-					/*btn.Text = "Agregar al carrito 🛒";
-					btn.ID = index.ToString();
-					btn.Click += new EventHandler(btnAddCarro_Click);
-					btn.CommandArgument= item.Id.ToString();
-					btn.CssClass = "btn btn-primary botonHidenPrincipal";
-					heroP.Controls.Add(btn);
-					index++;*/
+                    ListBox checkBox = new Listbox();
+					checkBox.Text = pivot.nombre;
+                    checkBox.ID = pivot.id.ToString();
+                    heroP.Controls.Add(checkBox);
+                  
 
-				}
+                }
 			}
 
 		}
@@ -126,12 +122,6 @@ namespace WebApplication2.Admin
 				paciente.DNI = inputDNI.Text;
 				paciente.ID_PACIENTE = negocioPaciente.RegistrarPaciente(paciente,0);
 				Session.Add("OK", "SE CREO EL PACIENTE CON EXITO");
-
-
-				//modificar paciente
-				
-				
-
 
 
 
@@ -185,6 +175,8 @@ namespace WebApplication2.Admin
 		protected void btnActualizarPaciente_Click(object sender, EventArgs e)
 		{
 			int IDPACIENTE = Convert.ToInt32(Request.QueryString["idPaciente"]);
+			int IDUSUARIO = Convert.ToInt32(Request.QueryString["idUsuario"]);
+
 			Session.Add("OK", "");
 			try
 			{
@@ -198,7 +190,8 @@ namespace WebApplication2.Admin
 				usuario.PASSWORD = inputPassword.Text;
 				usuario.CORREO = inputEmail.Text;
 				usuario.ID_TIPOUSUARIO = 4;
-				usuario.ID_USUARIO = negocioUsuario.RegistrarUsuario(usuario);
+				negocioUsuario.RegistrarUsuario(usuario,IDUSUARIO);
+				Console.WriteLine("1"+inputNombres.Text);
 				paciente.nombres = inputNombres.Text;
 				paciente.apellidos = inputApellidos.Text;
 				paciente.sexo = inputSexo.Text;
@@ -207,7 +200,7 @@ namespace WebApplication2.Admin
 				paciente.CORREO = inputEmail.Text;  //va o copia de usuario?
 				paciente.direccion = inputDireccion.Text;
 				paciente.ESTADO = true;
-				paciente.ID_USUARIO = usuario.ID_USUARIO;
+				paciente.ID_USUARIO = IDUSUARIO;
 				paciente.DNI = inputDNI.Text;
 				paciente.ID_PACIENTE = negocioPaciente.RegistrarPaciente(paciente, IDPACIENTE);
 				Session.Add("OK", "SE ACTUALIZO EL PACIENTE CON EXITO");

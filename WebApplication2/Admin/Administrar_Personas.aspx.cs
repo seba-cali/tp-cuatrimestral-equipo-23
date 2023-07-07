@@ -64,8 +64,6 @@ namespace WebApplication2.Admin
 			string[] argumentValues = commandArgument.Split(',');
 			string idPaciente = argumentValues[0];
 			string idUsuario = argumentValues[1];
-			
-
 			Response.Redirect("alta_Persona.aspx?idPaciente=" + idPaciente +"&idUsuario=" + idUsuario ,false);
 		}
 	}

@@ -82,7 +82,8 @@
 		<asp:TextBox CssClass="form-control" ID="inputPassword" type="text" placeholder="Password" runat="server" />
 		<asp:TextBox CssClass="form-control" ID="inputRePassword" type="text" placeholder="Re Password" runat="server" />
 		<asp:TextBox CssClass="form-control" ID="inputEmail" type="email" placeholder="Email" runat="server" />
-
+		
+		
 		<%if (!esPaciente) {%>  
 		<asp:CheckBox Text="El Usuario es Medico?" CssClass="" ID="chkMedico"
 			runat="server" AutoPostBack="true" OnCheckedChanged="chkMedico_CheckedChanged" />
@@ -96,28 +97,16 @@
 
 		<%--marcar casillas para determinar que especialidades tiene el medico--%>
 		<p>Marque las especialidades del Médico</p>
-
-		<div class="inline-checkboxes">
-			<% 
-				int contador = 0;
-				foreach (Dominio.Especialidad espe in ListaEspecialidades)
-				{
-			%>
-			<div class="form-check form-switch">
-				<asp:CheckBox CssClass="form-check-input" runat="server" />
-				<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault<%=contador + 1%>">
-				<label class="form-check-label" for="flexSwitchCheckDefault<%=contador + 1%>"><%:espe.nombre %></label>
-			</div>
-			<%    
-					contador++;
-				}
-			%>
-		</div>
+		<asp:ListBox runat="server" ID="lblMultiSelect" SelectionMode="multiple">
+            <%foreach %>
+		
+		</asp:ListBox>
 		<asp:Button CssClass="btn-submit fixed-size-btn" runat="server" Text="Dar de Alta Medico" OnClick="AltaMedico_Click" />
 
 		<%} %>
 
 		<% if (!MedicoElegido && !esPaciente)
+		
 			{
 		%>
 		<asp:Button CssClass="btn-submit fixed-size-btn" runat="server" Text="Dar de Alta" OnClick="btnSubmit_Click" />
