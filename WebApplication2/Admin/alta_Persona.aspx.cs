@@ -199,6 +199,8 @@ namespace WebApplication2.Admin
 				usuario.CORREO = inputEmail.Text;
 				usuario.ID_TIPOUSUARIO = 4;
 				usuario.ID_USUARIO = negocioUsuario.RegistrarUsuario(usuario);
+				//
+				
 				paciente.nombres = inputNombres.Text;
 				paciente.apellidos = inputApellidos.Text;
 				paciente.sexo = inputSexo.Text;
