@@ -288,4 +288,93 @@ select ID_PACIENTE, NOMBRE, APELLIDO, DIRECCION, FECHA_NACIMIENTO, SEXO, ESTADO,
 FROM PACIENTE
 
 
+--04/07/2022
+--SP DE CREAR MEDICOS y eso
+  go
+create procedure RegistrarMedico
+    @nombre varchar(50),
+    @apellido varchar(50),
+    @direccion varchar(50),
+    @fecha_nacimiento date,
+    @sexo varchar(20),
+    @estado bit,
+    @telefono varchar(20),
+    @id_usuario int,
+    @dni varchar(10),
+    @matricula varchar(10)
 
+as
+insert into MEDICO (NOMBRE,APELLIDO,DIRECCION,FECHA_NACIMIENTO,SEXO,ESTADO,TELEFONO,ID_USUARIO,DNI,MATRICULA) output inserted.ID_MEDICO
+values (@nombre, @apellido, @direccion, @fecha_nacimiento, @sexo,@estado,@telefono,@id_usuario,@dni,@matricula) 
+
+
+
+go
+create procedure ActualizarMedico
+    @Id_Medico int,
+    @nombre varchar(50),
+    @apellido varchar(50),
+    @direccion varchar(50),
+    @fecha_nacimiento date,
+    @sexo varchar(20),
+    @estado bit,
+    @telefono varchar(20),
+    @id_usuario int,
+    @dni varchar(10),
+    @matricula varchar (10)
+    
+as
+UPDATE MEDICO SET NOMBRE=@nombre, APELLIDO=@apellido, DIRECCION=@direccion, FECHA_NACIMIENTO=@fecha_nacimiento,
+SEXO=@sexo, ESTADO=@estado, TELEFONO=@telefono, ID_USUARIO=@id_usuario, DNI=@dni, MATRICULA=@matricula WHERE ID_MEDICO = @Id_Medico
+go
+
+  -- Borrar FK_Key de ID_ESP
+ALTER TABLE MEDICO
+DROP CONSTRAINT FK__MEDICO__ID_ESP__571DF1D5;
+
+-- Borrar columna
+ALTER TABLE MEDICO
+DROP COLUMN ID_ESP;
+
+--Creacion de tabla para asociar Medico a Especialidad
+
+  CREATE TABLE EspecialidadxMedico (
+    ID_MEDICO INT,
+    ID_ESPECIALIDAD INT,
+    FOREIGN KEY (ID_MEDICO) REFERENCES MEDICO (ID_MEDICO),
+    FOREIGN KEY (ID_ESPECIALIDAD) REFERENCES ESPECIALIDADES (ID_ESP)
+);
+  
+    --SP PARA SP para Tabla temporal de recuperoi de password
+   
+    create table ResetPassword(
+        ID_ResetPassword int identity(1,1) primary key,
+        ID_Usuario int foreign key references Usuario(ID_Usuario),
+        CODIGO varchar(100),
+        FECHA date,
+        ESTADO bit
+    );
+    go
+create procedure RegistrarRecupero
+    @id_ResetPassword int,
+    @id_usuario int,
+    @codigo varchar(100),
+    @fecha date,
+    @estado bit
+    as 
+    insert into ResetPassword (ID_Usuario,CODIGO,FECHA,ESTADO) output inserted.ID_ResetPassword values (@id_usuario,@codigo,@fecha,@estado)
+go
+create procedure UpdateResetPassword
+    @Id_Usuario int,
+    @password varchar(50)
+   
+
+    as
+    UPDATE Usuario SET PASSWORD = @password  WHERE ID_Usuario = @Id_Usuario
+go
+create procedure UpdateRecupero
+    @codigo varchar(100),
+    @Estado bit
+
+as
+UPDATE ResetPassword SET Estado = @Estado  WHERE codigo = @codigo

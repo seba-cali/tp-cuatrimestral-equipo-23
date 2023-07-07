@@ -43,9 +43,11 @@ namespace Dominio
             {  
                 encryptdata.Append(encrypt[i].ToString());  
             }
-            Console.WriteLine(encryptdata.ToString() + " - lalal - " + password);
+            
             return encryptdata.ToString();  
-        }  
+        }
+        
+       
         
         
     }

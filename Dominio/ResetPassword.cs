@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Threading;
 
 namespace Dominio
@@ -13,5 +14,17 @@ namespace Dominio
         
         public ResetPassword() { }
         
+        
+        public string generateRandom()
+        {
+            Random random = new Random();
+            string characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            StringBuilder result = new StringBuilder(8);
+            for (int i = 0; i < 8; i++)
+            {
+                result.Append(characters[random.Next(characters.Length)]);
+            }
+            return result.ToString();
+        }
     }
 }

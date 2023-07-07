@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.Services.Description;
 
 namespace WebApplication2.Admin
 {
@@ -40,13 +41,6 @@ namespace WebApplication2.Admin
 				negocioPaciente.eliminarPaciente(int.Parse(idPaciente));
 				Response.Redirect("Administrar_Personas.aspx");
 
-
-
-				// Perform deletion operations using the ID value
-
-
-				// Example: Call a method to delete the patient based on the ID
-				// DeletePatient(idPaciente);
 			}
 		}
 
@@ -59,6 +53,20 @@ namespace WebApplication2.Admin
 			negocioPaciente.reactivarPaciente(int.Parse(idPaciente));
 			Response.Redirect("Administrar_Personas.aspx");
 
+		}
+
+		protected void btnModificar_Click(object sender, EventArgs e)
+		{
+			Button btn = (Button)sender;
+			string commandArgument = btn.CommandArgument;
+
+			//matufia para obtener los valores del command argument
+			string[] argumentValues = commandArgument.Split(',');
+			string idPaciente = argumentValues[0];
+			string idUsuario = argumentValues[1];
+			
+
+			Response.Redirect("alta_Persona.aspx?idPaciente=" + idPaciente +"&idUsuario=" + idUsuario ,false);
 		}
 	}
 }

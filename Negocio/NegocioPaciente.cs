@@ -8,7 +8,7 @@ namespace Negocio
 {
 	public class NegocioPaciente
 	{
-		public List<Paciente> listar()
+		public List<Paciente> listar(string idPaciente = "")
 		{
 			List<Paciente> paciente = new List<Paciente>();
 			DBConnection db = new DBConnection();
@@ -16,7 +16,15 @@ namespace Negocio
 			try
 			{
 
-				db.setearConsulta("SELECT ID_PACIENTE, NOMBRE, APELLIDO, DIRECCION, FECHA_NACIMIENTO, SEXO, ESTADO, TELEFONO, ID_USUARIO, DNI  FROM PACIENTE");
+				
+				if(idPaciente != "")
+				{
+					db.setearConsulta("SELECT ID_PACIENTE, NOMBRE, APELLIDO, DIRECCION, FECHA_NACIMIENTO, SEXO, ESTADO, TELEFONO, ID_USUARIO, DNI  FROM PACIENTE WHERE ID_PACIENTE = " + idPaciente);
+				}
+				else
+				{
+					db.setearConsulta("SELECT ID_PACIENTE, NOMBRE, APELLIDO, DIRECCION, FECHA_NACIMIENTO, SEXO, ESTADO, TELEFONO, ID_USUARIO, DNI  FROM PACIENTE");
+				}
 				db.ejecutarLectura();
 
 				while (db.Lector.Read())
@@ -109,7 +117,7 @@ namespace Negocio
 				Console.WriteLine(id);
 				if (id > 0)
 				{
-					db.setearProcedimiento("ActualizaPaciente");
+					db.setearProcedimiento("ActualizarPaciente");
 					db.setearParametro("@Id_Paciente", id);
 					db.setearParametro("@nombre", nuevo.nombres);
 					db.setearParametro("@apellido", nuevo.apellidos);
