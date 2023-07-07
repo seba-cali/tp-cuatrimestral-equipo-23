@@ -14,7 +14,46 @@ namespace WebApplication2.Admin
 
 	public partial class alta_Persona : System.Web.UI.Page
 	{
-		public CheckBox check;
+
+        public void LimpiarControles(Control control)
+        {
+            foreach (Control c in control.Controls)
+            {
+                if (c is TextBox)
+                {
+                    TextBox textBox = (TextBox)c;
+                    textBox.Text = string.Empty;
+                }
+                else if (c is DropDownList)
+                {
+                    DropDownList dropDownList = (DropDownList)c;
+                    dropDownList.ClearSelection();
+                }
+                else if (c is CheckBoxList)
+                {
+                    CheckBoxList checkBoxList = (CheckBoxList)c;
+                    foreach (ListItem item in checkBoxList.Items)
+                    {
+                        item.Selected = false;
+                    }
+                }
+                else if (c is RadioButtonList)
+                {
+                    RadioButtonList radioButtonList = (RadioButtonList)c;
+                    radioButtonList.ClearSelection();
+                }
+
+                if (c.HasControls())
+                {
+                    LimpiarControles(c);
+                }
+            }
+        }
+
+
+
+
+        public CheckBox check;
 		public List<Especialidad> ListaEspecialidades { get; set; }
 		public NegocioPaciente negocioPaciente;
 		public NegocioMedico negocioMedico;
@@ -142,10 +181,10 @@ namespace WebApplication2.Admin
 				paciente.DNI = inputDNI.Text;
 				paciente.ID_PACIENTE = negocioPaciente.RegistrarPaciente(paciente, 0);
 				Session.Add("OK", "SE CREO EL PACIENTE CON EXITO");
+                LimpiarControles(this);
 
 
-
-			}
+            }
 			catch (Exception exception)
 			{
 				Session.Add("Error", "Que paso Manito");
@@ -182,8 +221,9 @@ namespace WebApplication2.Admin
 				medico.Matricula = inputMatricula.Text;
 				medico.ID_MEDICO = negocioMedico.RegistrarMedico(medico, 0);
 				Session.Add("OK", "SE CREO EL PACIENTE CON EXITO");
+                LimpiarControles(this);
 
-			}
+            }
 			catch (Exception exception)
 			{
 				Session.Add("Error", "Que paso Manito");
@@ -210,14 +250,7 @@ namespace WebApplication2.Admin
 				usuario.PASSWORD = inputPassword.Text;
 				usuario.CORREO = inputEmail.Text;
 				usuario.ID_TIPOUSUARIO = 4;
-
-				usuario.ID_USUARIO = negocioUsuario.RegistrarUsuario(usuario);
-				//
-
-
 				negocioUsuario.RegistrarUsuario(usuario, IDUSUARIO);
-				Console.WriteLine("1" + inputNombres.Text);
-
 				paciente.nombres = inputNombres.Text;
 				paciente.apellidos = inputApellidos.Text;
 				paciente.sexo = inputSexo.Text;
@@ -230,9 +263,10 @@ namespace WebApplication2.Admin
 				paciente.DNI = inputDNI.Text;
 				paciente.ID_PACIENTE = negocioPaciente.RegistrarPaciente(paciente, IDPACIENTE);
 				Session.Add("OK", "SE ACTUALIZO EL PACIENTE CON EXITO");
+                Response.Redirect("Administrar_Personas.aspx",false);
 
 
-			}
+            }
 			catch (Exception exception)
 			{
 				Session.Add("Error", "Que paso Manito");
@@ -241,4 +275,7 @@ namespace WebApplication2.Admin
 			}
 		}
 	}
+
+
+
 }
