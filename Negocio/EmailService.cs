@@ -40,6 +40,7 @@ namespace Negocio
         {
             try
             {
+                
                 server.Send(email);
             }
             catch (Exception ex)

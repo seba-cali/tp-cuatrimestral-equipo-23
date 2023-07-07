@@ -63,7 +63,7 @@ namespace Negocio
 			DBConnection datos = new DBConnection();
 			try
 			{
-				datos.setearProcedimiento("sp_listarPaciente");
+				datos.setearConsulta("select ID_PACIENTE, NOMBRE, APELLIDO, DIRECCION, FECHA_NACIMIENTO, SEXO, ESTADO, TELEFONO, ID_USUARIO, DNI FROM PACIENTE");
 				datos.ejecutarLectura();
 				while (datos.Lector.Read())
 				{
@@ -117,7 +117,7 @@ namespace Negocio
 				Console.WriteLine(id);
 				if (id > 0)
 				{
-					db.setearProcedimiento("ActualizarPaciente");
+					db.setearProcedimiento("ActualizaPaciente");
 					db.setearParametro("@Id_Paciente", id);
 					db.setearParametro("@nombre", nuevo.nombres);
 					db.setearParametro("@apellido", nuevo.apellidos);
@@ -126,8 +126,10 @@ namespace Negocio
 					db.setearParametro("@sexo", nuevo.sexo);
 					db.setearParametro("@estado", nuevo.ESTADO);
 					db.setearParametro("@telefono", nuevo.telefono);
-					db.setearParametro("@id_Usuario", nuevo.ID_USUARIO);
+					db.setearParametro("@id_Usuario",nuevo.ID_USUARIO);
 					db.setearParametro("@DNI", nuevo.DNI);
+					db.ejecutarLectura();
+					return 0;
 				}
 				else
 				{
@@ -141,8 +143,8 @@ namespace Negocio
 					db.setearParametro("@telefono", nuevo.telefono);
 					db.setearParametro("@id_Usuario", nuevo.ID_USUARIO);
 					db.setearParametro("@DNI", nuevo.DNI);
+					return db.ejecutarLecturaInt();
 				}
-				return db.ejecutarLecturaInt();
 			}
 			catch (Exception ex)
 			{

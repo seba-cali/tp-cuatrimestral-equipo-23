@@ -147,6 +147,35 @@ namespace Negocio
 			}
 			return null;
 		}
+		public bool BuscarXIdUpdate(int val, string password)
+		{
+			DBConnection db = new DBConnection();
+			Usuario aux = new Usuario();
+			
+			try
+			{
+				db.setearConsulta("UPDATE USUARIO SET PASSWORD = @password  WHERE ID_USUARIO= @id");
+				db.setearParametro("@id", val);
+				db.setearParametro("@password", password);
+				db.ejecutarLectura();
+				if (db.Lector.Read())
+				{
+					aux.ID_USUARIO = db.Lector.GetInt32(0);
+					aux.PASSWORD = db.Lector.GetString(1);
+			
+					db.cerrarConexion();
+				}
+
+				return aux.id == val ? true : false;
+				
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e);
+				throw;
+			}
+		
+		}
 		public int RegistrarUsuario(Usuario nuevo, int id = 0)
 		{
 			DBConnection db = new DBConnection();
@@ -155,14 +184,14 @@ namespace Negocio
 				if (id > 0)
 				{
 					db.setearProcedimiento("ActualizarUsuario");
-					db.setearParametro("@id", id);
+					db.setearParametro("@Id_Usuario", id);
 					db.setearParametro("@dni", nuevo.DNI);
 					db.setearParametro("@correo", nuevo.CORREO);
 					db.setearParametro("@password", nuevo.PASSWORD);
 					db.setearParametro("@estado", 1);
 					db.setearParametro("@tipoUsuario", 4);
-
-
+					db.ejecutarLectura();
+					return 0;
 				}
 				else
 				{
@@ -173,8 +202,8 @@ namespace Negocio
 					db.setearParametro("@password", nuevo.PASSWORD);
 					db.setearParametro("@estado", 1);
 					db.setearParametro("@tipoUsuario", 4);
-				}
 				return db.ejecutarLecturaInt();
+				}
 			}
 			catch (Exception ex)
 			{

@@ -45,6 +45,7 @@
                                         </div>
                                         <div class="card-footer text-center">
                                             <div class="small"><a  id="create" href="Registrar.aspx">Crear</a></div>
+                                            <div class="small"><a  id="recuperar" href="Recuperar.aspx">Olvido password?</a></div>
                                         </div>
                                     </div>
                                 </div>

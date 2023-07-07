@@ -344,3 +344,37 @@ DROP COLUMN ID_ESP;
     FOREIGN KEY (ID_MEDICO) REFERENCES MEDICO (ID_MEDICO),
     FOREIGN KEY (ID_ESPECIALIDAD) REFERENCES ESPECIALIDADES (ID_ESP)
 );
+  
+    --SP PARA SP para Tabla temporal de recuperoi de password
+   
+    create table ResetPassword(
+        ID_ResetPassword int identity(1,1) primary key,
+        ID_Usuario int foreign key references Usuario(ID_Usuario),
+        CODIGO varchar(100),
+        FECHA date,
+        ESTADO bit
+    );
+    go
+create procedure RegistrarRecupero
+    @id_ResetPassword int,
+    @id_usuario int,
+    @codigo varchar(100),
+    @fecha date,
+    @estado bit
+    as 
+    insert into ResetPassword (ID_Usuario,CODIGO,FECHA,ESTADO) output inserted.ID_ResetPassword values (@id_usuario,@codigo,@fecha,@estado)
+go
+create procedure UpdateResetPassword
+    @Id_Usuario int,
+    @password varchar(50)
+   
+
+    as
+    UPDATE Usuario SET PASSWORD = @password  WHERE ID_Usuario = @Id_Usuario
+go
+create procedure UpdateRecupero
+    @codigo varchar(100),
+    @Estado bit
+
+as
+UPDATE ResetPassword SET Estado = @Estado  WHERE codigo = @codigo
