@@ -63,20 +63,26 @@ namespace WebApplication2.Admin
 					ListaEspecialidades = negocioEspecialidad.listar();
 					negocioPaciente = new NegocioPaciente();
 					loco.Controls.Clear();
+					
 					ListBox checkBox = new ListBox();
 					checkBox.ID = "nery";
 					checkBox.SelectionMode = ListSelectionMode.Multiple;
-					checkBox.CssClass = "form-control";				
+					checkBox.CssClass = "form-control";
+
+				if (IsPostBack)
+				{
 					foreach (Especialidad pivot in ListaEspecialidades)
 					{
 						checkBox.Items.Add(new ListItem(pivot.nombre, pivot.id.ToString()));
-						
+
 						loco.Controls.Add(checkBox);
 					}
-				
+				}
+					
 			}
 
 		}
+					
 			public bool esPaciente { get; set; }
 
 
