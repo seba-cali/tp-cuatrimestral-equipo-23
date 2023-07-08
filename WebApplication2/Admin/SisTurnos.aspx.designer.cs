@@ -33,6 +33,15 @@ namespace WebApplication2.Admin
         protected global::System.Web.UI.WebControls.ListBox horarios;
 
         /// <summary>
+        /// Muestra2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder Muestra2;
+
+        /// <summary>
         /// Fecha control.
         /// </summary>
         /// <remarks>

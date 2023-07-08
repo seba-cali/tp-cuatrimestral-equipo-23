@@ -66,15 +66,19 @@
                                                     <h3 class="text-primary">Seccion 1</h3>
                                                     <h5 class="card-title mb-4">Seleccionar una especialidad</h5>
                                                     
+                                                    
                                                         <div class="mb-3">
-                                                            <asp:PlaceHolder ID="Muestra1" runat="server"/>
+                                                            <asp:PlaceHolder ID="Muestra1"  runat="server"  />
                                                         </div>
                                                         <div class="mb-3">
-                                                            <asp:ListBox CssClass="form-control" OnSelectedIndexChanged="SelectHorario" ID="horarios" runat="server">
-                                                                <asp:ListItem  Text="Turnos 6 am a 11 am" Value="0"   />
-                                                                <asp:ListItem  Text="Turnos 11 am a 16 pm " Value="1"   />
-                                                                <asp:ListItem  Text="Turnos 16 pm a 21 pm " Value="2"   />
+                                                            <asp:ListBox CssClass="form-control" OnSelectedIndexChanged="horarios_OnSelectedIndexChanged" ID="horarios" runat="server" AutoPostBack="true">
+                                                                <asp:ListItem  Text="Turnos 6 am a 11 am" Value="0" />
+                                                                <asp:ListItem Text="Turnos 11 am a 16 pm" Value="1" />
+                                                                <asp:ListItem Text="Turnos 16 pm a 21 pm" Value="2" />
                                                             </asp:ListBox>
+                                                            
+                                                            
+                                                            
                                                         </div>
                                                         
                                                         <hr class="my-4" />
@@ -95,29 +99,11 @@
                                                     
                                                         <div class="row gx-3">
                                                             <div class="mb-3 col-md-6">
-                                                                <asp:PlaceHolder ID="Fecha" runat="server"/>
-                                                                <label class="small mb-1" for="inputBillingName">Name on card</label>
-                                                                <input class="form-control" id="inputBillingName" type="text" placeholder="Enter the name as it appears on your card" value="Valerie Luna" />
+                                                                <asp:PlaceHolder ID="Muestra2"  runat="server"  />
                                                             </div>
-                                                            <div class="mb-3 col-md-6">
-                                                                <label class="small mb-1" for="inputBillingCCNumber">Card number</label>
-                                                                <input class="form-control" id="inputBillingCCNumber" type="text" placeholder="Enter your credit card number" value="4444 3333 2222 1111" />
-                                                            </div>
+                                                            
                                                         </div>
-                                                        <div class="row gx-3">
-                                                            <div class="col-md-4 mb-4 mb-md-0">
-                                                                <label class="small mb-1" for="inputOrgName">Card expiry month</label>
-                                                                <input class="form-control" id="inputOrgName" type="text" placeholder="Enter expiry month" value="06" />
-                                                            </div>
-                                                            <div class="col-md-4 mb-4 mb-md-0">
-                                                                <label class="small mb-1" for="inputLocation">Card expiry year</label>
-                                                                <input class="form-control" id="inputLocation" type="text" placeholder="Enter expiry year" value="2024" />
-                                                            </div>
-                                                            <div class="col-md-4 mb-0">
-                                                                <label class="small mb-1" for="inputLocation">CVV Number</label>
-                                                                <input class="form-control" id="inputLocation" type="password" placeholder="Enter CVV number" value="111" />
-                                                            </div>
-                                                        </div>
+                                                        
                                                         <hr class="my-4" />
                                                         <div class="d-flex justify-content-between">
                                                             <button class="btn btn-light disabled" type="button" >anterior</button>
@@ -135,6 +121,7 @@
                                                     <h5 class="card-title mb-4">Seleccione Fecha</h5>
                                                     
                                                         <div class="form-check mb-2">
+                                                            <asp:PlaceHolder ID="Fecha" runat="server"/>
                                                             <input class="form-check-input" id="checkAccountChanges" type="checkbox" checked />
                                                             <label class="form-check-label" for="checkAccountChanges">Changes made to your account</label>
                                                         </div>
@@ -223,35 +210,36 @@
                         </div>
                     </main>
     
+    <%--
     <script >
-    $(function (){
-        $('#card').bootstrapWizard({
-            tabClass: 'nav nav-pills',
-            nextSelector: '.btn-next',
-            previousSelector: '.btn-back',
-            onNext: function(tab, navigation, index) {
-                var $valid = $("#wizardForm").valid();
-                if(!$valid) {
-                    $validator.focusInvalid();
-                    return false;
-                }
-            },
-            onTabClick: function(tab, navigation, index) {
-                var $valid = $("#wizardForm").valid();
-                if(!$valid) {
-                    $validator.focusInvalid();
-                    return false;
-                }
-            },
-            onTabShow: function(tab, navigation, index) {
-                var $total = navigation.find('li').length;
-                var $current = index+1;
-                var $percent = ($current/$total) * 100;
-                $('#wizard').find('.progress-bar').css({width:$percent+'%'});
-            }
-        });
-    })
-    </script>
+       $(function (){
+           $('#card').bootstrapWizard({
+               tabClass: 'nav nav-pills',
+               nextSelector: '.btn-next',
+               previousSelector: '.btn-back',
+               onNext: function(tab, navigation, index) {
+                   var $valid = $("#wizardForm").valid();
+                   if(!$valid) {
+                       $validator.focusInvalid();
+                       return false;
+                   }
+               },
+               onTabClick: function(tab, navigation, index) {
+                   var $valid = $("#wizardForm").valid();
+                   if(!$valid) {
+                       $validator.focusInvalid();
+                       return false;
+                   }
+               },
+               onTabShow: function(tab, navigation, index) {
+                   var $total = navigation.find('li').length;
+                   var $current = index+1;
+                   var $percent = ($current/$total) * 100;
+                   $('#wizard').find('.progress-bar').css({width:$percent+'%'});
+               }
+           });
+       })
+       </script>--%>
     
 </asp:Content>
 

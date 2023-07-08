@@ -10,7 +10,7 @@
 			justify-content: flex-start;
 			height: 100vh;
 			margin-top: 50px;
-			background-image: url("https://i.imgur.com/a4UOksY.jpg");
+			background-image: url("https://images.pexels.com/photos/281260/pexels-photo-281260.jpeg");
 			background-repeat: no-repeat;
 			background-size: cover;
 		}
@@ -63,28 +63,62 @@
 	<div class="container">
 		<h1>Alta de Persona</h1>
 
-		<p>Ingrese los datos de la Persona</p>
+		<asp:Label ID="lblmsg" Text="Cargue los datos del paciente"
+			Style="color: black; font-weight: bold;" runat="server" />
 
 		<asp:TextBox CssClass="form-control" ID="inputNombres" type="text" placeholder="Nombres" runat="server" />
+		<%--//validacion nombres requerido--%>
+		<asp:RequiredFieldValidator ID="rfvNombres" ControlToValidate="inputNombres" ErrorMessage="⚠ Ingrese sus Nombres." runat="server" ForeColor="pink" Font-Bold="true" />
+
 		<asp:TextBox CssClass="form-control" ID="inputApellidos" type="text" placeholder="Apellidos" runat="server" />
+		<%--//validacion apellidos requerido--%>
+		<asp:RequiredFieldValidator ID="rfvApellidos" ControlToValidate="inputApellidos" ErrorMessage="⚠ Ingrese sus Apellidos." runat="server" ForeColor="pink" Font-Bold="true" />
 
 		<asp:DropDownList ID="inputSexo" runat="server" CssClass="form-control">
 			<asp:ListItem Text="Sexo" Value="" Selected="True"></asp:ListItem>
 			<asp:ListItem Text="M" Value="M"></asp:ListItem>
 			<asp:ListItem Text="F" Value="F"></asp:ListItem>
 		</asp:DropDownList>
+		<%--validacion sexo requerido--%>
+		<asp:RequiredFieldValidator ID="rfvSexo" runat="server" ControlToValidate="inputSexo" ErrorMessage="⚠ Seleccione un Sexo" InitialValue="" ForeColor="pink" Font-Bold="true"></asp:RequiredFieldValidator>
 
 		<asp:TextBox CssClass="form-control" ID="inputDNI" type="text" placeholder="DNI" runat="server" />
+		<div class="form-inline">
+			<%--validacion dni requerido--%>
+			<asp:RequiredFieldValidator ID="rfvDNI" runat="server" ControlToValidate="inputDNI" ErrorMessage="⚠ Ingrese DNI" ForeColor="pink" Font-Bold="true" />
+			<%--validacion dni solo numeros--%>
+			<asp:RegularExpressionValidator ID="revDNI" runat="server" ControlToValidate="inputDNI" ValidationExpression="^\d+$" ErrorMessage="⚠ Ingrese solo números" ForeColor="pink" Font-Bold="true" />
+		</div>
 		<asp:TextBox CssClass="form-control" ID="inputFechaNacimiento" type="date" placeholder="Fecha de Nacimiento" runat="server" />
+		<%--validacion fecha de nacimiento requerido--%>
+		<asp:RequiredFieldValidator ID="rfvFechaNacimiento" runat="server" ControlToValidate="inputFechaNacimiento" ErrorMessage="⚠ Ingrese Fecha de Nacimiento" ForeColor="pink" Font-Bold="true"></asp:RequiredFieldValidator>
 		<asp:TextBox CssClass="form-control" ID="inputTelefono" type="text" placeholder="Teléfono" runat="server" />
+		<%--validacion telefono requerido--%>
+		<asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="inputTelefono" ErrorMessage="⚠ Ingrese Teléfono" ForeColor="pink" Font-Bold="true"></asp:RequiredFieldValidator>
 		<asp:TextBox CssClass="form-control" ID="inputDireccion" type="text" placeholder="Dirección" runat="server" />
+		<%--validacion direccion requerido--%>
+		<asp:RequiredFieldValidator ID="rfvDireccion" runat="server" ControlToValidate="inputDireccion" ErrorMessage="⚠ Ingrese Dirección" ForeColor="pink" Font-Bold="true"></asp:RequiredFieldValidator>
 		<asp:TextBox CssClass="form-control" ID="inputUsuario" type="text" placeholder="Usuario" runat="server" />
+		<%--validacion usuario requerido--%>
+		<asp:RequiredFieldValidator ID="rfvUsuario" runat="server" ControlToValidate="inputUsuario" ErrorMessage="⚠ Ingrese Usuario" ForeColor="pink" Font-Bold="true"></asp:RequiredFieldValidator>
+		<%--hacer que el usuario sea unico y ademas, que sea igual al DNI--%>
+		<asp:CompareValidator ID="cvUsuario" runat="server" ControlToCompare="inputDNI" ControlToValidate="inputUsuario" ErrorMessage="⚠ El Usuario debe ser igual al DNI" ForeColor="pink" Font-Bold="true"></asp:CompareValidator>
+
 		<asp:TextBox CssClass="form-control" ID="inputPassword" type="text" placeholder="Password" runat="server" />
+		<%--validacion password requerido--%>
+		<asp:RequiredFieldValidator ID="rfvPassword" runat="server" ControlToValidate="inputPassword" ErrorMessage="⚠ Ingrese Password" ForeColor="pink" Font-Bold="true"></asp:RequiredFieldValidator>
+
 		<asp:TextBox CssClass="form-control" ID="inputRePassword" type="text" placeholder="Re Password" runat="server" />
+		<%--validacion repassword requerido--%>
+		<asp:RequiredFieldValidator ID="rfvRePassword" runat="server" ControlToValidate="inputRePassword" ErrorMessage="⚠ Repita Password" ForeColor="pink" Font-Bold="true"></asp:RequiredFieldValidator>
+		<%--validacion repassword igual a password--%>
+		<asp:CompareValidator ID="cvRePassword" runat="server" ControlToCompare="inputPassword" ControlToValidate="inputRePassword" ErrorMessage="⚠ Password no coincide" ForeColor="pink" Font-Bold="true"></asp:CompareValidator>
+
 		<asp:TextBox CssClass="form-control" ID="inputEmail" type="email" placeholder="Email" runat="server" />
-		
-		
-		<%if (!esPaciente) {%>  
+
+
+		<%if (!esPaciente)
+			{%>
 		<asp:CheckBox Text="El Usuario es Medico?" CssClass="" ID="chkMedico"
 			runat="server" AutoPostBack="true" OnCheckedChanged="chkMedico_CheckedChanged" />
 		<%}%>
@@ -97,24 +131,26 @@
 
 		<%--marcar casillas para determinar que especialidades tiene el medico--%>
 		<p>Marque las especialidades del Médico</p>
+
+			<asp:PlaceHolder ID="loco" runat="server"></asp:PlaceHolder>
 		
-		<asp:PlaceHolder ID="loco" runat="server"></asp:PlaceHolder>
-		
+
 		<asp:Button CssClass="btn-submit fixed-size-btn" runat="server" Text="Dar de Alta Medico" OnClick="AltaMedico_Click" />
 
 		<%} %>
 
 		<% if (!MedicoElegido && !esPaciente)
-		
+
 			{
 		%>
 		<asp:Button CssClass="btn-submit fixed-size-btn" runat="server" Text="Dar de Alta" OnClick="btnSubmit_Click" />
 
-		<% }else if (esPaciente)
+		<% }
+			else if (esPaciente)
 			{%>
-			<asp:Button CssClass="btn-Actualizar fixed-size-btn" ID="btnActualizarPaciente" runat="server" Text="Actualizar Paciente" Onclick="btnActualizarPaciente_Click"/><%
+		<asp:Button CssClass="btn-Actualizar fixed-size-btn" ID="btnActualizarPaciente" runat="server" Text="Actualizar Paciente" OnClick="btnActualizarPaciente_Click" /><%
 
-			}%>
+	}%>
 	</div>
 </asp:Content>
 

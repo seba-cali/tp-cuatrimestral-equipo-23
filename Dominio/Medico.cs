@@ -10,27 +10,17 @@ namespace Dominio
 {
     public class Medico: Persona
     {
-        public int ID_MEDICO;
-        public string Matricula;
-        public int ID_USUARIO;
-        public int turno;
+        public int ID_MEDICO { get; set; }
+        public string Matricula { get; set; }
+        public int ID_ESPECIALIDAD  { get; set; }
+        public int ID_USUARIO { get; set; }
+        public int turno { get; set; }
         
 
         public Medico() { }
-        public Medico(string dni, string nombres, string apellidos, string direccion, string telefono, string email, DateTime fechaNacimiento, string sexo, bool estado, string matricula, int turno) : base(dni, nombres, apellidos, direccion, telefono, email, fechaNacimiento, sexo, estado)
+        public Medico(string dni, string nombres, string apellidos, string direccion, string telefono, string email, 
+            DateTime fechaNacimiento, string sexo, bool estado, string matricula, int idEspecialidad,int idUsuario, int turno) : base(dni, nombres, apellidos, direccion, telefono, email, fechaNacimiento, sexo, estado)
         {
-            this.DNI = dni;
-            this.nombres = nombres;
-            this.apellidos = apellidos;
-            this.direccion = direccion;
-            this.telefono = telefono;
-            this.CORREO = email;
-            this.fechaNacimiento = fechaNacimiento;
-            this.sexo = sexo;
-            this.ESTADO = estado;
-            this.Matricula = matricula;
-            this.turno = turno;
-
 
         }
         public static Dictionary<int, string> getTurnos(int xturno)

@@ -285,6 +285,8 @@ UPDATE PACIENTE SET NOMBRE=@nombre, APELLIDO=@apellido, DIRECCION=@direccion, FE
 SEXO=@sexo, ESTADO=@estado, TELEFONO=@telefono, ID_USUARIO=@id_usuario, DNI=@dni WHERE ID_PACIENTE = @Id_Paciente
 go
 
+
+
 --PROCEDURE PARA LISTAR CON SP LOS PACIENTES
 CREATE procedure sp_listarPaciente AS
 select ID_PACIENTE, NOMBRE, APELLIDO, DIRECCION, FECHA_NACIMIENTO, SEXO, ESTADO, TELEFONO, ID_USUARIO, DNI 
@@ -382,3 +384,14 @@ create procedure UpdateRecupero
 
 as
 UPDATE ResetPassword SET Estado = @Estado  WHERE codigo = @codigo
+
+GO
+
+  CREATE PROCEDURE RegistrarEspecialidadxMedico
+    @idmedico INT,
+    @idespecialidad INT
+AS
+BEGIN
+    INSERT INTO EspecialidadxMedico (ID_MEDICO, ID_ESPECIALIDAD)
+    VALUES (@idmedico, @idespecialidad)
+END
