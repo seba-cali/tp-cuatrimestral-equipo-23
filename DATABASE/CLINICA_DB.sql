@@ -380,3 +380,14 @@ create procedure UpdateRecupero
 
 as
 UPDATE ResetPassword SET Estado = @Estado  WHERE codigo = @codigo
+
+GO
+
+  CREATE PROCEDURE RegistrarEspecialidadxMedico
+    @idmedico INT,
+    @idespecialidad INT
+AS
+BEGIN
+    INSERT INTO EspecialidadxMedico (ID_MEDICO, ID_ESPECIALIDAD)
+    VALUES (@idmedico, @idespecialidad)
+END

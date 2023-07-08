@@ -23,7 +23,7 @@ namespace Negocio
                 while (db.Lector.Read())
                 {
                     EspecialidadxMedico aux = new EspecialidadxMedico();
-                    aux.Id_Medico = db.Lector.GetInt32(0);
+                    aux.ID_MEDICO = db.Lector.GetInt32(0);
                     aux.Id_Especialidad = db.Lector.GetInt32(1);
 
 
@@ -60,7 +60,7 @@ namespace Negocio
 
         }
 
-        public int RegistrarEspecialidadxMedico(EspecialidadxMedico nuevo)
+        public void RegistrarEspecialidadxMedico(EspecialidadxMedico nuevo)
         {
 
 
@@ -69,17 +69,17 @@ namespace Negocio
             {
 
                 db.setearProcedimiento("RegistrarEspecialidadxMedico");
-                db.setearParametro("@idmedico", nuevo.Id_Medico);
+                db.setearParametro("@idmedico", nuevo.ID_MEDICO);
                 db.setearParametro("@idespecialidad", nuevo.Id_Especialidad);
-
-                return db.ejecutarLecturaInt(); 
+                db.ejecutarLectura();
+                
             }
             
             catch (Exception ex)
             {
                 Console.WriteLine("error manito");
                 Console.WriteLine(ex.ToString());
-                return 0;
+                
 
             }
             finally

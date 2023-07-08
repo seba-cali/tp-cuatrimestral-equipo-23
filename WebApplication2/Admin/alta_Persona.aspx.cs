@@ -15,6 +15,7 @@ namespace WebApplication2.Admin
 	public partial class alta_Persona : System.Web.UI.Page
 	{
 
+        public List<string> SeleccionEspecialidad { get; set; }
         public void LimpiarControles(Control control)
         {
             foreach (Control c in control.Controls)
@@ -113,13 +114,14 @@ namespace WebApplication2.Admin
 					foreach (Especialidad pivot in ListaEspecialidades)
 					{
 						checkBox.Items.Add(new ListItem(pivot.nombre, pivot.id.ToString()));
-
-						loco.Controls.Add(checkBox);
 					}
-				}
+
+					loco.Controls.Add(checkBox);
+
+                    
+                }
 
 			}
-
 		}
 
 		public bool esPaciente { get; set; }
@@ -198,10 +200,12 @@ namespace WebApplication2.Admin
 			Session.Add("OK", "");
 			try
 			{
-
-				Medico medico = new Medico();
+                
+                Medico medico = new Medico();
 				Usuario usuario = new Usuario();
 				NegocioUsuario negocioUsuario = new NegocioUsuario();
+				NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
+				EspecialidadxMedico especialidadxMedico = new EspecialidadxMedico();
 				negocioMedico = new NegocioMedico();
 				usuario.DNI = inputDNI.Text;
 				usuario.PASSWORD = inputPassword.Text;
@@ -220,8 +224,30 @@ namespace WebApplication2.Admin
 				medico.DNI = inputDNI.Text;
 				medico.Matricula = inputMatricula.Text;
 				medico.ID_MEDICO = negocioMedico.RegistrarMedico(medico, 0);
-				Session.Add("OK", "SE CREO EL PACIENTE CON EXITO");
+
+                // Obtén las especialidades seleccionadas
+                ListBox checkBox = (ListBox)loco.FindControl("nery");
+                List<int> especialidadesSeleccionadas = new List<int>();
+                foreach (ListItem item in checkBox.Items)
+                {
+					if (item.Selected)
+					{
+						int idEspecialidad = Convert.ToInt32(item.Value);
+						especialidadesSeleccionadas.Add(idEspecialidad);
+						especialidadxMedico.ID_MEDICO = medico.ID_MEDICO;
+						especialidadxMedico.Id_Especialidad = idEspecialidad;
+						negocioEspecialidadxMedico.RegistrarEspecialidadxMedico(especialidadxMedico);
+						
+                    }
+                }
+				
+
+
+                Session.Add("OK", "SE CREO EL MEDICO CON EXITO");
                 LimpiarControles(this);
+				MedicoElegido= false;
+               
+
 
             }
 			catch (Exception exception)
