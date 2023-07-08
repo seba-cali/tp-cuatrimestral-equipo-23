@@ -14,20 +14,19 @@ namespace WebApplication2.Admin
 
         public int id_especialidad {get;set;}
         public int id_horario {get;set;}
+   
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
             {
-                Session["idmedi"] = null;
-                Session["idesp"] = null;
-                Session["idturno"] = null;
+                Session.Add("idmedi", "0");
+                Session.Add("idesp", "0");
+                Session.Add("idturno", "0");
                 Session["error"] = null;
                 Session["OK"] = null;
                 Session["w"] = null;
             }
-            id_especialidad= Session["idesp"]==null ? 0 : Convert.ToInt32(Session["idesp"]);
-            id_horario=Session["idturno"]==null ? 0: Convert.ToInt32(Session["idturno"]);
-            id_medico=Session["idmedi"]==null ? 0: Convert.ToInt32(Session["idmedi"]);
+            
             
             //ession["idturno"]==null ? "0": id_horario.ToString();
             
@@ -65,7 +64,7 @@ namespace WebApplication2.Admin
                 medicos.AutoPostBack = true;
                 foreach (Medico medi in ListaMedicos)
                 {
-                    if (medi.turno == id_horario && medi.ID_ESPECIALIDAD == id_especialidad)
+                    if (medi.turno == Convert.ToInt32(Session["idturno"]) && medi.ID_ESPECIALIDAD == Convert.ToInt32(Session["idesp"]))
                     {
                         medicos.Items.Add(new ListItem(medi.nombres + " " + medi.apellidos, medi.ID_MEDICO.ToString()));
                         
@@ -79,21 +78,24 @@ namespace WebApplication2.Admin
 
         private void SelectMedico(object sender, EventArgs e)
         {
-            id_medico = Convert.ToInt32(((ListBox)sender).SelectedValue);
-            Session.Add("idmedi",id_medico.ToString());
+
+            Session["idmedi"] = Convert.ToInt32(((ListBox)sender).SelectedValue);
+            
         }
 
 
         protected void SelectEspecialidad(object sender, EventArgs e)
         {
-              id_especialidad = Convert.ToInt32(((ListBox)sender).SelectedValue);
-              Session.Add("idesp",id_especialidad.ToString());
+              
+              Session["idesp"]= Convert.ToInt32(((ListBox)sender).SelectedValue);
+            
         }
 
         protected void horarios_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-             id_horario = Convert.ToInt32(((ListBox)sender).SelectedValue);
-             Session.Add("idturno",id_horario.ToString());
+             
+             Session["idturno"]=Convert.ToInt32(((ListBox)sender).SelectedValue);
+            
         }
         
     }
