@@ -27,32 +27,32 @@
                                         <a class="nav-item nav-link active" id="wizard1-tab" href="#wizard1" data-bs-toggle="tab" role="tab" aria-controls="wizard1" aria-selected="true">
                                             <div class="wizard-step-icon">1</div>
                                             <div class="wizard-step-text">
-                                                <div class="wizard-step-text-name">Account Setup</div>
-                                                <div class="wizard-step-text-details">Basic details and information</div>
+                                                <div class="wizard-step-text-name">Especialidad</div>
+                                                <div class="wizard-step-text-details">Primer Paso</div>
                                             </div>
                                         </a>
                                         <!-- Wizard navigation item 2-->
                                         <a class="nav-item nav-link" id="wizard2-tab" href="#wizard2" data-bs-toggle="tab" role="tab" aria-controls="wizard2" aria-selected="true">
                                             <div class="wizard-step-icon">2</div>
                                             <div class="wizard-step-text">
-                                                <div class="wizard-step-text-name">Billing Details</div>
-                                                <div class="wizard-step-text-details">Credit card information</div>
+                                                <div class="wizard-step-text-name">Medicos</div>
+                                                <div class="wizard-step-text-details">Segundo Paso</div>
                                             </div>
                                         </a>
                                         <!-- Wizard navigation item 3-->
                                         <a class="nav-item nav-link" id="wizard3-tab" href="#wizard3" data-bs-toggle="tab" role="tab" aria-controls="wizard3" aria-selected="true">
                                             <div class="wizard-step-icon">3</div>
                                             <div class="wizard-step-text">
-                                                <div class="wizard-step-text-name">Preferences</div>
-                                                <div class="wizard-step-text-details">Notification and account options</div>
+                                                <div class="wizard-step-text-name">Fecha</div>
+                                                <div class="wizard-step-text-details">Tercer Paso</div>
                                             </div>
                                         </a>
                                         <!-- Wizard navigation item 4-->
                                         <a class="nav-item nav-link" id="wizard4-tab" href="#wizard4" data-bs-toggle="tab" role="tab" aria-controls="wizard4" aria-selected="true">
                                             <div class="wizard-step-icon">4</div>
                                             <div class="wizard-step-text">
-                                                <div class="wizard-step-text-name">Review &amp; Submit</div>
-                                                <div class="wizard-step-text-details">Review and submit changes</div>
+                                                <div class="wizard-step-text-name">Confirmar</div>
+                                                <div class="wizard-step-text-details">Ultimo Paso</div>
                                             </div>
                                         </a>
                                     </div>
@@ -63,51 +63,24 @@
                                         <div class="tab-pane py-5 py-xl-10 fade show active" id="wizard1" role="tabpanel" aria-labelledby="wizard1-tab">
                                             <div class="row justify-content-center">
                                                 <div class="col-xxl-6 col-xl-8">
-                                                    <h3 class="text-primary">Step 1</h3>
-                                                    <h5 class="card-title mb-4">Enter your account information</h5>
+                                                    <h3 class="text-primary">Seccion 1</h3>
+                                                    <h5 class="card-title mb-4">Seleccionar una especialidad</h5>
                                                     
                                                         <div class="mb-3">
-                                                            <label class="small mb-1" for="inputUsername">Username (how your name will appear to other users on the site)</label>
-                                                            <input class="form-control" id="inputUsername" type="text" placeholder="Enter your username" value="username" />
-                                                        </div>
-                                                        <div class="row gx-3">
-                                                            <div class="mb-3 col-md-6">
-                                                                <label class="small mb-1" for="inputFirstName">First name</label>
-                                                                <input class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" value="Valerie" />
-                                                            </div>
-                                                            <div class="mb-3 col-md-6">
-                                                                <label class="small mb-1" for="inputLastName">Last name</label>
-                                                                <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name" value="Luna" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="row gx-3">
-                                                            <div class="mb-3 col-md-6">
-                                                                <label class="small mb-1" for="inputOrgName">Organization name</label>
-                                                                <input class="form-control" id="inputOrgName" type="text" placeholder="Enter your organization name" value="Start Bootstrap" />
-                                                            </div>
-                                                            <div class="mb-3 col-md-6">
-                                                                <label class="small mb-1" for="inputLocation">Location</label>
-                                                                <input class="form-control" id="inputLocation" type="text" placeholder="Enter your location" value="San Francisco, CA" />
-                                                            </div>
+                                                            <asp:PlaceHolder ID="Muestra1" runat="server"/>
                                                         </div>
                                                         <div class="mb-3">
-                                                            <label class="small mb-1" for="inputEmailAddress">Email address</label>
-                                                            <input class="form-control" id="inputEmailAddress" type="email" placeholder="Enter your email address" value="name@example.com" />
+                                                            <asp:ListBox CssClass="form-control" OnSelectedIndexChanged="SelectHorario" ID="horarios" runat="server">
+                                                                <asp:ListItem  Text="Turnos 6 am a 11 am" Value="0"   />
+                                                                <asp:ListItem  Text="Turnos 11 am a 16 pm " Value="1"   />
+                                                                <asp:ListItem  Text="Turnos 16 pm a 21 pm " Value="2"   />
+                                                            </asp:ListBox>
                                                         </div>
-                                                        <div class="row gx-3">
-                                                            <div class="col-md-6 mb-md-0">
-                                                                <label class="small mb-1" for="inputPhone">Phone number</label>
-                                                                <input class="form-control" id="inputPhone" type="tel" placeholder="Enter your phone number" value="555-123-4567" />
-                                                            </div>
-                                                            <div class="col-md-6 mb-0">
-                                                                <label class="small mb-1" for="inputBirthday">Birthday</label>
-                                                                <input class="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Enter your birthday" value="06/10/1988" />
-                                                            </div>
-                                                        </div>
+                                                        
                                                         <hr class="my-4" />
                                                         <div class="d-flex justify-content-between">
-                                                            <button class="btn btn-light disabled" type="button" disabled>Previous</button>
-                                                            <button class="btn btn-primary " type="button">Next</button>
+                                                            <button class="btn btn-light disabled" type="button" disabled>anterior</button>
+                                                            <button class="btn btn-primary " type="button">Siguiente</button>
                                                         </div>
                                                     
                                                 </div>
@@ -117,11 +90,12 @@
                                         <div class="tab-pane py-5 py-xl-10 fade" id="wizard2" role="tabpanel" aria-labelledby="wizard2-tab">
                                             <div class="row justify-content-center">
                                                 <div class="col-xxl-6 col-xl-8">
-                                                    <h3 class="text-primary">Step 2</h3>
-                                                    <h5 class="card-title mb-4">Enter your billing details</h5>
+                                                    <h3 class="text-primary">Paso 2</h3>
+                                                    <h5 class="card-title mb-4">Seleccione Medico</h5>
                                                     
                                                         <div class="row gx-3">
                                                             <div class="mb-3 col-md-6">
+                                                                <asp:PlaceHolder ID="Fecha" runat="server"/>
                                                                 <label class="small mb-1" for="inputBillingName">Name on card</label>
                                                                 <input class="form-control" id="inputBillingName" type="text" placeholder="Enter the name as it appears on your card" value="Valerie Luna" />
                                                             </div>
@@ -146,8 +120,8 @@
                                                         </div>
                                                         <hr class="my-4" />
                                                         <div class="d-flex justify-content-between">
-                                                            <button class="btn btn-light" type="button">Previous</button>
-                                                            <button class="btn btn-primary" type="button">Next</button>
+                                                            <button class="btn btn-light disabled" type="button" >anterior</button>
+                                                            <button class="btn btn-primary " type="button">Siguiente</button>
                                                         </div>
                                                     
                                                 </div>
@@ -157,8 +131,8 @@
                                         <div class="tab-pane py-5 py-xl-10 fade" id="wizard3" role="tabpanel" aria-labelledby="wizard3-tab">
                                             <div class="row justify-content-center">
                                                 <div class="col-xxl-6 col-xl-8">
-                                                    <h3 class="text-primary">Step 3</h3>
-                                                    <h5 class="card-title mb-4">Choose when you want to receive email notifications</h5>
+                                                    <h3 class="text-primary">Paso 3</h3>
+                                                    <h5 class="card-title mb-4">Seleccione Fecha</h5>
                                                     
                                                         <div class="form-check mb-2">
                                                             <input class="form-check-input" id="checkAccountChanges" type="checkbox" checked />
@@ -197,8 +171,8 @@
                                         <div class="tab-pane py-5 py-xl-10 fade" id="wizard4" role="tabpanel" aria-labelledby="wizard4-tab">
                                             <div class="row justify-content-center">
                                                 <div class="col-xxl-6 col-xl-8">
-                                                    <h3 class="text-primary">Step 4</h3>
-                                                    <h5 class="card-title mb-4">Review the following information and submit</h5>
+                                                    <h3 class="text-primary">Paso 4</h3>
+                                                    <h5 class="card-title mb-4">Confirmar pedido</h5>
                                                     <div class="row small text-muted">
                                                         <div class="col-sm-3 text-truncate"><em>Username:</em></div>
                                                         <div class="col">username</div>

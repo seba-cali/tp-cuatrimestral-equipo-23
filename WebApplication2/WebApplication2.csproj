@@ -110,7 +110,6 @@
     <Content Include="Admin\Especialidades.aspx" />
     <Content Include="Admin\Panel.master" />
     <Content Include="Admin\Recuperar.aspx" />
-    <Content Include="Admin\ResetPassword.aspx" />
     <Content Include="Admin\SisTurnos.aspx" />
     <Content Include="Admin\Tablero.aspx" />
     <Content Include="Admin\Registrar.aspx" />
@@ -252,13 +251,6 @@
     </Compile>
     <Compile Include="Admin\Recuperar.aspx.designer.cs">
       <DependentUpon>Recuperar.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\ResetPassword.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
-      <DependentUpon>ResetPassword.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\ResetPassword.aspx.designer.cs">
-      <DependentUpon>ResetPassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\SisTurnos.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>

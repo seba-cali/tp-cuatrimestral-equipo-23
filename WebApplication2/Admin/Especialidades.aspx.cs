@@ -17,6 +17,10 @@ namespace WebApplication2.Admin
         public Especialidad especialidad;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(Session["usuario"]==null)
+            {
+                Response.Redirect("Default.aspx", false);
+            }
             
                 Session["OK"] = null;
                 Session["class"] = null;

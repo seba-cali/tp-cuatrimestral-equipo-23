@@ -15,14 +15,13 @@ namespace WebApplication2.Admin
 	public partial class alta_Persona : System.Web.UI.Page
 	{
 		public CheckBox check;
-		public List<Especialidad> ListaEspecialidades { get; set; }
+		
 		public NegocioPaciente negocioPaciente;
 		public NegocioMedico negocioMedico;
 		protected void Page_Load(object sender, EventArgs e)
 		{
 			
-
-            Session.Add("OK", null);
+           
 			string idPaciente = Request.QueryString["idPaciente"] != null ? Request.QueryString["idPaciente"].ToString() : "";
 			string idUsuario = Request.QueryString["idUsuario"] != null ? Request.QueryString["idUsuario"].ToString() : "";
 			if (idPaciente != "" && idUsuario != "" && !IsPostBack)
@@ -61,12 +60,15 @@ namespace WebApplication2.Admin
 				
 					esPaciente = false;
 					
-					NegocioPaciente negocioPaciente = new NegocioPaciente();
+					
 					NegocioEspecialidad negocioEspecialidad = new NegocioEspecialidad();
-					ListaEspecialidades = negocioEspecialidad.listar();
-					negocioPaciente = new NegocioPaciente();
-					loco.Controls.Clear();
+					List<Especialidad> ListaEspecialidades=new List<Especialidad>();
+					 ListaEspecialidades= negocioEspecialidad.listar();
+					
+					
 					ListBox checkBox = new ListBox();
+					
+					
 					checkBox.ID = "nery";
 					checkBox.SelectionMode = ListSelectionMode.Multiple;
 					checkBox.CssClass = "form-control";				

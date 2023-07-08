@@ -30,7 +30,7 @@ namespace WebApplication2.Admin
                 
                 if(usuuario.DNI.Length<=4|| usuuario.PASSWORD.Length<=8)
                 {
-                    Session.Add("error", "DNI incorrecto o password incorrecto");
+                    Session.Add("error", "Complete los campos");
                     Response.Redirect("Default.aspx", false);
                 }
                 else if (negocioUsuario.login(usuuario) != null)

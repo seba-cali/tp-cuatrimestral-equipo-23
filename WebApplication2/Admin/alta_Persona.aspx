@@ -97,7 +97,8 @@
 
 		<%--marcar casillas para determinar que especialidades tiene el medico--%>
 		<p>Marque las especialidades del Médico</p>
-			<asp:PlaceHolder ID="loco" runat="server"></asp:PlaceHolder>
+		
+		<asp:PlaceHolder ID="loco" runat="server"></asp:PlaceHolder>
 		
 		<asp:Button CssClass="btn-submit fixed-size-btn" runat="server" Text="Dar de Alta Medico" OnClick="AltaMedico_Click" />
 

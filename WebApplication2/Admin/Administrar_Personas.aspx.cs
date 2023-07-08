@@ -16,7 +16,7 @@ namespace WebApplication2.Admin
 		public List<Paciente> listPacientes { get; set; }
 		protected void Page_Load(object sender, EventArgs e)
 		{
-
+			
 			NegocioPaciente negocioPaciente = new NegocioPaciente();
 			dgvPacientes.DataSource = negocioPaciente.listarConSp();
 			dgvPacientes.DataBind();

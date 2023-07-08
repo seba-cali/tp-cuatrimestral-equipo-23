@@ -11,6 +11,10 @@ namespace WebApplication2.Admin
         public List<Especialidad> ListaEspecialidades { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(Session["usuario"]==null)
+            {
+                Response.Redirect("Default.aspx", false);
+            }
             NegocioEspecialidad negocioEspecialidad = new NegocioEspecialidad();
             ListaEspecialidades = negocioEspecialidad.listar();
 

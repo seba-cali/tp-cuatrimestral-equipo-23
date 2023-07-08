@@ -13,8 +13,16 @@ namespace WebApplication2.Admin
         public int idcode=0;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(Session["usuario"]==null)
+            {
+                Response.Redirect("Default.aspx", false);
+            }
             //toma codigo por url dwl sitio
             code = Request.QueryString["code"] != null ? Request.QueryString["code"].ToString() : "";
+            
+            Session["error"] = null;
+            Session["OK"] = null;
+            Session["w"] = null;
             
             if (code != "")
             {
@@ -58,6 +66,7 @@ namespace WebApplication2.Admin
                         emailService.preparaCorreo(usuario.CORREO, "Recuperar cuenta de Dr. Seba", temlate);
                         emailService.enviarEmail();
                         pivot = 1;
+                        idcode = 0;
                         Session.Add("OK", "Revise su correo");
                         
                     }
@@ -81,10 +90,10 @@ namespace WebApplication2.Admin
         {
             NegocioResetPassword verifica = new NegocioResetPassword();
             int aux = verifica.BuscarXCode(inputCode.Text);
-            Console.WriteLine(aux+"  -asdasd btnfind");
+            
             if (aux > 0)
             {
-                idcode = aux;
+                Session.Add("w",aux.ToString());    
                 pivot = 2;
             }else if (aux==-1)
             {
@@ -103,16 +112,10 @@ namespace WebApplication2.Admin
             NegocioUsuario negocioUsuario = new NegocioUsuario();
             Usuario usuario = new Usuario();
             string pass = usuario.encriptar(inputPassword.Text);
-            Console.WriteLine(pass+"  -asdasd btn update code: "+ idcode);
-            if (negocioUsuario.BuscarXIdUpdate(idcode, pass))
-            {
-                Session.Add("OK", "Contraseña actualizada");
-                Response.Redirect("Default.aspx", false);
-            }
-            else
-            {
-                Session.Add("error", "Error al actualizar contraseña");
-            }
+            negocioUsuario.BuscarXIdUpdate(Convert.ToInt32(Session["w"].ToString()), pass);
+            Session.Add("OK", "Contraseña actualizada");
+            Response.Redirect("Default.aspx", false);
+           
         }
     }
 }

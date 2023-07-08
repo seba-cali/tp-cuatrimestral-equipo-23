@@ -147,27 +147,15 @@ namespace Negocio
 			}
 			return null;
 		}
-		public bool BuscarXIdUpdate(int val, string password)
+		public void BuscarXIdUpdate(int val, string password)
 		{
 			DBConnection db = new DBConnection();
-			Usuario aux = new Usuario();
-			
 			try
 			{
 				db.setearConsulta("UPDATE USUARIO SET PASSWORD = @password  WHERE ID_USUARIO= @id");
 				db.setearParametro("@id", val);
 				db.setearParametro("@password", password);
 				db.ejecutarLectura();
-				if (db.Lector.Read())
-				{
-					aux.ID_USUARIO = db.Lector.GetInt32(0);
-					aux.PASSWORD = db.Lector.GetString(1);
-			
-					db.cerrarConexion();
-				}
-
-				return aux.id == val ? true : false;
-				
 			}
 			catch (Exception e)
 			{

@@ -12,7 +12,7 @@
                         <div class="card-body">
                             <div class="small mb-3 text-muted">Ingrese correo electronico para generar nueva clave.</div>
                             <!-- Forgot password form-->
-                            <% idcode=0;
+                            <% 
                                 if (pivot == 0)
                                { %>
                                 <!-- Form Group (email address)-->
