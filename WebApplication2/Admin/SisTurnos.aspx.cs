@@ -120,18 +120,19 @@ namespace WebApplication2.Admin
                 turnero.AutoPostBack = true;
                 //busca medico
                 dato=ListaMedicos.Find(x => x.ID_MEDICO == Convert.ToInt32(Session["idmedi"]));
-                
-                //trae diccionaro
+                //Busca turno ocupados
+                tux=ListaTurnos.Find(x => x.Id_Medico == Convert.ToInt32(Session["idmedi"]));
+                if (dato != null)
+                { 
+                    var tata = Turnos.GetTurnos(Convert.ToInt32(dato.turno));
+                    foreach (KeyValuePair<int, string> slot in tata)
+                    {
+                        //Muestra los horarios disponibles
+                        if (slot.Key != tux.Id_Hora )
+                            turnero.Items.Add(new ListItem(slot.Value, slot.Key.ToString()));
+                    }    
+                }
 
-                var tata = Turnos.GetTurnos(dato.turno);
-                foreach (KeyValuePair<int, string> slot in tata )
-                    turnero.Items.Add(new ListItem(slot.Value.ToString(), slot.Key.ToString()));
-                
-
-
-                
-                        
-                
                 Fecha.Controls.Add(turnero);
 
 
@@ -145,7 +146,7 @@ namespace WebApplication2.Admin
         {
 
             Session["idmedi"] = Convert.ToInt32(((ListBox)sender).SelectedValue);
-            
+            Console.WriteLine(Session["idmedi"]+"seeeeee");
 
         }
 

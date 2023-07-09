@@ -13,9 +13,11 @@ namespace Dominio
         public int Id_Hora { get; set; }
         public Turnos(){}
         
+        public static Dictionary<int,string> xt {get;set;}
+        
         public static Dictionary<int, string> GetTurnos(int xturno =0)
         {
-            var xt = new Dictionary<int, string>();
+            xt = new Dictionary<int, string>();
             
             if (xturno ==0)
             {
