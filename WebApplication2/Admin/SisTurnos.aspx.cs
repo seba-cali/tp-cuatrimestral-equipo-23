@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Dominio;
@@ -107,11 +108,39 @@ namespace WebApplication2.Admin
 
                 }
                 Muestra2.Controls.Add(medicos);
-                Console.WriteLine(Session["idturno"]+"- sadasdsad -" +Session["idesp"]);
-                //Console.WriteLine(id_horario+"- sadasdsad -" +id_especialidad);
+                Medico dato = new Medico();
+                Turnos tux = new Turnos();
+                NegocioTurno negocioTurno = new NegocioTurno();
+                List<Turnos> ListaTurnos = new List<Turnos>();
+                ListaTurnos = negocioTurno.listar();
+                ListBox turnero= new ListBox();
+                turnero.SelectedIndexChanged += new EventHandler(turnnero_OnSelectedIndexChanged);
+                turnero.ID = "turnero";
+                turnero.CssClass = "form-control";
+                turnero.AutoPostBack = true;
+                //busca medico
+                dato=ListaMedicos.Find(x => x.ID_MEDICO == Convert.ToInt32(Session["idmedi"]));
+                
+                //trae diccionaro
+
+                var tata = Turnos.GetTurnos(dato.turno);
+                foreach (KeyValuePair<int, string> slot in tata )
+                    turnero.Items.Add(new ListItem(slot.Value.ToString(), slot.Key.ToString()));
+                
+
+
+                
+                        
+                
+                Fecha.Controls.Add(turnero);
+
 
         }
-
+        
+        private void turnnero_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            Session["idturnero"] = Convert.ToInt32(((ListBox)sender).SelectedValue);
+        }
         private void SelectMedico(object sender, EventArgs e)
         {
 

@@ -129,29 +129,8 @@
 
                                     <div class="form-check mb-2">
                                         <asp:PlaceHolder ID="Fecha" runat="server" />
-                                        <input class="form-check-input" id="checkAccountChanges" type="checkbox" checked />
-                                        <label class="form-check-label" for="checkAccountChanges">Changes made to your account</label>
                                     </div>
-                                    <div class="form-check mb-2">
-                                        <input class="form-check-input" id="checkAccountGroups" type="checkbox" checked />
-                                        <label class="form-check-label" for="checkAccountGroups">Changes are made to groups you're part of</label>
-                                    </div>
-                                    <div class="form-check mb-2">
-                                        <input class="form-check-input" id="checkProductUpdates" type="checkbox" checked />
-                                        <label class="form-check-label" for="checkProductUpdates">Product updates for products you've purchased or starred</label>
-                                    </div>
-                                    <div class="form-check mb-2">
-                                        <input class="form-check-input" id="checkProductNew" type="checkbox" checked />
-                                        <label class="form-check-label" for="checkProductNew">Information on new products and services</label>
-                                    </div>
-                                    <div class="form-check mb-2">
-                                        <input class="form-check-input" id="checkPromotional" type="checkbox" />
-                                        <label class="form-check-label" for="checkPromotional">Marketing and promotional offers</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" id="checkSecurity" type="checkbox" checked disabled />
-                                        <label class="form-check-label" for="checkSecurity">Security alerts</label>
-                                    </div>
+                                    
                                     <hr class="my-4" />
                                     <div class="d-flex justify-content-between">
                                         <asp:Button CssClass="btn btn-light" ID="btn2" CommandArgument="btn2" OnClick="button1_OnClick" Text="anterior" runat="server" />
