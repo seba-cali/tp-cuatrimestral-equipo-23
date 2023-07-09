@@ -131,6 +131,15 @@ namespace WebApplication2.Admin
                         if (slot.Key != tux.Id_Hora && tux.Estado )
                             turnero.Items.Add(new ListItem(slot.Value, slot.Key.ToString()));
                     }    
+                }else{
+                    if (dato != null)
+                    {
+                        var tito = Turnos.GetTurnos(Convert.ToInt32(dato.turno));
+                        foreach (KeyValuePair<int, string> slot in tito)
+                        {
+                            turnero.Items.Add(new ListItem(slot.Value, slot.Key.ToString()));
+                        }
+                    }
                 }
 
                 Fecha.Controls.Add(turnero);
