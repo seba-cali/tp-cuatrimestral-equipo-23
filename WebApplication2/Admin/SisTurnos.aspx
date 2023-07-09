@@ -131,6 +131,8 @@
                                         <asp:PlaceHolder ID="Fecha" runat="server" />
                                     </div>
                                     
+
+
                                     <hr class="my-4" />
                                     <div class="d-flex justify-content-between">
                                         <asp:Button CssClass="btn btn-light" ID="btn2" CommandArgument="btn2" OnClick="button1_OnClick" Text="anterior" runat="server" />
@@ -145,47 +147,42 @@
                             <div class="row justify-content-center">
                                 <div class="col-xxl-6 col-xl-8">
                                     <h3 class="text-primary">Paso 4</h3>
-                                    <h5 class="card-title mb-4">Confirmar pedido</h5>
+                                    <h5 class="card-title mb-4">Confirmar Turno</h5>
                                     <div class="row small text-muted">
-                                        <div class="col-sm-3 text-truncate"><em>Username:</em></div>
-                                        <div class="col">username</div>
+                                        <div class="col-sm-3 text-truncate"><em>Especialidad:</em></div>
+                                        <div class="col">
+                                            <asp:PlaceHolder ID="MostrarEsp" runat="server"></asp:PlaceHolder>
+
+                                        </div>
                                     </div>
                                     <div class="row small text-muted">
-                                        <div class="col-sm-3 text-truncate"><em>Name:</em></div>
-                                        <div class="col">Valerie Luna</div>
+                                        <div class="col-sm-3 text-truncate"><em>Medico:</em></div>
+                                        <div class="col">
+                                            <asp:PlaceHolder ID="MostrarMed" runat="server"></asp:PlaceHolder>
+
+                                        </div>
                                     </div>
                                     <div class="row small text-muted">
-                                        <div class="col-sm-3 text-truncate"><em>Organization Name:</em></div>
-                                        <div class="col">Start Bootstrap</div>
+                                        <div class="col-sm-3 text-truncate"><em>Fecha:</em></div>
+                                        <div class="col">
+                                        <asp:PlaceHolder ID="MostrarFecha" runat="server"></asp:PlaceHolder>
+                                        </div>
                                     </div>
                                     <div class="row small text-muted">
-                                        <div class="col-sm-3 text-truncate"><em>Location:</em></div>
-                                        <div class="col">San Francisco, CA</div>
+                                        <div class="col-sm-3 text-truncate"><em>Hora:</em></div>
+                                        <div class="col">
+                                        <asp:PlaceHolder ID="MostrarHora" runat="server"></asp:PlaceHolder>
+                                        </div>
                                     </div>
                                     <div class="row small text-muted">
-                                        <div class="col-sm-3 text-truncate"><em>Email Address:</em></div>
-                                        <div class="col">name@example.com</div>
+                                        <div class="col-sm-3 text-truncate"><em>Observaciones:</em></div>
+                                        <asp:TextBox ID="Observaciones" CssClass="form-control ps-0 pointer" runat="server" type="text" />
                                     </div>
-                                    <div class="row small text-muted">
-                                        <div class="col-sm-3 text-truncate"><em>Phone Number:</em></div>
-                                        <div class="col">555-123-4567</div>
-                                    </div>
-                                    <div class="row small text-muted">
-                                        <div class="col-sm-3 text-truncate"><em>Birthday:</em></div>
-                                        <div class="col">06/10/1988</div>
-                                    </div>
-                                    <div class="row small text-muted">
-                                        <div class="col-sm-3 text-truncate"><em>Credit Card Number:</em></div>
-                                        <div class="col">**** **** **** 1111</div>
-                                    </div>
-                                    <div class="row small text-muted">
-                                        <div class="col-sm-3 text-truncate"><em>Credit Card Expiration:</em></div>
-                                        <div class="col">06/2024</div>
-                                    </div>
+                                    
                                     <hr class="my-4" />
                                     <div class="d-flex justify-content-between">
                                         <asp:Button CssClass="btn btn-light" Text="anterior" ID="btn3" CommandArgument="btn3" OnClick="button1_OnClick" runat="server" />
-                                        <asp:Button CssClass="btn btn-primary" Text="Confirmar" ID="sube" runat="server" />
+                                        <asp:Button CssClass="btn btn-primary" Text="Confirmar" Onclick="sube_Click" ID="sube" runat="server" />
                                     </div>
                                 </div>
                             </div>

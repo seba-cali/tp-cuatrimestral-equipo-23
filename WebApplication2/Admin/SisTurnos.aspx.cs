@@ -60,6 +60,10 @@ namespace WebApplication2.Admin
                 Session["error"] = null;
                 Session["OK"] = null;
                 Session["w"] = null;
+                Session.Add("MostrarEsp",null);
+                Session.Add("MostrarMed", null);
+                Session.Add("MostrarFecha", null);
+                Session.Add("MostrarHora", null);
                 
             }
             
@@ -131,7 +135,9 @@ namespace WebApplication2.Admin
                 //Busca turno ocupados
                 tux=ListaTurnos.Find(x => x.Id_Medico == Convert.ToInt32(Session["idmedi"]));
                 if (dato != null && tux != null)
-                { 
+            {
+                Session["MostrarMed"] = dato.nombres + ", " + dato.apellidos;
+                Session["MostrarEsp"]= ListaEspecialidades.Find(x => x.id== Convert.ToInt32(x.id)).nombre;
                     var tata = Turnos.GetTurnos(Convert.ToInt32(dato.turno));
                     foreach (KeyValuePair<int, string> slot in tata)
                     {
@@ -158,6 +164,14 @@ namespace WebApplication2.Admin
         private void turnnero_OnSelectedIndexChanged(object sender, EventArgs e)
         {
             Session["idturnero"] = Convert.ToInt32(((ListBox)sender).SelectedValue);
+            Label MMed = new Label();
+            MMed.Text = Session["MostrarMed"].ToString()+"Lentejas";
+            MostrarMed.Controls.Add(MMed);
+            Label MEsp = new Label();
+            MEsp.Text = Session["MostrarEsp"].ToString()+"Verdura";
+            MostrarEsp.Controls.Add(MEsp);
+            
+            
         }
         private void SelectMedico(object sender, EventArgs e)
         {
@@ -191,6 +205,30 @@ namespace WebApplication2.Admin
         protected void button1_OnClick(object sender, EventArgs e)
         {
             Session["class"] = (((Button)sender).CommandArgument);
+            Session["idturnero"] = Convert.ToInt32(((ListBox)sender).SelectedValue);
+            Label MMed = new Label();
+            MMed.Text = Session["MostrarMed"].ToString() + "Lentejas";
+            MostrarMed.Controls.Add(MMed);
+            Label MEsp = new Label();
+            MEsp.Text = Session["MostrarEsp"].ToString() + "Verdura";
+            MostrarEsp.Controls.Add(MEsp);
+
+        }
+
+        protected void sube_Click(object sender, EventArgs e)
+        {
+            Turnos turnos = new Turnos();
+            NegocioTurno negocioTurno = new NegocioTurno();
+            turnos.Id_Especialidad= Convert.ToInt32(Session["idesp"]);
+            turnos.Id_Medico = Convert.ToInt32(Session["idmedi"]);
+            turnos.Id_Hora = Convert.ToInt32(Session["idturnero"]);
+            turnos.fecha = Convert.ToDateTime(fechanow.Text);
+            turnos.observacion= observacion.Text;
+            turnos.Estado = true;
+            
+            Session["OK"] = "OK";
+            Response.Redirect("Default.aspx", false);
+
         }
     }
 }

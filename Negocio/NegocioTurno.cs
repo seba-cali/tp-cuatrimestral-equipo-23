@@ -19,12 +19,12 @@ namespace Negocio
         				if(fecha != "")
                         {
 	                        db.setearConsulta(
-		                        "SELECT ID_TURNO, FECHA, ESTADO, ID_MEDICO, ID_PACIENTE,ID_HORA  FROM TURNO WHERE FECHA = " +
+		                        "SELECT ID_TURNO, FECHA, ESTADO, ID_MEDICO, ID_PACIENTE,ID_HORA, ID_ESPECIALIDAD  FROM TURNO WHERE FECHA = " +
 		                        fecha + " and ESTADO = "+ idMedico);
                         }
         				else
         				{
-        					db.setearConsulta("SELECT ID_TURNO, FECHA, ESTADO, ID_MEDICO, ID_PACIENTE,ID_HORA  FROM TURNO");
+        					db.setearConsulta("SELECT ID_TURNO, FECHA, ESTADO, ID_MEDICO, ID_PACIENTE,ID_HORA, ID_ESPECIALIDAD  FROM TURNO");
         				}
         				db.ejecutarLectura();
         
@@ -37,6 +37,7 @@ namespace Negocio
                             aux.Id_Medico = db.Lector.GetInt32(3);
                             aux.Id_Paciente = db.Lector.GetInt32(4);
                             aux.Id_Hora = db.Lector.GetInt32(5);
+                            aux.Id_Especialidad = db.Lector.GetInt32(6);
                             turnero.Add(aux);
         				}
         				db.cerrarConexion();

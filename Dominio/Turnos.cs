@@ -11,6 +11,7 @@ namespace Dominio
         public int Id_Medico { get; set; }
         public int Id_Paciente { get; set; }
         public int Id_Hora { get; set; }
+        public int Id_Especialidad { get; set; }
         public Turnos(){}
         
         public static Dictionary<int,string> xt {get;set;}
