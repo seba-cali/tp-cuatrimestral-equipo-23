@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 
 namespace Dominio
@@ -29,46 +30,33 @@ namespace Dominio
             
             if (xturno ==0)
             {
-                turnos.Add(1, " 6:00 AM a 6:30 AM");
-                turnos.Add(2, " 6:30 AM a 7:00 AM");
-                turnos.Add(3, " 7:00 AM a 7:30 AM");
-                turnos.Add(4, " 7:30 AM a 8:00 AM");
-                turnos.Add(5, " 8:00 AM a 8:30 AM");
-                turnos.Add(6, " 8:30 AM a 9:00 AM");
-                turnos.Add(7, " 9:00 AM a 9:30 AM");
-                turnos.Add(8, " 9:30 AM a 10:00 AM");
-                turnos.Add(9, " 10:00 AM a 10:30 AM");
-                turnos.Add(10, " 10:30 AM a 11:00 AM");
+                turnos.Add(1, " 6:00 a 7:00 Hs");
+                turnos.Add(2, " 7:00 a 8:00 Hs");
+                turnos.Add(3, " 9:00 a 10:00 Hs");
+                turnos.Add(4, " 11:00 a 12:00 Hs");
+                turnos.Add(5, " 12:00 a 13:00 Hs");
+                
             }
             if (xturno ==1)
             {
                 
-                turnos.Add(11, " 11:00 AM a 11:30 AM");
-                turnos.Add(12, " 11:30 AM a 12:00 PM");
-                turnos.Add(13, " 12:00 PM a 12:30 PM");
-                turnos.Add(14, " 12:30 PM a 13:00 PM");
-                turnos.Add(15, " 13:00 PM a 13:30 PM");
-                turnos.Add(16, " 13:30 PM a 14:00 PM");
-                turnos.Add(17, " 14:00 PM a 14:30 PM");
-                turnos.Add(18, " 14:30 PM a 15:00 PM");
-                turnos.Add(19, " 15:00 PM a 15:30 PM");
-                turnos.Add(20, " 15:30 PM a 16:00 PM");
+                turnos.Add(6, " 13:00 a 14:00 Hs");
+                turnos.Add(7, " 14:00 a 15:00 Hs");
+                turnos.Add(8, " 15:00 a 16:00 Hs");
+                turnos.Add(9, " 16:00 a 17:00 Hs");
+                turnos.Add(10, " 17:00 a 18:00 Hs");
+             
             }
             if (xturno == 2)
             {
-                turnos.Add(21, " 16:00 PM a 16:30 PM");
-                turnos.Add(22, " 16:30 PM a 17:00 PM");
-                turnos.Add(23, " 17:00 PM a 17:30 PM");
-                turnos.Add(24, " 17:30 PM a 18:00 PM");
-                turnos.Add(25, " 18:00 PM a 18:30 PM");
-                turnos.Add(26, " 18:30 PM a 19:00 PM");
-                turnos.Add(27, " 19:00 PM a 19:30 PM");
-                turnos.Add(28, " 19:30 PM a 20:00 PM");
-                turnos.Add(29, " 20:00 PM a 20:30 PM");
-                turnos.Add(30, " 20:30 PM a 21:00 PM");
+                turnos.Add(11, " 18:00 a 19:00 Hs");
+                turnos.Add(12, " 19:00 a 20:00 Hs");
+                turnos.Add(13, " 20:00 a 21:00 Hs");
+                turnos.Add(14, " 21:00 a 22:00 Hs");
+                turnos.Add(15, " 22:00 a 23:00 Hs");
             }
-            
 
+        
             return turnos;
         }
     }

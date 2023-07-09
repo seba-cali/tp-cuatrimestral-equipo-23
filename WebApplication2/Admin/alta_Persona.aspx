@@ -123,9 +123,9 @@
             <div class="col-3 col-sm-3">
 
                 <asp:ListBox CssClass="form-control" ID="horarios" runat="server" AutoPostBack="false">
-                    <asp:ListItem Text="Turnos 6 a 11Hs" Value="0" />
-                    <asp:ListItem Text="Turnos 12 a 17Hs" Value="1" />
-                    <asp:ListItem Text="Turnos 18 a 21Hs" Value="2" />
+                    <asp:ListItem Text="Turnos 6 a 13Hs" Value="0" />
+                    <asp:ListItem Text="Turnos 13 a 18Hs" Value="1" />
+                    <asp:ListItem Text="Turnos 18 a 23Hs" Value="2" />
                 </asp:ListBox>
 
             </div>
