@@ -100,7 +100,7 @@ namespace WebApplication2.Admin
                 medicos.AutoPostBack = true;
                 foreach (Medico medi in ListaMedicos)
                 {
-                    if (medi.turno == Convert.ToInt32(Session["idturno"]) && medi.ID_ESPECIALIDAD == Convert.ToInt32(Session["idesp"]))
+                    if(medi.turno == Convert.ToInt32(Session["idturno"]) && medi.ID_ESPECIALIDAD == Convert.ToInt32(Session["idesp"]))
                     {
                         medicos.Items.Add(new ListItem(medi.nombres + " " + medi.apellidos, medi.ID_MEDICO.ToString()));
                         
@@ -122,13 +122,13 @@ namespace WebApplication2.Admin
                 dato=ListaMedicos.Find(x => x.ID_MEDICO == Convert.ToInt32(Session["idmedi"]));
                 //Busca turno ocupados
                 tux=ListaTurnos.Find(x => x.Id_Medico == Convert.ToInt32(Session["idmedi"]));
-                if (dato != null)
+                if (dato != null && tux != null)
                 { 
                     var tata = Turnos.GetTurnos(Convert.ToInt32(dato.turno));
                     foreach (KeyValuePair<int, string> slot in tata)
                     {
                         //Muestra los horarios disponibles
-                        if (slot.Key != tux.Id_Hora )
+                        if (slot.Key != tux.Id_Hora && tux.Estado )
                             turnero.Items.Add(new ListItem(slot.Value, slot.Key.ToString()));
                     }    
                 }
