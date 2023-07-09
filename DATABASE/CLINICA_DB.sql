@@ -397,3 +397,10 @@ BEGIN
     INSERT INTO EspecialidadxMedico (ID_MEDICO, ID_ESPECIALIDAD)
     VALUES (@idmedico, @idespecialidad)
 END
+
+--Eliminar FK de ID_ESP en MEDICO y borrar columna
+ALTER TABLE dbo.MEDICO
+DROP CONSTRAINT FK__MEDICO__ID_ESP__59063A47;
+GO
+alter table MEDICO
+    drop column ID_ESP;

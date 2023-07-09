@@ -158,6 +158,9 @@ namespace WebApplication2.Admin
         private void turnnero_OnSelectedIndexChanged(object sender, EventArgs e)
         {
             Session["idturnero"] = Convert.ToInt32(((ListBox)sender).SelectedValue);
+            Label loco = new Label();
+            loco.Text = Session["idturnero"].ToString();
+            
         }
         private void SelectMedico(object sender, EventArgs e)
         {
