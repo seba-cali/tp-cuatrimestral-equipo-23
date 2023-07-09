@@ -6,15 +6,20 @@ namespace Negocio
 {
     public class NegocioMedico
     {
-        public List<Medico> listar()
+        public List<Medico> listar(string idMedico="")
         {
             List<Medico> medico = new List<Medico>();
             DBConnection db = new DBConnection();
 
             try
             {
-
-                db.setearConsulta("SELECT ID_MEDICO, NOMBRE, APELLIDO, DIRECCION, FECHA_NACIMIENTO, SEXO, ESTADO, TELEFONO,ID_ESP, ID_USUARIO, DNI, TURNO,MATRICULA  FROM MEDICO");
+                if(idMedico==""){
+                    db.setearConsulta("SELECT ID_MEDICO, NOMBRE, APELLIDO, DIRECCION, FECHA_NACIMIENTO, SEXO, ESTADO, TELEFONO, ID_USUARIO, DNI, TURNO,MATRICULA  FROM MEDICO");
+                }
+                else
+                {
+                    db.setearConsulta("SELECT ID_MEDICO, NOMBRE, APELLIDO, DIRECCION, FECHA_NACIMIENTO, SEXO, ESTADO, TELEFONO, ID_USUARIO, DNI, TURNO,MATRICULA  FROM MEDICO where ID_MEDICO = " + idMedico);
+                }
                 db.ejecutarLectura();
 
                 while (db.Lector.Read())
@@ -28,11 +33,10 @@ namespace Negocio
                     aux.sexo = db.Lector.GetString(5);
                     aux.ESTADO = db.Lector.GetBoolean(6);
                     aux.telefono = db.Lector.GetString(7);
-                    aux.ID_ESPECIALIDAD = db.Lector.GetInt32(8);
-                    aux.ID_USUARIO = db.Lector.GetInt32(9);
-                    aux.DNI = db.Lector.GetString(10);
-                    aux.turno = db.Lector.GetInt32(11);
-                    aux.Matricula = db.Lector.GetString(12);
+                    aux.ID_USUARIO = db.Lector.GetInt32(8);
+                    aux.DNI = db.Lector.GetString(9);
+                    aux.turno = db.Lector.GetInt32(10);
+                    aux.Matricula = db.Lector.GetString(11);
 
 
                     medico.Add(aux);

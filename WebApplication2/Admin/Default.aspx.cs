@@ -53,6 +53,7 @@ namespace WebApplication2.Admin
             {
                 Session.Add("error", "no ingreso datos solicitados");
                 Response.Redirect("Default.aspx", true);
+                Console.WriteLine(exception);
             }
 
         }
