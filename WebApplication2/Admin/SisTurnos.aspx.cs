@@ -60,8 +60,7 @@ namespace WebApplication2.Admin
                 Session["error"] = null;
                 Session["OK"] = null;
                 Session["w"] = null;
-                int id_horario=0;
-                int id_especialidad=0;
+                
             }
             
             
@@ -92,22 +91,31 @@ namespace WebApplication2.Admin
                 NegocioMedico negocioMedico = new NegocioMedico();
                 List<Medico> ListaMedicos = new List<Medico>();
                 ListaMedicos = negocioMedico.listar();
-                
+                if(Session["idesp"].ToString()!="0"){
+                    Medico medico = new Medico();
+                    
+                    NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
+                    List<EspecialidadxMedico> ListaEspecialidadxMedico = new List<EspecialidadxMedico>();
+                    ListaEspecialidadxMedico = negocioEspecialidadxMedico.listar(Session["idesp"].ToString());
+            
                 ListBox medicos = new ListBox();
                 medicos.SelectedIndexChanged += new EventHandler(SelectMedico);
                 medicos.ID = "mediselect";
                 medicos.CssClass = "form-control";
                 medicos.AutoPostBack = true;
-                foreach (Medico medi in ListaMedicos)
-                {
-                    if(medi.turno == Convert.ToInt32(Session["idturno"]) && medi.ID_ESPECIALIDAD == Convert.ToInt32(Session["idesp"]))
+                    foreach (EspecialidadxMedico medi in ListaEspecialidadxMedico)
                     {
-                        medicos.Items.Add(new ListItem(medi.nombres + " " + medi.apellidos, medi.ID_MEDICO.ToString()));
-                        
-                    }
+                        medico= ListaMedicos.Find(x => x.ID_MEDICO == medi.ID_MEDICO);
+                        if(medico.turno == Convert.ToInt32(Session["idturno"]) && medi.Id_Especialidad == Convert.ToInt32(Session["idesp"]))
+                        {
+                            medicos.Items.Add(new ListItem(medico.nombres + " " + medico.apellidos, medi.ID_MEDICO.ToString()));
+                            
+                        }
 
-                }
+                    }
                 Muestra2.Controls.Add(medicos);
+                }
+                
                 Medico dato = new Medico();
                 Turnos tux = new Turnos();
                 NegocioTurno negocioTurno = new NegocioTurno();
@@ -170,6 +178,7 @@ namespace WebApplication2.Admin
             catch (Exception exception)
             {
                 Session["idesp"] = 0;
+                Console.WriteLine(exception);
             }
         }
 

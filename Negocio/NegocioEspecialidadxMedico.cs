@@ -9,15 +9,22 @@ namespace Negocio
 {
     public class NegocioEspecialidadxMedico
     {
-        public List<EspecialidadxMedico> listar()
+        public List<EspecialidadxMedico> listar(string idEsp = "")
         {
             List<EspecialidadxMedico> especialidadesxmedico = new List<EspecialidadxMedico>();
             DBConnection db = new DBConnection();
 
             try
             {
+                if (idEsp == "")
+                {
+                    db.setearConsulta("SELECT ID_MEDICO,ID_ESPECIALIDAD FROM EspecialidadxMedico");
+                }
+                else
+                {
+                    db.setearConsulta("SELECT ID_MEDICO,ID_ESPECIALIDAD FROM EspecialidadxMedico where ID_ESPECIALIDAD = " + idEsp);
+                }
 
-                db.setearConsulta("SELECT ID_MEDICO,ID_ESPECIALIDAD FROM EspecialidadxMedico");
                 db.ejecutarLectura();
 
                 while (db.Lector.Read())
