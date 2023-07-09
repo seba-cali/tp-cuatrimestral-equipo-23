@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="Title" Language="C#" MasterPageFile="~/Admin/Panel.master" CodeBehind="SisTurnos.aspx.cs" Inherits="WebApplication2.Admin.SisTurnos" %>
-<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server" xmlns:aps="http://www.w3.org/1999/html">
+
      <main>
                         <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
                             <div class="container-xl px-4">
@@ -24,7 +25,7 @@
                                     <!-- Wizard navigation-->
                                     <div class="nav nav-pills nav-justified flex-column flex-xl-row nav-wizard" id="cardTab" role="tablist">
                                         <!-- Wizard navigation item 1-->
-                                        <a class="nav-item nav-link active" id="wizard1-tab" href="#wizard1" data-bs-toggle="tab" role="tab" aria-controls="wizard1" aria-selected="true">
+                                        <a class="nav-item nav-link <%: Session["class"]== "btn1" ? "active":" "%>" id="wizard1-tab" href="#wizard1" data-bs-toggle="tab" role="tab" aria-controls="wizard1" aria-selected="true">
                                             <div class="wizard-step-icon">1</div>
                                             <div class="wizard-step-text">
                                                 <div class="wizard-step-text-name">Especialidad</div>
@@ -32,7 +33,7 @@
                                             </div>
                                         </a>
                                         <!-- Wizard navigation item 2-->
-                                        <a class="nav-item nav-link" id="wizard2-tab" href="#wizard2" data-bs-toggle="tab" role="tab" aria-controls="wizard2" aria-selected="true">
+                                        <a class="nav-item nav-link <%: Session["class"]== "btn2" ? "active":" "%>" id="wizard2-tab" href="#wizard2" data-bs-toggle="tab" role="tab" aria-controls="wizard2" aria-selected="true">
                                             <div class="wizard-step-icon">2</div>
                                             <div class="wizard-step-text">
                                                 <div class="wizard-step-text-name">Medicos</div>
@@ -40,7 +41,7 @@
                                             </div>
                                         </a>
                                         <!-- Wizard navigation item 3-->
-                                        <a class="nav-item nav-link" id="wizard3-tab" href="#wizard3" data-bs-toggle="tab" role="tab" aria-controls="wizard3" aria-selected="true">
+                                        <a class="nav-item nav-link <%: Session["class"]== "btn3" ? "active":" "%>" id="wizard3-tab" href="#wizard3" data-bs-toggle="tab" role="tab" aria-controls="wizard3" aria-selected="true">
                                             <div class="wizard-step-icon">3</div>
                                             <div class="wizard-step-text">
                                                 <div class="wizard-step-text-name">Fecha</div>
@@ -48,7 +49,7 @@
                                             </div>
                                         </a>
                                         <!-- Wizard navigation item 4-->
-                                        <a class="nav-item nav-link" id="wizard4-tab" href="#wizard4" data-bs-toggle="tab" role="tab" aria-controls="wizard4" aria-selected="true">
+                                        <a class="nav-item nav-link <%: Session["class"]== "btn4" ? "active":" "%>" id="wizard4-tab" href="#wizard4" data-bs-toggle="tab" role="tab" aria-controls="wizard4" aria-selected="true">
                                             <div class="wizard-step-icon">4</div>
                                             <div class="wizard-step-text">
                                                 <div class="wizard-step-text-name">Confirmar</div>
@@ -60,7 +61,7 @@
                                 <div class="card-body">
                                     <div class="tab-content" id="cardTabContent">
                                         <!-- Wizard tab pane item 1-->
-                                        <div class="tab-pane py-5 py-xl-10 fade show active" id="wizard1" role="tabpanel" aria-labelledby="wizard1-tab">
+                                        <div class="tab-pane py-5 py-xl-10 fade <%: Session["class"]== "btn1" ? " show active":" "%>" id="wizard1" role="tabpanel" aria-labelledby="wizard1-tab">
                                             <div class="row justify-content-center">
                                                 <div class="col-xxl-6 col-xl-8">
                                                     <h3 class="text-primary">Seccion 1</h3>
@@ -71,7 +72,7 @@
                                                             <asp:PlaceHolder ID="Muestra1"  runat="server"  />
                                                         </div>
                                                         <div class="mb-3">
-                                                            <asp:ListBox CssClass="form-control" OnSelectedIndexChanged="horarios_OnSelectedIndexChanged" ID="horarios" runat="server" AutoPostBack="true">
+                                                            <asp:ListBox CssClass="form-control"  OnSelectedIndexChanged="horarios_OnSelectedIndexChanged" ID="horarios" runat="server" AutoPostBack="true">
                                                                 <asp:ListItem  Text="Turnos 6 am a 11 am" Value="0" />
                                                                 <asp:ListItem Text="Turnos 11 am a 16 pm" Value="1" />
                                                                 <asp:ListItem Text="Turnos 16 pm a 21 pm" Value="2" />
@@ -84,14 +85,14 @@
                                                         <hr class="my-4" />
                                                         <div class="d-flex justify-content-between">
                                                             <button class="btn btn-light disabled" type="button" disabled>anterior</button>
-                                                            <button class="btn btn-primary " type="button">Siguiente</button>
+                                                            <asp:Button CssClass="btn btn-primary" ID="bt2" CommandArgument="btn2" OnClick="button1_OnClick"  Text="Siguiente" runat="server"/>
                                                         </div>
                                                     
                                                 </div>
                                             </div>
                                         </div>
                                         <!-- Wizard tab pane item 2-->
-                                        <div class="tab-pane py-5 py-xl-10 fade" id="wizard2" role="tabpanel" aria-labelledby="wizard2-tab">
+                                        <div class="tab-pane py-5 py-xl-10 fade <%: Session["class"]== "btn2" ? " show active":" "%>" id="wizard2" role="tabpanel" aria-labelledby="wizard2-tab">
                                             <div class="row justify-content-center">
                                                 <div class="col-xxl-6 col-xl-8">
                                                     <h3 class="text-primary">Paso 2</h3>
@@ -101,20 +102,25 @@
                                                             <div class="mb-3 col-md-6">
                                                                 <asp:PlaceHolder ID="Muestra2"  runat="server"  />
                                                             </div>
+                                                        </div>
+                                                        <div class="row gx-3">
+                                                            <div class="mb-3 col-md-6">
+                                                                <asp:TextBox ID="fechanow" CssClass="form-control ps-0 pointer"  runat="server" type="text"/>
+                                                            </div>
+                                                             
                                                             
                                                         </div>
-                                                        
                                                         <hr class="my-4" />
                                                         <div class="d-flex justify-content-between">
-                                                            <button class="btn btn-light disabled" type="button" >anterior</button>
-                                                            <button class="btn btn-primary " type="button">Siguiente</button>
+                                                            <asp:Button ID="bt1" CssClass="btn btn-light" text="anterior" CommandArgument="btn1" OnClick="button1_OnClick"  runat="server"/>
+                                                            <asp:Button CssClass="btn btn-primary " Text="Siguiente" ID="bt3" CommandArgument="btn3" type="button" OnClick="button1_OnClick" runat="server" />
                                                         </div>
                                                     
                                                 </div>
                                             </div>
                                         </div>
                                         <!-- Wizard tab pane item 3-->
-                                        <div class="tab-pane py-5 py-xl-10 fade" id="wizard3" role="tabpanel" aria-labelledby="wizard3-tab">
+                                        <div class="tab-pane py-5 py-xl-10 fade <%: Session["class"]== "btn3" ? " show active":" "%>" id="wizard3" role="tabpanel" aria-labelledby="wizard3-tab">
                                             <div class="row justify-content-center">
                                                 <div class="col-xxl-6 col-xl-8">
                                                     <h3 class="text-primary">Paso 3</h3>
@@ -147,15 +153,15 @@
                                                         </div>
                                                         <hr class="my-4" />
                                                         <div class="d-flex justify-content-between">
-                                                            <button class="btn btn-light" type="button">Previous</button>
-                                                            <button class="btn btn-primary" type="button">Next</button>
+                                                            <asp:Button CssClass="btn btn-light" ID="btn2" CommandArgument="btn2" OnClick="button1_OnClick" Text="anterior" runat="server"/>
+                                                            <asp:Button CssClass="btn btn-primary" ID="btn4" CommandArgument="btn4" OnClick="button1_OnClick" Text="siguiente" runat="server"/>
                                                         </div>
                                                     
                                                 </div>
                                             </div>
                                         </div>
                                         <!-- Wizard tab pane item 4-->
-                                        <div class="tab-pane py-5 py-xl-10 fade" id="wizard4" role="tabpanel" aria-labelledby="wizard4-tab">
+                                        <div class="tab-pane py-5 py-xl-10 fade <%: Session["class"]== "btn4" ? " show active":" "%>" id="wizard4" role="tabpanel" aria-labelledby="wizard4-tab">
                                             <div class="row justify-content-center">
                                                 <div class="col-xxl-6 col-xl-8">
                                                     <h3 class="text-primary">Paso 4</h3>
@@ -198,8 +204,8 @@
                                                     </div>
                                                     <hr class="my-4" />
                                                     <div class="d-flex justify-content-between">
-                                                        <button class="btn btn-light" type="button">Previous</button>
-                                                        <button class="btn btn-primary" type="button">Submit</button>
+                                                        <asp:Button CssClass="btn btn-light" Text="anterior" ID="btn3" CommandArgument="btn3" OnClick="button1_OnClick" runat="server"/>
+                                                        <asp:Button CssClass="btn btn-primary" Text="Confirmar" ID="sube" runat="server"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -210,36 +216,22 @@
                         </div>
                     </main>
     
-    <%--
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script >
        $(function (){
-           $('#card').bootstrapWizard({
-               tabClass: 'nav nav-pills',
-               nextSelector: '.btn-next',
-               previousSelector: '.btn-back',
-               onNext: function(tab, navigation, index) {
-                   var $valid = $("#wizardForm").valid();
-                   if(!$valid) {
-                       $validator.focusInvalid();
-                       return false;
-                   }
-               },
-               onTabClick: function(tab, navigation, index) {
-                   var $valid = $("#wizardForm").valid();
-                   if(!$valid) {
-                       $validator.focusInvalid();
-                       return false;
-                   }
-               },
-               onTabShow: function(tab, navigation, index) {
-                   var $total = navigation.find('li').length;
-                   var $current = index+1;
-                   var $percent = ($current/$total) * 100;
-                   $('#wizard').find('.progress-bar').css({width:$percent+'%'});
-               }
-           });
-       })
-       </script>--%>
+    
+            $("#MainContent_fechanow").datepicker({
+             minDate: 0,
+             maxDate: "+7D",
+             dateFormat: "dd/mm/yy",
+             firstDay: 1,
+             showAnim: "slideDown",
+             dayNamesMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"],
+             
+            });
+    
+       });
+       </script>
     
 </asp:Content>
 

@@ -21,19 +21,21 @@ namespace WebApplication2.Admin
             {
                 Response.Redirect("Default.aspx", false);
             }
-            
+
+            if (!IsPostBack)
+            {
                 Session["OK"] = null;
                 Session["class"] = null;
                 Session["error"] = null;
-                
-                /*formGroupIdDelete.Text = "";
-                formGroupId.Text = "";
-                formGroupNameEdit.Text = "";
-                formGroupDescEdit.Text = "";
-                formGroupURLEdit.Text = "";
-                formGroupName.Text = "";
-                formGroupDesc.Text = "";
-                formGroupURL.Text = "";*/
+            }
+            /*formGroupIdDelete.Text = "";
+            formGroupId.Text = "";
+            formGroupNameEdit.Text = "";
+            formGroupDescEdit.Text = "";
+            formGroupURLEdit.Text = "";
+            formGroupName.Text = "";
+            formGroupDesc.Text = "";
+            formGroupURL.Text = "";*/
                 
             
             negocioEspecialidad = new NegocioEspecialidad();

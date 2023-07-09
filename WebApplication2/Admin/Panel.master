@@ -13,6 +13,7 @@
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <link href="../assets/dist/css/styles.css" rel="stylesheet" />
     <%--<link rel="icon" type="image/x-icon" href="../assets/dist/assets/img/favicon.png" />--%>
     <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
@@ -262,7 +263,7 @@
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/Scripts/bootstrap.js") %>
         <%: Scripts.Render("~/Scripts/bootstrap.bundle.js") %>
-        <%: Scripts.Render("~/Scripts/Jquery-3.4.1.js") %>
+        <%--<%: Scripts.Render("~/Scripts/Jquery-3.4.1.js") %>--%>
         <%: Scripts.Render("~/Scripts/script.js") %>
     </asp:PlaceHolder>
         <script src="../assets/dist/js/scripts.js"></script>
@@ -274,7 +275,8 @@
         <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/bundle.js" crossorigin="anonymous"></script>
         <script src="../assets/dist/js/litepicker.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-  
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
 </body>
 </html>

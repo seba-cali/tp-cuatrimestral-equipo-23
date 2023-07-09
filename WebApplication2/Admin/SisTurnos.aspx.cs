@@ -12,8 +12,41 @@ namespace WebApplication2.Admin
     {
         public int id_medico {get;set;}
 
-        public int id_especialidad {get;set;}
-        public int id_horario {get;set;}
+        public void LimpiarControles(Control control)
+        {
+            foreach (Control c in control.Controls)
+            {
+                if (c is TextBox)
+                {
+                    TextBox textBox = (TextBox)c;
+                    textBox.Text = string.Empty;
+                }
+                else if (c is DropDownList)
+                {
+                    DropDownList dropDownList = (DropDownList)c;
+                    dropDownList.ClearSelection();
+                }
+                else if (c is CheckBoxList)
+                {
+                    CheckBoxList checkBoxList = (CheckBoxList)c;
+                    foreach (ListItem item in checkBoxList.Items)
+                    {
+                        item.Selected = false;
+                    }
+                }
+                else if (c is RadioButtonList)
+                {
+                    RadioButtonList radioButtonList = (RadioButtonList)c;
+                    radioButtonList.ClearSelection();
+                }
+
+                if (c.HasControls())
+                {
+                    LimpiarControles(c);
+                }
+            }
+        }
+        
    
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -22,9 +55,12 @@ namespace WebApplication2.Admin
                 Session.Add("idmedi", "0");
                 Session.Add("idesp", "0");
                 Session.Add("idturno", "0");
+                Session.Add("class", "btn1");
                 Session["error"] = null;
                 Session["OK"] = null;
                 Session["w"] = null;
+                int id_horario=0;
+                int id_especialidad=0;
             }
             
             
@@ -34,7 +70,6 @@ namespace WebApplication2.Admin
             {
                 Response.Redirect("Default.aspx", false);
             }*/
-            
             
                 NegocioEspecialidad negocioEspecialidad = new NegocioEspecialidad();
                 List<Especialidad> ListaEspecialidades=new List<Especialidad>();
@@ -73,6 +108,7 @@ namespace WebApplication2.Admin
                 }
                 Muestra2.Controls.Add(medicos);
                 Console.WriteLine(Session["idturno"]+"- sadasdsad -" +Session["idesp"]);
+                //Console.WriteLine(id_horario+"- sadasdsad -" +id_especialidad);
 
         }
 
@@ -81,22 +117,32 @@ namespace WebApplication2.Admin
 
             Session["idmedi"] = Convert.ToInt32(((ListBox)sender).SelectedValue);
             
+
         }
 
 
         protected void SelectEspecialidad(object sender, EventArgs e)
         {
-              
-              Session["idesp"]= Convert.ToInt32(((ListBox)sender).SelectedValue);
-            
+            try
+            {
+                Session["idesp"]= Convert.ToInt32(((ListBox)sender).SelectedValue);
+                
+            }
+            catch (Exception exception)
+            {
+                Session["idesp"] = 0;
+            }
         }
 
         protected void horarios_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-             
-             Session["idturno"]=Convert.ToInt32(((ListBox)sender).SelectedValue);
-            
+            Session["idturno"]=Convert.ToInt32(((ListBox)sender).SelectedValue);
+
         }
-        
+
+        protected void button1_OnClick(object sender, EventArgs e)
+        {
+            Session["class"] = (((Button)sender).CommandArgument);
+        }
     }
 }

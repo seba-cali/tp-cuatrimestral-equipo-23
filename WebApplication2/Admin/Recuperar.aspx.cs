@@ -19,11 +19,13 @@ namespace WebApplication2.Admin
             }
             //toma codigo por url dwl sitio
             code = Request.QueryString["code"] != null ? Request.QueryString["code"].ToString() : "";
-            
-            Session["error"] = null;
-            Session["OK"] = null;
-            Session["w"] = null;
-            
+            if (!IsPostBack)
+            {
+                Session["error"] = null;
+                Session["OK"] = null;
+                Session["w"] = null;
+            }
+
             if (code != "")
             {
                 idcode = 0;
