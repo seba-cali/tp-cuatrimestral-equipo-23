@@ -249,8 +249,8 @@ namespace WebApplication2.Admin
 				medico.ID_USUARIO = usuario.ID_USUARIO;
 				medico.DNI = inputDNI.Text;
 				medico.Matricula = inputMatricula.Text;
+				medico.turno = int.Parse(horarios.SelectedValue);
 				medico.ID_MEDICO = negocioMedico.RegistrarMedico(medico, 0);
-
                 // Obtén las especialidades seleccionadas
                 ListBox checkBox = (ListBox)loco.FindControl("nery");
                 List<int> especialidadesSeleccionadas = new List<int>();
@@ -272,7 +272,7 @@ namespace WebApplication2.Admin
                 Session.Add("OK", "SE CREO EL MEDICO CON EXITO");
                 LimpiarControles(this);
 				MedicoElegido= false;
-               
+				chkMedico.Checked = false;
 
 
             }

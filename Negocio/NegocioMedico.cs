@@ -87,6 +87,7 @@ namespace Negocio
                     db.setearParametro("@telefono", nuevo.telefono);
                     db.setearParametro("@id_Usuario", nuevo.ID_USUARIO);
                     db.setearParametro("@DNI", nuevo.DNI);
+                    db.setearParametro("@turno", nuevo.turno);
                     db.setearParametro("@matricula", nuevo.Matricula);
                 }
                 else
@@ -101,6 +102,7 @@ namespace Negocio
                     db.setearParametro("@telefono", nuevo.telefono);
                     db.setearParametro("@id_Usuario", nuevo.ID_USUARIO);
                     db.setearParametro("@DNI", nuevo.DNI);
+                    db.setearParametro("@turno", nuevo.turno);
                     db.setearParametro("@matricula", nuevo.Matricula);
                 }
                 return db.ejecutarLecturaInt();

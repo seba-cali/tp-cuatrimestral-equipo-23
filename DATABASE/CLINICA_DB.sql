@@ -306,11 +306,12 @@ create procedure RegistrarMedico
     @telefono varchar(20),
     @id_usuario int,
     @dni varchar(10),
+    @turno int,
     @matricula varchar(10)
 
 as
-insert into MEDICO (NOMBRE,APELLIDO,DIRECCION,FECHA_NACIMIENTO,SEXO,ESTADO,TELEFONO,ID_USUARIO,DNI,MATRICULA) output inserted.ID_MEDICO
-values (@nombre, @apellido, @direccion, @fecha_nacimiento, @sexo,@estado,@telefono,@id_usuario,@dni,@matricula) 
+insert into MEDICO (NOMBRE,APELLIDO,DIRECCION,FECHA_NACIMIENTO,SEXO,ESTADO,TELEFONO,ID_USUARIO,DNI,TURNO,MATRICULA) output inserted.ID_MEDICO
+values (@nombre, @apellido, @direccion, @fecha_nacimiento, @sexo,@estado,@telefono,@id_usuario,@dni,@turno,@matricula) 
 
 
 
@@ -326,11 +327,12 @@ create procedure ActualizarMedico
     @telefono varchar(20),
     @id_usuario int,
     @dni varchar(10),
+    @turno int,
     @matricula varchar (10)
     
 as
 UPDATE MEDICO SET NOMBRE=@nombre, APELLIDO=@apellido, DIRECCION=@direccion, FECHA_NACIMIENTO=@fecha_nacimiento,
-SEXO=@sexo, ESTADO=@estado, TELEFONO=@telefono, ID_USUARIO=@id_usuario, DNI=@dni, MATRICULA=@matricula WHERE ID_MEDICO = @Id_Medico
+SEXO=@sexo, ESTADO=@estado, TELEFONO=@telefono, ID_USUARIO=@id_usuario, DNI=@dni,TURNO=@turno, MATRICULA=@matricula WHERE ID_MEDICO = @Id_Medico
 go
 
   -- Borrar FK_Key de ID_ESP
