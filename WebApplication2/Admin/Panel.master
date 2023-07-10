@@ -149,12 +149,12 @@
                                                 </a>
                                                 <div class="collapse" id="collapseDashboards" data-bs-parent="#accordionSidenav">
                                                     <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
-                                                        <a class="nav-link" href="dashboard-1.html">
+                                                        <a class="nav-link" href="SisTurnos.aspx">
                                                           
                                                             <span class="badge bg-primary-soft text-primary ">Alta de Turno</span>
                                                         </a>
-                                                        <a class="nav-link" href="dashboard-2.html">
-                                                            <span class="badge bg-danger-soft text-primary ">Baja de Turno</span>
+                                                        <a class="nav-link" href="SisTurnos.aspx">
+                                                            <span class="badge bg-danger-soft text-primary ">Reprogramar Turno</span>
                                                         </a>
                                                         
                                                     </nav>

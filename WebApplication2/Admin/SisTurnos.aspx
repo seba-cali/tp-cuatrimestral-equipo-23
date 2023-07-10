@@ -106,10 +106,8 @@
                                     </div>
                                     <div class="row gx-3">
                                         <div class="mb-3 col-md-6">
-                                            <asp:TextBox ID="fechanow" CssClass="form-control ps-0 pointer" runat="server" type="text" />
+                                            <asp:TextBox ID="fechanow" CssClass="form-control ps-0 pointer" autocomplete="off" runat="server" type="text" />
                                         </div>
-
-
                                     </div>
                                     <hr class="my-4" />
                                     <div class="d-flex justify-content-between">
