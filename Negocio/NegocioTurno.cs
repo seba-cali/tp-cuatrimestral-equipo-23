@@ -53,7 +53,7 @@ namespace Negocio
         				db.cerrarConexion();
         			}
         		}
-        public int RegistrarTurno(Turnos nuevo, int id=0)
+        public void RegistrarTurno(Turnos nuevo, int id=0)
         {
             DBConnection db = new DBConnection();
             try
@@ -82,7 +82,7 @@ namespace Negocio
                     db.setearParametro("@Id_Especialidad", nuevo.Id_Especialidad);
                     db.setearParametro("@observacion", nuevo.observacion);
                 }
-                return db.ejecutarLecturaInt();
+	            db.ejecutarLectura();
             }
             catch (Exception ex)
             {
