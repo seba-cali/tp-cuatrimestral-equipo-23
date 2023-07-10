@@ -204,12 +204,10 @@ namespace WebApplication2.Admin
 				lblmsg.Text = "Llene todos los campos para cargar Paciente";
 			}
 		}
-
+		//FUNCION PARA CHECKEAR SI HAY DNI DUPLICADO EN LA BASE DE DATOS
 		private bool EsExcepcionDuplicacionDNI(Exception exception)
 		{
-			// Aquí debes implementar la lógica para identificar la excepción de duplicación de DNI
-			// Puedes verificar el tipo de excepción o analizar el mensaje de error
-			// Ejemplo de cómo identificar la excepción de duplicación de DNI en una excepción de SQL Server
+
 			if (exception is SqlException sqlException && sqlException.Number == 2627)
 			{
 				return true;
@@ -217,59 +215,86 @@ namespace WebApplication2.Admin
 
 			return false;
 		}
+		//FIN FUNCION PARA CHECKEAR SI HAY DNI DUPLICADO EN LA BASE DE DATOS
 		protected void AltaMedico_Click(object sender, EventArgs e)
 		{
 			Session.Add("OK", "");
-			try
+
+			if (Page.IsValid)
 			{
-				Medico medico = new Medico();
-				Usuario usuario = new Usuario();
-				NegocioUsuario negocioUsuario = new NegocioUsuario();
-				NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
-				EspecialidadxMedico especialidadxMedico = new EspecialidadxMedico();
-				negocioMedico = new NegocioMedico();
-				usuario.DNI = inputDNI.Text;
-				usuario.PASSWORD = inputPassword.Text;
-				usuario.CORREO = inputEmail.Text;
-				usuario.ID_TIPOUSUARIO = 3;
-				usuario.ID_USUARIO = negocioUsuario.RegistrarUsuario(usuario);
-				medico.nombres = inputNombres.Text;
-				medico.apellidos = inputApellidos.Text;
-				medico.sexo = inputSexo.Text;
-				medico.fechaNacimiento = Convert.ToDateTime(inputFechaNacimiento.Text);
-				medico.telefono = inputTelefono.Text;
-				medico.CORREO = inputEmail.Text;  //va o copia de usuario?
-				medico.direccion = inputDireccion.Text;
-				medico.ESTADO = true;
-				medico.ID_USUARIO = usuario.ID_USUARIO;
-				medico.DNI = inputDNI.Text;
-				medico.Matricula = inputMatricula.Text;
-				medico.turno = int.Parse(horarios.SelectedValue);
-				medico.ID_MEDICO = negocioMedico.RegistrarMedico(medico, 0);
-				// Obtén las especialidades seleccionadas
-				ListBox checkBox = (ListBox)loco.FindControl("nery");
-				List<int> especialidadesSeleccionadas = new List<int>();
-				foreach (ListItem item in checkBox.Items)
+				try
 				{
-					if (item.Selected)
+					Medico medico = new Medico();
+					Usuario usuario = new Usuario();
+					NegocioUsuario negocioUsuario = new NegocioUsuario();
+					NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
+					EspecialidadxMedico especialidadxMedico = new EspecialidadxMedico();
+					negocioMedico = new NegocioMedico();
+					usuario.DNI = inputDNI.Text;
+					usuario.PASSWORD = inputPassword.Text;
+					usuario.CORREO = inputEmail.Text;
+					usuario.ID_TIPOUSUARIO = 3;
+					usuario.ID_USUARIO = negocioUsuario.RegistrarUsuario(usuario);
+
+					medico.nombres = inputNombres.Text;
+					medico.apellidos = inputApellidos.Text;
+					medico.sexo = inputSexo.Text;
+					medico.fechaNacimiento = Convert.ToDateTime(inputFechaNacimiento.Text);
+					medico.telefono = inputTelefono.Text;
+					medico.CORREO = inputEmail.Text;  //va o copia de usuario?
+					medico.direccion = inputDireccion.Text;
+					medico.ESTADO = true;
+					medico.ID_USUARIO = usuario.ID_USUARIO;
+					medico.DNI = inputDNI.Text;
+					medico.Matricula = inputMatricula.Text;
+					medico.turno = int.Parse(horarios.SelectedValue);
+					medico.ID_MEDICO = negocioMedico.RegistrarMedico(medico, 0);
+
+					// Obtén las especialidades seleccionadas
+					ListBox checkBox = (ListBox)loco.FindControl("nery");
+					List<int> especialidadesSeleccionadas = new List<int>();
+					foreach (ListItem item in checkBox.Items)
 					{
-						int idEspecialidad = Convert.ToInt32(item.Value);
-						especialidadesSeleccionadas.Add(idEspecialidad);
-						especialidadxMedico.ID_MEDICO = medico.ID_MEDICO;
-						especialidadxMedico.Id_Especialidad = idEspecialidad;
-						negocioEspecialidadxMedico.RegistrarEspecialidadxMedico(especialidadxMedico);
+						if (item.Selected)
+						{
+							int idEspecialidad = Convert.ToInt32(item.Value);
+							especialidadesSeleccionadas.Add(idEspecialidad);
+							especialidadxMedico.ID_MEDICO = medico.ID_MEDICO;
+							especialidadxMedico.Id_Especialidad = idEspecialidad;
+							negocioEspecialidadxMedico.RegistrarEspecialidadxMedico(especialidadxMedico);
+						}
 					}
+
+					Session.Add("OK", "SE CREO EL MEDICO CON EXITO");
+					LimpiarControles(this);
+					MedicoElegido = false;
+					chkMedico.Checked = false;
+					lblmsg.Text = "⚕ Se creó el médico con éxito.";
 				}
-				Session.Add("OK", "SE CREO EL MEDICO CON EXITO");
-				LimpiarControles(this);
-				MedicoElegido = false;
-				chkMedico.Checked = false;
+				catch (Exception exception)
+				{
+					// Capturar la excepción de duplicación de DNI
+					if (EsExcepcionDuplicacionDNI(exception))
+					{
+						lblmsg.Text = "⚠ Ya existe un médico o usuario con ese DNI.";
+						inputDNI.Text = string.Empty;
+						MedicoElegido = false;
+						chkMedico.Checked = false;
+						//inputUsuario.Text = string.Empty;
+					}
+					else
+					{
+						lblmsg.Text = "Ocurrió un error al crear el paciente.";
+						Console.WriteLine(exception);
+					}
+					Session.Add("Error", "Que paso Manito");
+					//Console.WriteLine(exception);
+					//throw;
+				}
 			}
-			catch (Exception exception)
+			else
 			{
-				Session.Add("Error", "Que paso Manito");
-				Console.WriteLine(exception);
-				throw;
+				lblmsg.Text = "Llene todos los campos para cargar Médico";
 			}
 		}
 		protected void btnActualizarPaciente_Click(object sender, EventArgs e)
