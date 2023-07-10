@@ -55,24 +55,40 @@ namespace Negocio
             }
         }
 
-        public void eliminarMedico(int id)
-        {
-            try
-            {
-                DBConnection datos = new DBConnection();
-                datos.setearConsulta("DELETE FROM MEDICO where ID_MEDICO = @id");
-                datos.setearParametro("@id", id);
-                datos.ejecutarAccion();
-            }
-            catch (Exception ex)
-            {
 
-                throw ex;
-            }
+		public void eliminarMedico(int id)
+		{
+			try
+			{
+				DBConnection datos = new DBConnection();
+				datos.setearParametro("@id", id);
+				datos.setearConsulta("UPDATE MEDICO SET ESTADO=0 where ID_MEDICO=@id");
+				datos.ejecutarAccion();
+			}
+			catch (Exception ex)
+			{
 
-        }
+				throw ex;
+			}
 
-        public int RegistrarMedico(Medico nuevo, int id)
+		}
+
+		public void reactivarMedico(int id)
+		{
+			try
+			{
+				DBConnection datos = new DBConnection();
+				datos.setearParametro("@id", id);
+				datos.setearConsulta("UPDATE MEDICO SET ESTADO=1 where ID_MEDICO=@id");
+				datos.ejecutarAccion();
+			}
+			catch (Exception ex)
+			{
+
+				throw ex;
+			}
+		}
+		public int RegistrarMedico(Medico nuevo, int id)
         {
             DBConnection db = new DBConnection();
             try

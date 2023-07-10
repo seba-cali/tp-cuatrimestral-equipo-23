@@ -4,17 +4,19 @@
 
 	<style>
 		.container {
-			background-image: url("https://images.pexels.com/photos/281260/pexels-photo-281260.jpeg");
+			background-image: url("https://i.imgur.com/NS76HWq.jpg");
+			/*background-image: url("https://images.pexels.com/photos/281260/pexels-photo-281260.jpeg");*/
 			background-repeat: no-repeat;
 			background-size: cover;
 		}
 	</style>
 
 	<div class="container">
-		<h1>Alta de Usuario</h1>
+		<h1 style="color: white;">Alta de Usuario</h1>
+
 
 		<asp:Label ID="lblmsg" Text="Cargue los datos del Usuario"
-			Style="color: black; font-weight: bold;" runat="server" />
+			Style="color: white; font-weight: bold;" runat="server" />
 		<div class="row">
 			<div class="col-4">
 				<asp:TextBox CssClass="form-control" ID="inputNombres" type="text" placeholder="Nombres" runat="server" />
