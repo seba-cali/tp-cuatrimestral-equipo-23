@@ -133,23 +133,29 @@ namespace WebApplication2.Admin
                 turnero.CssClass = "form-control";
                 turnero.AutoPostBack = true;
                 //busca medico
+                
                 dato=ListaMedicos.Find(x => x.ID_MEDICO == Convert.ToInt32(Session["idmedi"]));
                
                 //Busca turno ocupados
                 tux = ListaTurnos.Find(x => x.Id_Medico == Convert.ToInt32(Session["idmedi"]));
                 
                 if (dato != null && tux != null)
-                {
+                {Console.WriteLine("tux: " + tux.Id_Hora + " --dfdsf--- " + dato.nombres);
                     Session["MostrarMed"] = dato.nombres + ", " + dato.apellidos;
 
                     var tata = Turnos.GetTurnos(Convert.ToInt32(dato.turno));
                     foreach (KeyValuePair<int, string> slot in tata)
                     {
-                       
+                        
                         //Muestra los horarios disponibles
-                        tux = ListaTurnos.Find(x => x.Id_Medico == dato.ID_MEDICO && x.Id_Hora == slot.Key);
-                        if (tux== null)
+                        tux = ListaTurnos.Find(x => x.Id_Medico == dato.ID_MEDICO && x.Id_Hora == slot.Key && Convert.ToDateTime(x.fecha) == Convert.ToDateTime(fechanow.Text))??null;
+                        if (tux == null)
+                        {
                             turnero.Items.Add(new ListItem(slot.Value, slot.Key.ToString()));
+                        }
+
+
+
                     }
                 }
                 else
@@ -170,14 +176,14 @@ namespace WebApplication2.Admin
                     thisEspe.Text = Session["MostrarEsp"].ToString();
                     thisMedico.Text = Session["MostrarMed"].ToString();
                    
-                    thisFecha.Text = fechanow.Text;
+                    thisFecha.Text = fechanow.Text??DateTime.Now.ToString("dd/MM/yyyy");
                 }
                 else
                 {
                     thisEspe.Text = "Especialidad";
                     thisMedico.Text = "Medico";
                     thisTurno.Text = "Turno";
-                    thisFecha.Text = "Fecha";
+                    thisFecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
                 }
                 
 
@@ -185,18 +191,44 @@ namespace WebApplication2.Admin
         
         private void turnnero_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            Session["idturnero"] = Convert.ToInt32(((ListBox)sender).SelectedValue);
-            
-            Dictionary<int,string> piv = Turnos.GetTurnos(Convert.ToInt32(Session["idturno"]));
-            thisTurno.Text= piv[Convert.ToInt32(Session["idturnero"])];
-            
+            try
+            {
+                Session["idturnero"] = Convert.ToInt32(((ListBox)sender).SelectedValue);
+                if (Session["idturnero"] == "0")
+                    btn4.Enabled = false;
+                else
+                {
+                    btn4.Enabled= true;
+                    bt3.Enabled = false;
+                }
+                Dictionary<int, string> piv = Turnos.GetTurnos(Convert.ToInt32(Session["idturno"]));
+                thisTurno.Text = piv[Convert.ToInt32(Session["idturnero"])];
+            }catch (Exception exception)
+            {
+                Session["idturnero"] = "0";
+                Console.WriteLine(exception);
+            }
+
         }
         private void SelectMedico(object sender, EventArgs e)
         {
-
-            Session["idmedi"] = Convert.ToInt32(((ListBox)sender).SelectedValue);
-            Console.WriteLine(Session["idmedi"]+"seeeeee");
-            
+            try
+            {
+                Session["idmedi"] = Convert.ToInt32(((ListBox)sender).SelectedValue);
+                Console.WriteLine(Session["idmedi"] + "seeeeee");
+                if (Session["idmedi"] == "0")
+                    bt3.Enabled = false;
+                else
+                {
+                    bt3.Enabled= true;
+                    bt2.Enabled = false;
+                }
+            }
+            catch (Exception exception)
+            {
+                Session["idmedi"] = "0";
+                Console.WriteLine(exception);
+            }
 
         }
 
@@ -206,19 +238,35 @@ namespace WebApplication2.Admin
             try
             {
                 Session["idesp"]= Convert.ToInt32(((ListBox)sender).SelectedValue);
-                
+                if (Session["idesp"] == "0")
+                    bt2.Enabled = false;
+                else
+                    bt2.Enabled= true;
             }
             catch (Exception exception)
             {
-                Session["idesp"] = 0;
+                Session["idesp"] = "0";
                 Console.WriteLine(exception);
             }
         }
 
         protected void horarios_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            Session["idturno"]=Convert.ToInt32(((ListBox)sender).SelectedValue);
-
+            try
+            {
+                Session["idturno"] = Convert.ToInt32(((ListBox)sender).SelectedValue);
+                if (Session["idturno"] == "0")
+                    bt2.Enabled = false;
+                else
+                    bt2.Enabled= true;
+                
+                
+            }
+            catch (Exception exception)
+            {
+                Session["idturn"] = "0";
+                Console.WriteLine(exception);
+            }
         }
 
         protected void button1_OnClick(object sender, EventArgs e)

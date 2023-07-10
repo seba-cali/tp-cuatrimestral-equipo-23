@@ -86,7 +86,7 @@
                                     <hr class="my-4" />
                                     <div class="d-flex justify-content-between">
                                         <button class="btn btn-light disabled" type="button" disabled>anterior</button>
-                                        <asp:Button CssClass="btn btn-primary" ID="bt2" CommandArgument="btn2" OnClick="button1_OnClick" Text="Siguiente" runat="server" />
+                                        <asp:Button CssClass="btn btn-primary " ID="bt2" CommandArgument="btn2" OnClick="button1_OnClick" Enabled="False" Text="Siguiente" runat="server"  />
                                     </div>
 
                                 </div>
@@ -113,8 +113,8 @@
                                     </div>
                                     <hr class="my-4" />
                                     <div class="d-flex justify-content-between">
-                                        <asp:Button ID="bt1" CssClass="btn btn-light" Text="anterior" CommandArgument="btn1" OnClick="button1_OnClick" runat="server" />
-                                        <asp:Button CssClass="btn btn-primary " Text="Siguiente" ID="bt3" CommandArgument="btn3" type="button" OnClick="button1_OnClick" runat="server" />
+                                        <asp:Button ID="ant1" CssClass="btn btn-light"  Text="anterior" CommandArgument="btn1" OnClick="button1_OnClick" runat="server" />
+                                        <asp:Button CssClass="btn btn-primary " Text="Siguiente" ID="bt3" CommandArgument="btn3" type="button" Enabled="False" OnClick="button1_OnClick" runat="server" />
                                     </div>
 
                                 </div>
@@ -135,8 +135,8 @@
 
                                     <hr class="my-4" />
                                     <div class="d-flex justify-content-between">
-                                        <asp:Button CssClass="btn btn-light" ID="btn2" CommandArgument="btn2" OnClick="button1_OnClick" Text="anterior" runat="server" />
-                                        <asp:Button CssClass="btn btn-primary" ID="btn4" CommandArgument="btn4" OnClick="button1_OnClick" Text="siguiente" runat="server" />
+                                        <asp:Button CssClass="btn btn-light" ID="ant2" CommandArgument="btn2" OnClick="button1_OnClick" Text="anterior" runat="server" />
+                                        <asp:Button CssClass="btn btn-primary" ID="btn4" CommandArgument="btn4" OnClick="button1_OnClick" Enabled="False" Text="siguiente" runat="server"  />
                                     </div>
 
                                 </div>
@@ -183,8 +183,8 @@
                                     
                                     <hr class="my-4" />
                                     <div class="d-flex justify-content-between">
-                                        <asp:Button CssClass="btn btn-light" Text="anterior" ID="btn3" CommandArgument="btn3" OnClick="button1_OnClick" runat="server" />
-                                        <asp:Button CssClass="btn btn-primary" Text="Confirmar" Onclick="sube_Click" ID="sube" runat="server" />
+                                        <asp:Button CssClass="btn btn-light" Text="anterior" ID="ant3" CommandArgument="btn3" OnClick="button1_OnClick" runat="server" />
+                                        <asp:Button CssClass="btn btn-primary" Text="Confirmar" Onclick="sube_Click" ID="sube" runat="server"  />
                                     </div>
                                 </div>
                             </div>

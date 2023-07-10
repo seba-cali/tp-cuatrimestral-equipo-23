@@ -60,13 +60,13 @@ namespace WebApplication2.Admin
         protected global::System.Web.UI.WebControls.TextBox fechanow;
 
         /// <summary>
-        /// bt1 control.
+        /// ant1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button bt1;
+        protected global::System.Web.UI.WebControls.Button ant1;
 
         /// <summary>
         /// bt3 control.
@@ -87,13 +87,13 @@ namespace WebApplication2.Admin
         protected global::System.Web.UI.WebControls.PlaceHolder Fecha;
 
         /// <summary>
-        /// btn2 control.
+        /// ant2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn2;
+        protected global::System.Web.UI.WebControls.Button ant2;
 
         /// <summary>
         /// btn4 control.
@@ -159,13 +159,13 @@ namespace WebApplication2.Admin
         protected global::System.Web.UI.WebControls.TextBox Observaciones;
 
         /// <summary>
-        /// btn3 control.
+        /// ant3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn3;
+        protected global::System.Web.UI.WebControls.Button ant3;
 
         /// <summary>
         /// sube control.
