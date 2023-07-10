@@ -337,7 +337,7 @@ go
 
   -- Borrar FK_Key de ID_ESP
 ALTER TABLE MEDICO
-DROP CONSTRAINT FK__MEDICO__ID_ESP__571DF1D5;
+DROP CONSTRAINT FK__MEDICO__ID_ESP__571DF1D5; --ojo aca, se llama distinto el numero en cada maquina
 
 -- Borrar columna
 ALTER TABLE MEDICO

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Dominio;
+using Microsoft.Ajax.Utilities;
 using Negocio;
 
 namespace WebApplication2.Admin
@@ -60,6 +61,10 @@ namespace WebApplication2.Admin
                 Session["error"] = null;
                 Session["OK"] = null;
                 Session["w"] = null;
+                Session.Add("MostrarEsp",null);
+                Session.Add("MostrarMed", null);
+                Session.Add("MostrarFecha", null);
+                Session.Add("MostrarHora", null);
                 
             }
             
@@ -92,12 +97,13 @@ namespace WebApplication2.Admin
                 List<Medico> ListaMedicos = new List<Medico>();
                 ListaMedicos = negocioMedico.listar();
                 if(Session["idesp"].ToString()!="0"){
+                    Session["MostrarEsp"]= ListaEspecialidades.Find(x => x.id== Convert.ToInt32(Session["idesp"])).nombre;
                     Medico medico = new Medico();
                     
                     NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
                     List<EspecialidadxMedico> ListaEspecialidadxMedico = new List<EspecialidadxMedico>();
                     ListaEspecialidadxMedico = negocioEspecialidadxMedico.listar(Session["idesp"].ToString());
-            
+                    
                 ListBox medicos = new ListBox();
                 medicos.SelectedIndexChanged += new EventHandler(SelectMedico);
                 medicos.ID = "mediselect";
@@ -128,18 +134,26 @@ namespace WebApplication2.Admin
                 turnero.AutoPostBack = true;
                 //busca medico
                 dato=ListaMedicos.Find(x => x.ID_MEDICO == Convert.ToInt32(Session["idmedi"]));
+               
                 //Busca turno ocupados
-                tux=ListaTurnos.Find(x => x.Id_Medico == Convert.ToInt32(Session["idmedi"]));
+                tux = ListaTurnos.Find(x => x.Id_Medico == Convert.ToInt32(Session["idmedi"]));
+                
                 if (dato != null && tux != null)
-                { 
+                {
+                    Session["MostrarMed"] = dato.nombres + ", " + dato.apellidos;
+
                     var tata = Turnos.GetTurnos(Convert.ToInt32(dato.turno));
                     foreach (KeyValuePair<int, string> slot in tata)
                     {
+                       
                         //Muestra los horarios disponibles
-                        if (slot.Key != tux.Id_Hora && tux.Estado )
+                        tux = ListaTurnos.Find(x => x.Id_Medico == dato.ID_MEDICO && x.Id_Hora == slot.Key);
+                        if (tux== null)
                             turnero.Items.Add(new ListItem(slot.Value, slot.Key.ToString()));
-                    }    
-                }else{
+                    }
+                }
+                else
+                {
                     if (dato != null)
                     {
                         var tito = Turnos.GetTurnos(Convert.ToInt32(dato.turno));
@@ -151,15 +165,30 @@ namespace WebApplication2.Admin
                 }
 
                 Fecha.Controls.Add(turnero);
-
+                if(Session["MostrarEsp"]!=null&& Session["MostrarMed"]!=null)
+                {
+                    thisEspe.Text = Session["MostrarEsp"].ToString();
+                    thisMedico.Text = Session["MostrarMed"].ToString();
+                   
+                    thisFecha.Text = fechanow.Text;
+                }
+                else
+                {
+                    thisEspe.Text = "Especialidad";
+                    thisMedico.Text = "Medico";
+                    thisTurno.Text = "Turno";
+                    thisFecha.Text = "Fecha";
+                }
+                
 
         }
         
         private void turnnero_OnSelectedIndexChanged(object sender, EventArgs e)
         {
             Session["idturnero"] = Convert.ToInt32(((ListBox)sender).SelectedValue);
-            Label loco = new Label();
-            loco.Text = Session["idturnero"].ToString();
+            
+            Dictionary<int,string> piv = Turnos.GetTurnos(Convert.ToInt32(Session["idturno"]));
+            thisTurno.Text= piv[Convert.ToInt32(Session["idturnero"])];
             
         }
         private void SelectMedico(object sender, EventArgs e)
@@ -167,6 +196,7 @@ namespace WebApplication2.Admin
 
             Session["idmedi"] = Convert.ToInt32(((ListBox)sender).SelectedValue);
             Console.WriteLine(Session["idmedi"]+"seeeeee");
+            
 
         }
 
@@ -194,6 +224,25 @@ namespace WebApplication2.Admin
         protected void button1_OnClick(object sender, EventArgs e)
         {
             Session["class"] = (((Button)sender).CommandArgument);
+            
+            
+        }
+
+        protected void sube_Click(object sender, EventArgs e)
+        {
+            Turnos turnos = new Turnos();
+            NegocioTurno negocioTurno = new NegocioTurno();
+            turnos.Id_Especialidad= Convert.ToInt32(Session["idesp"]);
+            turnos.Id_Medico = Convert.ToInt32(Session["idmedi"]);
+            turnos.Id_Hora = Convert.ToInt32(Session["idturnero"]);
+            turnos.fecha = Convert.ToDateTime(fechanow.Text);
+            turnos.observacion= Observaciones.Text;
+            turnos.Id_Paciente = 1;
+            turnos.Estado = true;
+            negocioTurno.RegistrarTurno(turnos);
+            Session["OK"] = "Exito al registrar turno";
+            Response.Redirect("Default.aspx", false);
+
         }
     }
 }
