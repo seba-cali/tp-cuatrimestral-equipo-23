@@ -247,7 +247,6 @@ namespace WebApplication2.Admin
 					medico.ID_USUARIO = usuario.ID_USUARIO;
 					medico.DNI = inputDNI.Text;
 					medico.Matricula = inputMatricula.Text;
-					medico.turno = int.Parse(horarios.SelectedValue);
 					medico.ID_MEDICO = negocioMedico.RegistrarMedico(medico, 0);
 
 					// Obtén las especialidades seleccionadas

@@ -18,11 +18,11 @@ namespace Negocio
             {
                 if (idEsp == "")
                 {
-                    db.setearConsulta("SELECT ID_MEDICO,ID_ESPECIALIDAD FROM EspecialidadxMedico");
+                    db.setearConsulta("SELECT ID_MEDICO,ID_ESPECIALIDAD,turno_horario FROM EspecialidadxMedico");
                 }
                 else
                 {
-                    db.setearConsulta("SELECT ID_MEDICO,ID_ESPECIALIDAD FROM EspecialidadxMedico where ID_ESPECIALIDAD = " + idEsp);
+                    db.setearConsulta("SELECT ID_MEDICO,ID_ESPECIALIDAD, turno_horario FROM EspecialidadxMedico where ID_ESPECIALIDAD = " + idEsp);
                 }
 
                 db.ejecutarLectura();
@@ -32,6 +32,7 @@ namespace Negocio
                     EspecialidadxMedico aux = new EspecialidadxMedico();
                     aux.ID_MEDICO = db.Lector.GetInt32(0);
                     aux.Id_Especialidad = db.Lector.GetInt32(1);
+                    aux.turno_horario = db.Lector.GetInt32(2);
 
 
                     especialidadesxmedico.Add(aux);
@@ -78,6 +79,7 @@ namespace Negocio
                 db.setearProcedimiento("RegistrarEspecialidadxMedico");
                 db.setearParametro("@idmedico", nuevo.ID_MEDICO);
                 db.setearParametro("@idespecialidad", nuevo.Id_Especialidad);
+                db.setearParametro("@turno_horario", nuevo.turno_horario);
                 db.ejecutarLectura();
                 
             }

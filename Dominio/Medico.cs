@@ -14,8 +14,7 @@ namespace Dominio
         public int ID_MEDICO { get; set; }
         public string Matricula { get; set; }
         public int ID_USUARIO { get; set; }
-        public int turno { get; set; }
-        
+
 
         public Medico() { }
         public Medico(string dni, string nombres, string apellidos, string direccion, string telefono, string email, 

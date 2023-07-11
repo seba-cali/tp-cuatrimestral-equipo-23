@@ -26,7 +26,7 @@
                     <!-- Wizard navigation-->
                     <div class="nav nav-pills nav-justified flex-column flex-xl-row nav-wizard" id="cardTab" role="tablist">
                         <!-- Wizard navigation item 1-->
-                        <a class="nav-item nav-link <%: Session["class"]== "btn1" ? "active":" "%>" id="wizard1-tab" href="#wizard1" data-bs-toggle="tab" role="tab" aria-controls="wizard1" aria-selected="true">
+                        <a class="nav-item nav-link <%: Session["class"]== "btn1" ? "active":" "%>" id="wizard1-tab" href="#" data-bs-toggle="tab" role="tab" aria-controls="wizard1" aria-selected="true">
                             <div class="wizard-step-icon">1</div>
                             <div class="wizard-step-text">
                                 <div class="wizard-step-text-name">Especialidad</div>
@@ -34,7 +34,7 @@
                             </div>
                         </a>
                         <!-- Wizard navigation item 2-->
-                        <a class="nav-item nav-link <%: Session["class"]== "btn2" ? "active":" "%>" id="wizard2-tab" href="#wizard2" data-bs-toggle="tab" role="tab" aria-controls="wizard2" aria-selected="true">
+                        <a class="nav-item nav-link <%: Session["class"]== "btn2" ? "active":" "%>" id="wizard2-tab" href="#" data-bs-toggle="tab" role="tab" aria-controls="wizard2" aria-selected="true">
                             <div class="wizard-step-icon">2</div>
                             <div class="wizard-step-text">
                                 <div class="wizard-step-text-name">Medicos</div>
@@ -42,7 +42,7 @@
                             </div>
                         </a>
                         <!-- Wizard navigation item 3-->
-                        <a class="nav-item nav-link <%: Session["class"]== "btn3" ? "active":" "%>" id="wizard3-tab" href="#wizard3" data-bs-toggle="tab" role="tab" aria-controls="wizard3" aria-selected="true">
+                        <a class="nav-item nav-link <%: Session["class"]== "btn3" ? "active":" "%>" id="wizard3-tab" href="#" data-bs-toggle="tab" role="tab" aria-controls="wizard3" aria-selected="true">
                             <div class="wizard-step-icon">3</div>
                             <div class="wizard-step-text">
                                 <div class="wizard-step-text-name">Fecha</div>
@@ -50,7 +50,7 @@
                             </div>
                         </a>
                         <!-- Wizard navigation item 4-->
-                        <a class="nav-item nav-link <%: Session["class"]== "btn4" ? "active":" "%>" id="wizard4-tab" href="#wizard4" data-bs-toggle="tab" role="tab" aria-controls="wizard4" aria-selected="true">
+                        <a class="nav-item nav-link <%: Session["class"]== "btn4" ? "active":" "%>" id="wizard4-tab" href="#" data-bs-toggle="tab" role="tab" aria-controls="wizard4" aria-selected="true">
                             <div class="wizard-step-icon">4</div>
                             <div class="wizard-step-text">
                                 <div class="wizard-step-text-name">Confirmar</div>
@@ -67,7 +67,13 @@
                                 <div class="col-xxl-6 col-xl-8">
                                     <h3 class="text-primary">Seccion 1</h3>
                                     <h5 class="card-title mb-4">Seleccionar una especialidad</h5>
-
+                                    <div class="mb-3">
+                                        <h1>Sus Turnos Vigentes ¿Reprogramar? </h1>
+                                        <asp:Button ID="reprogra" OnClick="reprogra_OnClick" Text="Reprogramemos :)" runat="server"/>
+                                        
+                                        <asp:PlaceHolder ID="reprogramoturno" runat="server"/>
+                                        
+                                    </div>
 
                                     <div class="mb-3">
                                         <asp:PlaceHolder ID="Muestra1" runat="server" />

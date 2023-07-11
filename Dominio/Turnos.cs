@@ -53,6 +53,31 @@ namespace Dominio
             return xt;
             
         }
+        public static Dictionary<int, string> GetRepro()
+        {
+            xt = new Dictionary<int, string>();
+            
+                xt.Add(1, " 6:00 a 7:00 Hs");
+                xt.Add(2, " 7:00 a 8:00 Hs");
+                xt.Add(3, " 9:00 a 10:00 Hs");
+                xt.Add(4, " 11:00 a 12:00 Hs");
+                xt.Add(5, " 12:00 a 13:00 Hs");
+                xt.Add(6, " 13:00 a 14:00 Hs");
+                xt.Add(7, " 14:00 a 15:00 Hs");
+                xt.Add(8, " 15:00 a 16:00 Hs");
+                xt.Add(9, " 16:00 a 17:00 Hs");
+                xt.Add(10, " 17:00 a 18:00 Hs");
+                xt.Add(11, " 18:00 a 19:00 Hs");
+                xt.Add(12, " 19:00 a 20:00 Hs");
+                xt.Add(13, " 20:00 a 21:00 Hs");
+                xt.Add(14, " 21:00 a 22:00 Hs");
+                xt.Add(15, " 22:00 a 23:00 Hs");
+                
+            
+
+            return xt;
+            
+        }
     }
     
     
