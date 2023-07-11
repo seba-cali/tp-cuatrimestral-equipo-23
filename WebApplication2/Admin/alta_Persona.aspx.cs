@@ -66,7 +66,7 @@ namespace WebApplication2.Admin
 
 
 			Session.Add("OK", null);
-
+			string idMedico = Request.QueryString["idMedico"] != null ? Request.QueryString["idMedico"].ToString() : "";
 			string idPaciente = Request.QueryString["idPaciente"] != null ? Request.QueryString["idPaciente"].ToString() : "";
 			string idUsuario = Request.QueryString["idUsuario"] != null ? Request.QueryString["idUsuario"].ToString() : "";
 			if (idPaciente != "" && idUsuario != "" && !IsPostBack)
@@ -95,6 +95,50 @@ namespace WebApplication2.Admin
 				inputDireccion.Text = seleccionado.direccion;
 				inputDNI.Text = seleccionado.DNI;
 			}
+			else if (idMedico != "" && idUsuario != "" && !IsPostBack)
+            {
+                MedicoElegido = true;
+				chkMedico.Checked = true;
+                esPaciente = false;
+                NegocioMedico negocio = new NegocioMedico();
+                NegocioUsuario usuario = new NegocioUsuario();
+                //List<Paciente> listaPacientes = negocio.listar(idPaciente);
+                //Paciente seleccionado = listaPacientes[0];		
+                Medico seleccionado = (negocio.listar(idMedico))[0];
+                Usuario usuarioseleccionado = (usuario.listar(idUsuario))[0];
+                inputDNI.Text = usuarioseleccionado.DNI;
+                inputPassword.Text = usuarioseleccionado.PASSWORD;
+                inputRePassword.Text = usuarioseleccionado.PASSWORD;
+
+                inputEmail.Text = usuarioseleccionado.CORREO;
+
+                inputNombres.Text = seleccionado.nombres;
+                inputApellidos.Text = seleccionado.apellidos;
+                //precargar fecha de nacimiento	
+                DateTime fechaNacimiento = seleccionado.fechaNacimiento;
+                inputFechaNacimiento.Text = fechaNacimiento.ToString("yyyy-MM-dd");
+                //precargar combobox sexo
+                inputSexo.SelectedValue = seleccionado.sexo;
+                inputTelefono.Text = seleccionado.telefono;
+                inputDireccion.Text = seleccionado.direccion;
+                inputDNI.Text = seleccionado.DNI;
+				inputMatricula.Text = seleccionado.Matricula;
+                ListBox checkBox = new ListBox();
+                checkBox.ID = "nery";
+                checkBox.SelectionMode = ListSelectionMode.Multiple;
+                checkBox.CssClass = "form-control";
+                if (IsPostBack)
+                {
+
+                    foreach (Especialidad pivot in ListaEspecialidades)
+                    {
+                        checkBox.Items.Add(new ListItem(pivot.nombre, pivot.id.ToString()));
+                    }
+
+                    loco.Controls.Add(checkBox);
+                }
+
+            }
 			else
 			{
 				/*esPaciente = false;
