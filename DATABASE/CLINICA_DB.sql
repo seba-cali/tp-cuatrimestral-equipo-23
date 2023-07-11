@@ -391,11 +391,12 @@ GO
 
   CREATE PROCEDURE RegistrarEspecialidadxMedico
     @idmedico INT,
-    @idespecialidad INT
+    @idespecialidad INT,
+    @Turno int
 AS
 BEGIN
-    INSERT INTO EspecialidadxMedico (ID_MEDICO, ID_ESPECIALIDAD)
-    VALUES (@idmedico, @idespecialidad)
+    INSERT INTO EspecialidadxMedico (ID_MEDICO, ID_ESPECIALIDAD, TURNO_HORARIO)
+    VALUES (@idmedico, @idespecialidad, @Turno)
 END
 
 --Eliminar FK de ID_ESP en MEDICO y borrar columna

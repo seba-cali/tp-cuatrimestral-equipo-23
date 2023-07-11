@@ -124,6 +124,7 @@ namespace Negocio
                 db.setearProcedimiento("RegistrarEspecialidadxMedico");
                 db.setearParametro("@idmedico", nuevo.ID_MEDICO);
                 db.setearParametro("@idespecialidad", nuevo.Id_Especialidad);
+                db.setearParametro("@Turno", nuevo.Turno_Horario);
                 db.ejecutarLectura();
                 
             }

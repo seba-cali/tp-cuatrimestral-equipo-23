@@ -14,11 +14,11 @@ namespace Negocio
             try
             {
                 if(idMedico==""){
-                    db.setearConsulta("SELECT ID_MEDICO, NOMBRE, APELLIDO, DIRECCION, FECHA_NACIMIENTO, SEXO, ESTADO, TELEFONO, ID_USUARIO, DNI, TURNO,MATRICULA  FROM MEDICO");
+                    db.setearConsulta("SELECT ID_MEDICO, NOMBRE, APELLIDO, DIRECCION, FECHA_NACIMIENTO, SEXO, ESTADO, TELEFONO, ID_USUARIO, DNI,MATRICULA  FROM MEDICO");
                 }
                 else
                 {
-                    db.setearConsulta("SELECT ID_MEDICO, NOMBRE, APELLIDO, DIRECCION, FECHA_NACIMIENTO, SEXO, ESTADO, TELEFONO, ID_USUARIO, DNI, TURNO,MATRICULA  FROM MEDICO where ID_MEDICO = " + idMedico);
+                    db.setearConsulta("SELECT ID_MEDICO, NOMBRE, APELLIDO, DIRECCION, FECHA_NACIMIENTO, SEXO, ESTADO, TELEFONO, ID_USUARIO, DNI,MATRICULA  FROM MEDICO where ID_MEDICO = " + idMedico);
                 }
                 db.ejecutarLectura();
 
@@ -35,8 +35,7 @@ namespace Negocio
                     aux.telefono = db.Lector.GetString(7);
                     aux.ID_USUARIO = db.Lector.GetInt32(8);
                     aux.DNI = db.Lector.GetString(9);
-                    aux.turno = db.Lector.GetInt32(10);
-                    aux.Matricula = db.Lector.GetString(11);
+                    aux.Matricula = db.Lector.GetString(10);
 
 
                     medico.Add(aux);

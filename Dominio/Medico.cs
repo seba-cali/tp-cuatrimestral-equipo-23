@@ -16,6 +16,7 @@ namespace Dominio
         public int ID_USUARIO { get; set; }
         public int turno { get; set; }
         
+        public string NombreCompleto => nombres + " " + apellidos;
 
         public Medico() { }
         public Medico(string dni, string nombres, string apellidos, string direccion, string telefono, string email, 

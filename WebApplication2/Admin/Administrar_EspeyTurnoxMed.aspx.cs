@@ -16,6 +16,18 @@ namespace WebApplication2.Admin
 		public List<EspecialidadxMedico> listMedico { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+            NegocioMedico negocioMedico = new NegocioMedico();
+            
+            inputMedico.DataSource = negocioMedico.listar();
+            inputMedico.DataTextField = "NombreCompleto";
+            inputMedico.DataValueField = "ID_MEDICO";
+            inputMedico.DataBind();
+            
+            NegocioEspecialidad negocioEspecialidad = new NegocioEspecialidad();
+            inputEspecialidad.DataSource = negocioEspecialidad.listar();
+            inputEspecialidad.DataTextField = "nombre";
+            inputEspecialidad.DataValueField = "id";
+            inputEspecialidad.DataBind();
 
             NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
             dgvEspecialidadxTurno.DataSource = negocioEspecialidadxMedico.listarconsulta();
@@ -60,6 +72,16 @@ namespace WebApplication2.Admin
             string idUsuario = argumentValues[1];
             string TurnoHorario= argumentValues[2];
             Response.Redirect("alta_Persona.aspx?idMedico=" + idMedico + "&idUsuario=" + idUsuario, false);
+        }
+
+        protected void Ingresar_Click(object sender, EventArgs e)
+        {
+        NegocioEspecialidadxMedico NegocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
+            EspecialidadxMedico especialidadxMedico = new EspecialidadxMedico();
+            especialidadxMedico.ID_MEDICO = int.Parse(inputMedico.SelectedValue);
+            especialidadxMedico.Id_Especialidad = int.Parse(inputEspecialidad.SelectedValue);
+            especialidadxMedico.Turno_Horario = int.Parse(inputTurno.SelectedValue);
+            NegocioEspecialidadxMedico.RegistrarEspecialidadxMedico(especialidadxMedico);
         }
     }
 }
