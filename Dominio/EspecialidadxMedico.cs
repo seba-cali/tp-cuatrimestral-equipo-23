@@ -13,10 +13,15 @@ namespace Dominio
         public int ID_ESPECIALIDADXMEDICO { get; set; }
         public int ID_MEDICO { get; set; }
 
+        public string Name { get; set; }
+
+        public string Especialidad { get; set; }
+
         public int Id_Especialidad { get; set; }
         
         public int turno_horario { get; set; }
 
+        public int Turno_Horario { get; set; }
         public EspecialidadxMedico() { }
     }
 }

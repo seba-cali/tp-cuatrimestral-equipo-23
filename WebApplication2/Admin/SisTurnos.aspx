@@ -107,12 +107,13 @@
 
                                     <div class="row gx-3">
                                         <div class="mb-3 col-md-6">
+                                            
                                             <asp:PlaceHolder ID="Muestra2" runat="server" />
                                         </div>
                                     </div>
                                     <div class="row gx-3">
                                         <div class="mb-3 col-md-6">
-                                            <asp:TextBox ID="fechanow" CssClass="form-control ps-0 pointer" autocomplete="off" runat="server" type="text" />
+                                            <asp:TextBox ID="fechanow"  CssClass="form-control ps-0 pointer fecha" autocomplete="off" runat="server" type="text" />
                                         </div>
                                     </div>
                                     <hr class="my-4" />
@@ -202,9 +203,9 @@
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script>
         $(function () {
-
+            $(".fecha").prop('readonly', true);
             $("#MainContent_fechanow").datepicker({
-                minDate: 0,
+                minDate: 1,
                 maxDate: "+7D",
                 dateFormat: "dd/mm/yy",
                 firstDay: 1,

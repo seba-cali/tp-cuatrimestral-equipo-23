@@ -103,6 +103,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="Admin\Administrar_EspeyTurnoxMed.aspx" />
+    <Content Include="Admin\Administrar_Medicos.aspx" />
     <Content Include="Admin\Administrar_Personas.aspx" />
     <Content Include="Admin\alta_Medico.aspx" />
     <Content Include="Admin\alta_Persona.aspx" />
@@ -203,6 +205,20 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\Administrar_EspeyTurnoxMed.aspx.cs">
+      <DependentUpon>Administrar_EspeyTurnoxMed.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Administrar_EspeyTurnoxMed.aspx.designer.cs">
+      <DependentUpon>Administrar_EspeyTurnoxMed.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Administrar_Medicos.aspx.cs">
+      <DependentUpon>Administrar_Medicos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Administrar_Medicos.aspx.designer.cs">
+      <DependentUpon>Administrar_Medicos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Administrar_Personas.aspx.cs">
       <DependentUpon>Administrar_Personas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

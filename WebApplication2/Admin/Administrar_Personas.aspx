@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="Administracion" Language="C#" MasterPageFile="~/Admin/Panel.master" AutoEventWireup="true" CodeBehind="Administrar_Personas.aspx.cs" Inherits="WebApplication2.Admin.Administrar_Personas" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+	<%--PACIENTES--%>
 	<h2 style="text-align: center;">Administración de Pacientes</h2>
 	<div style="display: flex; justify-content: center;">
 		<asp:GridView ID="dgvPacientes" runat="server" CssClass="table table-striped table-bordered table-sm mx-auto" AutoGenerateColumns="false">
@@ -14,17 +15,18 @@
 				<asp:BoundField HeaderText="DNI" DataField="dni" />
 				<asp:CheckBoxField HeaderText="Estado" DataField="ESTADO" />
 				<asp:TemplateField HeaderText="Acciones">
+					<%--BOTONES--%>
 					<ItemTemplate>
-
-
-						<asp:Button ID="btnModificar" runat="server" CssClass="btn btn-primary btn-sm" Text="Modificar" OnClick="btnModificar_Click" CommandArgument='<%# Eval("id") + "," + Eval("ID_USUARIO") %>' />
-
-
-						<asp:Button ID="btnEliminar" runat="server" CssClass="btn btn-danger btn-sm" Text="Eliminar" OnClick="btnEliminar_Click" CommandArgument='<%# Eval("id") %>' />
-						<asp:Button ID="btnReactivar" runat="server" CssClass="btn btn-secondary btn-sm" Text="Reactivar" OnClick="btnReactivar_Click" CommandArgument='<%# Eval("id") %>' />
+						<asp:Button ID="btnModificar" runat="server" CssClass="btn btn-primary btn-sm" Text="🛠" OnClick="btnModificar_Click" CommandArgument='<%# Eval("id") + "," + Eval("ID_USUARIO") %>' />
+						<asp:Button ID="btnEliminar" runat="server" CssClass="btn btn-danger btn-sm" Text="🗑" OnClick="btnEliminar_Click" CommandArgument='<%# Eval("id") %>' />
+						<asp:Button ID="btnReactivar" runat="server" CssClass="btn btn-success btn-sm" Text="🌱" OnClick="btnReactivar_Click" CommandArgument='<%# Eval("id") %>' />
 					</ItemTemplate>
 				</asp:TemplateField>
 			</Columns>
 		</asp:GridView>
 	</div>
+
+
 </asp:Content>
+
+

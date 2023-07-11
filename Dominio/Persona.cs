@@ -33,6 +33,7 @@ namespace Dominio
 			this.sexo = sexo;
 			this.ESTADO = estado;
 		}
+
 	}
 	
 	

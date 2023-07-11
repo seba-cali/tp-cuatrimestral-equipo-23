@@ -14,12 +14,14 @@ namespace WebApplication2.Admin
 	public partial class Administrar_Personas : System.Web.UI.Page
 	{
 		public List<Paciente> listPacientes { get; set; }
+		
 		protected void Page_Load(object sender, EventArgs e)
 		{
 			
 			NegocioPaciente negocioPaciente = new NegocioPaciente();
 			dgvPacientes.DataSource = negocioPaciente.listarConSp();
 			dgvPacientes.DataBind();
+
 
 
 		}

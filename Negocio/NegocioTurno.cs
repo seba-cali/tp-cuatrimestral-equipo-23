@@ -17,7 +17,7 @@ namespace Negocio
                 if (idturno>0)
                 {
                     db.setearConsulta(
-                        "SELECT ID_TURNO, FECHA, ESTADO, ID_MEDICO, ID_PACIENTE,ID_HORA, ID_ESPECIALIDAD  FROM TURNO WHERE ID_ESPECIALIDAD = @id_turno" );
+                        "SELECT ID_TURNO, FECHA, ESTADO, ID_MEDICO, ID_PACIENTE,ID_HORA, ID_ESPECIALIDAD  FROM TURNO WHERE ID_PAciente = @id_turno" );
                     db.setearParametro("@id_turno", idturno);
                     
                 }
@@ -52,6 +52,23 @@ namespace Negocio
             finally
             {
                 db.cerrarConexion();
+            }
+        }
+
+        public void UpdateTurno(int idturno)
+        {
+            DBConnection db = new DBConnection();
+            try
+            {
+                db.setearConsulta(
+                    "UPDATE ID_TURNO, FECHA, ESTADO, ID_MEDICO, ID_PACIENTE,ID_HORA, ID_ESPECIALIDAD, observacion FROM TURNO WHERE ID_TURNO =@id_turno");
+                db.setearParametro("@id_turno", idturno);
+                db.ejecutarLectura();
+                
+            }catch (System.Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw ex;
             }
         }
         public Turnos turnRepro(int idturno)

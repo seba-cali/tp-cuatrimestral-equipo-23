@@ -81,11 +81,12 @@ namespace WebApplication2.Admin
             //usuario= (Usuario)Session["usuario"];
             //paciente = negocioPaciente.BuscarXId(usuario.ID_USUARIO);
             
-            paciente = negocioPaciente.BuscarXId(2);
+            paciente = negocioPaciente.BuscarXId(1);
                 //Turnos loco= new Turnos();
             NegocioTurno negocioTurnos = new NegocioTurno();
             List<Turnos> repro= new List<Turnos>();
             repro= negocioTurnos.listar(paciente.ID_PACIENTE);
+            
             ListBox boxrepro = new ListBox();
             boxrepro.SelectedIndexChanged += new EventHandler(SelectRepro);
             boxrepro.ID = "reprolist";
@@ -96,8 +97,14 @@ namespace WebApplication2.Admin
                 Dictionary<int, string> piv = Turnos.GetRepro();
                 foreach (var pivot in repro)
                 {
-                    KeyValuePair<int,string> mostrar = piv.First(x => x.Key == Convert.ToInt32(pivot.Id_Hora));
-                    boxrepro.Items.Add(new ListItem("Fecha :"+pivot.fecha+" Hora:"+mostrar.Value, pivot.Id_Turno.ToString()));
+                    if (pivot.fecha.Date > DateTime.Now.Date)
+                    {
+                        KeyValuePair<int, string> mostrar = piv.First(x => x.Key == Convert.ToInt32(pivot.Id_Hora));
+                        if(pivot.Estado)
+                        boxrepro.Items.Add(new ListItem(
+                            "Fecha :" + pivot.fecha.Date.ToShortDateString() + " Hora:" + mostrar.Value,
+                            pivot.Id_Turno.ToString()));
+                    }
                 }
                 reprogramoturno.Controls.Add(boxrepro);
             }
@@ -176,7 +183,7 @@ namespace WebApplication2.Admin
                     {
                         
                         //Muestra los horarios disponibles
-                        tux = ListaTurnos.Find(x => x.Id_Medico == dato.ID_MEDICO && x.Id_Hora == slot.Key && Convert.ToDateTime(x.fecha) == Convert.ToDateTime(fechanow.Text))??null;
+                        tux = ListaTurnos.Find(x => x.Id_Medico == dato.ID_MEDICO && x.Id_Hora == slot.Key && Convert.ToDateTime(x.fecha) == Convert.ToDateTime(fechanow.Text)&& x.Estado)??null;
                         if (tux == null)
                         {
                             turnero.Items.Add(new ListItem(slot.Value, slot.Key.ToString()));
@@ -199,6 +206,7 @@ namespace WebApplication2.Admin
                 }
 
                 Fecha.Controls.Add(turnero);
+                
                 if(Session["MostrarEsp"]!=null&& Session["MostrarMed"]!=null)
                 {
                     thisEspe.Text = Session["MostrarEsp"].ToString();
@@ -244,24 +252,22 @@ namespace WebApplication2.Admin
                     KeyValuePair<int,string> mostrar = piv.First(x => x.Key == Convert.ToInt32(turnorep.Id_Hora));
                     
                 }
-                // Session["idesp"] = turnorep.Id_Especialidad;
-                // Session["idmedi"] = turnorep.Id_Medico;
                 
-                fechanow.Text = turnorep.fecha.ToString();
                 ListBox fafa=(ListBox)Muestra1.FindControl("nery");
-                fafa.SelectedIndex = turnorep.Id_Especialidad;
-                Muestra1.Controls.Add(fafa);
+
+                int loco=fafa.Items.IndexOf(fafa.Items.FindByValue(turnorep.Id_Especialidad.ToString()));
+                fafa.SelectedIndex = loco;
+                fafa.Enabled = false;
                 
-                horarios.SelectedIndex = ListaEspecialidadxMedico.Find(x=>x.Id_Especialidad==turnorep.Id_Especialidad && x.ID_MEDICO==turnorep.Id_Medico).turno_horario;
+                fechanow.Text = turnorep.fecha.Date.ToShortDateString();
+                int turnmedi = ListaEspecialidadxMedico.Find(x =>
+                    x.Id_Especialidad == turnorep.Id_Especialidad && x.ID_MEDICO == turnorep.Id_Medico).turno_horario;
+                horarios.SelectedIndex = turnmedi;
                 
+                Session["idturno"] = turnmedi;
+                Session["idesp"] = turnorep.Id_Especialidad;
                 
-                ///medico List box
-                Muestra2.Controls.Clear();
-                
-                ListBox mediboxm=(ListBox)Muestra1.FindControl("mediselect");
-                
-                mediboxm.SelectedIndex= turnorep.Id_Medico;
-                Muestra2.Controls.Add(mediboxm);
+                                
 
 
 
@@ -367,6 +373,12 @@ namespace WebApplication2.Admin
 
         protected void sube_Click(object sender, EventArgs e)
         {
+            if (Session["idrepro"] != "0")
+            {
+                NegocioTurno negocioTurnos = new NegocioTurno();
+                negocioTurnos.turnRepro(Convert.ToInt32(Session["idrepro"]));   
+            }
+             
             Turnos turnos = new Turnos();
             NegocioTurno negocioTurno = new NegocioTurno();
             turnos.Id_Especialidad= Convert.ToInt32(Session["idesp"]);
