@@ -88,13 +88,23 @@
                                         <div class="col-12 gx-3 ">
                                             <h3>¿Reprogramar turno activos? </h3>
                                             <label for="ManCheck " class=" form-label">  Ver turnos actvios</label>
-                                            <%--<input type="checkbox" name="ManCheck" class="form-contol ManCheck"/>--%>
+                                            
                                             <asp:CheckBox Text="El Usuario es Medico?" class="form-check-label text-light" ID="chkVer"
                                             					runat="server" AutoPostBack="true" OnCheckedChanged="chk_CheckedChanged" />
                                         </div>
                                         
                                         <div class="col-12 gx-3 <%:Convert.ToBoolean(Session["VerRep"])?"":"mostrar" %>">
-                                            <asp:PlaceHolder ID="reprogramoturno" runat="server"/>
+                                            <div class="col-12">
+                                                <asp:PlaceHolder ID="reprogramoturno" runat="server"/>    
+                                            </div>
+                                            <div class="col-12">
+                                                <%--<asp:Button ID="cancelar" OnClick="cancelar_Click"  Text="Reprogramar" runat="server"/>--%>
+                                                
+                                                <asp:Label ID="butonEl" runat="server" Enabled="True"/>
+                                                <a class="btn btn-danger btn-transparent-dark delete" type="button" data-bs-toggle="modal" data-bs-target="#eliminaGroupModal">
+                                                    <i data-feather="trash-2"></i> Cancelar Turno
+                                                </a>
+                                            </div>
                                             
                                         </div>
                                         
@@ -190,6 +200,16 @@
                                         </div>
                                     </div>
                                     <div class="row small text-muted">
+                                        <div class="col-sm-3 text-truncate">
+                                            <em>Codigo de Verificacion:</em>
+                                        </div>
+                                        <div class="col">
+                                            <asp:Label ID="thisCode" Text="000000" runat="server" Enabled="True"/>
+
+
+                                        </div>
+                                    </div>
+                                    <div class="row small text-muted">
                                         <div class="col-sm-3 text-truncate"><em>Especialidad:</em></div>
                                         <div class="col">
                                             <asp:Label ID="thisEspe" Text="000000" runat="server" Enabled="True"/>
@@ -225,7 +245,7 @@
                                     <hr class="my-4" />
                                     <div class="d-flex justify-content-between">
                                         <asp:Button CssClass="btn btn-light" Text="anterior" ID="ant3" CommandArgument="btn3" OnClick="button1_OnClick" runat="server" />
-                                        <asp:Button CssClass="btn btn-primary" Text="Confirmar" Onclick="sube_Click" ID="sube" runat="server"  />
+                                        <asp:Button CssClass="btn btn-primary" Text="Confirmar" CommandArgument="op1" Onclick="sube_Click" ID="sube" runat="server"  />
                                     </div>
                                 </div>
                             </div>
@@ -235,11 +255,35 @@
             </div>
         </div>
     </main>
+    <div class="modal fade" id="eliminaGroupModal" tabindex="-1" role="dialog" aria-labelledby="eliminaGroupModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="eliminaGroupModal">Aviso</h5>
+                            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                            
+                        <div class="modal-body">
+                            <h1>¿Cancelar Turno?</h1>
+                            <h3 class="elemento"></h3>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-danger-soft text-danger" type="button" data-bs-dismiss="modal">Cerrar</button>
+                            <asp:Button ID="Button3" runat="server"  Text="Cancelar Turno" CssClass="btn btn-primary-soft text-primary"  CausesValidation="False" OnClick="cancelar_Click"/>
+                        </div>
+    
+                    </div>
+                </div>
+                
+            </div>
 </div>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script>
         $(function () {
-            
+            $(".findClose").find(function () {
+                var selectedText = $(this).find("option:selected").text();
+                $(".elemento").text(selectedText)/*.html("</br>")*/;
+            });
             $(".mostrar").hide();
             $(".fecha").prop('readonly', true);
             $("#MainContent_fechanow").datepicker({

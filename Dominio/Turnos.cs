@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Dominio
 {
@@ -14,8 +15,27 @@ namespace Dominio
         public int Id_Especialidad { get; set; }
         public string observacion { get; set; }
         
-        public List<Turnos> turnos { get; set; }
+        public int EstadoInf { get; set; } 
+        
+            
+        /*
+         * 
+         * 0 = Nuevo
+         * 1= Cerrado
+         * 2= Cancelado
+         * 3= No Asisitio
+         * 4= Reprogramado
+         * 
+         */
+        //Array de 5 enteros
+        public static string[] EstadoInfArray = new string[]{"Nuevo","Cerrado","Cancelado","No Asistio","Reprogramado"};
+
+
+        public string observacionMed { get; set; }
+        
+        public int NumGenerado { get; set; }
         public Turnos(){}
+        
         
         public static Dictionary<int,string> xt {get;set;}
         
@@ -81,6 +101,17 @@ namespace Dominio
             
         }
 
+        public static int generateRandom()
+        {
+            Random random = new Random();
+            string characters = "0123456789";
+            StringBuilder result = new StringBuilder(8);
+            for (int i = 0; i < 8; i++)
+            {
+                result.Append(characters[random.Next(characters.Length)]);
+            }
+            return  Convert.ToInt32(result.ToString());
+        }
         
     }
     

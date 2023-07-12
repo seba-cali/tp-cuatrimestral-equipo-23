@@ -113,7 +113,7 @@
                               </a>
                               <a class="dropdown-item" href="#!">
                                   <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
-                                  <asp:Button runat="server" Text="Logout" OnClick="btn_logout" />
+                                  <asp:Button CausesValidation="false" CssClass="btn btn-primary" runat="server" Text="Logout" OnClick="btn_logout" />
                               </a>
                           </div>
                       </li>
@@ -123,25 +123,11 @@
                                     <nav class="sidenav shadow-right sidenav-light">
                                         <div class="sidenav-menu">
                                             <div class="nav accordion" id="accordionSidenav">
-                                                <!-- Sidenav Menu Heading (Account)-->
-                                                <!-- * * Note: * * Visible only on and above the sm breakpoint-->
-                                                <div class="sidenav-menu-heading d-sm-none">Account</div>
-                                                <!-- Sidenav Link (Alerts)-->
-                                                <!-- * * Note: * * Visible only on and above the sm breakpoint-->
-                                                <a class="nav-link d-sm-none" href="#!">
-                                                    <div class="nav-link-icon"><i data-feather="bell"></i></div>
-                                                    Alerts
-                                                    <span class="badge bg-warning-soft text-warning ms-auto">4 New!</span>
-                                                </a>
-                                                <!-- Sidenav Link (Messages)-->
-                                                <!-- * * Note: * * Visible only on and above the sm breakpoint-->
-                                                <a class="nav-link d-sm-none" href="#!">
-                                                    <div class="nav-link-icon"><i data-feather="mail"></i></div>
-                                                    Messages
-                                                    <span class="badge bg-success-soft text-success ms-auto">2 New!</span>
-                                                </a>
+                                                
+                                                 <% if (usuario.ID_TIPOUSUARIO != 3)
+                                                                                                   { %>
                                                 <!-- Sidenav Menu Heading (Core)-->
-                                                <div class="sidenav-menu-heading">Cliente</div>
+                                                <div class="sidenav-menu-heading">Sistema Turno v1.0</div>
                                                 <!-- Sidenav Accordion (Dashboard)-->
                                                 <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseDashboards" aria-expanded="false" aria-controls="collapseDashboards">
                                                     <div class="nav-link-icon"><i data-feather="activity"></i></div>
@@ -151,45 +137,72 @@
                                                 <div class="collapse" id="collapseDashboards" data-bs-parent="#accordionSidenav">
                                                     <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
                                                         <a class="nav-link" href="SisTurnos.aspx">
-                                                          
-                                                            <span class="badge bg-primary-soft text-primary ">Alta de Turno</span>
+                                                            <span class="badge bg-primary-soft text-primary ">Gestion de Turnos</span>
                                                         </a>
-                                                        <a class="nav-link" href="SisTurnos.aspx">
-                                                            <span class="badge bg-danger-soft text-primary ">Reprogramar Turno</span>
-                                                        </a>
-                                                        
+
                                                     </nav>
                                                 </div>
+                                                    <%
+                                                                                                       } %>
+                                                <% if (usuario.ID_TIPOUSUARIO == 3)
+                                                   { %>
+                                                    <div class="sidenav-menu-heading">Area Medico</div>
+                                                    <!-- Sidenav Accordion (Dashboard)-->
+                                                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseDashboards" aria-expanded="false" aria-controls="collapseDashboards">
+                                                        <div class="nav-link-icon">
+                                                            <i data-feather="activity"></i>
+                                                        </div>
+                                                        ABM MEDICO
+                                                        <div class="sidenav-collapse-arrow">
+                                                            <i class="fas fa-angle-down"></i>
+                                                        </div>
+                                                    </a>
+                                                    <div class="collapse" id="collapseDashboards" data-bs-parent="#accordionSidenav">
+                                                        <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
+                                                            <a class="nav-link" href="SisTurnos.aspx">
+                                                                <span class="badge bg-primary-soft text-primary ">Gestion Medico</span>
+                                                            </a>
+
+                                                        </nav>
+                                                    </div>
+                                                <%
+                                                   } %>
                                                 <!-- Sidenav Heading (Custom)-->
                                                 <% if(usuario.ID_TIPOUSUARIO<3){ %>
                                                 <div class="sidenav-menu-heading">Administracion</div>
-                                                <!-- Sidenav Accordion (Pages)-->
-                                                <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                                                    <div class="nav-link-icon"><i data-feather="grid"></i></div>
-                                                    Medicos
-                                                    <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                                </a>
-                                                <div class="collapse" id="collapsePages" data-bs-parent="#accordionSidenav">
-                                                    <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPagesMenu">
-                                                        <!-- Nested Sidenav Accordion (Pages -> Account)-->
-                                                        <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAccount" aria-expanded="false" aria-controls="pagesCollapseAccount">
-                                                            Account
-                                                            <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                                        </a>
-                                                        <div class="collapse" id="pagesCollapseAccount" data-bs-parent="#accordionSidenavPagesMenu">
-                                                            <nav class="sidenav-menu-nested nav">
-                                                                <a class="nav-link" href="account-profile.html">Profile</a>
-                                                                <a class="nav-link" href="account-billing.html">Billing</a>
-                                                                <a class="nav-link" href="account-security.html">Security</a>
-                                                                <a class="nav-link" href="account-notifications.html">Notifications</a>
-                                                            </nav>
+                                                    <!-- Sidenav Accordion (Dashboard)-->
+                                                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                                                        <div class="nav-link-icon">
+                                                            <i data-feather="grid"></i>
                                                         </div>
-                                                        <!-- Nested Sidenav Accordion (Pages -> Authentication)-->
-                                                       
-                                                        <%--<a class="nav-link" href="pricing.html">Pricing</a>
-                                                        <a class="nav-link" href="invoice.html">Invoice</a>--%>
-                                                    </nav>
-                                                </div>
+                                                        Medicos
+                                                        <div class="sidenav-collapse-arrow">
+                                                            <i class="fas fa-angle-down"></i>
+                                                        </div>
+                                                    </a>
+                                                    <div class="collapse" id="collapsePages" data-bs-parent="#accordionSidenav">
+                                                        <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPagesMenu">
+                                                            <!-- Nested Sidenav Accordion (Pages -> Account)-->
+                                                            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAccount" aria-expanded="false" aria-controls="pagesCollapseAccount">
+                                                                Account
+                                                                <div class="sidenav-collapse-arrow">
+                                                                    <i class="fas fa-angle-down"></i>
+                                                                </div>
+                                                            </a>
+                                                            <div class="collapse" id="pagesCollapseAccount" data-bs-parent="#accordionSidenavPagesMenu">
+                                                                <nav class="sidenav-menu-nested nav">
+                                                                    <a class="nav-link" href="account-profile.html">Profile</a>
+                                                                    <a class="nav-link" href="account-billing.html">Billing</a>
+                                                                    <a class="nav-link" href="account-security.html">Security</a>
+                                                                    <a class="nav-link" href="account-notifications.html">Notifications</a>
+                                                                </nav>
+                                                            </div>
+                                                            <!-- Nested Sidenav Accordion (Pages -> Authentication)-->
+
+                                                            <%--<a class="nav-link" href="pricing.html">Pricing</a>
+                                                                                                         <a class="nav-link" href="invoice.html">Invoice</a>--%>
+                                                        </nav>
+                                                    </div>
                                                 <!-- Sidenav Accordion (Applications)-->
                                                 <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseApps" aria-expanded="false" aria-controls="collapseApps">
                                                     <div class="nav-link-icon"><i data-feather="globe"></i></div>
@@ -200,7 +213,7 @@
                                                     <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavAppsMenu">
                                                         <!-- Nested Sidenav Accordion (Apps -> Knowledge Base)-->
                                                         <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#appsCollapseKnowledgeBase" aria-expanded="false" aria-controls="appsCollapseKnowledgeBase">
-                                                            Formulario de Especialidades
+                                                            ABM Especialidades
                                                             <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                                         </a>
                                                         <div class="collapse" id="appsCollapseKnowledgeBase" data-bs-parent="#accordionSidenavAppsMenu">

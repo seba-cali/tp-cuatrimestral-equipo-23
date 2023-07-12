@@ -55,15 +55,17 @@ namespace Negocio
             }
         }
 
-        public void UpdateTurno(int idturno)
+        public void UpdateTurno(int idturno, int index)
         {
             DBConnection db = new DBConnection();
             try
             {
                 db.setearConsulta(
-                    "UPDATE Turno SET  ESTADO=@estado  WHERE ID_TURNO =@id_turno");
+                    "UPDATE Turno SET  ESTADO=@estado, EstadoInforme=@estadoinf  WHERE ID_TURNO =@id_turno");
                 db.setearParametro("@id_turno", idturno);
                 db.setearParametro("@estado", false);
+                db.setearParametro("@estadoinf", index);
+                
                 db.ejecutarLectura();
                 
             }catch (System.Exception ex)
@@ -140,6 +142,9 @@ namespace Negocio
                     db.setearParametro("@Id_Hora", nuevo.Id_Hora);
                     db.setearParametro("@Id_Especialidad", nuevo.Id_Especialidad);
                     db.setearParametro("@observacion", nuevo.observacion);
+                    db.setearParametro("@EstadoInforme", nuevo.EstadoInf);
+                    db.setearParametro("@ObservacionMedico", "");
+                    db.setearParametro("@NumGenerado", nuevo.NumGenerado);
                 }
 
                 db.ejecutarLectura();

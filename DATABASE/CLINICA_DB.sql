@@ -403,3 +403,8 @@ DROP CONSTRAINT FK__MEDICO__ID_ESP__59063A47;
 GO
 alter table MEDICO
     drop column ID_ESP;
+
+alter TABLE Turno
+add ObservacionMedico varchar(250) not null default 'Sin observaciones';
+alter TABLE Turno
+add NumGenerado int not null default 0;
