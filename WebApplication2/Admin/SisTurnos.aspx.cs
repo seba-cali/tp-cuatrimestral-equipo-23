@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -398,6 +399,20 @@ namespace WebApplication2.Admin
             turnos.Estado = true;
             negocioTurno.RegistrarTurno(turnos);
             Session["OK"] = "Proceso Exitoso";
+            
+            EmailService emailService = new EmailService();
+            StreamReader str = new StreamReader(Server.MapPath(@"~/assets/template/Truno.html"));  
+            string temlate = str.ReadToEnd();  
+            str.Close();  
+            temlate = temlate.Replace("[dni]", thisPacienteDni.Text.Trim());
+            temlate = temlate.Replace("[nombre]", this.thisPaciente.Text.Trim());
+            temlate = temlate.Replace("[especialidad]", this.thisEspe.Text.Trim());
+            temlate = temlate.Replace("[medico]", this.thisMedico.Text.Trim());
+            temlate = temlate.Replace("[fecha]", this.thisFecha.Text.Trim());
+            temlate = temlate.Replace("[turno]", this.thisTurno.Text.Trim());
+            temlate = temlate.Replace("[observacion]", this.Observaciones.Text.Trim());
+            emailService.preparaCorreo(usuario.CORREO, "Bienvenido a Dr. Seba", temlate);
+            emailService.enviarEmail();
             Response.Redirect("SisTurnos.aspx", false);
 
         }

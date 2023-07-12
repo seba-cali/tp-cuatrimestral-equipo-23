@@ -193,7 +193,7 @@
                                         <div class="col-sm-3 text-truncate"><em>Especialidad:</em></div>
                                         <div class="col">
                                             <asp:Label ID="thisEspe" Text="000000" runat="server" Enabled="True"/>
-                                            <asp:PlaceHolder ID="MostrarEsp" runat="server"/>
+                                            
 
                                         </div>
                                     </div>

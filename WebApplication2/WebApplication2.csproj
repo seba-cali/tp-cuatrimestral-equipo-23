@@ -120,6 +120,7 @@
     <Content Include="assets\porla" />
     <Content Include="assets\template\correo.html" />
     <Content Include="assets\template\recuperar.html" />
+    <Content Include="assets\template\Truno.html" />
     <Content Include="Cartilla.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
