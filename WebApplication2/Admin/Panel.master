@@ -43,7 +43,8 @@
             </Scripts>
         </asp:ScriptManager>
 
-        <% if( usuario != null){ %>
+        <% if (usuario != null)
+           { %>
       <nav class="topnav navbar navbar-expand shadow justify-content-between justify-content-sm-start navbar-light bg-white" id="sidenavAccordion">
                   
                   <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 me-2 ms-lg-2 me-lg-0" id="sidebarToggle"><i data-feather="menu"></i></button>
@@ -101,8 +102,8 @@
                               <h6 class="dropdown-header d-flex align-items-center">
                                   <img class="dropdown-user-img" src="../assets/dist/assets/img/illustrations/profiles/profile-2.png" />
                                   <div class="dropdown-user-details">
-                                      <div class="dropdown-user-details-name"><%: usuario.DNI%></div>
-                                      <div class="dropdown-user-details-email"><%: usuario.CORREO%></div>
+                                      <div class="dropdown-user-details-name"><%: usuario.DNI %></div>
+                                      <div class="dropdown-user-details-email"><%: usuario.CORREO %></div>
                                   </div>
                               </h6>
                               <div class="dropdown-divider"></div>
@@ -160,6 +161,7 @@
                                                     </nav>
                                                 </div>
                                                 <!-- Sidenav Heading (Custom)-->
+                                                <% if(usuario.ID_TIPOUSUARIO<3){ %>
                                                 <div class="sidenav-menu-heading">Administracion</div>
                                                 <!-- Sidenav Accordion (Pages)-->
                                                 <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -222,7 +224,7 @@
                                                         
                                                     </nav>
                                                 </div>
-                                              
+                                              <% } %>
                                                 <%--<div class="sidenav-menu-heading">Plugins</div>
                                                 <!-- Sidenav Link (Charts)-->
                                                 <a class="nav-link" href="charts.html">
