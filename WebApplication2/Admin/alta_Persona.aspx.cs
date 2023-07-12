@@ -69,6 +69,7 @@ namespace WebApplication2.Admin
 			string idMedico = Request.QueryString["idMedico"] != null ? Request.QueryString["idMedico"].ToString() : "";
 			string idPaciente = Request.QueryString["idPaciente"] != null ? Request.QueryString["idPaciente"].ToString() : "";
 			string idUsuario = Request.QueryString["idUsuario"] != null ? Request.QueryString["idUsuario"].ToString() : "";
+			//todo:Checkear por que Paciente no crea ni usuario ni paciente si algo falla, pero medico si lo hace (no deberia)
 			if (idPaciente != "" && idUsuario != "" && !IsPostBack)
 			{
 				esPaciente = true;
@@ -123,20 +124,20 @@ namespace WebApplication2.Admin
                 inputDireccion.Text = seleccionado.direccion;
                 inputDNI.Text = seleccionado.DNI;
 				inputMatricula.Text = seleccionado.Matricula;
-                ListBox checkBox = new ListBox();
-                checkBox.ID = "nery";
-                checkBox.SelectionMode = ListSelectionMode.Multiple;
-                checkBox.CssClass = "form-control";
-                if (IsPostBack)
-                {
+                //ListBox checkBox = new ListBox();
+                //checkBox.ID = "nery";
+                //checkBox.SelectionMode = ListSelectionMode.Multiple;
+                //checkBox.CssClass = "form-control";
+                //if (IsPostBack)
+                //{
 
-                    foreach (Especialidad pivot in ListaEspecialidades)
-                    {
-                        checkBox.Items.Add(new ListItem(pivot.nombre, pivot.id.ToString()));
-                    }
+                //    foreach (Especialidad pivot in ListaEspecialidades)
+                //    {
+                //        checkBox.Items.Add(new ListItem(pivot.nombre, pivot.id.ToString()));
+                //    }
 
-                    loco.Controls.Add(checkBox);
-                }
+                //    loco.Controls.Add(checkBox);
+                //}
 
             }
 			else
@@ -156,26 +157,26 @@ namespace WebApplication2.Admin
 				esPaciente = false;
 
 				NegocioPaciente negocioPaciente = new NegocioPaciente();
-				NegocioEspecialidad negocioEspecialidad = new NegocioEspecialidad();
-				ListaEspecialidades = negocioEspecialidad.listar();
-				negocioPaciente = new NegocioPaciente();
-				loco.Controls.Clear();
+				//NegocioEspecialidad negocioEspecialidad = new NegocioEspecialidad();
+				//ListaEspecialidades = negocioEspecialidad.listar();
+				//negocioPaciente = new NegocioPaciente();
+				//loco.Controls.Clear();
 
-				ListBox checkBox = new ListBox();
-				checkBox.ID = "nery";
-				checkBox.SelectionMode = ListSelectionMode.Multiple;
-				checkBox.CssClass = "form-control";
+				//ListBox checkBox = new ListBox();
+				//checkBox.ID = "nery";
+				//checkBox.SelectionMode = ListSelectionMode.Multiple;
+				//checkBox.CssClass = "form-control";
 
-				if (IsPostBack)
-				{
+				//if (IsPostBack)
+				//{
 
-					foreach (Especialidad pivot in ListaEspecialidades)
-					{
-						checkBox.Items.Add(new ListItem(pivot.nombre, pivot.id.ToString()));
-					}
+				//	foreach (Especialidad pivot in ListaEspecialidades)
+				//	{
+				//		checkBox.Items.Add(new ListItem(pivot.nombre, pivot.id.ToString()));
+				//	}
 
-					loco.Controls.Add(checkBox);
-				}
+				//	loco.Controls.Add(checkBox);
+				//}
 			}
 		}
 
@@ -196,7 +197,7 @@ namespace WebApplication2.Admin
 			{
 				try
 				{
-
+					//CREACION DE PACIENTE NUEVO
 					Paciente paciente = new Paciente();
 					Usuario usuario = new Usuario();
 					NegocioUsuario negocioUsuario = new NegocioUsuario();
@@ -271,8 +272,6 @@ namespace WebApplication2.Admin
 					Medico medico = new Medico();
 					Usuario usuario = new Usuario();
 					NegocioUsuario negocioUsuario = new NegocioUsuario();
-					NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
-					EspecialidadxMedico especialidadxMedico = new EspecialidadxMedico();
 					negocioMedico = new NegocioMedico();
 					usuario.DNI = inputDNI.Text;
 					usuario.PASSWORD = inputPassword.Text;
@@ -294,19 +293,22 @@ namespace WebApplication2.Admin
 					medico.ID_MEDICO = negocioMedico.RegistrarMedico(medico, 0);
 
 					// Obtén las especialidades seleccionadas
-					ListBox checkBox = (ListBox)loco.FindControl("nery");
-					List<int> especialidadesSeleccionadas = new List<int>();
-					foreach (ListItem item in checkBox.Items)
-					{
-						if (item.Selected)
-						{
-							int idEspecialidad = Convert.ToInt32(item.Value);
-							especialidadesSeleccionadas.Add(idEspecialidad);
-							especialidadxMedico.ID_MEDICO = medico.ID_MEDICO;
-							especialidadxMedico.Id_Especialidad = idEspecialidad;
-							negocioEspecialidadxMedico.RegistrarEspecialidadxMedico(especialidadxMedico);
-						}
-					}
+					//TODO: comento estas lineas porque ya las especialidades no se cargan desde aca
+					//NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
+					//EspecialidadxMedico especialidadxMedico = new EspecialidadxMedico();
+					//ListBox checkBox = (ListBox)loco.FindControl("nery");
+					//List<int> especialidadesSeleccionadas = new List<int>();
+					//foreach (ListItem item in checkBox.Items)
+					//{
+					//	if (item.Selected)
+					//	{
+					//		int idEspecialidad = Convert.ToInt32(item.Value);
+					//		especialidadesSeleccionadas.Add(idEspecialidad);
+					//		especialidadxMedico.ID_MEDICO = medico.ID_MEDICO;
+					//		especialidadxMedico.Id_Especialidad = idEspecialidad;
+					//		negocioEspecialidadxMedico.RegistrarEspecialidadxMedico(especialidadxMedico);
+					//	}
+					//}
 
 					Session.Add("OK", "SE CREO EL MEDICO CON EXITO");
 					LimpiarControles(this);
@@ -316,11 +318,12 @@ namespace WebApplication2.Admin
 				}
 				catch (Exception exception)
 				{
-					// Capturar la excepción de duplicación de DNI
+					// Capturar la excepción de duplicación de DNI, usuario o Matricula
 					if (EsExcepcionDuplicacionDNI(exception))
 					{
-						lblmsg.Text = "⚠ Ya existe un médico o usuario con ese DNI.";
+						lblmsg.Text = "⚠ Ya existe un médico o usuario con ese DNI o Matricula.";
 						inputDNI.Text = string.Empty;
+						inputMatricula.Text = string.Empty;
 						MedicoElegido = false;
 						chkMedico.Checked = false;
 						//inputUsuario.Text = string.Empty;

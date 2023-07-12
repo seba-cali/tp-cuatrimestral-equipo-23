@@ -403,3 +403,10 @@ DROP CONSTRAINT FK__MEDICO__ID_ESP__59063A47;
 GO
 alter table MEDICO
     drop column ID_ESP;
+
+
+    --12/07/2023
+    --convertir la columna matricula en medico en unica para validar que no se repitan
+ALTER TABLE MEDICO
+ADD CONSTRAINT UQ_MATRICULA UNIQUE (MATRICULA)
+GO
