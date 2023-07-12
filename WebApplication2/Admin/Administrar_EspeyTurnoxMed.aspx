@@ -43,7 +43,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="createGroupModal">Crear Especialidad y Turno por Medico</h5>
+                        <h5 class="modal-title" id="createGroupModal1">Crear Especialidad y Turno por Medico</h5>
                         <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
 
@@ -51,11 +51,11 @@
 
                         <div class="mb-0">
                             <label class="mb-1 small text-muted" for="formGroupName">Medico</label>
-                            <asp:DropDownList ID="inputMedico" runat="server" CssClass="form-control" AutoPostBack="true"></asp:DropDownList>
+                            <asp:DropDownList ID="inputMedico" runat="server" CssClass="form-control" AutoPostBack="false"></asp:DropDownList>
                         </div>
                         <div class="mb-0">
                             <label class="mb-1 small text-muted" for="formGroupDesc">Especialidad</label>
-                            <asp:DropDownList ID="inputEspecialidad" runat="server" CssClass="form-control" AutoPostBack="true"></asp:DropDownList>
+                            <asp:DropDownList ID="inputEspecialidad" runat="server" CssClass="form-control" AutoPostBack="false"></asp:DropDownList>
                         </div>
                         <div class="mb-0">
                             <label class="mb-1 small text-muted" for="formGroupURL">Turno</label>
@@ -63,7 +63,7 @@
                                 <asp:ListItem Text="Turno de Trabajo" Value="" Selected="True"></asp:ListItem>
                                 <asp:ListItem Text="Mañana" Value="0"></asp:ListItem>
                                 <asp:ListItem Text="Tarde" Value="1"></asp:ListItem>
-                                <asp:ListItem Text="Noche" Value="3"></asp:ListItem>
+                                <asp:ListItem Text="Noche" Value="2"></asp:ListItem>
                                 </asp:DropDownList>
                         </div>
 

@@ -397,8 +397,8 @@ namespace WebApplication2.Admin
             turnos.Id_Paciente = Convert.ToInt32(Session["idPaciente"]);
             turnos.Estado = true;
             negocioTurno.RegistrarTurno(turnos);
-            Session["OK"] = "Exito al registrar turno";
-            Response.Redirect("Default.aspx", false);
+            Session["OK"] = "Proceso Exitoso";
+            Response.Redirect("SisTurnos.aspx", false);
 
         }
 
