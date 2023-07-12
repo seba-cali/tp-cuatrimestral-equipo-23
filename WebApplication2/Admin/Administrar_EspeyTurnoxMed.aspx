@@ -12,9 +12,12 @@
                     <i class="me-1" data-feather="plus"></i>
                     Crear Nueva Especialidad y Turno por Medico
                 </button>
+                 <asp:Label ID="lblmsg" Text=""
+                            Style="color: black; font-weight: bold;" runat="server" />
             </div>
         </div>
     </div>
+
     <div style="display: flex; justify-content: center;">
         <asp:GridView ID="dgvEspecialidadxTurno" runat="server" CssClass="table table-striped table-bordered table-sm mx-auto" AutoGenerateColumns="false">
             <%--<!-- Columnas del GridView para administración de médicos -->--%>
@@ -48,7 +51,9 @@
                     </div>
 
                     <div class="modal-body">
-
+                        <div class="mb-0">
+                          
+                        </div>
                         <div class="mb-0">
                             <label class="mb-1 small text-muted" for="formGroupName">Medico</label>
                             <asp:DropDownList ID="inputMedico" runat="server" CssClass="form-control" AutoPostBack="false"></asp:DropDownList>
@@ -64,13 +69,14 @@
                                 <asp:ListItem Text="Mañana" Value="0"></asp:ListItem>
                                 <asp:ListItem Text="Tarde" Value="1"></asp:ListItem>
                                 <asp:ListItem Text="Noche" Value="2"></asp:ListItem>
-                                </asp:DropDownList>
+                            </asp:DropDownList>
                         </div>
 
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-danger-soft text-danger" type="button" data-bs-dismiss="modal">Cerrar</button>
-                        <asp:Button ID="Ingresar" CausesValidation="False" runat="server" Text="Crear Relacion" CssClass="btn btn-primary-soft text-primary" Onclick="Ingresar_Click"/>
+                        <asp:Button ID="Ingresar" CausesValidation="False" runat="server" Text="Crear Relacion" CssClass="btn btn-primary-soft text-primary" OnClick="Ingresar_Click" />
+                        
                     </div>
 
                 </div>

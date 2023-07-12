@@ -135,6 +135,7 @@ namespace Negocio
             {
                 Console.WriteLine("error manito");
                 Console.WriteLine(ex.ToString());
+                throw ex;
                 
 
             }
