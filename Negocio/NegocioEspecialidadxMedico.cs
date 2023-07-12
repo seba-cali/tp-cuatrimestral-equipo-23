@@ -33,7 +33,7 @@ namespace Negocio
                     EspecialidadxMedico aux = new EspecialidadxMedico();
                     aux.ID_MEDICO = db.Lector.GetInt32(0);
                     aux.Id_Especialidad = db.Lector.GetInt32(1);
-                    aux.turno_horario = db.Lector.GetInt32(2);
+                    aux.Turno_Horario = db.Lector.GetInt32(2);
 
 
                     especialidadesxmedico.Add(aux);

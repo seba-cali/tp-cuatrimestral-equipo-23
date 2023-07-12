@@ -327,7 +327,7 @@ namespace WebApplication2.Admin
 					}
 					else
 					{
-						lblmsg.Text = "Ocurrió un error al crear el paciente.";
+						lblmsg.Text = "Ocurrió un error al crear el medico.";
 						Console.WriteLine(exception);
 					}
 					Session.Add("Error", "Que paso Manito");

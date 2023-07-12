@@ -18,8 +18,6 @@ namespace Dominio
         public string Especialidad { get; set; }
 
         public int Id_Especialidad { get; set; }
-        
-        public int turno_horario { get; set; }
 
         public int Turno_Horario { get; set; }
         public EspecialidadxMedico() { }

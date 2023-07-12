@@ -20,7 +20,7 @@ namespace Dominio
 
         public Medico() { }
         public Medico(string dni, string nombres, string apellidos, string direccion, string telefono, string email, 
-            DateTime fechaNacimiento, string sexo, bool estado, string matricula, int idUsuario, int turno) : base(dni, nombres, apellidos, direccion, telefono, email, fechaNacimiento, sexo, estado)
+            DateTime fechaNacimiento, string sexo, bool estado, string matricula, int idUsuario) : base(dni, nombres, apellidos, direccion, telefono, email, fechaNacimiento, sexo, estado)
         {
 
         }

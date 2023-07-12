@@ -29,8 +29,12 @@ namespace WebApplication2.Admin
             inputEspecialidad.DataValueField = "id";
             inputEspecialidad.DataBind();
 
+           
             NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
             dgvEspecialidadxTurno.DataSource = negocioEspecialidadxMedico.listarconsulta();
+            inputTurno.DataTextField = "Turno_Horario";
+            inputTurno.DataBind();
+
             dgvEspecialidadxTurno.DataBind();
         }
         protected void btnEliminar_Click(object sender, EventArgs e)
@@ -50,29 +54,6 @@ namespace WebApplication2.Admin
             }
         }
 
-        protected void btnReactivar_Click(object sender, EventArgs e)
-        {
-            Button btnReactivar = (Button)sender;
-            string idMedico = btnReactivar.CommandArgument;
-
-            NegocioMedico negocioMedico = new NegocioMedico();
-            negocioMedico.reactivarMedico(int.Parse(idMedico));
-            Response.Redirect("Administrar_Medicos.aspx");
-
-        }
-
-        protected void btnModificar_Click(object sender, EventArgs e)
-        {
-            Button btn = (Button)sender;
-            string commandArgument = btn.CommandArgument;
-
-            //matufia para obtener los valores del command argument
-            string[] argumentValues = commandArgument.Split(',');
-            string idMedico = argumentValues[0];
-            string idUsuario = argumentValues[1];
-            string TurnoHorario= argumentValues[2];
-            Response.Redirect("alta_Persona.aspx?idMedico=" + idMedico + "&idUsuario=" + idUsuario, false);
-        }
 
         protected void Ingresar_Click(object sender, EventArgs e)
         {

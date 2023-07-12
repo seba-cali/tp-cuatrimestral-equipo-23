@@ -152,10 +152,10 @@ namespace WebApplication2.Admin
                     foreach (EspecialidadxMedico medi in ListaEspecialidadxMedico)
                     {
                         medico = ListaMedicos.Find(x => x.ID_MEDICO == medi.ID_MEDICO);
-                        if (medi.turno_horario == Convert.ToInt32(Session["idturno"]) &&
+                        if (medi.Turno_Horario == Convert.ToInt32(Session["idturno"]) &&
                             medi.Id_Especialidad == Convert.ToInt32(Session["idesp"]))
                         {
-                            Session["horario"] = medi.turno_horario;
+                            Session["horario"] = medi.Turno_Horario;
                             medicos.Items.Add(new ListItem(medico.nombres + " " + medico.apellidos,
                                 medi.ID_MEDICO.ToString()));
 
@@ -282,7 +282,7 @@ namespace WebApplication2.Admin
                 
                 fechanow.Text = turnorep.fecha.Date.ToShortDateString();
                 int turnmedi = ListaEspecialidadxMedico.Find(x =>
-                    x.Id_Especialidad == turnorep.Id_Especialidad && x.ID_MEDICO == turnorep.Id_Medico).turno_horario;
+                    x.Id_Especialidad == turnorep.Id_Especialidad && x.ID_MEDICO == turnorep.Id_Medico).Turno_Horario;
                 horarios.SelectedIndex = turnmedi;
                 
                 Session["idturno"] = turnmedi;
