@@ -140,9 +140,8 @@ GO
 UPDATE Paciente
 SET DNI = '34555666'
 WHERE SEXO = 'V';
+go
 
-alter table PACIENTE 
-GO
 CREATE TABLE MEDICO(
                        ID_MEDICO INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
                        NOMBRE VARCHAR(50) NOT NULL,
@@ -175,7 +174,7 @@ CREATE TABLE TURNO (
                        ID_HORA int NOT NULL,
 );
 GO
-INSERT INTO TURNO(FECHA, HORA, ESTADO, ID_MEDICO, ID_PACIENTE)
+INSERT INTO TURNO(FECHA, ESTADO, ID_MEDICO, ID_PACIENTE)
 VALUES
     ('2023/06/25','10:00',1,1,1),
     ('2023/01/27','10:00',1,2,2),
@@ -404,7 +403,20 @@ GO
 alter table MEDICO
     drop column ID_ESP;
 
+
 alter TABLE Turno
 add ObservacionMedico varchar(250) not null default 'Sin observaciones';
 alter TABLE Turno
 add NumGenerado int not null default 0;
+
+
+    --12/07/2023
+    --convertir la columna matricula en medico en unica para validar que no se repitan
+ALTER TABLE MEDICO
+ADD CONSTRAINT UQ_MATRICULA UNIQUE (MATRICULA)
+GO
+--ESTK HACE QUE LA COMBINACION ENTRE MEDICO ESPECILIDAD Y TURNO SEA UNICA Y NO PUEDA REPETIRSE DICHA COMBINACION
+ALTER TABLE EspecialidadxMedico
+ADD CONSTRAINT UQ_ESPXMED_COMB UNIQUE (ID_MEDICO, ID_ESPECIALIDAD, TURNO_HORARIO)
+GO
+>>>>>>> 114722f000847151b0837431bd869e0986418460

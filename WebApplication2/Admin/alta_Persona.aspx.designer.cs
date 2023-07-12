@@ -240,31 +240,13 @@ namespace WebApplication2.Admin
 		protected global::System.Web.UI.WebControls.TextBox inputMatricula;
 
 		/// <summary>
-		/// horarios control.
+		/// rfvMatricula control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.ListBox horarios;
-
-		/// <summary>
-		/// espMed control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.Label espMed;
-
-		/// <summary>
-		/// loco control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.PlaceHolder loco;
+		protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvMatricula;
 
 		/// <summary>
 		/// btnActualizarPaciente control.

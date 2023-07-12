@@ -99,7 +99,7 @@
 			<div class="col-4">
 				<asp:TextBox CssClass="form-control" ID="inputEmail" type="email" placeholder="Email" runat="server" />
 				<%--validacion email requerido--%>
-<asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="inputEmail" ErrorMessage="⚠ Ingrese Email" ForeColor="pink" Font-Bold="true"></asp:RequiredFieldValidator>
+				<asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="inputEmail" ErrorMessage="⚠ Ingrese Email" ForeColor="pink" Font-Bold="true"></asp:RequiredFieldValidator>
 			</div>
 		</div>
 
@@ -121,10 +121,15 @@
 		<div class="row">
 			<div class="col-6 col-sm-3">
 				<asp:TextBox CssClass="form-control" ID="inputMatricula" type="text" placeholder="Matricula" runat="server" />
+				<%--validacion matricula requerido--%>
+				<asp:RequiredFieldValidator ID="rfvMatricula" runat="server" ControlToValidate="inputMatricula" ErrorMessage="⚠ Ingrese Matricula" ForeColor="pink" Font-Bold="true"></asp:RequiredFieldValidator>
+
 
 
 			</div>
-			<div class="col-3 col-sm-3">
+
+			<%//TODO: Comento esto si es que las relaciones de horarios laborales se hacen en otro lado%>
+			<%--			<div class="col-3 col-sm-3">
 
 				<asp:ListBox CssClass="form-control" ID="horarios" runat="server" AutoPostBack="false">
 					<asp:ListItem Text="Turnos 6 a 13Hs" Value="0" />
@@ -132,18 +137,16 @@
 					<asp:ListItem Text="Turnos 18 a 23Hs" Value="2" />
 				</asp:ListBox>
 
-			</div>
+			</div>--%>
 		</div>
 
 		<div class="row">
-			<div class="col-4">
-
-				<%--marcar casillas para determinar que especialidades tiene el medico--%>
+<%--			<div class="col-4">
 				<asp:Label ID="espMed" Text="Elija las especialidades del medico"
 					Style="color: white; font-weight: bold;" runat="server" />
 
 				<asp:PlaceHolder ID="loco" runat="server"></asp:PlaceHolder>
-			</div>
+			</div>--%>
 			<div class="row my-5">
 				<div class="col-3">
 					<asp:Button runat="server" type="button" Text="Dar de Alta Medico" class="btn btn-primary btn-lg" OnClick="AltaMedico_Click" />
