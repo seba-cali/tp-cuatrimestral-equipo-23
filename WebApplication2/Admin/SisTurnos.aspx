@@ -2,8 +2,8 @@
 <%@ Import Namespace="Dominio" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server" xmlns:aps="http://www.w3.org/1999/html">
-<% if (usuario != null)
-   { %>
+<% if( usuario != null){ %>
+    <div id="layoutSidenav_content">
     <main>
         <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
             <div class="container-xl px-4">
@@ -68,10 +68,11 @@
                             <div class="row justify-content-center">
                                 <div class="col-xxl-6 col-xl-8">
                                     <h3 class="text-primary">Seccion 1</h3>
-                                    <hr class="my-4" />
+                                    
                                     <% if (usuario.ID_TIPOUSUARIO < 3)
                                        { %>
                                         <div class="mb-3 VistSec">
+                                            <hr class="my-4" />
                                             <h3>Por favor Ingresar DNI:</h3>
                                             <asp:TextBox ID="dni"  runat="server" type="number" AutoPostBack="True"/>
                                             
@@ -79,20 +80,24 @@
                                             <hr class="my-4" />
                                             <asp:Label ID="nompac" runat="server"/>
                                             <asp:Label ID="dnipac" runat="server"/>
+                                            <hr class="my-4" />
                                         </div>
                                     <% } %>
-                                    <hr class="my-4" />
+                                    
                                     <div class="col-6 mb-3 <%: nompac.Text == "error" ? "pe-none" : "" %> ">
                                         <div class="col-12 gx-3 ">
                                             <h3>¿Reprogramar turno activos? </h3>
                                             <label for="ManCheck " class=" form-label">  Ver turnos actvios</label>
-                                            <input type="checkbox" name="ManCheck" class="form-contol ManCheck"/>
+                                            <%--<input type="checkbox" name="ManCheck" class="form-contol ManCheck"/>--%>
+                                            <asp:CheckBox Text="El Usuario es Medico?" class="form-check-label text-light" ID="chkVer"
+                                            					runat="server" AutoPostBack="true" OnCheckedChanged="chk_CheckedChanged" />
                                         </div>
                                         
-                                        <div class="col-12 gx-3 mostrar">
+                                        <div class="col-12 gx-3 <%:Convert.ToBoolean(Session["VerRep"])?"":"mostrar" %>">
                                             <asp:PlaceHolder ID="reprogramoturno" runat="server"/>
                                             
                                         </div>
+                                        
                                     </div>
                                     <hr class="my-4" />
                                     <div class="mb-3 <%: nompac.Text == "error" ? "pe-none" : "" %>">
@@ -230,19 +235,12 @@
             </div>
         </div>
     </main>
-
+</div>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script>
         $(function () {
             
             $(".mostrar").hide();
-            $(".ManCheck").click(function() {
-                if($(this).is(":checked")) {
-                    $(".mostrar").show();
-                } else {
-                    $(".mostrar").hide();
-                }
-            });
             $(".fecha").prop('readonly', true);
             $("#MainContent_fechanow").datepicker({
                 minDate: 1,

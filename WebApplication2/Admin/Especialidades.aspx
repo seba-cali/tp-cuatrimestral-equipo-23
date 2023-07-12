@@ -2,6 +2,7 @@
 <%@ Import Namespace="Dominio" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+<div id="layoutSidenav_content">
     <main>
         <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
             <div class="container-fluid px-4">
@@ -210,6 +211,7 @@
                 </div>
                     <% } %>
     </main>
+</div>
     <script >
  		$(function() {
              

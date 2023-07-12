@@ -61,8 +61,9 @@ namespace Negocio
             try
             {
                 db.setearConsulta(
-                    "UPDATE ID_TURNO, FECHA, ESTADO, ID_MEDICO, ID_PACIENTE,ID_HORA, ID_ESPECIALIDAD, observacion FROM TURNO WHERE ID_TURNO =@id_turno");
+                    "UPDATE Turno SET  ESTADO=@estado  WHERE ID_TURNO =@id_turno");
                 db.setearParametro("@id_turno", idturno);
+                db.setearParametro("@estado", false);
                 db.ejecutarLectura();
                 
             }catch (System.Exception ex)
