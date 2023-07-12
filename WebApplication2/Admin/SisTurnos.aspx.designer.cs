@@ -15,13 +15,40 @@ namespace WebApplication2.Admin
     {
 
         /// <summary>
-        /// reprogra control.
+        /// dni control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button reprogra;
+        protected global::System.Web.UI.WebControls.TextBox dni;
+
+        /// <summary>
+        /// buscaPaciente control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button buscaPaciente;
+
+        /// <summary>
+        /// nompac control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label nompac;
+
+        /// <summary>
+        /// dnipac control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label dnipac;
 
         /// <summary>
         /// reprogramoturno control.
@@ -121,6 +148,24 @@ namespace WebApplication2.Admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn4;
+
+        /// <summary>
+        /// thisPaciente control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label thisPaciente;
+
+        /// <summary>
+        /// thisPacienteDni control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label thisPacienteDni;
 
         /// <summary>
         /// thisEspe control.

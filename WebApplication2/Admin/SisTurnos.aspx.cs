@@ -12,52 +12,17 @@ namespace WebApplication2.Admin
     
     public partial class SisTurnos : Page
     {
-        public int id_medico {get;set;}
-        protected Usuario usuario;
-        public void LimpiarControles(Control control)
-        {
-            foreach (Control c in control.Controls)
-            {
-                if (c is TextBox)
-                {
-                    TextBox textBox = (TextBox)c;
-                    textBox.Text = string.Empty;
-                }
-                else if (c is DropDownList)
-                {
-                    DropDownList dropDownList = (DropDownList)c;
-                    dropDownList.ClearSelection();
-                }
-                else if (c is CheckBoxList)
-                {
-                    CheckBoxList checkBoxList = (CheckBoxList)c;
-                    foreach (ListItem item in checkBoxList.Items)
-                    {
-                        item.Selected = false;
-                    }
-                }
-                else if (c is RadioButtonList)
-                {
-                    RadioButtonList radioButtonList = (RadioButtonList)c;
-                    radioButtonList.ClearSelection();
-                }
-
-                if (c.HasControls())
-                {
-                    LimpiarControles(c);
-                }
-            }
-        }
         
-   
+        protected Usuario usuario=null;
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Session["idturno"]==null ? "0": id_horario.ToString();
             
-            /*if(Session["usuario"]==null)
+            if (usuario == null)
             {
                 Response.Redirect("Default.aspx", false);
-            }*/
+            }
+            usuario= (Usuario)Session["usuario"];
+            
             if(!IsPostBack)
             {
                 Session.Add("idmedi", "0");
@@ -65,6 +30,7 @@ namespace WebApplication2.Admin
                 Session.Add("idturno", "0");
                 Session.Add("horario", "0");
                 Session.Add("idrepro","0");
+                Session.Add("idPaciente","0");
                 Session.Add("class", "btn1");
                 Session["error"] = null;
                 Session["OK"] = null;
@@ -78,45 +44,82 @@ namespace WebApplication2.Admin
             //turnos del paciente
             NegocioPaciente negocioPaciente = new NegocioPaciente(); 
             Paciente paciente = new Paciente();
-            //usuario= (Usuario)Session["usuario"];
-            //paciente = negocioPaciente.BuscarXId(usuario.ID_USUARIO);
-            
-            paciente = negocioPaciente.BuscarXId(1);
-                //Turnos loco= new Turnos();
             NegocioTurno negocioTurnos = new NegocioTurno();
             List<Turnos> repro= new List<Turnos>();
-            repro= negocioTurnos.listar(paciente.ID_PACIENTE);
-            
-            ListBox boxrepro = new ListBox();
-            boxrepro.SelectedIndexChanged += new EventHandler(SelectRepro);
-            boxrepro.ID = "reprolist";
-            boxrepro.CssClass = "form-control";
-            boxrepro.AutoPostBack = true;
-            if (repro.Count > 0)
+            if (usuario.ID_TIPOUSUARIO < 3)
             {
-                Dictionary<int, string> piv = Turnos.GetRepro();
-                foreach (var pivot in repro)
-                {
-                    if (pivot.fecha.Date > DateTime.Now.Date)
+                //usuario.ID_USUARIO
+                if(dni.Text!=""){
+                    paciente = negocioPaciente.BuscarXId(Convert.ToInt32(dni.Text));
+                    if(paciente==null)
                     {
-                        KeyValuePair<int, string> mostrar = piv.First(x => x.Key == Convert.ToInt32(pivot.Id_Hora));
-                        if(pivot.Estado)
-                        boxrepro.Items.Add(new ListItem(
-                            "Fecha :" + pivot.fecha.Date.ToShortDateString() + " Hora:" + mostrar.Value,
-                            pivot.Id_Turno.ToString()));
+                        Session["error"] = "No se encontro el paciente";
+                        nompac.Text= "error";
+                        dnipac.Text= ":No se encontro el paciente🚨";
+                        bt2.Enabled = false;
                     }
+                    else
+                    {
+                        Session["idPaciente"] = paciente.ID_PACIENTE;
+                        nompac.Text= paciente.nombreCompleto;
+                        dnipac.Text= paciente.DNI;
+                        repro=negocioTurnos.listar(paciente.ID_PACIENTE);
+                        bt2.Enabled = true;
+                    }
+                   
                 }
-                reprogramoturno.Controls.Add(boxrepro);
+            }
+            else
+            {
+                Console.WriteLine("usuario -> "+usuario.ID_USUARIO);
+                paciente = negocioPaciente.BuscarXIdUsuario(usuario.ID_USUARIO);
+                Console.WriteLine("paciente -> "+paciente.ID_PACIENTE);
+                if (usuario.ID_TIPOUSUARIO < 3)
+                {
+                    nompac.Text = paciente.nombreCompleto;
+                    dnipac.Text = paciente.DNI;
+                }
+
+                repro=negocioTurnos.listar(paciente.ID_PACIENTE);
+                
             }
 
-
-            NegocioEspecialidad negocioEspecialidad = new NegocioEspecialidad();
-                List<Especialidad> ListaEspecialidades=new List<Especialidad>();
-                ListaEspecialidades= negocioEspecialidad.listar();
-                
+            //Turnos loco= new Turnos();
             
+            
+            if (repro != null)
+            {
+                ListBox boxrepro = new ListBox();
+                boxrepro.SelectedIndexChanged += new EventHandler(SelectRepro);
+                boxrepro.ID = "reprolist";
+                boxrepro.CssClass = "form-control";
+                boxrepro.AutoPostBack = true;
+                if (repro.Count > 0)
+                {
+                    Dictionary<int, string> piv = Turnos.GetRepro();
+                    foreach (var pivot in repro)
+                    {
+                        if (pivot.fecha.Date > DateTime.Now.Date)
+                        {
+                            KeyValuePair<int, string> mostrar = piv.First(x => x.Key == Convert.ToInt32(pivot.Id_Hora));
+                            if (pivot.Estado)
+                                boxrepro.Items.Add(new ListItem(
+                                    "Fecha :" + pivot.fecha.Date.ToShortDateString() + " Hora:" + mostrar.Value,
+                                    pivot.Id_Turno.ToString()));
+                        }
+                    }
+
+                    reprogramoturno.Controls.Add(boxrepro);
+                }
+
+
+                NegocioEspecialidad negocioEspecialidad = new NegocioEspecialidad();
+                List<Especialidad> ListaEspecialidades = new List<Especialidad>();
+                ListaEspecialidades = negocioEspecialidad.listar();
+
+
                 ListBox checkBox = new ListBox();
-                
+
                 checkBox.SelectedIndexChanged += new EventHandler(SelectEspecialidad);
                 checkBox.ID = "nery";
                 checkBox.CssClass = "form-control";
@@ -124,56 +127,62 @@ namespace WebApplication2.Admin
                 foreach (Especialidad pivot in ListaEspecialidades)
                 {
                     checkBox.Items.Add(new ListItem(pivot.nombre, pivot.id.ToString()));
-                    
+
                 }
+
                 Muestra1.Controls.Add(checkBox);
                 NegocioMedico negocioMedico = new NegocioMedico();
                 List<Medico> ListaMedicos = new List<Medico>();
                 ListaMedicos = negocioMedico.listar();
-                if(Session["idesp"].ToString()!="0"){
-                    Session["MostrarEsp"]= ListaEspecialidades.Find(x => x.id== Convert.ToInt32(Session["idesp"])).nombre;
+                if (Session["idesp"].ToString() != "0")
+                {
+                    Session["MostrarEsp"] =
+                        ListaEspecialidades.Find(x => x.id == Convert.ToInt32(Session["idesp"])).nombre;
                     Medico medico = new Medico();
-                    
+
                     NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
                     List<EspecialidadxMedico> ListaEspecialidadxMedico = new List<EspecialidadxMedico>();
                     ListaEspecialidadxMedico = negocioEspecialidadxMedico.listar(Session["idesp"].ToString());
-                    
-                ListBox medicos = new ListBox();
-                medicos.SelectedIndexChanged += new EventHandler(SelectMedico);
-                medicos.ID = "mediselect";
-                medicos.CssClass = "form-control";
-                medicos.AutoPostBack = true;
+
+                    ListBox medicos = new ListBox();
+                    medicos.SelectedIndexChanged += new EventHandler(SelectMedico);
+                    medicos.ID = "mediselect";
+                    medicos.CssClass = "form-control";
+                    medicos.AutoPostBack = true;
                     foreach (EspecialidadxMedico medi in ListaEspecialidadxMedico)
                     {
-                        medico= ListaMedicos.Find(x => x.ID_MEDICO == medi.ID_MEDICO);
-                        if(medi.turno_horario == Convert.ToInt32(Session["idturno"]) && medi.Id_Especialidad == Convert.ToInt32(Session["idesp"]))
+                        medico = ListaMedicos.Find(x => x.ID_MEDICO == medi.ID_MEDICO);
+                        if (medi.turno_horario == Convert.ToInt32(Session["idturno"]) &&
+                            medi.Id_Especialidad == Convert.ToInt32(Session["idesp"]))
                         {
                             Session["horario"] = medi.turno_horario;
-                            medicos.Items.Add(new ListItem(medico.nombres + " " + medico.apellidos, medi.ID_MEDICO.ToString()));
-                            
+                            medicos.Items.Add(new ListItem(medico.nombres + " " + medico.apellidos,
+                                medi.ID_MEDICO.ToString()));
+
                         }
 
                     }
-                Muestra2.Controls.Add(medicos);
+
+                    Muestra2.Controls.Add(medicos);
                 }
-                
+
                 Medico dato = new Medico();
                 Turnos tux = new Turnos();
                 NegocioTurno negocioTurno = new NegocioTurno();
                 List<Turnos> ListaTurnos = new List<Turnos>();
                 ListaTurnos = negocioTurno.listar();
-                ListBox turnero= new ListBox();
+                ListBox turnero = new ListBox();
                 turnero.SelectedIndexChanged += new EventHandler(turnnero_OnSelectedIndexChanged);
                 turnero.ID = "turnero";
                 turnero.CssClass = "form-control";
                 turnero.AutoPostBack = true;
                 //busca medico
-                
-                dato=ListaMedicos.Find(x => x.ID_MEDICO == Convert.ToInt32(Session["idmedi"]));
-               
+
+                dato = ListaMedicos.Find(x => x.ID_MEDICO == Convert.ToInt32(Session["idmedi"]));
+
                 //Busca turno ocupados
                 tux = ListaTurnos.Find(x => x.Id_Medico == Convert.ToInt32(Session["idmedi"]));
-                
+
                 if (dato != null && tux != null)
                 {
                     Session["MostrarMed"] = dato.nombres + ", " + dato.apellidos;
@@ -181,9 +190,11 @@ namespace WebApplication2.Admin
                     var tata = Turnos.GetTurnos(Convert.ToInt32(Session["horario"]));
                     foreach (KeyValuePair<int, string> slot in tata)
                     {
-                        
+
                         //Muestra los horarios disponibles
-                        tux = ListaTurnos.Find(x => x.Id_Medico == dato.ID_MEDICO && x.Id_Hora == slot.Key && Convert.ToDateTime(x.fecha) == Convert.ToDateTime(fechanow.Text)&& x.Estado)??null;
+                        tux = ListaTurnos.Find(x =>
+                            x.Id_Medico == dato.ID_MEDICO && x.Id_Hora == slot.Key &&
+                            Convert.ToDateTime(x.fecha) == Convert.ToDateTime(fechanow.Text) && x.Estado) ?? null;
                         if (tux == null)
                         {
                             turnero.Items.Add(new ListItem(slot.Value, slot.Key.ToString()));
@@ -206,13 +217,22 @@ namespace WebApplication2.Admin
                 }
 
                 Fecha.Controls.Add(turnero);
-                
-                if(Session["MostrarEsp"]!=null&& Session["MostrarMed"]!=null)
+
+                if (Session["MostrarEsp"] != null && Session["MostrarMed"] != null)
                 {
                     thisEspe.Text = Session["MostrarEsp"].ToString();
                     thisMedico.Text = Session["MostrarMed"].ToString();
-                   
-                    thisFecha.Text = fechanow.Text??DateTime.Now.ToString("dd/MM/yyyy");
+                    if (usuario.ID_TIPOUSUARIO < 3)
+                    {
+                        thisPaciente.Text = nompac.Text;
+                        thisPacienteDni.Text = dnipac.Text;
+                    }
+                    else
+                    {
+                        thisPaciente.Text = paciente.nombreCompleto;
+                        thisPacienteDni.Text = paciente.DNI;
+                    }
+                    thisFecha.Text = fechanow.Text ?? DateTime.Now.ToString("dd/MM/yyyy");
                 }
                 else
                 {
@@ -221,8 +241,9 @@ namespace WebApplication2.Admin
                     thisTurno.Text = "Turno";
                     thisFecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
                 }
-                
 
+            }
+            
         }
 
         private void SelectRepro(object sender, EventArgs e)
@@ -266,12 +287,6 @@ namespace WebApplication2.Admin
                 
                 Session["idturno"] = turnmedi;
                 Session["idesp"] = turnorep.Id_Especialidad;
-                
-                                
-
-
-
-
 
             }
             catch (Exception exception)
@@ -397,6 +412,11 @@ namespace WebApplication2.Admin
         protected void reprogra_OnClick(object sender, EventArgs e)
         {
             
+        }
+
+        protected void buscaPaciente_OnClick(object sender, EventArgs e)
+        {
+                Session["idPaciente"] =dni.Text;
         }
     }
 }

@@ -1,7 +1,9 @@
 ﻿<%@ Page Title="Title" Language="C#" MasterPageFile="~/Admin/Panel.master" CodeBehind="SisTurnos.aspx.cs" Inherits="WebApplication2.Admin.SisTurnos" %>
+<%@ Import Namespace="Dominio" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server" xmlns:aps="http://www.w3.org/1999/html">
-
+<% if (usuario != null)
+   { %>
     <main>
         <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
             <div class="container-xl px-4">
@@ -24,61 +26,79 @@
             <div class="card">
                 <div class="card-header border-bottom">
                     <!-- Wizard navigation-->
-                    <div class="nav nav-pills nav-justified flex-column flex-xl-row nav-wizard" id="cardTab" role="tablist">
+                    <div class="nav nav-pills nav-justified flex-column flex-xl-row nav-wizard pe-none"  id="cardTab" role="tablist">
                         <!-- Wizard navigation item 1-->
-                        <a class="nav-item nav-link <%: Session["class"]== "btn1" ? "active":" "%>" id="wizard1-tab" href="#" data-bs-toggle="tab" role="tab" aria-controls="wizard1" aria-selected="true">
+                        <div class="nav-item nav-link <%: Session["class"] == "btn1" ? "active" : " " %>" id="wizard1-tab"  data-bs-toggle="tab" role="tab" aria-controls="wizard1" aria-selected="true">
                             <div class="wizard-step-icon">1</div>
                             <div class="wizard-step-text">
                                 <div class="wizard-step-text-name">Especialidad</div>
                                 <div class="wizard-step-text-details">Primer Paso</div>
                             </div>
-                        </a>
+                        </div>
                         <!-- Wizard navigation item 2-->
-                        <a class="nav-item nav-link <%: Session["class"]== "btn2" ? "active":" "%>" id="wizard2-tab" href="#" data-bs-toggle="tab" role="tab" aria-controls="wizard2" aria-selected="true">
+                        <div class="nav-item nav-link <%: Session["class"] == "btn2" ? "active" : " " %>" id="wizard2-tab"  data-bs-toggle="tab" role="tab" aria-controls="wizard2" aria-selected="true">
                             <div class="wizard-step-icon">2</div>
                             <div class="wizard-step-text">
                                 <div class="wizard-step-text-name">Medicos</div>
                                 <div class="wizard-step-text-details">Segundo Paso</div>
                             </div>
-                        </a>
+                        </div>
                         <!-- Wizard navigation item 3-->
-                        <a class="nav-item nav-link <%: Session["class"]== "btn3" ? "active":" "%>" id="wizard3-tab" href="#" data-bs-toggle="tab" role="tab" aria-controls="wizard3" aria-selected="true">
+                        <div class="nav-item nav-link <%: Session["class"] == "btn3" ? "active" : " " %>" id="wizard3-tab"  data-bs-toggle="tab" role="tab" aria-controls="wizard3" aria-selected="true">
                             <div class="wizard-step-icon">3</div>
                             <div class="wizard-step-text">
                                 <div class="wizard-step-text-name">Fecha</div>
                                 <div class="wizard-step-text-details">Tercer Paso</div>
                             </div>
-                        </a>
+                        </div>
                         <!-- Wizard navigation item 4-->
-                        <a class="nav-item nav-link <%: Session["class"]== "btn4" ? "active":" "%>" id="wizard4-tab" href="#" data-bs-toggle="tab" role="tab" aria-controls="wizard4" aria-selected="true">
+                        <div class="nav-item nav-link <%: Session["class"] == "btn4" ? "active" : " " %>" id="wizard4-tab" data-bs-toggle="tab" role="tab" aria-controls="wizard4" aria-selected="true">
                             <div class="wizard-step-icon">4</div>
                             <div class="wizard-step-text">
                                 <div class="wizard-step-text-name">Confirmar</div>
                                 <div class="wizard-step-text-details">Ultimo Paso</div>
                             </div>
-                        </a>
+                        </div>
                     </div>
                 </div>
                 <div class="card-body">
                     <div class="tab-content" id="cardTabContent">
                         <!-- Wizard tab pane item 1-->
-                        <div class="tab-pane py-5 py-xl-10 fade <%: Session["class"]== "btn1" ? " show active":" "%>" id="wizard1" role="tabpanel" aria-labelledby="wizard1-tab">
+                        <div class="tab-pane py-5 py-xl-10 fade <%: Session["class"] == "btn1" ? " show active" : " " %>" id="wizard1" role="tabpanel" aria-labelledby="wizard1-tab">
                             <div class="row justify-content-center">
                                 <div class="col-xxl-6 col-xl-8">
                                     <h3 class="text-primary">Seccion 1</h3>
-                                    <h5 class="card-title mb-4">Seleccionar una especialidad</h5>
-                                    <div class="mb-3">
-                                        <h1>Sus Turnos Vigentes ¿Reprogramar? </h1>
-                                        <asp:Button ID="reprogra" OnClick="reprogra_OnClick" Text="Reprogramemos :)" runat="server"/>
+                                    <hr class="my-4" />
+                                    <% if (usuario.ID_TIPOUSUARIO < 3)
+                                       { %>
+                                        <div class="mb-3 VistSec">
+                                            <h3>Por favor Ingresar DNI:</h3>
+                                            <asp:TextBox ID="dni"  runat="server" type="number" AutoPostBack="True"/>
+                                            
+                                            <asp:Button ID="buscaPaciente" OnClick="buscaPaciente_OnClick" Text="Buscar" runat="server"/>
+                                            <hr class="my-4" />
+                                            <asp:Label ID="nompac" runat="server"/>
+                                            <asp:Label ID="dnipac" runat="server"/>
+                                        </div>
+                                    <% } %>
+                                    <hr class="my-4" />
+                                    <div class="col-6 mb-3 <%: nompac.Text == "error" ? "pe-none" : "" %> ">
+                                        <div class="col-12 gx-3 ">
+                                            <h3>¿Reprogramar turno activos? </h3>
+                                            <label for="ManCheck " class=" form-label">  Ver turnos actvios</label>
+                                            <input type="checkbox" name="ManCheck" class="form-contol ManCheck"/>
+                                        </div>
                                         
-                                        <asp:PlaceHolder ID="reprogramoturno" runat="server"/>
-                                        
+                                        <div class="col-12 gx-3 mostrar">
+                                            <asp:PlaceHolder ID="reprogramoturno" runat="server"/>
+                                            
+                                        </div>
                                     </div>
-
-                                    <div class="mb-3">
+                                    <hr class="my-4" />
+                                    <div class="mb-3 <%: nompac.Text == "error" ? "pe-none" : "" %>">
                                         <asp:PlaceHolder ID="Muestra1" runat="server" />
                                     </div>
-                                    <div class="mb-3">
+                                    <div class="mb-3 <%: nompac.Text == "error" ? "pe-none" : "" %>">
                                         <asp:ListBox CssClass="form-control" OnSelectedIndexChanged="horarios_OnSelectedIndexChanged" ID="horarios" runat="server" AutoPostBack="true">
                                             <asp:ListItem Text="Turnos 6 a 11Hs" Value="0" />
                                             <asp:ListItem Text="Turnos 12 a 17Hs" Value="1" />
@@ -99,7 +119,7 @@
                             </div>
                         </div>
                         <!-- Wizard tab pane item 2-->
-                        <div class="tab-pane py-5 py-xl-10 fade <%: Session["class"]== "btn2" ? " show active":" "%>" id="wizard2" role="tabpanel" aria-labelledby="wizard2-tab">
+                        <div class="tab-pane py-5 py-xl-10 fade <%: Session["class"] == "btn2" ? " show active" : " " %>" id="wizard2" role="tabpanel" aria-labelledby="wizard2-tab">
                             <div class="row justify-content-center">
                                 <div class="col-xxl-6 col-xl-8">
                                     <h3 class="text-primary">Paso 2</h3>
@@ -126,7 +146,7 @@
                             </div>
                         </div>
                         <!-- Wizard tab pane item 3-->
-                        <div class="tab-pane py-5 py-xl-10 fade <%: Session["class"]== "btn3" ? " show active":" "%>" id="wizard3" role="tabpanel" aria-labelledby="wizard3-tab">
+                        <div class="tab-pane py-5 py-xl-10 fade <%: Session["class"] == "btn3" ? " show active" : " " %>" id="wizard3" role="tabpanel" aria-labelledby="wizard3-tab">
                             <div class="row justify-content-center">
                                 <div class="col-xxl-6 col-xl-8">
                                     <h3 class="text-primary">Paso 3</h3>
@@ -148,11 +168,22 @@
                             </div>
                         </div>
                         <!-- Wizard tab pane item 4-->
-                        <div class="tab-pane py-5 py-xl-10 fade <%: Session["class"]== "btn4" ? " show active":" "%>" id="wizard4" role="tabpanel" aria-labelledby="wizard4-tab">
+                        <div class="tab-pane py-5 py-xl-10 fade <%: Session["class"] == "btn4" ? " show active" : " " %>" id="wizard4" role="tabpanel" aria-labelledby="wizard4-tab">
                             <div class="row justify-content-center">
                                 <div class="col-xxl-6 col-xl-8">
                                     <h3 class="text-primary">Paso 4</h3>
                                     <h5 class="card-title mb-4">Confirmar Turno</h5>
+                                    <div class="row small text-muted">
+                                        <div class="col-sm-3 text-truncate">
+                                            <em>Paciente:</em>
+                                        </div>
+                                        <div class="col">
+                                            <asp:Label ID="thisPaciente" Text="000000" runat="server" Enabled="True"/>
+                                            <asp:Label ID="thisPacienteDni" Text="000000" runat="server" Enabled="True"/>
+                                            
+
+                                        </div>
+                                    </div>
                                     <div class="row small text-muted">
                                         <div class="col-sm-3 text-truncate"><em>Especialidad:</em></div>
                                         <div class="col">
@@ -203,6 +234,15 @@
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script>
         $(function () {
+            
+            $(".mostrar").hide();
+            $(".ManCheck").click(function() {
+                if($(this).is(":checked")) {
+                    $(".mostrar").show();
+                } else {
+                    $(".mostrar").hide();
+                }
+            });
             $(".fecha").prop('readonly', true);
             $("#MainContent_fechanow").datepicker({
                 minDate: 1,
@@ -216,6 +256,10 @@
 
         });
     </script>
-
+<% }
+   else
+   {
+       Response.Redirect("Default.aspx",false);
+   }%>
 </asp:Content>
 

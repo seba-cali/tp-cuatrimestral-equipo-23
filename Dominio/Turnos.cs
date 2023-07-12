@@ -13,6 +13,8 @@ namespace Dominio
         public int Id_Hora { get; set; }
         public int Id_Especialidad { get; set; }
         public string observacion { get; set; }
+        
+        public List<Turnos> turnos { get; set; }
         public Turnos(){}
         
         public static Dictionary<int,string> xt {get;set;}
@@ -78,6 +80,8 @@ namespace Dominio
             return xt;
             
         }
+
+        
     }
     
     

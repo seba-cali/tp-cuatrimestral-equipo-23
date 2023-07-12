@@ -31,7 +31,7 @@ namespace Negocio
 					usuario.PASSWORD = db.Lector.GetString(2);
 					usuario.CORREO = db.Lector.GetString(3);
 					usuario.ESTADO = db.Lector.GetBoolean(4);
-					usuario.ID_USUARIO = db.Lector.GetInt32(5);
+					usuario.ID_TIPOUSUARIO = db.Lector.GetInt32(5);
 					db.cerrarConexion();
 					return usuario;
 				}
@@ -133,7 +133,7 @@ namespace Negocio
 					aux.PASSWORD = db.Lector.GetString(2);
 					aux.CORREO = db.Lector.GetString(3);
 					aux.ESTADO = db.Lector.GetBoolean(4);
-					aux.ID_USUARIO = db.Lector.GetInt32(5);
+					aux.ID_TIPOUSUARIO = db.Lector.GetInt32(5);
 					db.cerrarConexion();
 					return aux;
 

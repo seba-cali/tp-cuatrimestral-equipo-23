@@ -179,6 +179,41 @@ namespace Negocio
 			Paciente aux = new Paciente();
 			try
 			{
+				db.setearConsulta("SELECT ID_PACIENTE, NOMBRE, APELLIDO, DIRECCION, FECHA_NACIMIENTO, SEXO, ESTADO, TELEFONO, ID_USUARIO, DNI FROM PACIENTE WHERE DNI= @id");
+				db.setearParametro("@id", val);
+				db.ejecutarLectura();
+				if (db.Lector.Read())
+				{
+
+					aux.ID_PACIENTE = db.Lector.GetInt32(0);
+					aux.nombres = db.Lector.GetString(1);
+					aux.apellidos = db.Lector.GetString(2);
+					aux.direccion = db.Lector.GetString(3);
+					aux.fechaNacimiento = db.Lector.GetDateTime(4);
+					aux.sexo = db.Lector.GetString(5);
+					aux.ESTADO = db.Lector.GetBoolean(6);
+					aux.telefono = db.Lector.GetString(7);
+					aux.ID_USUARIO = db.Lector.GetInt32(8);
+					aux.DNI = db.Lector.GetString(9);
+					db.cerrarConexion();
+					return aux;
+
+				}
+			}
+			catch (Exception e)
+			{
+
+				Console.WriteLine(e);
+				throw;
+			}
+			return null;
+		}
+		public Paciente BuscarXIdUsuario(int val)
+		{
+			DBConnection db = new DBConnection();
+			Paciente aux = new Paciente();
+			try
+			{
 				db.setearConsulta("SELECT ID_PACIENTE, NOMBRE, APELLIDO, DIRECCION, FECHA_NACIMIENTO, SEXO, ESTADO, TELEFONO, ID_USUARIO, DNI FROM PACIENTE WHERE ID_USUARIO= @id");
 				db.setearParametro("@id", val);
 				db.ejecutarLectura();

@@ -42,7 +42,7 @@ namespace Negocio
                 }
 
                 db.cerrarConexion();
-                return turnero;
+                return turnero==null?null:turnero;
             }
             catch (System.Exception ex)
             {
@@ -153,5 +153,6 @@ namespace Negocio
                 db.cerrarConexion();
             }
         }
+        
     }
 }

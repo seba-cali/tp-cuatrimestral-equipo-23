@@ -11,6 +11,7 @@ namespace Negocio
 {
 	public class NegocioEspecialidad
 	{
+		
 		public List<Especialidad> listar()
 		{
 			List<Especialidad> especialidades = new List<Especialidad>();
@@ -103,7 +104,7 @@ namespace Negocio
 				}
 
 		}
-
 		
+
 	}
 }
