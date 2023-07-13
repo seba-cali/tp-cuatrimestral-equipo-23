@@ -379,6 +379,13 @@ namespace WebApplication2.Admin
 				Session.Add("OK", "SE ACTUALIZO EL PACIENTE CON EXITO");
 				Response.Redirect("Administrar_Personas.aspx", false);
 
+				Session.Add("OK", "SE ACTUALIZO EL PACIENTE CON EXITO");
+				LimpiarControles(this);
+				MedicoElegido = false;
+				chkMedico.Checked = false;
+				lblmsg.Text = "🤧 Se actualizo el paciente con éxito.";
+
+
 			}
 			catch (Exception exception)
 			{
@@ -420,13 +427,36 @@ namespace WebApplication2.Admin
 				medico.ID_MEDICO = negocioMedico.RegistrarMedico(medico, IDMEDICO);
 				Response.Redirect("Administrar_Personas.aspx", false);
 
+				Session.Add("OK", "SE ACTUALIZO EL MEDICO CON EXITO");
+				LimpiarControles(this);
+				MedicoElegido = false;
+				chkMedico.Checked = false;
+				lblmsg.Text = "⚕ Se actualizo el médico con éxito.";
+
+
+
 
 			}
 			catch (Exception exception)
 			{
-				Session.Add("Error", "Que paso manito");
-				Console.WriteLine(exception);
-				throw;
+				// Capturar la excepción de duplicación de DNI, usuario o Matricula
+				if (EsExcepcionDuplicacionDNI(exception))
+				{
+					lblmsg.Text = "⚠ Ya existe un médico o usuario con ese DNI o Matricula.";
+					inputDNI.Text = string.Empty;
+					inputMatricula.Text = string.Empty;
+					MedicoElegido = false;
+					chkMedico.Checked = false;
+					//inputUsuario.Text = string.Empty;
+				}
+				else
+				{
+					lblmsg.Text = "Ocurrió un error al actualizar el medico.";
+					Console.WriteLine(exception);
+				}
+				Session.Add("Error", "Que paso Manito");
+				//Console.WriteLine(exception);
+				//throw;
 			}
 		}
 	}
