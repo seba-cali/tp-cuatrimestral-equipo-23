@@ -23,7 +23,7 @@
                                                 
                                                 <div class="mb-3">
                                                     <label class="small mb-1" for="inputPassword">Password</label>
-                                                    <asp:TextBox CssClass="form-control" id="PASSWORDUSER"    placeholder="Ingrese password"  runat="server"/>
+                                                    <asp:TextBox CssClass="form-control" id="PASSWORDUSER"   type="password" placeholder="Ingrese password"  runat="server"/>
                                                 </div>
                                                 
 
@@ -35,15 +35,19 @@
                                                     if (Session["error"] != null)
                                                     {
                                                 %>
-                                                    <div class="alert alert-danger" role="alert">
+                                                 
+                                                    <div class="alert alert-danger toast" id="toastBasic" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
                                                         <%: Session["error"] %>
+                                                       
                                                     </div>
                                                 <%
+                                                    
                                                     }
+                                                    
                                                 %>
                                             
                                         </div>
-                                        <div class="card-footer text-center">
+                                        <div class="card-footer text-center ">
                                             <div class="small"><a  id="create" href="Registrar.aspx">Crear</a></div>
                                             <div class="small"><a  id="recuperar" href="Recuperar.aspx">Olvido password?</a></div>
                                         </div>
@@ -60,4 +64,11 @@
       
            
      %>
+        <script>
+        $(function() {
+                     
+                        
+                            $("#toastBasic").toast("show");
+                            });
+        </script>
    </asp:Content>

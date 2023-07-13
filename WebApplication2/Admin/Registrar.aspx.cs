@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.SqlClient;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
@@ -14,6 +15,7 @@ namespace WebApplication2.Admin
         protected void Page_Load(object sender, EventArgs e)
         {
             
+
         }
         protected void btnRegistrarse_Click(object sender, EventArgs e)
         {
@@ -21,15 +23,11 @@ namespace WebApplication2.Admin
             try
             {
                 
-                
-                
-                
                 //setea tipo usuario
-                if(inputDNI.Text.Length<=4 || inputPassword.Text.Length<=8)
+                if(inputPassword.Text.Length<=8 && inputPassword.Text!= inputConfirmPassword.Text)
                 {
                     
-                
-                    Session.Add("error", "DNI incorrecto o password incorrecto");
+                    Session.Add("errorreg", "password no valido");
                     Response.Redirect("Registrar.aspx", false);
                 }
                 else
@@ -47,7 +45,6 @@ namespace WebApplication2.Admin
                     usuario.username = inputDNI.Text;
                     usuario.CORREO = inputCorreo.Text;
                     usuario.PASSWORD = usuario.encriptar(inputPassword.Text);
-                    usuario.telefono = inputTelefono.Text;
                     //asigna id de usuario y lo guarda en session
                     usuario.ID_USUARIO = usuarioNegocio.RegistrarUsuario(usuario);
                 
@@ -65,7 +62,8 @@ namespace WebApplication2.Admin
             catch (Exception ex)
             {
                 Console.WriteLine("error manito");
-                Session.Add("error", ex.ToString());
+                if (ex is SqlException sqlException && sqlException.Number == 2627)
+                    Session.Add("errorreg", "Usuario o correo ya registrado");
             }
         }
        

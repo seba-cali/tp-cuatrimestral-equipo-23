@@ -17,20 +17,14 @@
 							
 
 										<div class="row gx-3">
-											<div class="col-md-6">
+											<div class="mb-3">
 							
-												<div class="mb-3">
-													<label class="small mb-1" for="inputDNI">DNI</label>
-													<asp:TextBox CssClass="form-control" ID="inputDNI" type="text" placeholder="DNI" requerid runat="server" />
+												<div class=" md-6">
+													<label class="small mb-1" for="inputDNI">username</label>
+													<asp:TextBox CssClass="form-control" ID="inputDNI" type="text" placeholder="username" requerid runat="server" />
 												</div>
 											</div>
-											<div class="col-md-6">
-							
-												<div class="mb-3">
-													<label class="small mb-1" for="inputTelefono">Telefono</label>
-													<asp:TextBox CssClass="form-control" ID="inputTelefono" type="text" placeholder="Telefono" requerid runat="server" />
-												</div>
-											</div>
+											
 										</div>
 							
 										<div class="mb-3">
@@ -62,14 +56,16 @@
 									<div class="small"><a href="Default.aspx">ya tenes cuenta? Entraaaaaa...</a></div>
 								</div>
 								<%
-									if (Session["error"] != null)
+									if (Session["errorreg"] != null)
 									{
 								%>
-								<div class="alert alert-danger" role="alert">
-									<%: Session["error"] %>
+								<div class="alert alert-danger toast" id="toastBasic" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
+									<%: Session["errorreg"] %>
 								</div>
 								<%
+									
 									}
+									
 								%>
 							</div>
 						</div>
@@ -79,4 +75,11 @@
 		</div>
 
 	</div>
+	<script>
+            $(function() {
+                         
+                            
+                                $("#toastBasic").toast("show");
+                                });
+            </script>
 </asp:Content>

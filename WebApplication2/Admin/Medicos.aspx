@@ -1,5 +1,6 @@
-﻿<%@ Page Title="Title" Language="C#" MasterPageFile="Panel.master" CodeBehind="Especialidades.aspx.cs" Inherits="WebApplication2.Admin.Especialidades" %>
+﻿<%@ Page Title="Title" Language="C#" MasterPageFile="Panel.master" CodeBehind="Medicos.aspx.cs" Inherits="WebApplication2.Admin.Medicos" %>
 <%@ Import Namespace="Dominio" %>
+
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 <div id="layoutSidenav_content">
@@ -13,15 +14,8 @@
                                 <div class="page-header-icon">
                                     <i data-feather="users"></i>
                                 </div>
-                                Lista de Especialidades
+                              Turnos del dia
                             </h1>
-                        </div>
-                        <div class="col-12 col-xl-auto mb-3">
-                            
-                            <button class="btn btn-sm btn-light text-primary" type="button" data-bs-toggle="modal" data-bs-target="#createGroupModal">
-                                <i class="me-1" data-feather="plus"></i>
-                                Crear Nueva Especialidad
-                            </button>
                         </div>
                     </div>
                 </div>
@@ -35,43 +29,60 @@
                         <thead>
                         <tr>
                             <th>id</th>
+                            <th>Nombre</th>
+                            <th>Dni</th>
                             <th>Especialidad</th>
-                            <th>Descripcion</th>
-                            <th>Imagen</th>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Observacion</th>
+                            <th>Estado</th>
                             <th>Acciones</th>
                         </tr>
                         </thead>
                         <tfoot>
                         <tr>
                             <th>id</th>
+                            <th>Nombre</th>
+                            <th>Dni</th>
                             <th>Especialidad</th>
-                            <th>Descripcion</th>
-                            <th>Imagen</th>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Observacion</th>
+                            <th>Estado</th>
                             <th>Acciones</th>
                         </tr>
                         </tfoot>
                         <tbody>
-                        <% 
-                            foreach (Dominio.Especialidad espe in ListaEspecialidades)
-                            {  %>
+                        <%
+                            foreach (Turnos tux in ListaTurnos)
+                            {
+                                var pac = ListaPacientes.Find(x => x.ID_PACIENTE == tux.Id_Paciente);
+                                var esp = ListaEspecialidades.Find(x => x.id == tux.Id_Especialidad);
+                                if (tux.fecha == DateTime.Today){
+                        %>
                             <tr>
-                                <td class="esp<%= espe.id %>"><%: espe.id %></td>
-                                <td class="esp<%= espe.nombre%>"><%: espe.nombre %></td>
-                                <td><%: espe.descripcion %></td>
+                                <td class="esp<%= tux.Id_Turno %>"><%: tux.Id_Turno %></td>
+                                <td class="esp<%= pac.nombreCompleto %>"><%: pac.nombreCompleto %></td>
+                                <td><%: pac.DNI %></td>
                                 <td>
-                                    <img src="<%: espe.url_img_esp %>" class="img-fluid w-25" alt="">
+                                    <%: esp.nombre %>
 
                                 </td>
+                                <td><%: tux.fecha.ToShortDateString() %></td>
+                                <td><%= Turnos.GetRepro()[tux.Id_Hora] %></td>
+                                <td><%= tux.observacionMed %></td>
+                                <td><%= Turnos.EstadoInfArray[tux.EstadoInf] %></td>
+                                
                                 <td>
-                                    <a id="<%= espe.id %>"  class="btn btn-datatable btn-icon btn-transparent-dark editar me-2" type="button"   data-bs-toggle="modal" data-bs-target="#editGroupModal">
+                                    <a id="<%= tux.Id_Turno %>"  class="btn btn-datatable btn-icon btn-transparent-dark editar me-2" type="button"   data-bs-toggle="modal" data-bs-target="#editGroupModal">
                                         <i data-feather="edit"></i>
                                     </a>
-                                    <a id="<%= espe.id %>" class="btn btn-datatable btn-icon btn-transparent-dark delete" type="button"   data-bs-toggle="modal" data-bs-target="#eliminaGroupModal">
-                                        <i data-feather="trash-2"></i>
-                                    </a>
+                                    
                                 </td>
                             </tr>
-                        <% } %>
+                        <% }
+    }
+                        %>
                         </tbody>
                     </table>
                 </div>
@@ -104,7 +115,7 @@
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-danger-soft text-danger" type="button" data-bs-dismiss="modal">Cerrar</button>
-                        <asp:Button ID="Button1" CausesValidation="False"  runat="server" Text="Crear Nueva Especialidad"   CssClass="btn btn-primary-soft text-primary" OnClientClick="return ;" OnClick="AltaEscpecialidad"/>
+                        <asp:Button ID="Button1" CausesValidation="False"  runat="server" Text="Crear Nueva Especialidad"   CssClass="btn btn-primary-soft text-primary" OnClientClick="return ;" />
                     </div>
                      
                 </div>
@@ -148,36 +159,16 @@
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-danger-soft text-danger" type="button" data-bs-dismiss="modal">Cerrar</button>
-                        <asp:Button ID="Button2" runat="server" Text="Modificar Especialidad" CausesValidation="False" OnClientClick="return ;" CssClass="btn btn-primary-soft text-primary" OnClick="EditarEscpecialidad"/>
+                        <asp:Button ID="Button2" runat="server" Text="Modificar Especialidad" CausesValidation="False" OnClientClick="return ;" CssClass="btn btn-primary-soft text-primary" />
                     </div>
                     
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="eliminaGroupModal" tabindex="-1" role="dialog" aria-labelledby="eliminaGroupModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="eliminaGroupModal">Edit Group</h5>
-                        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                        
-                    <div class="modal-body">
-                        <h1>Eliminar el elemento?</h1>
-                        <h1 class="elemento"></h1>
-                            <asp:TextBox class="form-control formGroupIdDelete" id="formGroupIdDelete" type="text" hidden  runat="server"/>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-danger-soft text-danger" type="button" data-bs-dismiss="modal">Cerrar</button>
-                        <asp:Button ID="Button3" runat="server"  Text="Eliminar Especialidad" CssClass="btn btn-primary-soft text-primary" CausesValidation="False" OnClick="EliminaEscpecialidad"/>
-                    </div>
-
-                </div>
-            </div>
-            
-        </div>
         <%
-            if (Session["OK"] != null)
+    if
+
+    (Session["OK"] != null)
             {
         %>
         <div style="position: absolute; bottom: 1rem; right: 1rem; visibility : <%: Session["OK"] == null? "hidden": "visible" %> ">

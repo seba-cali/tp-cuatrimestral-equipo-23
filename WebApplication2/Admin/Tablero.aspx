@@ -34,12 +34,12 @@
                 <div class="row align-items-center">
                     <div class="col-xl-8 col-xxl-12">
                         <div class="text-center text-xl-start text-xxl-center mb-4 mb-xl-0 mb-xxl-4">
-                            <h1 class="text-primary">Bienvenido a tu panel de control </h1>
-                            <p class="text-gray-700 mb-0">Aca vas a poder solicitar turnos</p>
+                            <h1 class="text-primary">Hola! <%: usuario.username %>.  </h1>
+                            <p class="text-gray-700 mb-0">Fecha: <%: DateTime.Now%></p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-xxl-12 text-center">
-                        <img class="img-fluid" src="../../assets/img/illustrations/at-work.svg" style="max-width: 26rem"/>
+                        <img class="img-fluid" src="../assets/img/medico.png" style="max-width: 16rem"/>
                     </div>
                 </div>
             </div>
@@ -150,8 +150,8 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="me-3">
-                        <div class="text-white-75 small">Turnos De Baja Logica</div>
-                        <div class="text-lg fw-bold"><%= ListaTurnos.FindAll(x=> x.Estado==false).Count%></div>
+                        <div class="text-white-75 small">Turnos De Baja Cancelados</div>
+                        <div class="text-lg fw-bold"><%= ListaTurnos.FindAll(x=> x.EstadoInf==2).Count%></div>
                     </div>
                     <i class="feather-xl text-white-50" data-feather="message-circle"></i>
                 </div>
@@ -166,7 +166,7 @@
     </div>
 </div>
 <!-- Example Charts for Dashboard Demo-->
-<div class="row">
+<%--<div class="row">
     <div class="col-xl-6 mb-4">
         <div class="card card-header-actions h-100">
             <div class="card-header">
@@ -217,7 +217,7 @@
             </div>
         </div>
     </div>
-</div>
+</div>--%>
 <% } %>
 <!-- Example DataTable for Dashboard Demo-->
 <div class="card mb-4">

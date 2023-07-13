@@ -14,6 +14,7 @@ namespace WebApplication2.Admin
         {
             
             usuario= (Usuario)Session["usuario"];
+            
 
         }
         protected void btn_Login(object sender, EventArgs e)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.UI;
 using Dominio;
 using Negocio;
@@ -33,13 +34,13 @@ namespace WebApplication2.Admin
             
             NegocioEspecialidad negocioEspecialidad = new NegocioEspecialidad();
             ListaEspecialidades = negocioEspecialidad.listar();
-            
+            NegocioPaciente negocioPaciente = new NegocioPaciente();
+            ListaPacientes = negocioPaciente.listar();
             if (usuario.ID_TIPOUSUARIO <3)
             {
                 NegocioTurno negocio = new NegocioTurno();
-                ListaTurnos = negocio.listar();
-                NegocioPaciente negocioPaciente = new NegocioPaciente();
-                ListaPacientes = negocioPaciente.listar();
+                ListaTurnos = negocio.listar().OrderByDescending(x => x.fecha).ToList();
+               
                 
             }
 
@@ -47,26 +48,20 @@ namespace WebApplication2.Admin
             {
                 NegocioMedico negocioMedico = new NegocioMedico();
                 ListMedicos = negocioMedico.listar();
-                
-                
-                NegocioPaciente negocioPaciente = new NegocioPaciente();
-                ListaPacientes = negocioPaciente.listar();
-                
+
                 Medico medico = ListMedicos.Find(x => x.ID_USUARIO == usuario.ID_USUARIO);
                 NegocioTurno negocio = new NegocioTurno();
                 ListaTurnos = negocio.listar();
-                ListaTurnos = ListaTurnos.FindAll(x => x.Id_Medico == medico.ID_MEDICO);
+                ListaTurnos = ListaTurnos.FindAll(x => x.Id_Medico == medico.ID_MEDICO).OrderByDescending(x => x.fecha).ToList();
                 
             }
 
             if (usuario.ID_TIPOUSUARIO == 4)
             {
-                NegocioPaciente negocioPaciente = new NegocioPaciente();
-                ListaPacientes = negocioPaciente.listar();
                 Paciente paciente = ListaPacientes.Find(x => x.ID_USUARIO == usuario.ID_USUARIO);
                 NegocioTurno negocio = new NegocioTurno();
                 ListaTurnos = negocio.listar();
-                ListaTurnos = ListaTurnos.FindAll(x => x.Id_Paciente == paciente.ID_PACIENTE);
+                ListaTurnos = ListaTurnos.FindAll(x => x.Id_Paciente == paciente.ID_PACIENTE).OrderByDescending(x => x.fecha).ToList();
                 
                 
             }

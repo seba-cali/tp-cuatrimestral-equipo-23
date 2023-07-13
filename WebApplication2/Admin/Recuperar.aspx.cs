@@ -13,10 +13,7 @@ namespace WebApplication2.Admin
         public int idcode=0;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(Session["usuario"]==null)
-            {
-                Response.Redirect("Default.aspx", false);
-            }
+     
             //toma codigo por url dwl sitio
             code = Request.QueryString["code"] != null ? Request.QueryString["code"].ToString() : "";
             if (!IsPostBack)
