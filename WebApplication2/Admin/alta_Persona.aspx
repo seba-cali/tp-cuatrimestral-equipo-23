@@ -117,7 +117,8 @@
 		</div>
 		<% if (MedicoElegido && !esPaciente)
 			{
-		%>
+
+%>
 		<div class="row">
 			<div class="col-6 col-sm-3">
 				<asp:TextBox CssClass="form-control" ID="inputMatricula" type="text" placeholder="Matricula" runat="server" />
@@ -141,7 +142,7 @@
 		</div>
 
 		<div class="row">
-<%--			<div class="col-4">
+			<%--			<div class="col-4">
 				<asp:Label ID="espMed" Text="Elija las especialidades del medico"
 					Style="color: white; font-weight: bold;" runat="server" />
 
@@ -149,7 +150,9 @@
 			</div>--%>
 			<div class="row my-5">
 				<div class="col-3">
+					<%if (!esMedico) {%> 
 					<asp:Button runat="server" type="button" Text="Dar de Alta Medico" class="btn btn-primary btn-lg" OnClick="AltaMedico_Click" />
+					<%} %>
 				</div>
 			</div>
 		</div>
@@ -158,7 +161,7 @@
 		<div class="row my-5">
 			<div class="col-3">
 
-				<% if (!MedicoElegido && !esPaciente)
+				<% if (!MedicoElegido && !esPaciente && !esMedico)
 
 					{
 				%>
@@ -167,9 +170,12 @@
 				<% }
 					else if (esPaciente)
 					{%>
-				<asp:Button ID="btnActualizarPaciente" type="button" class="btn btn-primary btn-lg" runat="server" Text="Actualizar Paciente" OnClick="btnActualizarPaciente_Click" /><%
+				<asp:Button ID="btnActualizarPaciente" type="button" class="btn btn-primary btn-lg" runat="server" Text="Actualizar Paciente" OnClick="btnActualizarPaciente_Click" /><%}
+																																																		 else if (esMedico)
+																																																		 {%>
+				<asp:Button ID="btnActualizarMedico" type="button" class="btn btn-primary btn-lg" runat="server" Text="Actualizar Medico" OnClick="btnActualizarMedico_Click" />
 
-		}%>
+				<%}%>
 			</div>
 		</div>
 	</div>

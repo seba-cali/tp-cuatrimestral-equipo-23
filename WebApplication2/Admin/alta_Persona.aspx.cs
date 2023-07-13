@@ -72,6 +72,7 @@ namespace WebApplication2.Admin
 			//todo:Checkear por que Paciente no crea ni usuario ni paciente si algo falla, pero medico si lo hace (no deberia)
 			if (idPaciente != "" && idUsuario != "" && !IsPostBack)
 			{
+				esMedico = false;
 				esPaciente = true;
 				NegocioPaciente negocio = new NegocioPaciente();
 				NegocioUsuario usuario = new NegocioUsuario();
@@ -97,49 +98,50 @@ namespace WebApplication2.Admin
 				inputDNI.Text = seleccionado.DNI;
 			}
 			else if (idMedico != "" && idUsuario != "" && !IsPostBack)
-            {
-                MedicoElegido = true;
+			{
+				esMedico = true;
+				esPaciente = false;
+				MedicoElegido = true;
 				chkMedico.Checked = true;
-                esPaciente = false;
-                NegocioMedico negocio = new NegocioMedico();
-                NegocioUsuario usuario = new NegocioUsuario();
-                //List<Paciente> listaPacientes = negocio.listar(idPaciente);
-                //Paciente seleccionado = listaPacientes[0];		
-                Medico seleccionado = (negocio.listar(idMedico))[0];
-                Usuario usuarioseleccionado = (usuario.listar(idUsuario))[0];
-                inputDNI.Text = usuarioseleccionado.DNI;
-                inputPassword.Text = usuarioseleccionado.PASSWORD;
-                inputRePassword.Text = usuarioseleccionado.PASSWORD;
+				NegocioMedico negocio = new NegocioMedico();
+				NegocioUsuario usuario = new NegocioUsuario();
+				//List<Paciente> listaPacientes = negocio.listar(idPaciente);
+				//Paciente seleccionado = listaPacientes[0];		
+				Medico seleccionado = (negocio.listar(idMedico))[0];
+				Usuario usuarioseleccionado = (usuario.listar(idUsuario))[0];
+				inputDNI.Text = usuarioseleccionado.DNI;
+				inputPassword.Text = usuarioseleccionado.PASSWORD;
+				inputRePassword.Text = usuarioseleccionado.PASSWORD;
 
-                inputEmail.Text = usuarioseleccionado.CORREO;
+				inputEmail.Text = usuarioseleccionado.CORREO;
 
-                inputNombres.Text = seleccionado.nombres;
-                inputApellidos.Text = seleccionado.apellidos;
-                //precargar fecha de nacimiento	
-                DateTime fechaNacimiento = seleccionado.fechaNacimiento;
-                inputFechaNacimiento.Text = fechaNacimiento.ToString("yyyy-MM-dd");
-                //precargar combobox sexo
-                inputSexo.SelectedValue = seleccionado.sexo;
-                inputTelefono.Text = seleccionado.telefono;
-                inputDireccion.Text = seleccionado.direccion;
-                inputDNI.Text = seleccionado.DNI;
+				inputNombres.Text = seleccionado.nombres;
+				inputApellidos.Text = seleccionado.apellidos;
+				//precargar fecha de nacimiento	
+				DateTime fechaNacimiento = seleccionado.fechaNacimiento;
+				inputFechaNacimiento.Text = fechaNacimiento.ToString("yyyy-MM-dd");
+				//precargar combobox sexo
+				inputSexo.SelectedValue = seleccionado.sexo;
+				inputTelefono.Text = seleccionado.telefono;
+				inputDireccion.Text = seleccionado.direccion;
+				inputDNI.Text = seleccionado.DNI;
 				inputMatricula.Text = seleccionado.Matricula;
-                //ListBox checkBox = new ListBox();
-                //checkBox.ID = "nery";
-                //checkBox.SelectionMode = ListSelectionMode.Multiple;
-                //checkBox.CssClass = "form-control";
-                //if (IsPostBack)
-                //{
+				//ListBox checkBox = new ListBox();
+				//checkBox.ID = "nery";
+				//checkBox.SelectionMode = ListSelectionMode.Multiple;
+				//checkBox.CssClass = "form-control";
+				//if (IsPostBack)
+				//{
 
-                //    foreach (Especialidad pivot in ListaEspecialidades)
-                //    {
-                //        checkBox.Items.Add(new ListItem(pivot.nombre, pivot.id.ToString()));
-                //    }
+				//    foreach (Especialidad pivot in ListaEspecialidades)
+				//    {
+				//        checkBox.Items.Add(new ListItem(pivot.nombre, pivot.id.ToString()));
+				//    }
 
-                //    loco.Controls.Add(checkBox);
-                //}
+				//    loco.Controls.Add(checkBox);
+				//}
 
-            }
+			}
 			else
 			{
 				/*esPaciente = false;
@@ -155,6 +157,7 @@ namespace WebApplication2.Admin
 				checkBox.CssClass = "form-control";				
 				*/
 				esPaciente = false;
+				esMedico = false;
 
 				NegocioPaciente negocioPaciente = new NegocioPaciente();
 				//NegocioEspecialidad negocioEspecialidad = new NegocioEspecialidad();
@@ -181,6 +184,7 @@ namespace WebApplication2.Admin
 		}
 
 		public bool esPaciente { get; set; }
+		public bool esMedico { get; set; }
 
 		public bool MedicoElegido { get; set; }
 		protected void chkMedico_CheckedChanged(object sender, EventArgs e)
@@ -379,6 +383,48 @@ namespace WebApplication2.Admin
 			catch (Exception exception)
 			{
 				Session.Add("Error", "Que paso Manito");
+				Console.WriteLine(exception);
+				throw;
+			}
+		}
+
+		protected void btnActualizarMedico_Click(object sender, EventArgs e)
+		{
+			int IDMEDICO = Convert.ToInt32(Request.QueryString["idMedico"]);
+			int IDUSUARIO = Convert.ToInt32(Request.QueryString["idUsuario"]);
+
+			Session.Add("OK", "");
+			try
+			{
+				Medico medico = new Medico();
+				Usuario usuario = new Usuario();
+				NegocioUsuario negocioUsuario = new NegocioUsuario();
+				negocioMedico = new NegocioMedico();
+				usuario.DNI = inputDNI.Text;
+				usuario.PASSWORD = inputPassword.Text;
+				usuario.CORREO = inputEmail.Text;
+				usuario.ID_TIPOUSUARIO = 3;
+				negocioUsuario.RegistrarUsuario(usuario, IDUSUARIO);
+
+				medico.nombres = inputNombres.Text;
+				medico.apellidos = inputApellidos.Text;
+				medico.sexo = inputSexo.Text;
+				medico.fechaNacimiento = Convert.ToDateTime(inputFechaNacimiento.Text);
+				medico.telefono = inputTelefono.Text;
+				medico.CORREO = inputEmail.Text;  //va o copia de usuario?
+				medico.direccion = inputDireccion.Text;
+				medico.ESTADO = true;
+				medico.ID_USUARIO = IDUSUARIO;
+				medico.DNI = inputDNI.Text;
+				medico.Matricula = inputMatricula.Text;
+				medico.ID_MEDICO = negocioMedico.RegistrarMedico(medico, IDMEDICO);
+				Response.Redirect("Administrar_Personas.aspx", false);
+
+
+			}
+			catch (Exception exception)
+			{
+				Session.Add("Error", "Que paso manito");
 				Console.WriteLine(exception);
 				throw;
 			}
