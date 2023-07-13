@@ -44,7 +44,7 @@ namespace WebApplication2.Admin
                     temlate = temlate.Replace("[dni]", inputDNI.Text.Trim());
                     temlate = temlate.Replace("[password]", inputPassword.Text.Trim());
                     //Fin template email
-                    usuario.DNI = inputDNI.Text;
+                    usuario.username = inputDNI.Text;
                     usuario.CORREO = inputCorreo.Text;
                     usuario.PASSWORD = usuario.encriptar(inputPassword.Text);
                     usuario.telefono = inputTelefono.Text;

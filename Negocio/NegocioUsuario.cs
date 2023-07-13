@@ -17,8 +17,8 @@ namespace Negocio
 
 
 
-				db.setearConsulta("SELECT ID_USUARIO, DNI, PASSWORD, CORREO, ESTADO, ID_TIPOUSUARIO FROM USUARIO WHERE DNI= @DNI AND PASSWORD = @password");
-				db.setearParametro("@DNI", usuario.DNI);
+				db.setearConsulta("SELECT ID_USUARIO, USERNAME, PASSWORD, CORREO, ESTADO, ID_TIPOUSUARIO FROM USUARIO WHERE USERNAME= @username AND PASSWORD = @password");
+				db.setearParametro("@username", usuario.username);
 				db.setearParametro("@password", usuario.PASSWORD);
 				db.ejecutarLectura();
 
@@ -27,7 +27,7 @@ namespace Negocio
 				{
 
 					usuario.ID_USUARIO = db.Lector.GetInt32(0);
-					usuario.DNI = db.Lector.GetString(1);
+					usuario.username = db.Lector.GetString(1);
 					usuario.PASSWORD = db.Lector.GetString(2);
 					usuario.CORREO = db.Lector.GetString(3);
 					usuario.ESTADO = db.Lector.GetBoolean(4);
@@ -66,11 +66,11 @@ namespace Negocio
 
 				if (idUsuario != "")
 				{
-					db.setearConsulta("SELECT ID_USUARIO, DNI, PASSWORD, CORREO, ESTADO, ID_TIPOUSUARIO FROM USUARIO where ID_USUARIO = " + idUsuario);
+					db.setearConsulta("SELECT ID_USUARIO, USERNAME, PASSWORD, CORREO, ESTADO, ID_TIPOUSUARIO FROM USUARIO where ID_USUARIO = " + idUsuario);
 				}
 				else
 				{
-					db.setearConsulta("SELECT ID_USUARIO, DNI, PASSWORD, CORREO, ESTADO, ID_TIPOUSUARIO FROM USUARIO");
+					db.setearConsulta("SELECT ID_USUARIO, USERNAME, PASSWORD, CORREO, ESTADO, ID_TIPOUSUARIO FROM USUARIO");
 				}
 					db.ejecutarLectura();
 
@@ -80,7 +80,7 @@ namespace Negocio
 				{
 					Usuario aux = new Usuario();
 					aux.ID_USUARIO = db.Lector.GetInt32(0);
-					aux.DNI = db.Lector.GetString(1);
+					aux.username = db.Lector.GetString(1);
 					aux.PASSWORD = db.Lector.GetString(2);
 					aux.CORREO = db.Lector.GetString(3);
 
@@ -122,14 +122,14 @@ namespace Negocio
 			Usuario aux = new Usuario();
 			try
 			{
-				db.setearConsulta("SELECT ID_USUARIO, DNI, PASSWORD, CORREO, ESTADO, ID_TIPOUSUARIO FROM USUARIO WHERE ID_USUARIO= @id");
+				db.setearConsulta("SELECT ID_USUARIO, USERNAME, PASSWORD, CORREO, ESTADO, ID_TIPOUSUARIO FROM USUARIO WHERE ID_USUARIO= @id");
 				db.setearParametro("@id", val);
 				db.ejecutarLectura();
 				if (db.Lector.Read())
 				{
 
 					aux.ID_USUARIO = db.Lector.GetInt32(0);
-					aux.DNI = db.Lector.GetString(1);
+					aux.username = db.Lector.GetString(1);
 					aux.PASSWORD = db.Lector.GetString(2);
 					aux.CORREO = db.Lector.GetString(3);
 					aux.ESTADO = db.Lector.GetBoolean(4);
@@ -173,7 +173,7 @@ namespace Negocio
 				{
 					db.setearProcedimiento("ActualizarUsuario");
 					db.setearParametro("@Id_Usuario", id);
-					db.setearParametro("@dni", nuevo.DNI);
+					db.setearParametro("@username", nuevo.username);
 					db.setearParametro("@correo", nuevo.CORREO);
 					db.setearParametro("@password", nuevo.PASSWORD);
 					db.setearParametro("@estado", 1);
@@ -185,7 +185,7 @@ namespace Negocio
 				{
 
 					db.setearProcedimiento("RegistrarUsuario");
-					db.setearParametro("@dni", nuevo.DNI);
+					db.setearParametro("@username", nuevo.username);
 					db.setearParametro("@correo", nuevo.CORREO);
 					db.setearParametro("@password", nuevo.PASSWORD);
 					db.setearParametro("@estado", 1);

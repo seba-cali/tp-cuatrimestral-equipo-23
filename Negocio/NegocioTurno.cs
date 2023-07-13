@@ -17,13 +17,13 @@ namespace Negocio
                 if (idturno>0)
                 {
                     db.setearConsulta(
-                        "SELECT ID_TURNO, FECHA, ESTADO, ID_MEDICO, ID_PACIENTE,ID_HORA, ID_ESPECIALIDAD  FROM TURNO WHERE ID_PAciente = @id_turno" );
+                        "SELECT ID_TURNO, FECHA, ESTADO, ID_MEDICO, ID_PACIENTE,ID_HORA, ID_ESPECIALIDAD, observacion, ESTADOINFORME,OBSERVACIONMEDICO,NUMGENERADO  FROM TURNO WHERE ID_Paciente = @id_turno" );
                     db.setearParametro("@id_turno", idturno);
                     
                 }
                 else
                 {
-                    db.setearConsulta("SELECT ID_TURNO, FECHA, ESTADO, ID_MEDICO, ID_PACIENTE,ID_HORA, ID_ESPECIALIDAD  FROM TURNO");
+                    db.setearConsulta("SELECT ID_TURNO, FECHA, ESTADO, ID_MEDICO, ID_PACIENTE,ID_HORA, ID_ESPECIALIDAD, observacion, ESTADOINFORME,OBSERVACIONMEDICO,NUMGENERADO  FROM TURNO");
                 }
 
                 db.ejecutarLectura();
@@ -38,6 +38,10 @@ namespace Negocio
                     aux.Id_Paciente = db.Lector.GetInt32(4);
                     aux.Id_Hora = db.Lector.GetInt32(5);
                     aux.Id_Especialidad = db.Lector.GetInt32(6);
+                    aux.observacion = db.Lector.GetString(7);
+                    aux.EstadoInf = db.Lector.GetInt32(8);
+                    aux.observacionMed = db.Lector.GetString(9);
+                    aux.NumGenerado = db.Lector.GetInt32(10);
                     turnero.Add(aux);
                 }
 

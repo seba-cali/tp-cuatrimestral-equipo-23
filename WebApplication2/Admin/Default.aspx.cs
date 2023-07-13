@@ -25,10 +25,10 @@ namespace WebApplication2.Admin
             {
                 Usuario usuuario= new Usuario();
                 NegocioUsuario negocioUsuario = new NegocioUsuario();    
-                usuuario.DNI= DNIUSER.Text;
+                usuuario.username= DNIUSER.Text;
                 usuuario.PASSWORD = usuuario.encriptar(PASSWORDUSER.Text);
                 
-                if(usuuario.DNI.Length<=4|| usuuario.PASSWORD.Length<=8)
+                if(usuuario.username.Length<=4|| usuuario.PASSWORD.Length<=8)
                 {
                     Session.Add("error", "Complete los campos");
                     Response.Redirect("Default.aspx", false);
