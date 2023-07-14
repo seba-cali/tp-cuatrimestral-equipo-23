@@ -239,7 +239,7 @@ namespace WebApplication2.Admin
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox inputMatricula;
 
-<<<<<<< HEAD
+
 		/// <summary>
 		/// btnActualizarPaciente control.
 		/// </summary>
@@ -248,7 +248,7 @@ namespace WebApplication2.Admin
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
 		protected global::System.Web.UI.WebControls.Button btnActualizarPaciente;
-=======
+
         /// <summary>
         /// rfvMatricula control.
         /// </summary>
@@ -258,15 +258,15 @@ namespace WebApplication2.Admin
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvMatricula;
 
-        /// <summary>
-        /// btnActualizarPaciente control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnActualizarPaciente;
->>>>>>> c1b638d39768481e1ee635e60cb8d29dce91afca
+        ///// <summary>
+        ///// btnActualizarPaciente control.
+        ///// </summary>
+        ///// <remarks>
+        ///// Auto-generated field.
+        ///// To modify move field declaration from designer file to code-behind file.
+        ///// </remarks>
+        //protected global::System.Web.UI.WebControls.Button btnActualizarPaciente;
+
 
         /// <summary>
         /// btnActualizarMedico control.
