@@ -123,7 +123,7 @@
 			<div class="col-6 col-sm-3">
 				<asp:TextBox CssClass="form-control" ID="inputMatricula" type="text" placeholder="Matricula" runat="server" />
 				<%--validacion matricula requerido--%>
-				<asp:RequiredFieldValidator ID="rfvMatricula" runat="server" ControlToValidate="inputMatricula" ErrorMessage="⚠ Ingrese Matricula" ForeColor="pink" Font-Bold="true"></asp:RequiredFieldValidator>
+<%--				<asp:RequiredFieldValidator ID="rfvMatricula" runat="server" ControlToValidate="inputMatricula" ErrorMessage="⚠ Ingrese Matricula" ForeColor="pink" Font-Bold="true"></asp:RequiredFieldValidator>--%>
 
 
 
