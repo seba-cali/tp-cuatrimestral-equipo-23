@@ -80,7 +80,7 @@ namespace WebApplication2.Admin
 				//Paciente seleccionado = listaPacientes[0];		
 				Paciente seleccionado = (negocio.listar(idPaciente))[0];
 				Usuario usuarioseleccionado = (usuario.listar(idUsuario))[0];
-				inputDNI.Text = usuarioseleccionado.DNI;
+				inputDNI.Text = usuarioseleccionado.username;
 				inputPassword.Text = usuarioseleccionado.PASSWORD;
 				inputRePassword.Text = usuarioseleccionado.PASSWORD;
 
@@ -109,7 +109,7 @@ namespace WebApplication2.Admin
 				//Paciente seleccionado = listaPacientes[0];		
 				Medico seleccionado = (negocio.listar(idMedico))[0];
 				Usuario usuarioseleccionado = (usuario.listar(idUsuario))[0];
-				inputDNI.Text = usuarioseleccionado.DNI;
+				inputDNI.Text = usuarioseleccionado.username;
 				inputPassword.Text = usuarioseleccionado.PASSWORD;
 				inputRePassword.Text = usuarioseleccionado.PASSWORD;
 
@@ -207,7 +207,7 @@ namespace WebApplication2.Admin
 					NegocioUsuario negocioUsuario = new NegocioUsuario();
 					negocioPaciente = new NegocioPaciente();
 
-					usuario.DNI = inputDNI.Text; //aca usamos el mismo input tanto para paciente como para usuario
+					usuario.username = inputDNI.Text; //aca usamos el mismo input tanto para paciente como para usuario
 					usuario.PASSWORD = inputPassword.Text;
 					usuario.CORREO = inputEmail.Text;
 					usuario.ID_TIPOUSUARIO = 4;
@@ -277,7 +277,7 @@ namespace WebApplication2.Admin
 					Usuario usuario = new Usuario();
 					NegocioUsuario negocioUsuario = new NegocioUsuario();
 					negocioMedico = new NegocioMedico();
-					usuario.DNI = inputDNI.Text;
+					usuario.username = inputDNI.Text;
 					usuario.PASSWORD = inputPassword.Text;
 					usuario.CORREO = inputEmail.Text;
 					usuario.ID_TIPOUSUARIO = 3;
@@ -360,7 +360,7 @@ namespace WebApplication2.Admin
 				NegocioUsuario negocioUsuario = new NegocioUsuario();
 				negocioPaciente = new NegocioPaciente();
 
-				usuario.DNI = inputDNI.Text;
+				usuario.username = inputDNI.Text;
 				usuario.PASSWORD = inputPassword.Text;
 				usuario.CORREO = inputEmail.Text;
 				usuario.ID_TIPOUSUARIO = 4;
@@ -407,7 +407,7 @@ namespace WebApplication2.Admin
 				Usuario usuario = new Usuario();
 				NegocioUsuario negocioUsuario = new NegocioUsuario();
 				negocioMedico = new NegocioMedico();
-				usuario.DNI = inputDNI.Text;
+				usuario.username = inputDNI.Text;
 				usuario.PASSWORD = inputPassword.Text;
 				usuario.CORREO = inputEmail.Text;
 				usuario.ID_TIPOUSUARIO = 3;

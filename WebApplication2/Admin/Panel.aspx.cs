@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.UI;
 using Dominio;
+using Negocio;
 
 namespace WebApplication2.Admin
 {
@@ -11,8 +13,19 @@ namespace WebApplication2.Admin
         protected void Page_Load(object sender, EventArgs e)
         {
             
-            usuario= (Usuario)Session["usuario"];
-
+            
+                usuario = (Usuario)Session["usuario"];
+                
+            
+            
+        }
+        private bool VerificaUsuario(int o)
+        {
+            NegocioPaciente negocioPaciente = new NegocioPaciente();
+            List<Paciente>ListaPacientes = new List<Paciente>();
+            ListaPacientes = negocioPaciente.listar();
+            Paciente paciente = ListaPacientes.Find(x => x.ID_USUARIO == o);
+            return paciente==null?false:true;
         }
 
         protected void btn_logout(object sender, EventArgs e)

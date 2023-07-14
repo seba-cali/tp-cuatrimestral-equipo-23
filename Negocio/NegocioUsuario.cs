@@ -177,7 +177,7 @@ namespace Negocio
 					db.setearParametro("@correo", nuevo.CORREO);
 					db.setearParametro("@password", nuevo.PASSWORD);
 					db.setearParametro("@estado", 1);
-					db.setearParametro("@tipoUsuario", 4);
+					db.setearParametro("@tipoUsuario", nuevo.ID_TIPOUSUARIO);
 					db.ejecutarLectura();
 					return 0;
 				}
@@ -189,7 +189,7 @@ namespace Negocio
 					db.setearParametro("@correo", nuevo.CORREO);
 					db.setearParametro("@password", nuevo.PASSWORD);
 					db.setearParametro("@estado", 1);
-					db.setearParametro("@tipoUsuario", 4);
+					db.setearParametro("@tipoUsuario", nuevo.ID_TIPOUSUARIO);
 				return db.ejecutarLecturaInt();
 				}
 			}

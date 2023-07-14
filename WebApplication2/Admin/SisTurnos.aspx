@@ -2,7 +2,8 @@
 <%@ Import Namespace="Dominio" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server" xmlns:aps="http://www.w3.org/1999/html">
-<% if( usuario != null){ %>
+<% if( usuario != null ){ 
+     %>
     <div id="layoutSidenav_content">
     <main>
         <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
@@ -299,9 +300,11 @@
         });
     </script>
 <% }
-   else
-   {
+   else 
+       if(pivot)
+           Response.Redirect("~/Admin/Perfil.aspx",false);
+       else
        Response.Redirect("Default.aspx",false);
-   }%>
+   %>
 </asp:Content>
 

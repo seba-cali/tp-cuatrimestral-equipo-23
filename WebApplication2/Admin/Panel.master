@@ -125,7 +125,7 @@
                                             <div class="nav accordion" id="accordionSidenav">
                                                 
                                                  <% if (usuario.ID_TIPOUSUARIO != 3)
-                                                                                                   { %>
+                                                    { %>
                                                 <!-- Sidenav Menu Heading (Core)-->
                                                 <div class="sidenav-menu-heading">Sistema Turno v1.0</div>
                                                 <!-- Sidenav Accordion (Dashboard)-->
@@ -143,7 +143,7 @@
                                                     </nav>
                                                 </div>
                                                     <%
-                                                                                                       } %>
+                                                    } %>
                                                 <% if (usuario.ID_TIPOUSUARIO == 3)
                                                    { %>
                                                     <div class="sidenav-menu-heading">Area Medico</div>
@@ -152,7 +152,7 @@
                                                         <div class="nav-link-icon">
                                                             <i data-feather="activity"></i>
                                                         </div>
-                                                        ABM MEDICO
+                                                        Gestion de Pacientes
                                                         <div class="sidenav-collapse-arrow">
                                                             <i class="fas fa-angle-down"></i>
                                                         </div>
@@ -168,7 +168,8 @@
                                                 <%
                                                    } %>
                                                 <!-- Sidenav Heading (Custom)-->
-                                                <% if(usuario.ID_TIPOUSUARIO<3){ %>
+                                                <% if (usuario.ID_TIPOUSUARIO < 3)
+                                                   { %>
                                                 <div class="sidenav-menu-heading">Administracion</div>
                                                     <!-- Sidenav Accordion (Dashboard)-->
                                                     <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -184,22 +185,28 @@
                                                         <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPagesMenu">
                                                             <!-- Nested Sidenav Accordion (Pages -> Account)-->
                                                             <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAccount" aria-expanded="false" aria-controls="pagesCollapseAccount">
-                                                                Account
+                                                                Gestion de Medicos
                                                                 <div class="sidenav-collapse-arrow">
                                                                     <i class="fas fa-angle-down"></i>
                                                                 </div>
                                                             </a>
                                                             <div class="collapse" id="pagesCollapseAccount" data-bs-parent="#accordionSidenavPagesMenu">
                                                                 <nav class="sidenav-menu-nested nav">
-                                                                    <a class="nav-link" href="Medicos.aspx">
-                                                                        <span class="badge bg-primary-soft text-primary ">Gestion Medico</span>
+                                                                    <a class="nav-link" href="alta_Persona.aspx">
+                                                                        <span class="badge bg-primary-soft text-primary ">Alta Medico</span>
                                                                     </a>
+                                                                    <a class="nav-link" href="Administrar_Medicos.aspx.aspx">
+                                                                        <span class="badge bg-primary-soft text-primary ">Modifica Medico</span>
+                                                                    </a>
+                                                                    
+                                                                                                                                        
                                                                 </nav>
                                                             </div>
                                                             <!-- Nested Sidenav Accordion (Pages -> Authentication)-->
 
                                                             <%--<a class="nav-link" href="pricing.html">Pricing</a>
                                                                                                          <a class="nav-link" href="invoice.html">Invoice</a>--%>
+                                                            
                                                         </nav>
                                                     </div>
                                                 <!-- Sidenav Accordion (Applications)-->
@@ -232,7 +239,9 @@
                                                 </a>
                                                 <div class="collapse" id="collapseFlows" data-bs-parent="#accordionSidenav">
                                                     <nav class="sidenav-menu-nested nav">
-                                                        <a class="nav-link" href="alta_persona.aspx">ABM PAciente</a>
+                                                        <a class="nav-link" href="alta_persona.aspx">Alta PAciente</a>
+                                                        <a class="nav-link" href="Administrar_Personas.aspx">Alta PAciente</a>
+                                                        
                                                         
                                                     </nav>
                                                 </div>
@@ -254,7 +263,7 @@
                                         <div class="sidenav-footer">
                                             <div class="sidenav-footer-content">
                                                 <div class="sidenav-footer-subtitle">Usuario:</div>
-                                                <div class="sidenav-footer-title"><%: usuario.DNI%></div>
+                                                <div class="sidenav-footer-title"><%: usuario.DNI %></div>
                                             </div>
                                         </div>
                                     </nav>
@@ -262,7 +271,8 @@
                                 
                             
         <% }
-          
+    
+
         %>
         
             <asp:ContentPlaceHolder ID="MainContent" runat="server">

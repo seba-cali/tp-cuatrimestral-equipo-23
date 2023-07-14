@@ -14,6 +14,7 @@ namespace WebApplication2.Admin
         public List<Turnos> ListaTurnos { get; set; }
         public List<Paciente> ListaPacientes { get; set; }
         public List<Medico>ListMedicos { get; set; }
+        public bool pivot=false;
         protected void Page_Load(object sender, EventArgs e)
         {
             /*
@@ -29,10 +30,14 @@ namespace WebApplication2.Admin
             {
                 Response.Redirect("Default.aspx", false);
             }
-            
             usuario = (Usuario)Session["usuario"];
-            
-            NegocioEspecialidad negocioEspecialidad = new NegocioEspecialidad();
+            if (!VerificaUsuario( usuario.ID_USUARIO ))
+            {
+                Session.Add("debe","Debe Completar el formulario para operar en el sistema");
+                Response.Redirect("Perfil.aspx",false);
+            }else{
+                pivot = true;
+                NegocioEspecialidad negocioEspecialidad = new NegocioEspecialidad();
             ListaEspecialidades = negocioEspecialidad.listar();
             NegocioPaciente negocioPaciente = new NegocioPaciente();
             ListaPacientes = negocioPaciente.listar();
@@ -70,8 +75,17 @@ namespace WebApplication2.Admin
 
 
 
+            }
 
+        }
 
+        private bool VerificaUsuario(int o)
+        {
+            
+            NegocioPaciente negocioPaciente = new NegocioPaciente();
+            ListaPacientes = negocioPaciente.listar();
+            Paciente paciente = ListaPacientes.Find(x => x.ID_USUARIO == o);
+            return paciente==null?false:true;
         }
 
         protected void txtEspecialidad_TextChanged(object sender, EventArgs e)

@@ -12,12 +12,19 @@ namespace WebApplication2.Admin
     public partial class SisTurnos : Page
     {
         protected Usuario usuario { get; set; }
+        public bool pivot = false;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["usuario"] != null)
+            usuario = (Usuario)Session["usuario"];
+            if (usuario != null)
             {
-                usuario = (Usuario)Session["usuario"];
+                if (usuario.ID_TIPOUSUARIO== 4 && !VerificaUsuario( usuario.ID_USUARIO ))
+                {
+                    Session.Add("debe","Debe Completar el formulario para operar en el sistema");
+                    Response.Redirect("Perfil.aspx",false);
+                }
+                pivot = true;
 
 
                 if (!IsPostBack)
@@ -234,8 +241,17 @@ namespace WebApplication2.Admin
                     }
                 }
             }
-            else
+            else  
                 Response.Redirect("Default.aspx", false);
+        }
+        private bool VerificaUsuario(int o)
+        {
+            
+            NegocioPaciente negocioPaciente = new NegocioPaciente();
+            List<Paciente> ListaPacientes = new List<Paciente>();
+            ListaPacientes = negocioPaciente.listar();
+            Paciente paciente = ListaPacientes.Find(x => x.ID_USUARIO == o);
+            return paciente==null?false:true;
         }
 
         private void SelectRepro(object sender, EventArgs e)
