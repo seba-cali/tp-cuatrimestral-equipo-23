@@ -110,6 +110,7 @@
     <Content Include="Admin\alta_Persona.aspx" />
     <Content Include="Admin\Default.aspx" />
     <Content Include="Admin\Especialidades.aspx" />
+    <Content Include="Admin\GestionUsuario.aspx" />
     <Content Include="Admin\Medicos.aspx" />
     <Content Include="Admin\Panel.master" />
     <Content Include="Admin\Password.aspx" />
@@ -259,6 +260,13 @@
     </Compile>
     <Compile Include="Admin\Especialidades.aspx.designer.cs">
       <DependentUpon>Especialidades.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\GestionUsuario.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>GestionUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\GestionUsuario.aspx.designer.cs">
+      <DependentUpon>GestionUsuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Medicos.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>

@@ -13,7 +13,6 @@ namespace WebApplication2.Admin
     {
         protected Usuario usuario { get; set; }
         public bool pivot = false;
-
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -22,233 +21,241 @@ namespace WebApplication2.Admin
                 Session.Add("debe", "Debe Completar el formulario para operar en el sistema");
                 Response.Redirect("Default.aspx", false);
             }
-            usuario = (Usuario)Session["usuario"];
-            if (!VerificaUsuario(usuario.ID_USUARIO))
+
+            try
             {
-                Session.Add("debe", "Debe Completar el formulario para operar en el sistema");
-                Response.Redirect("Perfil.aspx", false);
-            }
-            else{
-                pivot = true;
-
-
-                if (!IsPostBack)
+                usuario = (Usuario)Session["usuario"];
+                if (!VerificaUsuario(usuario.ID_USUARIO))
                 {
-                    Session.Add("idmedi", "0");
-                    Session.Add("VerRep", false);
-                    Session.Add("idesp", "0");
-                    Session.Add("idturno", "0");
-                    Session.Add("horario", "0");
-                    Session.Add("idrepro", "0");
-                    Session.Add("idPaciente", "0");
-                    Session.Add("class", "btn1");
-                    Session["error"] = null;
-                    Session["OK"] = null;
-                    Session["w"] = null;
-                    Session.Add("MostrarEsp", null);
-                    Session.Add("MostrarMed", null);
-                    Session.Add("MostrarFecha", null);
-                    Session.Add("MostrarHora", null);
-                }
-
-                //turnos del paciente
-                NegocioPaciente negocioPaciente = new NegocioPaciente();
-                Paciente paciente = new Paciente();
-                NegocioTurno negocioTurnos = new NegocioTurno();
-                List<Turnos> repro = new List<Turnos>();
-                if (usuario.ID_TIPOUSUARIO < 3)
-                {
-                    //usuario.ID_USUARIO
-                    if (dni.Text != "")
-                    {
-                        paciente = negocioPaciente.BuscarXId(Convert.ToInt32(dni.Text));
-                        if (paciente == null)
-                        {
-                            Session["error"] = "No se encontro el paciente";
-                            nompac.Text = "error";
-                            dnipac.Text = ":No se encontro el paciente🚨";
-                            bt2.Enabled = false;
-                        }
-                        else
-                        {
-                            Session["idPaciente"] = paciente.ID_PACIENTE;
-                            nompac.Text = paciente.nombreCompleto;
-                            dnipac.Text = paciente.DNI;
-                            repro = negocioTurnos.listar(paciente.ID_PACIENTE);
-                            bt2.Enabled = true;
-                        }
-                    }
+                    Session.Add("debe", "Debe Completar el formulario para operar en el sistema");
+                    Response.Redirect("Perfil.aspx", false);
                 }
                 else
                 {
-                    paciente = negocioPaciente.BuscarXIdUsuario(usuario.ID_USUARIO);
-                    Session["idPaciente"] = paciente.ID_PACIENTE;
+                    pivot = true;
+
+
+                    if (!IsPostBack)
+                    {
+                        Session.Add("idmedi", "0");
+                        Session.Add("VerRep", false);
+                        Session.Add("idesp", "0");
+                        Session.Add("idturno", "0");
+                        Session.Add("horario", "0");
+                        Session.Add("idrepro", "0");
+                        Session.Add("idPaciente", "0");
+                        Session.Add("class", "btn1");
+                        Session["error"] = null;
+                        Session["OK"] = null;
+                        Session["w"] = null;
+                        Session.Add("MostrarEsp", null);
+                        Session.Add("MostrarMed", null);
+                        Session.Add("MostrarFecha", null);
+                        Session.Add("MostrarHora", null);
+                    }
+
+                    //turnos del paciente
+                    NegocioPaciente negocioPaciente = new NegocioPaciente();
+                    Paciente paciente = new Paciente();
+                    NegocioTurno negocioTurnos = new NegocioTurno();
+                    List<Turnos> repro = new List<Turnos>();
+
                     if (usuario.ID_TIPOUSUARIO < 3)
                     {
-                        nompac.Text = paciente.nombreCompleto;
-                        dnipac.Text = paciente.DNI;
-                    }
-
-                    repro = negocioTurnos.listar(paciente.ID_PACIENTE);
-                }
-
-                //Turnos loco= new Turnos();
-
-
-                if (repro != null)
-                {
-                    ListBox boxrepro = new ListBox();
-                    boxrepro.SelectedIndexChanged += SelectRepro;
-                    boxrepro.ID = "reprolist";
-                    boxrepro.CssClass = "form-control findClose";
-                    boxrepro.AutoPostBack = true;
-                    if (repro.Count > 0)
-                    {
-                        Dictionary<int, string> piv = Turnos.GetRepro();
-                        foreach (var pivot in repro)
+                        //usuario.ID_USUARIO
+                        if (dni.Text != "")
                         {
-                            if (pivot.fecha.Date > DateTime.Now.Date)
+                            paciente = negocioPaciente.BuscarXId(Convert.ToInt32(dni.Text));
+                            if (paciente == null)
                             {
-                                KeyValuePair<int, string> mostrar =
-                                    piv.First(x => x.Key == Convert.ToInt32(pivot.Id_Hora));
-                                if (pivot.Estado)
-                                    boxrepro.Items.Add(new ListItem(
-                                        "Fecha :" + pivot.fecha.Date.ToShortDateString() + " Hora:" + mostrar.Value,
-                                        pivot.Id_Turno.ToString()));
+                                Session["error"] = "No se encontro el paciente";
+                                nompac.Text = "error";
+                                dnipac.Text = ":No se encontro el paciente🚨";
+                                bt2.Enabled = false;
                             }
-                        }
-
-                        reprogramoturno.Controls.Add(boxrepro);
-                    }
-
-
-                    NegocioEspecialidad negocioEspecialidad = new NegocioEspecialidad();
-                    List<Especialidad> ListaEspecialidades = new List<Especialidad>();
-                    ListaEspecialidades = negocioEspecialidad.listar();
-
-
-                    ListBox checkBox = new ListBox();
-
-                    checkBox.SelectedIndexChanged += SelectEspecialidad;
-                    checkBox.ID = "nery";
-                    checkBox.CssClass = "form-control";
-                    checkBox.AutoPostBack = true;
-                    foreach (Especialidad pivot in ListaEspecialidades)
-                    {
-                        checkBox.Items.Add(new ListItem(pivot.nombre, pivot.id.ToString()));
-                    }
-
-                    Muestra1.Controls.Add(checkBox);
-                    NegocioMedico negocioMedico = new NegocioMedico();
-                    List<Medico> ListaMedicos = new List<Medico>();
-                    ListaMedicos = negocioMedico.listar();
-                    if (Session["idesp"].ToString() != "0")
-                    {
-                        Session["MostrarEsp"] =
-                            ListaEspecialidades.Find(x => x.id == Convert.ToInt32(Session["idesp"])).nombre;
-                        Medico medico = new Medico();
-
-                        NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
-                        List<EspecialidadxMedico> ListaEspecialidadxMedico = new List<EspecialidadxMedico>();
-                        ListaEspecialidadxMedico = negocioEspecialidadxMedico.listar(Session["idesp"].ToString());
-
-                        ListBox medicos = new ListBox();
-                        medicos.SelectedIndexChanged += SelectMedico;
-                        medicos.ID = "mediselect";
-                        medicos.CssClass = "form-control";
-                        medicos.AutoPostBack = true;
-                        foreach (EspecialidadxMedico medi in ListaEspecialidadxMedico)
-                        {
-                            medico = ListaMedicos.Find(x => x.ID_MEDICO == medi.ID_MEDICO);
-                            if (medi.Turno_Horario == Convert.ToInt32(Session["idturno"]) &&
-                                medi.Id_Especialidad == Convert.ToInt32(Session["idesp"]))
+                            else
                             {
-                                Session["horario"] = medi.Turno_Horario;
-                                medicos.Items.Add(new ListItem(medico.nombres + " " + medico.apellidos,
-                                    medi.ID_MEDICO.ToString()));
-                            }
-                        }
-
-                        Muestra2.Controls.Add(medicos);
-                    }
-
-                    Medico dato = new Medico();
-                    Turnos tux = new Turnos();
-                    NegocioTurno negocioTurno = new NegocioTurno();
-                    List<Turnos> ListaTurnos = new List<Turnos>();
-                    ListaTurnos = negocioTurno.listar();
-                    ListBox turnero = new ListBox();
-                    turnero.SelectedIndexChanged +=turnnero_OnSelectedIndexChanged;
-                    turnero.ID = "turnero";
-                    turnero.CssClass = "form-control";
-                    turnero.AutoPostBack = true;
-                    //busca medico
-
-                    dato = ListaMedicos.Find(x => x.ID_MEDICO == Convert.ToInt32(Session["idmedi"]));
-
-                    //Busca turno ocupados
-                    tux = ListaTurnos.Find(x => x.Id_Medico == Convert.ToInt32(Session["idmedi"]));
-
-                    if (dato != null && tux != null)
-                    {
-                        Session["MostrarMed"] = dato.nombres + ", " + dato.apellidos;
-
-                        var tata = Turnos.GetTurnos(Convert.ToInt32(Session["horario"]));
-                        foreach (KeyValuePair<int, string> slot in tata)
-                        {
-                            //Muestra los horarios disponibles
-                            tux = ListaTurnos.Find(x =>
-                                x.Id_Medico == dato.ID_MEDICO && x.Id_Hora == slot.Key &&
-                                Convert.ToDateTime(x.fecha) == Convert.ToDateTime(fechanow.Text) && x.Estado);
-                            if (tux == null)
-                            {
-                                turnero.Items.Add(new ListItem(slot.Value, slot.Key.ToString()));
+                                Session["idPaciente"] = paciente.ID_PACIENTE;
+                                nompac.Text = paciente.nombreCompleto;
+                                dnipac.Text = paciente.DNI;
+                                repro = negocioTurnos.listar(paciente.ID_PACIENTE);
+                                bt2.Enabled = true;
                             }
                         }
                     }
                     else
                     {
-                        if (dato != null)
-                        {
-                            var tito = Turnos.GetTurnos(Convert.ToInt32(Session["horario"]));
-                            foreach (KeyValuePair<int, string> slot in tito)
-                            {
-                                turnero.Items.Add(new ListItem(slot.Value, slot.Key.ToString()));
-                            }
-                        }
-                    }
-
-                    Fecha.Controls.Add(turnero);
-
-                    if (Session["MostrarEsp"] != null && Session["MostrarMed"] != null)
-                    {
-                        thisEspe.Text = Session["MostrarEsp"].ToString();
-                        thisMedico.Text = Session["MostrarMed"].ToString();
+                        paciente = negocioPaciente.BuscarXIdUsuario(usuario.ID_USUARIO);
+                        Session["idPaciente"] = paciente.ID_PACIENTE;
                         if (usuario.ID_TIPOUSUARIO < 3)
                         {
-                            thisPaciente.Text = nompac.Text;
-                            thisPacienteDni.Text = dnipac.Text;
+                            nompac.Text = paciente.nombreCompleto;
+                            dnipac.Text = paciente.DNI;
+                        }
+
+                        repro = negocioTurnos.listar(paciente.ID_PACIENTE);
+                    }
+
+                    //Turnos loco= new Turnos();
+
+
+                    if (repro != null)
+                    {
+                        ListBox boxrepro = new ListBox();
+                        boxrepro.SelectedIndexChanged += SelectRepro;
+                        boxrepro.ID = "reprolist";
+                        boxrepro.CssClass = "form-control findClose";
+                        boxrepro.AutoPostBack = true;
+                        if (repro.Count > 0)
+                        {
+                            Dictionary<int, string> piv = Turnos.GetRepro();
+                            foreach (var pivot in repro)
+                            {
+                                if (pivot.fecha.Date > DateTime.Now.Date)
+                                {
+                                    KeyValuePair<int, string> mostrar =
+                                        piv.First(x => x.Key == Convert.ToInt32(pivot.Id_Hora));
+                                    if (pivot.Estado)
+                                        boxrepro.Items.Add(new ListItem(
+                                            "Fecha :" + pivot.fecha.Date.ToShortDateString() + " Hora:" + mostrar.Value,
+                                            pivot.Id_Turno.ToString()));
+                                }
+                            }
+
+                            reprogramoturno.Controls.Add(boxrepro);
+                        }
+
+
+                        NegocioEspecialidad negocioEspecialidad = new NegocioEspecialidad();
+                        List<Especialidad> ListaEspecialidades = new List<Especialidad>();
+                        ListaEspecialidades = negocioEspecialidad.listar();
+
+
+                        ListBox checkBox = new ListBox();
+
+                        checkBox.SelectedIndexChanged += SelectEspecialidad;
+                        checkBox.ID = "nery";
+                        checkBox.CssClass = "form-control";
+                        checkBox.AutoPostBack = true;
+                        foreach (Especialidad pivot in ListaEspecialidades)
+                        {
+                            checkBox.Items.Add(new ListItem(pivot.nombre, pivot.id.ToString()));
+                        }
+
+                        Muestra1.Controls.Add(checkBox);
+                        NegocioMedico negocioMedico = new NegocioMedico();
+                        List<Medico> ListaMedicos = new List<Medico>();
+                        ListaMedicos = negocioMedico.listar();
+                        if (Session["idesp"].ToString() != "0")
+                        {
+                            Session["MostrarEsp"] =
+                                ListaEspecialidades.Find(x => x.id == Convert.ToInt32(Session["idesp"])).nombre;
+                            Medico medico = new Medico();
+
+                            NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
+                            List<EspecialidadxMedico> ListaEspecialidadxMedico = new List<EspecialidadxMedico>();
+                            ListaEspecialidadxMedico = negocioEspecialidadxMedico.listar(Session["idesp"].ToString());
+
+                            ListBox medicos = new ListBox();
+                            medicos.SelectedIndexChanged += SelectMedico;
+                            medicos.ID = "mediselect";
+                            medicos.CssClass = "form-control";
+                            medicos.AutoPostBack = true;
+                            foreach (EspecialidadxMedico medi in ListaEspecialidadxMedico)
+                            {
+                                medico = ListaMedicos.Find(x => x.ID_MEDICO == medi.ID_MEDICO);
+                                if (medi.Turno_Horario == Convert.ToInt32(Session["idturno"]) &&
+                                    medi.Id_Especialidad == Convert.ToInt32(Session["idesp"]))
+                                {
+                                    Session["horario"] = medi.Turno_Horario;
+                                    medicos.Items.Add(new ListItem(medico.nombres + " " + medico.apellidos,
+                                        medi.ID_MEDICO.ToString()));
+                                }
+                            }
+
+                            Muestra2.Controls.Add(medicos);
+                        }
+
+                        Medico dato = new Medico();
+                        Turnos tux = new Turnos();
+                        NegocioTurno negocioTurno = new NegocioTurno();
+                        List<Turnos> ListaTurnos = new List<Turnos>();
+                        ListaTurnos = negocioTurno.listar();
+                        ListBox turnero = new ListBox();
+                        turnero.SelectedIndexChanged += turnnero_OnSelectedIndexChanged;
+                        turnero.ID = "turnero";
+                        turnero.CssClass = "form-control";
+                        turnero.AutoPostBack = true;
+                        //busca medico
+
+                        dato = ListaMedicos.Find(x => x.ID_MEDICO == Convert.ToInt32(Session["idmedi"]));
+
+                        //Busca turno ocupados
+                        tux = ListaTurnos.Find(x => x.Id_Medico == Convert.ToInt32(Session["idmedi"]));
+
+                        if (dato != null && tux != null)
+                        {
+                            Session["MostrarMed"] = dato.nombres + ", " + dato.apellidos;
+
+                            var tata = Turnos.GetTurnos(Convert.ToInt32(Session["horario"]));
+                            foreach (KeyValuePair<int, string> slot in tata)
+                            {
+                                //Muestra los horarios disponibles
+                                tux = ListaTurnos.Find(x =>
+                                    x.Id_Medico == dato.ID_MEDICO && x.Id_Hora == slot.Key &&
+                                    Convert.ToDateTime(x.fecha) == Convert.ToDateTime(fechanow.Text) && x.Estado);
+                                if (tux == null)
+                                {
+                                    turnero.Items.Add(new ListItem(slot.Value, slot.Key.ToString()));
+                                }
+                            }
                         }
                         else
                         {
-                            thisPaciente.Text = paciente.nombreCompleto;
-                            thisPacienteDni.Text = paciente.DNI;
+                            if (dato != null)
+                            {
+                                var tito = Turnos.GetTurnos(Convert.ToInt32(Session["horario"]));
+                                foreach (KeyValuePair<int, string> slot in tito)
+                                {
+                                    turnero.Items.Add(new ListItem(slot.Value, slot.Key.ToString()));
+                                }
+                            }
                         }
 
-                        thisFecha.Text = fechanow.Text ?? DateTime.Now.ToString("dd/MM/yyyy");
-                    }
-                    else
-                    {
-                        thisEspe.Text = "Especialidad";
-                        thisMedico.Text = "Medico";
-                        thisTurno.Text = "Turno";
-                        thisFecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
+                        Fecha.Controls.Add(turnero);
+
+                        if (Session["MostrarEsp"] != null && Session["MostrarMed"] != null)
+                        {
+                            thisEspe.Text = Session["MostrarEsp"].ToString();
+                            thisMedico.Text = Session["MostrarMed"].ToString();
+                            if (usuario.ID_TIPOUSUARIO < 3)
+                            {
+                                thisPaciente.Text = nompac.Text;
+                                thisPacienteDni.Text = dnipac.Text;
+                            }
+                            else
+                            {
+                                thisPaciente.Text = paciente.nombreCompleto;
+                                thisPacienteDni.Text = paciente.DNI;
+                            }
+
+                            thisFecha.Text = fechanow.Text ?? DateTime.Now.ToString("dd/MM/yyyy");
+                        }
+                        else
+                        {
+                            thisEspe.Text = "Especialidad";
+                            thisMedico.Text = "Medico";
+                            thisTurno.Text = "Turno";
+                            thisFecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
+                        }
                     }
                 }
+            }catch(Exception ex)
+            {
+                Response.Redirect("Default.aspx", false);
             }
-            
 
-        
+
         }
         private bool VerificaUsuario(int o)
         {
