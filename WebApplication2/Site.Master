@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - Mi aplicación ASP.NET</title>
+    <title><%: Page.Title %> - Programacion III</title>
 
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
@@ -52,10 +52,10 @@
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/">Inicio</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Cartilla">Cartilla Médica</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/About">Acerca de</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Turnos">Turnos</a></li>
+                        <%--<li class="nav-item"><a class="nav-link" runat="server" href="~/Turnos">Turnos</a></li>--%>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="m-2"><a class="btn btn-xs btn-success" href="">Ver Turno <i class="fa fa-search"></i></a></li>
+                        <%--<li class="m-2"><a class="btn btn-xs btn-success" href="">Ver Turno <i class="fa fa-search"></i></a></li>--%>
                         <li class="m-2"><a class="btn btn-xs btn-success" runat="server" href="~/Admin/Default">Ingresar <i class="fas fa-user"></i></a></li>
                     </ul>
                 </div>
@@ -66,7 +66,7 @@
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - Mi aplicación ASP.NET</p>
+                <p>&copy; <%: DateTime.Now.Year %> - Programacion III</p>
             </footer>
         </div>
     </form>

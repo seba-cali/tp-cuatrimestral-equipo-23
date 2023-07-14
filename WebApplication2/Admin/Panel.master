@@ -166,10 +166,10 @@
                                             <span class="badge bg-primary-soft text-primary ">Alta Medico</span>
                                         </a>
                                         <a class="nav-link" href="Administrar_Medicos.aspx">
-                                            <span class="badge bg-primary-soft text-primary ">Modifica Medico</span>
+                                            <span class="badge bg-primary-soft text-primary ">Administrar Datos Medicos</span>
                                         </a>
                                         <a class="nav-link" href="Administrar_EspeyTurnoxMed.aspx">
-                                            <span class="badge bg-primary-soft text-primary ">Administrar Esp. a Medico</span>
+                                            <span class="badge bg-primary-soft text-primary ">Administrar Especialidades a Medicos</span>
                                         </a>
 
 
@@ -223,7 +223,7 @@
                         <div class="collapse" id="collapseFlows" data-bs-parent="#accordionSidenav">
                             <nav class="sidenav-menu-nested nav">
                                 <a class="nav-link" href="alta_persona.aspx">Alta PAciente</a>
-                                <a class="nav-link" href="Administrar_Personas.aspx">Modificar Datos Paciente</a>
+                                <a class="nav-link" href="Administrar_Personas.aspx">Modificar Datos Pacientes</a>
 
 
                             </nav>

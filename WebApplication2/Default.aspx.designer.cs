@@ -11,21 +11,7 @@ namespace WebApplication2
 {
 
 
-    public partial class _Default
-    {
-
-        /// <summary>
-        /// Master property.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated property.
-        /// </remarks>
-        public new WebApplication2.SiteMaster Master
-        {
-            get
-            {
-                return ((WebApplication2.SiteMaster)(base.Master));
-            }
-        }
-    }
+	public partial class _Default
+	{
+	}
 }
