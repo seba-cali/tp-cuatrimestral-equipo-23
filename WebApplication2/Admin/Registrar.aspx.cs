@@ -45,6 +45,7 @@ namespace WebApplication2.Admin
                     usuario.username = inputDNI.Text;
                     usuario.CORREO = inputCorreo.Text;
                     usuario.PASSWORD = usuario.encriptar(inputPassword.Text);
+                    usuario.ID_TIPOUSUARIO= 4;
                     //asigna id de usuario y lo guarda en session
                     usuario.ID_TIPOUSUARIO = 4;
                     usuario.ID_USUARIO = usuarioNegocio.RegistrarUsuario(usuario);
@@ -65,6 +66,10 @@ namespace WebApplication2.Admin
                 Console.WriteLine("error manito");
                 if (ex is SqlException sqlException && sqlException.Number == 2627)
                     Session.Add("errorreg", "Usuario o correo ya registrado");
+                else
+                {
+                    Session.Add("errorreg", ex.ToString());
+                }
             }
         }
        

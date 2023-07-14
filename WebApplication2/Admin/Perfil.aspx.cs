@@ -5,6 +5,8 @@ namespace WebApplication2.Admin
 {
     public partial class Perfil : Page
     {
+        public string imgName ;
+        public string imgPath ;
         protected void Page_Load(object sender, EventArgs e)
         {
             
@@ -24,9 +26,9 @@ namespace WebApplication2.Admin
         }  
      
         private void StartUpLoad() {  
-            string imgName = string.Empty;  
+             imgName = string.Empty;  
             int imgSize = 0;
-            string imgPath = string.Empty;       
+             imgPath = string.Empty;       
        
             //validates the posted file before saving  
             if (FileUpload1.PostedFile != null && FileUpload1.PostedFile.FileName != "") {  
@@ -38,17 +40,27 @@ namespace WebApplication2.Admin
                 imgSize = FileUpload1.PostedFile.ContentLength;  
                 // 10240 KB means 10MB, You can change the value based on your requirement  
                 if (imgSize > 5242880) {  
-                    Page.ClientScript.RegisterClientScriptBlock(typeof(Page), 
-                        "Alert", "alert('File is too big.')", true);  
+                    Session.Add("error","Imagen grande");  
                 }  else {  
                     //then save it to the Folder  
                     FileUpload1.SaveAs(Server.MapPath(imgPath));  
                     Image1.ImageUrl = imgPath;  
-                    Page.ClientScript.RegisterClientScriptBlock(typeof(Page), 
-                        "Alert", "alert('Image saved!')", true);  
+                    Session.Add("ok","Exito");  
                     
                 }    
             }  
-        }  
+        }
+
+        protected void guardar_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                
+            }
+        }
     }
 }

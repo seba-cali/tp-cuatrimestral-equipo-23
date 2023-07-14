@@ -271,16 +271,17 @@
             --%>
             <% foreach
 
-    (var tux in ListaTurnos)
+                   (var tux in ListaTurnos)
                {
-                        
-                       var pac = ListaPacientes.Find(x => x.ID_PACIENTE == tux.Id_Paciente);
-                       var esp = ListaEspecialidades.Find(x => x.id == tux.Id_Especialidad);
-                   
+
+                   var pac = ListaPacientes.Find(x => x.ID_PACIENTE == tux.Id_Paciente);
+                   var esp = ListaEspecialidades.Find(x => x.id == tux.Id_Especialidad);
+                   if (tux.Estado == true)
+                   {
             %>
                 <tr>
-                    <td><%= pac.nombreCompleto   %></td>
-                    <td><%= pac.DNI   %></td>
+                    <td><%= pac.nombreCompleto %></td>
+                    <td><%= pac.DNI %></td>
                     <td><%= esp.nombre %></td>
                     <td><%= tux.fecha.Date.ToShortDateString() %></td>
                     <td><%= Turnos.GetRepro()[tux.Id_Hora] %></td>
@@ -298,7 +299,8 @@
                     --%>
                     
                 </tr>
-            <% } %>
+            <% }
+               } %>
             </tbody>
         </table>
     </div>

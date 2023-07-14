@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Dominio;
 using Negocio;
+using WebGrease.Css.Ast.MediaQuery;
 
 namespace WebApplication2.Admin
 {
@@ -129,10 +130,8 @@ namespace WebApplication2.Admin
                         NegocioEspecialidad negocioEspecialidad = new NegocioEspecialidad();
                         List<Especialidad> ListaEspecialidades = new List<Especialidad>();
                         ListaEspecialidades = negocioEspecialidad.listar();
-
-
+                        
                         ListBox checkBox = new ListBox();
-
                         checkBox.SelectedIndexChanged += SelectEspecialidad;
                         checkBox.ID = "nery";
                         checkBox.CssClass = "form-control";
@@ -187,15 +186,20 @@ namespace WebApplication2.Admin
                         turnero.CssClass = "form-control";
                         turnero.AutoPostBack = true;
                         //busca medico
-
+                        Console.WriteLine(Session["idmedi"]+"asdddddddddd");
+                        foreach (var medi in ListaMedicos)
+                        {
+                            Console.WriteLine(medi.ID_MEDICO+" --- "+medi.NombreCompleto);
+                        }
                         dato = ListaMedicos.Find(x => x.ID_MEDICO == Convert.ToInt32(Session["idmedi"]));
-
+        
                         //Busca turno ocupados
-                        tux = ListaTurnos.Find(x => x.Id_Medico == Convert.ToInt32(Session["idmedi"]));
+                        //tux = ListaTurnos.Find(x => x.Id_Medico == Convert.ToInt32(Session["idmedi"]));
 
-                        if (dato != null && tux != null)
+                        if (dato != null )
                         {
                             Session["MostrarMed"] = dato.nombres + ", " + dato.apellidos;
+                            Console.WriteLine("Medico: " + dato.nombres + ", " + dato.apellidos);
 
                             var tata = Turnos.GetTurnos(Convert.ToInt32(Session["horario"]));
                             foreach (KeyValuePair<int, string> slot in tata)
@@ -381,6 +385,7 @@ namespace WebApplication2.Admin
             try
             {
                 Session["idturno"] = Convert.ToInt32(((ListBox)sender).SelectedValue);
+                Console.WriteLine(Session["idturno"]+"asdasdasd");
                 if (Session["idturno"] == "0")
                     bt2.Enabled = false;
                 else

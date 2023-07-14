@@ -14,6 +14,16 @@ namespace WebApplication2.Admin
 	public partial class GestionUsuario
 	{
 
+
+        /// <summary>
+        /// formGroupId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox formGroupId;
+
 		/// <summary>
 		/// formGroupName control.
 		/// </summary>
@@ -57,7 +67,8 @@ namespace WebApplication2.Admin
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.TextBox formGroupId;
+		/*protected global::System.Web.UI.WebControls.TextBox formGroupId;*/
+
 
 		/// <summary>
 		/// formGroupNameEdit control.
@@ -67,6 +78,25 @@ namespace WebApplication2.Admin
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
 		protected global::System.Web.UI.WebControls.TextBox formGroupNameEdit;
+
+
+        /// <summary>
+        /// inputSetUser control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList inputSetUser;
+
+        /// <summary>
+        /// inputEstado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList inputEstado;
 
 		/// <summary>
 		/// formGroupDescEdit control.
@@ -85,6 +115,7 @@ namespace WebApplication2.Admin
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
 		protected global::System.Web.UI.WebControls.TextBox formGroupURLEdit;
+
 
 		/// <summary>
 		/// Button2 control.

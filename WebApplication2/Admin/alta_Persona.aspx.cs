@@ -63,7 +63,7 @@ namespace WebApplication2.Admin
 
 		protected void Page_Load(object sender, EventArgs e)
 		{
-
+			
 
 			Session.Add("OK", null);
 			string idMedico = Request.QueryString["idMedico"] != null ? Request.QueryString["idMedico"].ToString() : "";
@@ -72,6 +72,7 @@ namespace WebApplication2.Admin
 			//todo:Checkear por que Paciente no crea ni usuario ni paciente si algo falla, pero medico si lo hace (no deberia)
 			if (idPaciente != "" && idUsuario != "" && !IsPostBack)
 			{
+				
 				esMedico = false;
 				esPaciente = true;
 				NegocioPaciente negocio = new NegocioPaciente();
@@ -210,7 +211,7 @@ namespace WebApplication2.Admin
 					negocioPaciente = new NegocioPaciente();
 
 					usuario.username = inputDNI.Text; //aca usamos el mismo input tanto para paciente como para usuario
-					usuario.PASSWORD = inputPassword.Text;
+					usuario.PASSWORD = usuario.encriptar(inputPassword.Text);
 					usuario.CORREO = inputEmail.Text;
 					usuario.ID_TIPOUSUARIO = 4;
 					usuario.ID_USUARIO = negocioUsuario.RegistrarUsuario(usuario);
@@ -282,7 +283,7 @@ namespace WebApplication2.Admin
 					NegocioUsuario negocioUsuario = new NegocioUsuario();
 					negocioMedico = new NegocioMedico();
 					usuario.username = inputDNI.Text;
-					usuario.PASSWORD = inputPassword.Text;
+					usuario.PASSWORD = usuario.encriptar(inputPassword.Text);
 					usuario.CORREO = inputEmail.Text;
 					usuario.ID_TIPOUSUARIO = 3;
 					usuario.ID_USUARIO = negocioUsuario.RegistrarUsuario(usuario);
@@ -365,7 +366,7 @@ namespace WebApplication2.Admin
 				negocioPaciente = new NegocioPaciente();
 
 				usuario.username = inputDNI.Text;
-				usuario.PASSWORD = inputPassword.Text;
+				usuario.PASSWORD = usuario.encriptar(inputPassword.Text);
 				usuario.CORREO = inputEmail.Text;
 				usuario.ID_TIPOUSUARIO = 4;
 				negocioUsuario.RegistrarUsuario(usuario, IDUSUARIO);
@@ -412,7 +413,7 @@ namespace WebApplication2.Admin
 				NegocioUsuario negocioUsuario = new NegocioUsuario();
 				negocioMedico = new NegocioMedico();
 				usuario.username = inputDNI.Text;
-				usuario.PASSWORD = inputPassword.Text;
+				usuario.PASSWORD = usuario.encriptar(inputPassword.Text);
 				usuario.CORREO = inputEmail.Text;
 				usuario.ID_TIPOUSUARIO = 3;
 				negocioUsuario.RegistrarUsuario(usuario, IDUSUARIO);
