@@ -1,6 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Panel.master" AutoEventWireup="true" CodeBehind="Administrar_EspeyTurnoxMed.aspx.cs" Inherits="WebApplication2.Admin.Administrar_EspeyTurnoxMed" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <div id="layoutSidenav_content">
+    <main>
     <%--MEDICOS--%>
     <h2 style="text-align: center;">Administración de Turnos de trabajo y especialidades</h2>
     <div class="container">
@@ -84,5 +86,6 @@
             </div>
         </div>
     </div>
-
+</main>
+    </div>
 </asp:Content>

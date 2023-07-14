@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web.UI;
@@ -16,7 +17,18 @@ namespace WebApplication2.Admin
             usuario= (Usuario)Session["usuario"];
             
 
+
         }
+        private bool VerificaUsuario(int o)
+        {
+            NegocioPaciente negocioPaciente = new NegocioPaciente();
+            ListaPacientes = negocioPaciente.listar();
+            Paciente paciente = ListaPacientes.Find(x => x.ID_USUARIO == o);
+            return paciente==null?false:true;
+        }
+
+        public List<Paciente> ListaPacientes { get; set; }
+
         protected void btn_Login(object sender, EventArgs e)
         {
             
@@ -39,6 +51,7 @@ namespace WebApplication2.Admin
                     Session.Remove("error");
                     Session.Add("usuario", usuuario);
                     Response.Redirect("~/Admin/Tablero.aspx", false);
+                    
                 }
                 else
                 {

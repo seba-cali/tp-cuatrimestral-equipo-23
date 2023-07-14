@@ -112,6 +112,8 @@
     <Content Include="Admin\Especialidades.aspx" />
     <Content Include="Admin\Medicos.aspx" />
     <Content Include="Admin\Panel.master" />
+    <Content Include="Admin\Password.aspx" />
+    <Content Include="Admin\Perfil.aspx" />
     <Content Include="Admin\Recuperar.aspx" />
     <Content Include="Admin\SisTurnos.aspx" />
     <Content Include="Admin\Tablero.aspx" />
@@ -271,6 +273,20 @@
     </Compile>
     <Compile Include="Admin\Panel.master.designer.cs">
       <DependentUpon>Panel.master</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Password.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>Password.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Password.aspx.designer.cs">
+      <DependentUpon>Password.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Perfil.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>Perfil.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Perfil.aspx.designer.cs">
+      <DependentUpon>Perfil.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Recuperar.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>

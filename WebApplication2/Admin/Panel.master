@@ -1,243 +1,235 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true"  CodeBehind="Panel.aspx.cs" Inherits="WebApplication2.Admin.Panel" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Panel.aspx.cs" Inherits="WebApplication2.Admin.Panel" %>
 
 <!DOCTYPE html>
 
 <html lang="es">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title><%: Page.Title %> - El Dr Seba</title>
 
-   
-    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css" rel="stylesheet" />
+
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css" rel="stylesheet"/>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-    <link href="../assets/dist/css/styles.css" rel="stylesheet" />
+    <link href="../assets/dist/css/styles.css" rel="stylesheet"/>
     <%--<link rel="icon" type="image/x-icon" href="../assets/dist/assets/img/favicon.png" />--%>
     <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
-    
 
 
 </head>
 <body>
-    <form runat="server">
-        <asp:ScriptManager runat="server">
-            <Scripts>
-                <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
-                <%--Framework Scripts--%>
-                <asp:ScriptReference Name="MsAjaxBundle" />
-                <asp:ScriptReference Name="jquery" />
-                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
-                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
-                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
-                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
-                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
-                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
-                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
-                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
-                <asp:ScriptReference Name="WebFormsBundle" />
-                <%--Site Scripts--%>
-            </Scripts>
-        </asp:ScriptManager>
+<form runat="server">
+<asp:ScriptManager runat="server">
+    <Scripts>
+        <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
+        <%--Framework Scripts--%>
+        <asp:ScriptReference Name="MsAjaxBundle"/>
+        <asp:ScriptReference Name="jquery"/>
+        <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js"/>
+        <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js"/>
+        <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js"/>
+        <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js"/>
+        <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js"/>
+        <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js"/>
+        <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js"/>
+        <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js"/>
+        <asp:ScriptReference Name="WebFormsBundle"/>
+        <%--Site Scripts--%>
+    </Scripts>
+</asp:ScriptManager>
 
-        <% if (usuario != null)
-           { %>
-      <nav class="topnav navbar navbar-expand shadow justify-content-between justify-content-sm-start navbar-light bg-white" id="sidenavAccordion">
-                  
-                  <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 me-2 ms-lg-2 me-lg-0" id="sidebarToggle"><i data-feather="menu"></i></button>
-                  
-                  <a class="navbar-brand pe-3 ps-4 ps-lg-2" href="Tablero.aspx">EL DR. Seba</a>
-                  
-                  
-                  
-                  <ul class="navbar-nav align-items-center ms-auto">
-                  
-                      <li class="nav-item dropdown no-caret d-none d-md-block me-3">
-                          
-                          <div class="dropdown-menu dropdown-menu-end py-0 me-sm-n15 me-lg-0 o-hidden animated--fade-in-up" aria-labelledby="navbarDropdownDocs">
-                              <a class="dropdown-item py-3" href="https://docs.startbootstrap.com/sb-admin-pro" target="_blank">
-                                  <div class="icon-stack bg-primary-soft text-primary me-4"><i data-feather="book"></i></div>
-                                  <div>
-                                      <div class="small text-gray-500">Documentation</div>
-                                      Usage instructions and reference
-                                  </div>
-                              </a>
-                              <div class="dropdown-divider m-0"></div>
-                              <a class="dropdown-item py-3" href="https://docs.startbootstrap.com/sb-admin-pro/components" target="_blank">
-                                  <div class="icon-stack bg-primary-soft text-primary me-4"><i data-feather="code"></i></div>
-                                  <div>
-                                      <div class="small text-gray-500">Components</div>
-                                      Code snippets and reference
-                                  </div>
-                              </a>
-                              <div class="dropdown-divider m-0"></div>
-                              <a class="dropdown-item py-3" href="https://docs.startbootstrap.com/sb-admin-pro/changelog" target="_blank">
-                                  <div class="icon-stack bg-primary-soft text-primary me-4"><i data-feather="file-text"></i></div>
-                                  <div>
-                                      <div class="small text-gray-500">Changelog</div>
-                                      Updates and changes
-                                  </div>
-                              </a>
-                          </div>
-                      </li>
-                  
-                      <li class="nav-item dropdown no-caret me-3 d-lg-none">
-                          <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="searchDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="search"></i></a>
-                  
-                          <div class="dropdown-menu dropdown-menu-end p-3 shadow animated--fade-in-up" aria-labelledby="searchDropdown">
-                              
-                          </div>
-                      </li>
-                  
-                    
-                
-                   
-                
-                      <li class="nav-item dropdown no-caret dropdown-user me-3 me-lg-4">
-                          <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage" href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="img-fluid" src="../assets/dist/assets/img/illustrations/profiles/profile-2.png" /></a>
-                          <div class="dropdown-menu dropdown-menu-end border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownUserImage">
-                              <h6 class="dropdown-header d-flex align-items-center">
-                                  <img class="dropdown-user-img" src="../assets/dist/assets/img/illustrations/profiles/profile-2.png" />
-                                  <div class="dropdown-user-details">
-                                      <div class="dropdown-user-details-name"><%: usuario.DNI %></div>
-                                      <div class="dropdown-user-details-email"><%: usuario.CORREO %></div>
-                                  </div>
-                              </h6>
-                              <div class="dropdown-divider"></div>
-                              <a class="dropdown-item" href="#!">
-                                  <div class="dropdown-item-icon"><i data-feather="settings"></i></div>
-                                  Perfil
-                              </a>
-                              <a class="dropdown-item" href="#!">
-                                  <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
-                                  <asp:Button CausesValidation="false" CssClass="btn btn-primary" runat="server" Text="Logout" OnClick="btn_logout" />
-                              </a>
-                          </div>
-                      </li>
-                  </ul>
-              </nav><div id="layoutSidenav">
-                                <div id="layoutSidenav_nav">
-                                    <nav class="sidenav shadow-right sidenav-light">
-                                        <div class="sidenav-menu">
-                                            <div class="nav accordion" id="accordionSidenav">
-                                                
-                                                 <% if (usuario.ID_TIPOUSUARIO != 3)
-                                                                                                   { %>
-                                                <!-- Sidenav Menu Heading (Core)-->
-                                                <div class="sidenav-menu-heading">Sistema Turno v1.0</div>
-                                                <!-- Sidenav Accordion (Dashboard)-->
-                                                <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseDashboards" aria-expanded="false" aria-controls="collapseDashboards">
-                                                    <div class="nav-link-icon"><i data-feather="activity"></i></div>
-                                                    Turnos
-                                                    <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                                </a>
-                                                <div class="collapse" id="collapseDashboards" data-bs-parent="#accordionSidenav">
-                                                    <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
-                                                        <a class="nav-link" href="SisTurnos.aspx">
-                                                            <span class="badge bg-primary-soft text-primary ">Gestion de Turnos</span>
-                                                        </a>
+<% if (usuario != null)
+   { %>
+    <nav class="topnav navbar navbar-expand shadow justify-content-between justify-content-sm-start navbar-light bg-white" id="sidenavAccordion">
 
-                                                    </nav>
-                                                </div>
-                                                    <%
-                                                                                                       } %>
-                                                <% if (usuario.ID_TIPOUSUARIO == 3)
-                                                   { %>
-                                                    <div class="sidenav-menu-heading">Area Medico</div>
-                                                    <!-- Sidenav Accordion (Dashboard)-->
-                                                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseDashboards" aria-expanded="false" aria-controls="collapseDashboards">
-                                                        <div class="nav-link-icon">
-                                                            <i data-feather="activity"></i>
-                                                        </div>
-                                                        ABM MEDICO
-                                                        <div class="sidenav-collapse-arrow">
-                                                            <i class="fas fa-angle-down"></i>
-                                                        </div>
-                                                    </a>
-                                                    <div class="collapse" id="collapseDashboards" data-bs-parent="#accordionSidenav">
-                                                        <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
-                                                            <a class="nav-link" href="Medicos.aspx">
-                                                                <span class="badge bg-primary-soft text-primary ">Gestion Medico</span>
-                                                            </a>
+        <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 me-2 ms-lg-2 me-lg-0" id="sidebarToggle">
+            <i data-feather="menu"></i>
+        </button>
 
-                                                        </nav>
-                                                    </div>
-                                                <%
+        <a class="navbar-brand pe-3 ps-4 ps-lg-2" href="Tablero.aspx">EL DR. Seba</a>
+
+
+        <ul class="navbar-nav align-items-center ms-auto">
+            
+            <li class="nav-item dropdown no-caret dropdown-user me-3 me-lg-4">
+                <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage" href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img class="img-fluid" src="../assets/dist/assets/img/illustrations/profiles/profile-2.png"/>
+                </a>
+                <div class="dropdown-menu dropdown-menu-end border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownUserImage">
+                    <h6 class="dropdown-header d-flex align-items-center">
+                        <img class="dropdown-user-img" src="../assets/dist/assets/img/illustrations/profiles/profile-2.png"/>
+                        <div class="dropdown-user-details">
+                            <div class="dropdown-user-details-name"><%: nombre %></div>
+                            <div class="dropdown-user-details-email"><%: usuario.CORREO %></div>
+                        </div>
+                    </h6>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#!">
+                        <div class="dropdown-item-icon">
+                            <i data-feather="settings"></i>
+                        </div>
+                        Perfil
+                    </a>
+                    <a class="dropdown-item" href="#!">
+                        <div class="dropdown-item-icon">
+                            <i data-feather="log-out"></i>
+                        </div>
+                        <asp:Button CausesValidation="false" CssClass="btn btn-primary" runat="server" Text="Logout" OnClick="btn_logout"/>
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+<div id="layoutSidenav">
+    <div id="layoutSidenav_nav">
+        <nav class="sidenav shadow-right sidenav-light">
+            <div class="sidenav-menu">
+                <div class="nav accordion" id="accordionSidenav">
+
+                    <% if (usuario.ID_TIPOUSUARIO != 3)
+                       { %>
+                        <!-- Sidenav Menu Heading (Core)-->
+                        <div class="sidenav-menu-heading">Sistema Turno v1.0</div>
+                        <!-- Sidenav Accordion (Dashboard)-->
+                        <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseDashboards" aria-expanded="false" aria-controls="collapseDashboards">
+                            <div class="nav-link-icon">
+                                <i data-feather="activity"></i>
+                            </div>
+                            Turnos
+                            <div class="sidenav-collapse-arrow">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
+                        </a>
+                        <div class="collapse" id="collapseDashboards" data-bs-parent="#accordionSidenav">
+                            <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
+                                <a class="nav-link" href="SisTurnos.aspx">
+                                    <span class="badge bg-primary-soft text-primary ">Gestion de Turnos</span>
+                                </a>
+
+                            </nav>
+                        </div>
+                    <%
+                                                    } %>
+                    <% if (usuario.ID_TIPOUSUARIO == 3)
+                       { %>
+                        <div class="sidenav-menu-heading">Area Medico</div>
+                        <!-- Sidenav Accordion (Dashboard)-->
+                        <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseDashboards" aria-expanded="false" aria-controls="collapseDashboards">
+                            <div class="nav-link-icon">
+                                <i data-feather="activity"></i>
+                            </div>
+                            Gestion de Pacientes
+                            <div class="sidenav-collapse-arrow">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
+                        </a>
+                        <div class="collapse" id="collapseDashboards" data-bs-parent="#accordionSidenav">
+                            <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
+                                <a class="nav-link" href="Medicos.aspx">
+                                    <span class="badge bg-primary-soft text-primary ">Gestion Medico</span>
+                                </a>
+
+                            </nav>
+                        </div>
+                    <%
                                                    } %>
-                                                <!-- Sidenav Heading (Custom)-->
-                                                <% if(usuario.ID_TIPOUSUARIO<3){ %>
-                                                <div class="sidenav-menu-heading">Administracion</div>
-                                                    <!-- Sidenav Accordion (Dashboard)-->
-                                                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                                                        <div class="nav-link-icon">
-                                                            <i data-feather="grid"></i>
-                                                        </div>
-                                                        Medicos
-                                                        <div class="sidenav-collapse-arrow">
-                                                            <i class="fas fa-angle-down"></i>
-                                                        </div>
-                                                    </a>
-                                                    <div class="collapse" id="collapsePages" data-bs-parent="#accordionSidenav">
-                                                        <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPagesMenu">
-                                                            <!-- Nested Sidenav Accordion (Pages -> Account)-->
-                                                            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAccount" aria-expanded="false" aria-controls="pagesCollapseAccount">
-                                                                Account
-                                                                <div class="sidenav-collapse-arrow">
-                                                                    <i class="fas fa-angle-down"></i>
-                                                                </div>
-                                                            </a>
-                                                            <div class="collapse" id="pagesCollapseAccount" data-bs-parent="#accordionSidenavPagesMenu">
-                                                                <nav class="sidenav-menu-nested nav">
-                                                                    <a class="nav-link" href="Medicos.aspx">
-                                                                        <span class="badge bg-primary-soft text-primary ">Gestion Medico</span>
-                                                                    </a>
-                                                                </nav>
-                                                            </div>
-                                                            <!-- Nested Sidenav Accordion (Pages -> Authentication)-->
+                    <!-- Sidenav Heading (Custom)-->
+                    <% if (usuario.ID_TIPOUSUARIO < 3)
+                       { %>
+                        <div class="sidenav-menu-heading">Administracion</div>
+                        <!-- Sidenav Accordion (Dashboard)-->
+                        <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                            <div class="nav-link-icon">
+                                <i data-feather="grid"></i>
+                            </div>
+                            Medicos
+                            <div class="sidenav-collapse-arrow">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
+                        </a>
+                        <div class="collapse" id="collapsePages" data-bs-parent="#accordionSidenav">
+                            <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPagesMenu">
+                                <!-- Nested Sidenav Accordion (Pages -> Account)-->
+                                <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAccount" aria-expanded="false" aria-controls="pagesCollapseAccount">
+                                    Gestion de Medicos
+                                    <div class="sidenav-collapse-arrow">
+                                        <i class="fas fa-angle-down"></i>
+                                    </div>
+                                </a>
+                                <div class="collapse" id="pagesCollapseAccount" data-bs-parent="#accordionSidenavPagesMenu">
+                                    <nav class="sidenav-menu-nested nav">
+                                        <a class="nav-link" href="alta_Persona.aspx">
+                                            <span class="badge bg-primary-soft text-primary ">Alta Medico</span>
+                                        </a>
+                                        <a class="nav-link" href="Administrar_Medicos.aspx">
+                                            <span class="badge bg-primary-soft text-primary ">Modifica Medico</span>
+                                        </a>
+                                        <a class="nav-link" href="Administrar_EspeyTurnoxMed.aspx">
+                                            <span class="badge bg-primary-soft text-primary ">Administrar Esp. a Medico</span>
+                                        </a>
 
-                                                            <%--<a class="nav-link" href="pricing.html">Pricing</a>
+
+                                    </nav>
+                                </div>
+                                <!-- Nested Sidenav Accordion (Pages -> Authentication)-->
+
+                                <%--<a class="nav-link" href="pricing.html">Pricing</a>
                                                                                                          <a class="nav-link" href="invoice.html">Invoice</a>--%>
-                                                        </nav>
-                                                    </div>
-                                                <!-- Sidenav Accordion (Applications)-->
-                                                <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseApps" aria-expanded="false" aria-controls="collapseApps">
-                                                    <div class="nav-link-icon"><i data-feather="globe"></i></div>
-                                                    Especialidades
-                                                    <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                                </a>
-                                                <div class="collapse" id="collapseApps" data-bs-parent="#accordionSidenav">
-                                                    <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavAppsMenu">
-                                                        <!-- Nested Sidenav Accordion (Apps -> Knowledge Base)-->
-                                                        <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#appsCollapseKnowledgeBase" aria-expanded="false" aria-controls="appsCollapseKnowledgeBase">
-                                                            ABM Especialidades
-                                                            <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                                        </a>
-                                                        <div class="collapse" id="appsCollapseKnowledgeBase" data-bs-parent="#accordionSidenavAppsMenu">
-                                                            <nav class="sidenav-menu-nested nav">
-                                                                <a class="nav-link" href="Especialidades.aspx" >Especialidades ABM</a>
-                                                                
-                                                            </nav>
-                                                        </div>
-                                                      
-                                                    </nav>
-                                                </div>
-                                                <!-- Sidenav Accordion (Flows)-->
-                                                <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseFlows" aria-expanded="false" aria-controls="collapseFlows">
-                                                    <div class="nav-link-icon"><i data-feather="repeat"></i></div>
-                                                    Pacientes
-                                                    <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                                </a>
-                                                <div class="collapse" id="collapseFlows" data-bs-parent="#accordionSidenav">
-                                                    <nav class="sidenav-menu-nested nav">
-                                                        <a class="nav-link" href="alta_persona.aspx">ABM PAciente</a>
-                                                        
-                                                    </nav>
-                                                </div>
-                                              <% } %>
-                                                <%--<div class="sidenav-menu-heading">Plugins</div>
+
+                            </nav>
+                        </div>
+                        <!-- Sidenav Accordion (Applications)-->
+                        <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseApps" aria-expanded="false" aria-controls="collapseApps">
+                            <div class="nav-link-icon">
+                                <i data-feather="globe"></i>
+                            </div>
+                            Especialidades
+                            <div class="sidenav-collapse-arrow">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
+                        </a>
+                        <div class="collapse" id="collapseApps" data-bs-parent="#accordionSidenav">
+                            <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavAppsMenu">
+                                <!-- Nested Sidenav Accordion (Apps -> Knowledge Base)-->
+                                <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#appsCollapseKnowledgeBase" aria-expanded="false" aria-controls="appsCollapseKnowledgeBase">
+                                    ABM Especialidades
+                                    <div class="sidenav-collapse-arrow">
+                                        <i class="fas fa-angle-down"></i>
+                                    </div>
+                                </a>
+                                <div class="collapse" id="appsCollapseKnowledgeBase" data-bs-parent="#accordionSidenavAppsMenu">
+                                    <nav class="sidenav-menu-nested nav">
+                                        <a class="nav-link" href="Especialidades.aspx">Especialidades ABM</a>
+
+                                    </nav>
+                                </div>
+
+                            </nav>
+                        </div>
+                        <!-- Sidenav Accordion (Flows)-->
+                        <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseFlows" aria-expanded="false" aria-controls="collapseFlows">
+                            <div class="nav-link-icon">
+                                <i data-feather="repeat"></i>
+                            </div>
+                            Pacientes
+                            <div class="sidenav-collapse-arrow">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
+                        </a>
+                        <div class="collapse" id="collapseFlows" data-bs-parent="#accordionSidenav">
+                            <nav class="sidenav-menu-nested nav">
+                                <a class="nav-link" href="alta_persona.aspx">Alta PAciente</a>
+                                <a class="nav-link" href="Administrar_Personas.aspx">Modificar Datos Paciente</a>
+
+
+                            </nav>
+                        </div>
+                    <% } %>
+                    <%--<div class="sidenav-menu-heading">Plugins</div>
                                                 <!-- Sidenav Link (Charts)-->
                                                 <a class="nav-link" href="charts.html">
                                                     <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
@@ -248,49 +240,50 @@
                                                     <div class="nav-link-icon"><i data-feather="filter"></i></div>
                                                     Tables
                                                 </a>--%>
-                                            </div>
-                                        </div>
-                                        <!-- Sidenav Footer-->
-                                        <div class="sidenav-footer">
-                                            <div class="sidenav-footer-content">
-                                                <div class="sidenav-footer-subtitle">Usuario:</div>
-                                                <div class="sidenav-footer-title"><%: usuario.DNI%></div>
-                                            </div>
-                                        </div>
-                                    </nav>
-                                </div>
-                                
-                            
-        <% }
-          
-        %>
-        
-            <asp:ContentPlaceHolder ID="MainContent" runat="server">
-            </asp:ContentPlaceHolder>
+                </div>
             </div>
-            <hr />
-            <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - Mi aplicación ASP.NET</p>
-            </footer>
-        
+            <!-- Sidenav Footer-->
+            <div class="sidenav-footer">
+                <div class="sidenav-footer-content">
+                    <div class="sidenav-footer-subtitle">Usuario:</div>
+                    <div class="sidenav-footer-title"><%: nombre %></div>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+
+    <% }
+
+
+    %>
+
+    <asp:ContentPlaceHolder ID="MainContent" runat="server">
+    </asp:ContentPlaceHolder>
+</div>
+    <hr/>
+    <footer>
+        <p>&copy; <%: DateTime.Now.Year %> - Mi aplicación ASP.NET</p>
+    </footer>
+
     </form>
-    <asp:PlaceHolder runat="server">
-        <%: Scripts.Render("~/Scripts/bootstrap.js") %>
-        <%: Scripts.Render("~/Scripts/bootstrap.bundle.js") %>
-        <%--<%: Scripts.Render("~/Scripts/Jquery-3.4.1.js") %>--%>
-        <%: Scripts.Render("~/Scripts/script.js") %>
-    </asp:PlaceHolder>
-        <script src="../assets/dist/js/scripts.js"></script>
-        <%--<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" crossorigin="anonymous"></script>
+<asp:PlaceHolder runat="server">
+    <%: Scripts.Render("~/Scripts/bootstrap.js") %>
+    <%: Scripts.Render("~/Scripts/bootstrap.bundle.js") %>
+    <%--<%: Scripts.Render("~/Scripts/Jquery-3.4.1.js") %>--%>
+    <%: Scripts.Render("~/Scripts/script.js") %>
+</asp:PlaceHolder>
+<script src="../assets/dist/js/scripts.js"></script>
+<%--<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" crossorigin="anonymous"></script>
         <script src="../assets/dist/assets/demo/chart-area-demo.js"></script>
         <script src="../assets/dist/assets/demo/chart-bar-demo.js"></script>--%>
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-        <script src="../assets/dist/js/datatables/datatables-simple-demo.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/bundle.js" crossorigin="anonymous"></script>
-        <script src="../assets/dist/js/litepicker.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+<script src="../assets/dist/js/datatables/datatables-simple-demo.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/litepicker/dist/bundle.js" crossorigin="anonymous"></script>
+<script src="../assets/dist/js/litepicker.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
 </body>
 </html>

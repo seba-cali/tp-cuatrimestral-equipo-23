@@ -425,3 +425,6 @@ ALTER TABLE USUARIO
 
 ALTER TABLE USUARIO
     ADD CONSTRAINT UQ_CORREO UNIQUE (CORREO);
+
+alter table USUARIO
+    add IMG_URL varchar(255) not null default '../assets/dist/assets/img/illustrations/profiles/profile-2.png'

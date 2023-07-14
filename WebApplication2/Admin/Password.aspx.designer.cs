@@ -11,62 +11,44 @@ namespace WebApplication2.Admin
 {
 
 
-    public partial class Administrar_EspeyTurnoxMed
+    public partial class Password
     {
 
         /// <summary>
-        /// lblmsg control.
+        /// inputPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblmsg;
+        protected global::System.Web.UI.WebControls.TextBox inputPassword;
 
         /// <summary>
-        /// dgvEspecialidadxTurno control.
+        /// inputNuevoPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgvEspecialidadxTurno;
+        protected global::System.Web.UI.WebControls.TextBox inputNuevoPassword;
 
         /// <summary>
-        /// inputMedico control.
+        /// inputConfirmaPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList inputMedico;
+        protected global::System.Web.UI.WebControls.TextBox inputConfirmaPassword;
 
         /// <summary>
-        /// inputEspecialidad control.
+        /// guardaPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList inputEspecialidad;
-
-        /// <summary>
-        /// inputTurno control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList inputTurno;
-
-        /// <summary>
-        /// Ingresar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Ingresar;
+        protected global::System.Web.UI.WebControls.Button guardaPassword;
 
         /// <summary>
         /// Master property.
