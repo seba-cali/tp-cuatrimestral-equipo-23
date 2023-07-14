@@ -210,7 +210,7 @@ namespace WebApplication2.Admin
 					negocioPaciente = new NegocioPaciente();
 
 					usuario.username = inputDNI.Text; //aca usamos el mismo input tanto para paciente como para usuario
-					usuario.PASSWORD = inputPassword.Text;
+					usuario.PASSWORD = usuario.encriptar(inputPassword.Text);
 					usuario.CORREO = inputEmail.Text;
 					usuario.ID_TIPOUSUARIO = 4;
 					usuario.ID_USUARIO = negocioUsuario.RegistrarUsuario(usuario);
@@ -282,7 +282,7 @@ namespace WebApplication2.Admin
 					NegocioUsuario negocioUsuario = new NegocioUsuario();
 					negocioMedico = new NegocioMedico();
 					usuario.username = inputDNI.Text;
-					usuario.PASSWORD = inputPassword.Text;
+					usuario.PASSWORD = usuario.encriptar(inputPassword.Text);
 					usuario.CORREO = inputEmail.Text;
 					usuario.ID_TIPOUSUARIO = 3;
 					usuario.ID_USUARIO = negocioUsuario.RegistrarUsuario(usuario);
@@ -365,7 +365,7 @@ namespace WebApplication2.Admin
 				negocioPaciente = new NegocioPaciente();
 
 				usuario.username = inputDNI.Text;
-				usuario.PASSWORD = inputPassword.Text;
+				usuario.PASSWORD = usuario.encriptar(inputPassword.Text);
 				usuario.CORREO = inputEmail.Text;
 				usuario.ID_TIPOUSUARIO = 4;
 				negocioUsuario.RegistrarUsuario(usuario, IDUSUARIO);
@@ -412,7 +412,7 @@ namespace WebApplication2.Admin
 				NegocioUsuario negocioUsuario = new NegocioUsuario();
 				negocioMedico = new NegocioMedico();
 				usuario.username = inputDNI.Text;
-				usuario.PASSWORD = inputPassword.Text;
+				usuario.PASSWORD = usuario.encriptar(inputPassword.Text);
 				usuario.CORREO = inputEmail.Text;
 				usuario.ID_TIPOUSUARIO = 3;
 				negocioUsuario.RegistrarUsuario(usuario, IDUSUARIO);

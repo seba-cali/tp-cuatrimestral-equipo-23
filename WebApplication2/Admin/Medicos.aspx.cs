@@ -23,7 +23,6 @@ namespace WebApplication2.Admin
             }
             if (!IsPostBack)
             {
-                
                 Session["OK"] = null;
                 Session["class"] = null;
                 Session["error"] = null;
@@ -42,6 +41,28 @@ namespace WebApplication2.Admin
             ListaTurnos = negocio.listar();
             ListaTurnos = ListaTurnos.FindAll(x => x.Id_Medico == medico.ID_MEDICO).OrderByDescending(x => x.fecha).ToList();
 
+        }
+
+        protected void Button2_OnClick(object sender, EventArgs e)
+        {
+            Console.WriteLine(formGroupId.Text+" asdasd "+inputEstado.Text+" asdasd "+inputObs.Text);
+            try
+            {
+                Turnos turno = new Turnos();
+                NegocioTurno negocio = new NegocioTurno();
+                turno.Id_Turno = Convert.ToInt32(formGroupId.Text);
+                turno.EstadoInf= Convert.ToInt32(inputEstado.SelectedValue);
+                turno.observacionMed = inputObs.Text;
+                
+                negocio.UpdateTurnoMed(turno);
+                Session["OK"] = "Se actualizo estado del paciente";
+
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                Session["error"] = "No se pudo actualizar el estado del paciente";
+            }
         }
     }
 }

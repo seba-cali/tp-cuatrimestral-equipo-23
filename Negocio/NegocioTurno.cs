@@ -78,6 +78,25 @@ namespace Negocio
                 throw ex;
             }
         }
+        public void UpdateTurnoMed(Turnos turno)
+        {
+            DBConnection db = new DBConnection();
+            try
+            {
+                db.setearConsulta(
+                    "UPDATE Turno SET EstadoInforme=@estadoinforme, ObservacionMedico=@obs  WHERE ID_TURNO =@id_turno");
+                db.setearParametro("@id_turno",turno.Id_Turno);
+                db.setearParametro("@estadoinforme", turno.EstadoInf);
+                db.setearParametro("@obs", turno.observacionMed);
+                
+                db.ejecutarLectura();
+                
+            }catch (System.Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw ex;
+            }
+        }
         public Turnos turnRepro(int idturno)
         {
             

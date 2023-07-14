@@ -83,6 +83,8 @@ namespace Negocio
 					aux.username = db.Lector.GetString(1);
 					aux.PASSWORD = db.Lector.GetString(2);
 					aux.CORREO = db.Lector.GetString(3);
+					aux.ESTADO = db.Lector.GetBoolean(4);
+					aux.ID_TIPOUSUARIO = db.Lector.GetInt32(5);
 
 					usuario.Add(aux);
 				}

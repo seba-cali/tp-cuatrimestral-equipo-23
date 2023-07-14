@@ -15,8 +15,9 @@ namespace Dominio
         
         public int img_url { get; set; }
         
+        public static string[] TipoUSUARIO= {"","Administrador","Recepcionista","Medico","Paciente"};
         public Usuario(){}
-        public Usuario(string username,string password, int id_tipousuario,string dni, string nombres, string apellidos, string direccion, string telefono, string email, DateTime fechaNacimiento, string sexo, bool estado) 
+        /*public Usuario(string username,string password, int id_tipousuario,string dni, string nombres, string apellidos, string direccion, string telefono, string email, DateTime fechaNacimiento, string sexo, bool estado) 
             : base(dni, nombres, apellidos, direccion, telefono, email, fechaNacimiento, sexo, estado)
         {
            
@@ -30,10 +31,10 @@ namespace Dominio
             this.CORREO = email;
             this.fechaNacimiento = fechaNacimiento;
             this.sexo = sexo;
-            this.ESTADO = estado;*/
+            this.ESTADO = estado;#1#
            
 
-        }
+        }*/
         public string encriptar(String password)  
         {  
             
