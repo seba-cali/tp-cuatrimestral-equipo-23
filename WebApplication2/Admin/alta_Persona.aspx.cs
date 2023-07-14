@@ -63,7 +63,7 @@ namespace WebApplication2.Admin
 
 		protected void Page_Load(object sender, EventArgs e)
 		{
-
+			
 
 			Session.Add("OK", null);
 			string idMedico = Request.QueryString["idMedico"] != null ? Request.QueryString["idMedico"].ToString() : "";
@@ -72,6 +72,7 @@ namespace WebApplication2.Admin
 			//todo:Checkear por que Paciente no crea ni usuario ni paciente si algo falla, pero medico si lo hace (no deberia)
 			if (idPaciente != "" && idUsuario != "" && !IsPostBack)
 			{
+				
 				esMedico = false;
 				esPaciente = true;
 				NegocioPaciente negocio = new NegocioPaciente();
@@ -429,7 +430,7 @@ namespace WebApplication2.Admin
 				medico.DNI = inputDNI.Text;
 				medico.Matricula = inputMatricula.Text;
 				medico.ID_MEDICO = negocioMedico.RegistrarMedico(medico, IDMEDICO);
-				Response.Redirect("Administrar_Personas.aspx", false);
+				Response.Redirect("Administrar_Medicos.aspx", false);
 
 				Session.Add("OK", "SE ACTUALIZO EL MEDICO CON EXITO");
 				LimpiarControles(this);

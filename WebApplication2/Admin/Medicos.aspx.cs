@@ -23,10 +23,13 @@ namespace WebApplication2.Admin
             }
             if (!IsPostBack)
             {
+                    
                 Session["OK"] = null;
                 Session["class"] = null;
                 Session["error"] = null;
             }
+            if(formGroupId.Text!=""&& formGroupId!=null)
+                Session["idMed"] = formGroupId.Text;
             usuario = (Usuario)Session["usuario"];
             
             NegocioEspecialidad negocioEspecialidad = new NegocioEspecialidad();
@@ -45,7 +48,7 @@ namespace WebApplication2.Admin
 
         protected void Button2_OnClick(object sender, EventArgs e)
         {
-            Console.WriteLine(formGroupId.Text+" asdasd "+inputEstado.Text+" asdasd "+inputObs.Text);
+            Console.WriteLine(Session["idmed"]+" asdasd "+inputEstado.SelectedValue+" asdasd "+inputObs.Text);
             try
             {
                 Turnos turno = new Turnos();

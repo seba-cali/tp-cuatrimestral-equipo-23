@@ -271,16 +271,17 @@
             --%>
             <% foreach
 
-    (var tux in ListaTurnos)
+                   (var tux in ListaTurnos)
                {
-                        
-                       var pac = ListaPacientes.Find(x => x.ID_PACIENTE == tux.Id_Paciente);
-                       var esp = ListaEspecialidades.Find(x => x.id == tux.Id_Especialidad);
-                   
+
+                   var pac = ListaPacientes.Find(x => x.ID_PACIENTE == tux.Id_Paciente);
+                   var esp = ListaEspecialidades.Find(x => x.id == tux.Id_Especialidad);
+                   if (tux.Estado == true)
+                   {
             %>
                 <tr>
-                    <td><%= pac.nombreCompleto   %></td>
-                    <td><%= pac.DNI   %></td>
+                    <td><%= pac.nombreCompleto %></td>
+                    <td><%= pac.DNI %></td>
                     <td><%= esp.nombre %></td>
                     <td><%= tux.fecha.Date.ToShortDateString() %></td>
                     <td><%= Turnos.GetRepro()[tux.Id_Hora] %></td>
@@ -298,7 +299,8 @@
                     --%>
                     
                 </tr>
-            <% } %>
+            <% }
+               } %>
             </tbody>
         </table>
     </div>
@@ -308,12 +310,12 @@
 <footer class="footer-admin mt-auto footer-light">
     <div class="container-xl px-4">
         <div class="row">
-            <div class="col-md-6 small">Copyright &copy; Your Website 2021</div>
-            <div class="col-md-6 text-md-end small">
+			  <div class="col-md-6 small">Grupo 23 &copy; Programación III</div>
+<%--            <div class="col-md-6 text-md-end small">
                 <a href="#!">Privacy Policy</a>
                 &middot;
                 <a href="#!">Terms &amp; Conditions</a>
-            </div>
+            </div>--%>
         </div>
     </div>
 </footer>

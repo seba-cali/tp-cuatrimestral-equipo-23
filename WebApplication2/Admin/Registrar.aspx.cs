@@ -47,6 +47,7 @@ namespace WebApplication2.Admin
                     usuario.PASSWORD = usuario.encriptar(inputPassword.Text);
                     usuario.ID_TIPOUSUARIO= 4;
                     //asigna id de usuario y lo guarda en session
+                    usuario.ID_TIPOUSUARIO = 4;
                     usuario.ID_USUARIO = usuarioNegocio.RegistrarUsuario(usuario);
                 
                     Session.Add("usuario", usuario);                

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Title" Language="C#" MasterPageFile="Panel.master" CodeBehind="Medicos.aspx.cs" Inherits="WebApplication2.Admin.Medicos" %>
+﻿<%@ Page Title="Title" Language="C#" MasterPageFile="~/Admin/Panel.master" CodeBehind="Medicos.aspx.cs" Inherits="WebApplication2.Admin.Medicos" %>
 <%@ Import Namespace="Dominio" %>
 
 
@@ -106,28 +106,30 @@
                             <label class="mb-1 small text-muted" for="formGroupName">Id</label>
                             <h3 class="elementoedit"></h3>
                             
-                                    <asp:TextBox class="form-control formGroupId" id="formGroupId" type="text" ReadOnly="True" AutoPostBack="True" runat="server"/>
+                                    <asp:TextBox class="form-control formGroupId" id="formGroupId" type="text" ReadOnly="True" AutoPostBack="false" runat="server"/>
                             
                         </div>
                         <div class="mb-0">
                             <label class="mb-1 small text-muted" for="formGroupName">Nombre</label>
-                            <asp:TextBox class="form-control formGroupNameEdit" id="inputId" ReadOnly="True" type="text" runat="server"/>
+                            <asp:TextBox class="form-control formGroupNameEdit" id="inputId" ReadOnly="True" AutoPostBack="False" type="text" runat="server"/>
                         </div>
                         <div class="mb-0">
                             <label class="mb-1 small text-muted" for="formGroupDesc">Estado</label>
+                        <asp:UpdatePanel runat="server">
+                            <ContentTemplate>
                             
-                                    <asp:DropDownList ID="inputEstado" runat="server" CssClass="form-control" AutoPostBack="True">
+                            <asp:DropDownList ID="inputEstado" runat="server" CssClass="form-control" AutoPostBack="False">
                                         <asp:ListItem Text="Cambiar estado" Value="" Selected="True"></asp:ListItem>
                                         <asp:ListItem Text="No Asistio" Value="3"></asp:ListItem>
                                         <asp:ListItem Text="Cerrado" Value="1"></asp:ListItem>
                                     </asp:DropDownList>
-                            
-
+                            </ContentTemplate>
+                    </asp:UpdatePanel>
                         </div>
                         <div class="mb-0">
                             <label class="mb-1 small text-muted" for="formGroupURL">Observacion</label>
                             
-                                    <asp:TextBox class="form-control" TextMode="MultiLine" id="inputObs" AutoPostBack="True" runat="server"/>
+                                    <asp:TextBox class="form-control" TextMode="MultiLine" id="inputObs" AutoPostBack="False" runat="server"/>
                             
                         </div>
                         <div class="mb-0">
@@ -138,7 +140,7 @@
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-danger-soft text-danger" type="button" data-bs-dismiss="modal">Cerrar</button>
-                        <asp:Button ID="Button2" runat="server" Text="Atender Paciente" CausesValidation="False" OnClientClick="return ;" OnClick="Button2_OnClick" CssClass="btn btn-primary-soft text-primary"/>
+                        <asp:Button ID="Button2" runat="server" Text="Atender Paciente" CausesValidation="False" AutoPostBack="False" OnClick="Button2_OnClick" CssClass="btn btn-primary-soft text-primary"/>
                     </div>
 
                 </div>

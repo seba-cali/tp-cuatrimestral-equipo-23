@@ -17,7 +17,9 @@ namespace WebApplication2.Admin
 		{
 
 			NegocioMedico negocioMedico = new NegocioMedico();
-			dgvMedicos.DataSource = negocioMedico.listar();
+			Session.Add("listMedico", negocioMedico.listar());
+			dgvMedicos.DataSource = Session["listMedico"];
+			//dgvMedicos.DataSource = negocioMedico.listar();
 			dgvMedicos.DataBind();
 		}
 		protected void btnEliminar_Click(object sender, EventArgs e)
@@ -55,5 +57,14 @@ namespace WebApplication2.Admin
 			string idUsuario = argumentValues[1];
 			Response.Redirect("alta_Persona.aspx?idMedico=" + idMedico + "&idUsuario=" + idUsuario, false);
 		}
-	}
+
+        protected void filtro_TextChanged(object sender, EventArgs e)
+        {
+			List<Medico> listMedicos =(List<Medico>)Session["listMedico"];
+			List<Medico> listMedicosFiltrada = listMedicos.FindAll(x => x.nombres.ToLower().Contains(filtro.Text.ToLower()) || x.apellidos.ToLower().Contains(filtro.Text.ToLower()) || x.DNI.ToString().Contains(filtro.Text.ToLower()));
+			dgvMedicos.DataSource = listMedicosFiltrada;
+			dgvMedicos.DataBind();
+
+        }
+    }
 }
