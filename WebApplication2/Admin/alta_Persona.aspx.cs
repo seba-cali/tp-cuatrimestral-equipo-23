@@ -195,8 +195,8 @@ namespace WebApplication2.Admin
 		public void btnSubmit_Click(object sender, EventArgs e)
 		{
 			Session.Add("OK", "");
-			inputMatricula.CausesValidation = false;
-			rfvMatricula.Enabled = false;
+			//inputMatricula.CausesValidation = false;
+			//rfvMatricula.Enabled = false;
 			//validacion general para que se carguen todos los campos espeficicados como requeridos en alta persona en el front
 			if (Page.IsValid)
 			{
