@@ -429,7 +429,7 @@ namespace WebApplication2.Admin
 				medico.DNI = inputDNI.Text;
 				medico.Matricula = inputMatricula.Text;
 				medico.ID_MEDICO = negocioMedico.RegistrarMedico(medico, IDMEDICO);
-				Response.Redirect("Administrar_Personas.aspx", false);
+				Response.Redirect("Administrar_Medicos.aspx", false);
 
 				Session.Add("OK", "SE ACTUALIZO EL MEDICO CON EXITO");
 				LimpiarControles(this);
