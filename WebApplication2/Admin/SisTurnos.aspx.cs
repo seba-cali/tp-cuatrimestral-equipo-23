@@ -16,14 +16,19 @@ namespace WebApplication2.Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            usuario = (Usuario)Session["usuario"];
-            if (usuario != null)
+
+            if(Session["usuario"]==null)
             {
-                if (usuario.ID_TIPOUSUARIO== 4 && !VerificaUsuario( usuario.ID_USUARIO ))
-                {
-                    Session.Add("debe","Debe Completar el formulario para operar en el sistema");
-                    Response.Redirect("Perfil.aspx",false);
-                }
+                Session.Add("debe", "Debe Completar el formulario para operar en el sistema");
+                Response.Redirect("Default.aspx", false);
+            }
+            usuario = (Usuario)Session["usuario"];
+            if (!VerificaUsuario(usuario.ID_USUARIO))
+            {
+                Session.Add("debe", "Debe Completar el formulario para operar en el sistema");
+                Response.Redirect("Perfil.aspx", false);
+            }
+            else{
                 pivot = true;
 
 
@@ -241,8 +246,9 @@ namespace WebApplication2.Admin
                     }
                 }
             }
-            else  
-                Response.Redirect("Default.aspx", false);
+            
+
+        
         }
         private bool VerificaUsuario(int o)
         {
@@ -454,7 +460,7 @@ namespace WebApplication2.Admin
         protected Usuario returnUsuarioXIdPaciente(int idPaciente)
         {
             NegocioPaciente negocioPaciente = new NegocioPaciente();
-            Paciente paciente = negocioPaciente.BuscarXId(idPaciente);
+            Paciente paciente = negocioPaciente.BuscarXIdPaciente(idPaciente);
             NegocioUsuario negocioUsuario = new NegocioUsuario();
             Usuario usuario = negocioUsuario.BuscarXId(paciente.ID_USUARIO);
             return usuario;

@@ -195,12 +195,14 @@ namespace WebApplication2.Admin
 		public void btnSubmit_Click(object sender, EventArgs e)
 		{
 			Session.Add("OK", "");
-
+			inputMatricula.CausesValidation = false;
+			rfvMatricula.Enabled = false;
 			//validacion general para que se carguen todos los campos espeficicados como requeridos en alta persona en el front
 			if (Page.IsValid)
 			{
 				try
 				{
+					
 					//CREACION DE PACIENTE NUEVO
 					Paciente paciente = new Paciente();
 					Usuario usuario = new Usuario();
@@ -268,11 +270,13 @@ namespace WebApplication2.Admin
 		protected void AltaMedico_Click(object sender, EventArgs e)
 		{
 			Session.Add("OK", "");
-
+			rfvMatricula.Enabled = true;
+			inputMatricula.CausesValidation = true;
 			if (Page.IsValid)
 			{
 				try
 				{
+					
 					Medico medico = new Medico();
 					Usuario usuario = new Usuario();
 					NegocioUsuario negocioUsuario = new NegocioUsuario();

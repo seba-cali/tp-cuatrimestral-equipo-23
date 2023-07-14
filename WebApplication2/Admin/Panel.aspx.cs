@@ -10,23 +10,57 @@ namespace WebApplication2.Admin
     public partial class Panel : MasterPage
     {
         protected Usuario usuario;
+        protected Medico medico { get; set; }
+        protected Paciente paciente { get; set; }
+        protected string nombre { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-            
-                usuario = (Usuario)Session["usuario"];
+            if (Session["usuario"] == null)
+            {
                 
-            
-            
+            }
+            else
+            {
+
+                usuario = (Usuario)Session["usuario"];
+                try
+                {
+                    if (usuario.ID_TIPOUSUARIO == 1 )
+                    {
+                        nombre = "Administrador";
+                    }
+
+                    if (usuario.ID_TIPOUSUARIO == 2)
+                    {
+                        nombre = "Secretaria";
+                    }
+
+                    if (usuario.ID_TIPOUSUARIO == 3)
+                    {
+                        NegocioMedico negocioMedico = new NegocioMedico();
+                        medico = negocioMedico.listar().Find(x => x.ID_USUARIO == usuario.ID_USUARIO);
+                        nombre = medico.nombres;
+
+                    }
+
+                    if (usuario.ID_TIPOUSUARIO == 4)
+                    {
+                        NegocioPaciente negocioPaciente = new NegocioPaciente();
+                        paciente = negocioPaciente.listar().Find(x => x.ID_USUARIO == usuario.ID_USUARIO);
+                        nombre = paciente.nombres;
+                    }
+                }
+                catch (Exception exception)
+                {
+                    Console.WriteLine(exception);
+                    
+                }
+                
+                
+            }
+
         }
-        private bool VerificaUsuario(int o)
-        {
-            NegocioPaciente negocioPaciente = new NegocioPaciente();
-            List<Paciente>ListaPacientes = new List<Paciente>();
-            ListaPacientes = negocioPaciente.listar();
-            Paciente paciente = ListaPacientes.Find(x => x.ID_USUARIO == o);
-            return paciente==null?false:true;
-        }
+        
 
         protected void btn_logout(object sender, EventArgs e)
         {
