@@ -14,12 +14,13 @@ namespace WebApplication2.Admin
 	public partial class Administrar_Personas : System.Web.UI.Page
 	{
 		public List<Paciente> listPacientes { get; set; }
-		
+
 		protected void Page_Load(object sender, EventArgs e)
 		{
-			
+
 			NegocioPaciente negocioPaciente = new NegocioPaciente();
-			dgvPacientes.DataSource = negocioPaciente.listarConSp();
+			Session.Add("listPacientes", negocioPaciente.listarConSp());
+			dgvPacientes.DataSource = Session["listPacientes"];
 			dgvPacientes.DataBind();
 
 
@@ -58,7 +59,16 @@ namespace WebApplication2.Admin
 			string[] argumentValues = commandArgument.Split(',');
 			string idPaciente = argumentValues[0];
 			string idUsuario = argumentValues[1];
-			Response.Redirect("alta_Persona.aspx?idPaciente=" + idPaciente +"&idUsuario=" + idUsuario ,false);
+			Response.Redirect("alta_Persona.aspx?idPaciente=" + idPaciente + "&idUsuario=" + idUsuario, false);
+		}
+
+		protected void filtro_TextChanged(object sender, EventArgs e)
+		{
+			List<Paciente> listPacientes = (List<Paciente>)Session["listPacientes"];
+			List<Paciente> listPacientesFiltrada = listPacientes.FindAll(x => x.nombres.ToLower().Contains(filtro.Text.ToLower()) || x.apellidos.ToLower().Contains(filtro.Text.ToLower()) || x.DNI.ToString().Contains(filtro.Text.ToLower()));
+			dgvPacientes.DataSource = listPacientesFiltrada;
+			dgvPacientes.DataBind();
+
 		}
 	}
 }

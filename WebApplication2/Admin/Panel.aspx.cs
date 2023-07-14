@@ -47,7 +47,7 @@ namespace WebApplication2.Admin
                     {
                         NegocioPaciente negocioPaciente = new NegocioPaciente();
                         paciente = negocioPaciente.listar().Find(x => x.ID_USUARIO == usuario.ID_USUARIO);
-                        nombre = paciente.nombres;
+                        //nombre = paciente.nombres;
                     }
                 }
                 catch (Exception exception)

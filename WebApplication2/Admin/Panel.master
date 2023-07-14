@@ -263,7 +263,7 @@
 </div>
     <hr/>
     <footer>
-        <p>&copy; <%: DateTime.Now.Year %> - Mi aplicación ASP.NET</p>
+        <p>&copy;<%: DateTime.Now.Year %> - UTN FRGP - Programación III</p>
     </footer>
 
     </form>
