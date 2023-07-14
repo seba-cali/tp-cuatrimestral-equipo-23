@@ -23,8 +23,8 @@ namespace WebApplication2.Admin
                 Response.Redirect("Default.aspx", false);
             }
 
-            /*try
-            {*/
+            try
+            {
                 usuario = (Usuario)Session["usuario"];
                 if (!VerificaUsuario(usuario.ID_USUARIO))
                 {
@@ -254,10 +254,10 @@ namespace WebApplication2.Admin
                         }
                     }
                 }
-            /*}catch(Exception ex)
+            }catch(Exception ex)
             {
                 Response.Redirect("Default.aspx", false);
-            }*/
+            }
 
 
         }
