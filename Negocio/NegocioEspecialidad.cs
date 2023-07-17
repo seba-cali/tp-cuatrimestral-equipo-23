@@ -11,7 +11,7 @@ namespace Negocio
 {
 	public class NegocioEspecialidad
 	{
-		
+
 		public List<Especialidad> listar()
 		{
 			List<Especialidad> especialidades = new List<Especialidad>();
@@ -19,10 +19,8 @@ namespace Negocio
 
 			try
 			{
-
 				db.setearConsulta("SELECT ID_ESP, NOMBRE, DESCRIPCION, URL_IMG_ESP FROM ESPECIALIDADES");
 				db.ejecutarLectura();
-
 				while (db.Lector.Read())
 				{
 					Especialidad aux = new Especialidad();
@@ -30,7 +28,6 @@ namespace Negocio
 					aux.nombre = db.Lector.GetString(1);
 					aux.descripcion = db.Lector.GetString(2);
 					aux.url_img_esp = db.Lector.GetString(3);
-
 					especialidades.Add(aux);
 				}
 				db.cerrarConexion();
@@ -45,7 +42,6 @@ namespace Negocio
 				db.cerrarConexion();
 			}
 		}
-
 		public void eliminar(int id)
 		{
 			try
@@ -57,54 +53,44 @@ namespace Negocio
 			}
 			catch (Exception ex)
 			{
-
 				throw ex;
 			}
-
 		}
-		
-		public int RegistrarEspecialidad(Especialidad nuevo, int id=0 )
+
+		public int RegistrarEspecialidad(Especialidad nuevo, int id = 0)
 		{
-			
-				Console.WriteLine(id);
-				DBConnection db = new DBConnection();
-				try
+
+			Console.WriteLine(id);
+			DBConnection db = new DBConnection();
+			try
+			{
+				if (id > 0)
 				{
-					if (id > 0)
-					{
-						db.setearProcedimiento("ActualizaEspecialidad");
-						db.setearParametro("@Id_Esp", id);
-						db.setearParametro("@nombre", nuevo.nombre);
-						db.setearParametro("@descripcion", nuevo.descripcion);
-						db.setearParametro("@url_img_esp", nuevo.url_img_esp);
-
-
-					}
-					else
-					{
-
-						db.setearProcedimiento("RegistrarEspecialidad");
-						db.setearParametro("@nombre", nuevo.nombre);
-						db.setearParametro("@descripcion", nuevo.descripcion);
-						db.setearParametro("@url_img_esp", nuevo.url_img_esp);
-					}
-
-					return db.ejecutarLecturaInt();
+					db.setearProcedimiento("ActualizaEspecialidad");
+					db.setearParametro("@Id_Esp", id);
+					db.setearParametro("@nombre", nuevo.nombre);
+					db.setearParametro("@descripcion", nuevo.descripcion);
+					db.setearParametro("@url_img_esp", nuevo.url_img_esp);
 				}
-				catch (Exception ex)
+				else
 				{
-					Console.WriteLine("error manito");
-					Console.WriteLine(ex.ToString());
-					return 0;
-					
+					db.setearProcedimiento("RegistrarEspecialidad");
+					db.setearParametro("@nombre", nuevo.nombre);
+					db.setearParametro("@descripcion", nuevo.descripcion);
+					db.setearParametro("@url_img_esp", nuevo.url_img_esp);
 				}
-				finally
-				{
-					db.cerrarConexion();
-				}
-
+				return db.ejecutarLecturaInt();
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine("error manito");
+				Console.WriteLine(ex.ToString());
+				return 0;
+			}
+			finally
+			{
+				db.cerrarConexion();
+			}
 		}
-		
-
 	}
 }

@@ -14,18 +14,13 @@ namespace Negocio
 			Usuario aux = new Usuario();
 			try
 			{
-
-
-
 				db.setearConsulta("SELECT ID_USUARIO, USERNAME, PASSWORD, CORREO, ESTADO, ID_TIPOUSUARIO FROM USUARIO WHERE USERNAME= @username AND PASSWORD = @password");
 				db.setearParametro("@username", usuario.username);
 				db.setearParametro("@password", usuario.PASSWORD);
 				db.ejecutarLectura();
 
-
 				if (db.Lector.Read())
 				{
-
 					usuario.ID_USUARIO = db.Lector.GetInt32(0);
 					usuario.username = db.Lector.GetString(1);
 					usuario.PASSWORD = db.Lector.GetString(2);
@@ -39,13 +34,7 @@ namespace Negocio
 				{
 					db.cerrarConexion();
 					return null;
-
 				}
-
-
-
-
-
 			}
 			catch (System.Exception ex)
 			{
@@ -63,7 +52,6 @@ namespace Negocio
 
 			try
 			{
-
 				if (idUsuario != "")
 				{
 					db.setearConsulta("SELECT ID_USUARIO, USERNAME, PASSWORD, CORREO, ESTADO, ID_TIPOUSUARIO FROM USUARIO where ID_USUARIO = " + idUsuario);
@@ -72,7 +60,7 @@ namespace Negocio
 				{
 					db.setearConsulta("SELECT ID_USUARIO, USERNAME, PASSWORD, CORREO, ESTADO, ID_TIPOUSUARIO FROM USUARIO");
 				}
-					db.ejecutarLectura();
+				db.ejecutarLectura();
 
 
 
@@ -85,7 +73,6 @@ namespace Negocio
 					aux.CORREO = db.Lector.GetString(3);
 					aux.ESTADO = db.Lector.GetBoolean(4);
 					aux.ID_TIPOUSUARIO = db.Lector.GetInt32(5);
-
 					usuario.Add(aux);
 				}
 				db.cerrarConexion();
@@ -112,7 +99,6 @@ namespace Negocio
 			}
 			catch (Exception ex)
 			{
-
 				throw ex;
 			}
 
@@ -129,7 +115,6 @@ namespace Negocio
 				db.ejecutarLectura();
 				if (db.Lector.Read())
 				{
-
 					aux.ID_USUARIO = db.Lector.GetInt32(0);
 					aux.username = db.Lector.GetString(1);
 					aux.PASSWORD = db.Lector.GetString(2);
@@ -138,12 +123,10 @@ namespace Negocio
 					aux.ID_TIPOUSUARIO = db.Lector.GetInt32(5);
 					db.cerrarConexion();
 					return aux;
-
 				}
 			}
 			catch (Exception e)
 			{
-
 				Console.WriteLine(e);
 				throw;
 			}
@@ -163,8 +146,7 @@ namespace Negocio
 			{
 				Console.WriteLine(e);
 				throw;
-			}
-		
+			}		
 		}
 		public int RegistrarUsuario(Usuario nuevo, int id = 0)
 		{
@@ -185,7 +167,6 @@ namespace Negocio
 				}
 				else
 				{
-
 					db.setearProcedimiento("RegistrarUsuario");
 					db.setearParametro("@username", nuevo.username);
 					db.setearParametro("@correo", nuevo.CORREO);
@@ -204,8 +185,6 @@ namespace Negocio
 			{
 				db.cerrarConexion();
 			}
-
 		}
-
 	}
 }
