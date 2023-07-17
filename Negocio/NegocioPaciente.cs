@@ -12,11 +12,8 @@ namespace Negocio
 		{
 			List<Paciente> paciente = new List<Paciente>();
 			DBConnection db = new DBConnection();
-
 			try
-			{
-
-				
+			{				
 				if(idPaciente != "")
 				{
 					db.setearConsulta("SELECT ID_PACIENTE, NOMBRE, APELLIDO, DIRECCION, FECHA_NACIMIENTO, SEXO, ESTADO, TELEFONO, ID_USUARIO, DNI  FROM PACIENTE WHERE ID_PACIENTE = " + idPaciente);
@@ -40,8 +37,6 @@ namespace Negocio
 					aux.telefono = db.Lector.GetString(7);
 					aux.ID_USUARIO = db.Lector.GetInt32(8);
 					aux.DNI = db.Lector.GetString(9);
-
-
 					paciente.Add(aux);
 				}
 				db.cerrarConexion();
@@ -56,7 +51,6 @@ namespace Negocio
 				db.cerrarConexion();
 			}
 		}
-
 		public List<Paciente> listarConSp()
 		{
 			List<Paciente> lista = new List<Paciente>();
@@ -80,14 +74,11 @@ namespace Negocio
 					aux.ID_USUARIO = datos.Lector.GetInt32(8);
 					aux.DNI = datos.Lector.GetString(9);
 					lista.Add(aux);
-
 				}
 				return lista;
-
 			}
 			catch (Exception ex)
 			{
-
 				throw ex;
 			}
 		}
@@ -106,9 +97,7 @@ namespace Negocio
 
 				throw ex;
 			}
-
 		}
-
 		public int RegistrarPaciente(Paciente nuevo, int id)
 		{
 			DBConnection db = new DBConnection();
@@ -155,9 +144,7 @@ namespace Negocio
 			{
 				db.cerrarConexion();
 			}
-
 		}
-
 		public void reactivarPaciente(int id)
 		{
 			try
@@ -169,7 +156,6 @@ namespace Negocio
 			}
 			catch (Exception ex)
 			{
-
 				throw ex;
 			}
 		}
@@ -184,7 +170,6 @@ namespace Negocio
 				db.ejecutarLectura();
 				if (db.Lector.Read())
 				{
-
 					aux.ID_PACIENTE = db.Lector.GetInt32(0);
 					aux.nombres = db.Lector.GetString(1);
 					aux.apellidos = db.Lector.GetString(2);
@@ -219,7 +204,6 @@ namespace Negocio
 				db.ejecutarLectura();
 				if (db.Lector.Read())
 				{
-
 					aux.ID_PACIENTE = db.Lector.GetInt32(0);
 					aux.nombres = db.Lector.GetString(1);
 					aux.apellidos = db.Lector.GetString(2);
@@ -232,7 +216,6 @@ namespace Negocio
 					aux.DNI = db.Lector.GetString(9);
 					db.cerrarConexion();
 					return aux;
-
 				}
 			}
 			catch (Exception e)
@@ -254,7 +237,6 @@ namespace Negocio
 				db.ejecutarLectura();
 				if (db.Lector.Read())
 				{
-
 					aux.ID_PACIENTE = db.Lector.GetInt32(0);
 					aux.nombres = db.Lector.GetString(1);
 					aux.apellidos = db.Lector.GetString(2);
@@ -267,12 +249,10 @@ namespace Negocio
 					aux.DNI = db.Lector.GetString(9);
 					db.cerrarConexion();
 					return aux;
-
 				}
 			}
 			catch (Exception e)
 			{
-
 				Console.WriteLine(e);
 				throw;
 			}
