@@ -47,7 +47,7 @@
             <div class="col-3 col-sm-3">
                 <asp:TextBox CssClass="form-control" ID="inputMatricula" type="text" placeholder="Matricula" runat="server" />
                 <%--validacion matricula requerido--%>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="inputMatricula" ErrorMessage="⚠ Ingrese Matricula" ForeColor="pink" Font-Bold="true"></asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="rfvMatricula" runat="server" ControlToValidate="inputMatricula" ErrorMessage="⚠ Ingrese Matricula" ForeColor="pink" Font-Bold="true"></asp:RequiredFieldValidator>
             </div>
         </div>
         <div class="row">

@@ -29,6 +29,7 @@
 								<asp:Button ID="btnModificar" runat="server" CssClass="btn btn-primary btn-sm" Text="🛠" OnClick="btnModificar_Click" CommandArgument='<%# Eval("ID_MEDICO") + "," + Eval("ID_USUARIO") %>' />
 								<asp:Button ID="btnEliminar" runat="server" CssClass="btn btn-danger btn-sm" Text="🗑" OnClick="btnEliminar_Click" CommandArgument='<%# Eval("ID_MEDICO") %>' />
 								<asp:Button ID="btnReactivar" runat="server" CssClass="btn btn-success btn-sm" Text="🌱" OnClick="btnReactivar_Click" CommandArgument='<%# Eval("ID_MEDICO") %>' />
+								<asp:Button ID="btnEspecialidad" runat="server" CssClass="btn btn-warning btn-sm" Text="🎃" OnClick="btnEspecialidad_Click"  CommandArgument='<%# Eval("ID_MEDICO") %>' />
 							</ItemTemplate>
 						</asp:TemplateField>
 					</Columns>

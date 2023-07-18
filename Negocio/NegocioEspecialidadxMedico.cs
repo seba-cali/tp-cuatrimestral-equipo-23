@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ConexionDB;
+using System.Reflection;
+
 namespace Negocio
 {
 	public class NegocioEspecialidadxMedico
@@ -50,7 +52,57 @@ namespace Negocio
 			}
 		}
 
-		public void eliminarfisico(int idmedico, int idespecialidad, int turno)
+        public List<EspecialidadxMedico> listarxMedico(string idMed = "")
+        {
+            List<EspecialidadxMedico> especialidadesxmedico = new List<EspecialidadxMedico>();
+            DBConnection db = new DBConnection();
+
+            try
+            {
+                if (idMed == "")
+                {
+                    db.setearConsulta("SELECT ID_MEDICO,ID_ESPECIALIDAD,turno_horario,Atiende_Lunes,Atiende_Martes, Atiende_Miercoles, Atiende_Jueves, Atiende_Viernes, Atiende_Sabado, Atiende_Domingo FROM EspecialidadxMedico");
+                }
+                else
+                {
+                    db.setearConsulta("SELECT E.ID_MEDICO, CONCAT_WS(', ', M.Nombre, M.Apellido) as Medico, E.ID_ESPECIALIDAD, Es.nombre as Especialidad, E.Turno_Horario, E.Atiende_Lunes, E.Atiende_Martes, E.Atiende_Miercoles, E.Atiende_Jueves, E.Atiende_Viernes, E.Atiende_Sabado, E.Atiende_Domingo FROM EspecialidadxMedico as E inner join Medico as M on E.ID_MEDICO = M.ID_MEDICO  inner join Especialidades as Es on E.ID_ESPECIALIDAD = Es.ID_ESP where E.ID_MEDICO = " + idMed);
+                }
+                db.ejecutarLectura();
+                while (db.Lector.Read())
+                {
+                    EspecialidadxMedico aux = new EspecialidadxMedico();
+                    aux.ID_MEDICO = db.Lector.GetInt32(0);
+                    aux.Name = db.Lector.GetString(1);
+                    aux.Id_Especialidad = db.Lector.GetInt32(2);
+                    aux.Especialidad = db.Lector.GetString(3);
+                    aux.Turno_Horario = db.Lector.GetInt32(4);
+                    aux.Atiende_Lunes = db.Lector.GetBoolean(5);
+					aux.Atiende_Martes = db.Lector.GetBoolean(6);
+					aux.Atiende_Miercoles = db.Lector.GetBoolean(7);
+					aux.Atiende_Jueves = db.Lector.GetBoolean(8);
+					aux.Atiende_Viernes = db.Lector.GetBoolean(9);
+					aux.Atiende_Sabado = db.Lector.GetBoolean(10);
+					aux.Atiende_Domingo = db.Lector.GetBoolean(11);
+
+
+
+                    especialidadesxmedico.Add(aux);
+                }
+                db.cerrarConexion();
+                return especialidadesxmedico;
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                db.cerrarConexion();
+            }
+        }
+
+
+        public void eliminarfisico(int idmedico, int idespecialidad, int turno)
 		{
 			try
 			{
@@ -67,48 +119,6 @@ namespace Negocio
 				throw ex;
 			}
 
-		}
-
-		public List<EspecialidadxMedico> listarconsulta(string idEsp = "")
-		{
-			List<EspecialidadxMedico> especialidadesxmedico = new List<EspecialidadxMedico>();
-			DBConnection db = new DBConnection();
-
-			try
-			{
-				if (idEsp == "")
-				{
-					db.setearConsulta("SELECT E.ID_MEDICO, CONCAT_WS(', ',M.Nombre, M.Apellido) as Medico, E.ID_ESPECIALIDAD, Es.nombre as Especialidad, E.Turno_Horario FROM EspecialidadxMedico as E inner join Medico as M on E.ID_MEDICO = M.ID_MEDICO  inner join Especialidades as Es on E.ID_ESPECIALIDAD = Es.ID_ESP");
-				}
-				else
-				{
-					db.setearConsulta("SELECT ID_MEDICO,ID_ESPECIALIDAD FROM EspecialidadxMedico where ID_ESPECIALIDAD = " + idEsp);
-				}
-
-				db.ejecutarLectura();
-
-				while (db.Lector.Read())
-				{
-					EspecialidadxMedico aux = new EspecialidadxMedico();
-					aux.ID_MEDICO = db.Lector.GetInt32(0);
-					aux.Name = db.Lector.GetString(1);
-					aux.Id_Especialidad = db.Lector.GetInt32(2);
-					aux.Especialidad = db.Lector.GetString(3);
-					aux.Turno_Horario = db.Lector.GetInt32(4);
-
-					especialidadesxmedico.Add(aux);
-				}
-				db.cerrarConexion();
-				return especialidadesxmedico;
-			}
-			catch (System.Exception ex)
-			{
-				throw ex;
-			}
-			finally
-			{
-				db.cerrarConexion();
-			}
 		}
 
 

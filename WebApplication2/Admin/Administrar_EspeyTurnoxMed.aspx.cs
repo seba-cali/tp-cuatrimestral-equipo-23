@@ -37,13 +37,14 @@ namespace WebApplication2.Admin
 
 
                 NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
-                dgvEspecialidadxTurno.DataSource = negocioEspecialidadxMedico.listarconsulta();
+
+                string idMedico = Request.QueryString["idMedico"] != null ? Request.QueryString["idMedico"].ToString() : "";
+                dgvEspecialidadxTurno.DataSource = negocioEspecialidadxMedico.listarxMedico(idMedico);
                 inputTurno.DataTextField = "Turno_Horario";
                 inputTurno.DataBind();
 
                 dgvEspecialidadxTurno.DataBind();
-
-                listMedico = negocioEspecialidadxMedico.listarconsulta();
+                //listMedico = negocioEspecialidadxMedico.listarxMedico(idMedico);
             }
         }
         protected void btnEliminar_Click(object sender, EventArgs e)

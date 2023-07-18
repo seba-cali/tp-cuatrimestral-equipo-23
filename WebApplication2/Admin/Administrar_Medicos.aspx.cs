@@ -66,5 +66,12 @@ namespace WebApplication2.Admin
 			dgvMedicos.DataBind();
 
         }
+
+        protected void btnEspecialidad_Click(object sender, EventArgs e)
+        {
+            Button btnEspecialidad = (Button)sender;
+            string idMedico = btnEspecialidad.CommandArgument;
+            Response.Redirect("Administrar_EspeYTurnoxMed.aspx?idMedico="+idMedico,false);
+        }
     }
 }
