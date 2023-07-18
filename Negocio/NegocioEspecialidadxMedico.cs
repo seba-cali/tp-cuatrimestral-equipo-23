@@ -72,8 +72,8 @@ namespace Negocio
                 {
                     EspecialidadxMedico aux = new EspecialidadxMedico();
                     aux.ID_MEDICO = db.Lector.GetInt32(0);
-                    aux.Name = db.Lector.GetString(1);
                     aux.Id_Especialidad = db.Lector.GetInt32(2);
+                    aux.Name = db.Lector.GetString(1);
                     aux.Especialidad = db.Lector.GetString(3);
                     aux.Turno_Horario = db.Lector.GetInt32(4);
                     aux.Atiende_Lunes = db.Lector.GetBoolean(5);
@@ -155,6 +155,38 @@ namespace Negocio
 
 		}
 
+        public void reactivarDia(string dia, int idMed, int idEsp, int Turno)
+        {
+            try
+            {
+                DBConnection datos = new DBConnection();
+                datos.setearParametro("@id", idMed);
+				datos.setearParametro("@idesp", idEsp);
+				datos.setearParametro("@turno", Turno);
+                datos.setearConsulta("UPDATE EspecialidadxMedico SET "+dia+"=1 where ID_MEDICO=@id and ID_ESPECIALIDAD=@idEsp and turno_horario=@turno");
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
-	}
+        public void DesactivarDia(string dia, int idMed, int idEsp, int Turno)
+        {
+            try
+            {
+                DBConnection datos = new DBConnection();
+                datos.setearParametro("@id", idMed);
+                datos.setearParametro("@idesp", idEsp);
+                datos.setearParametro("@turno", Turno);
+                datos.setearConsulta("UPDATE EspecialidadxMedico SET " + dia + "=0 where ID_MEDICO=@id and ID_ESPECIALIDAD=@idEsp and turno_horario=@turno");
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+    }
 }

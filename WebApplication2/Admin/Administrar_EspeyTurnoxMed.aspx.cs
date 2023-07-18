@@ -109,5 +109,122 @@ namespace WebApplication2.Admin
 
             return false;
         }
+
+        protected void CheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox checkBox = (CheckBox)sender;
+            GridViewRow row = (GridViewRow)checkBox.NamingContainer;
+            int idMedico = Convert.ToInt32(row.Cells[0].Text); // Suponiendo que el ID del médico está en la primera columna.
+            int idEsp = Convert.ToInt32(row.Cells[2].Text); // Suponiendo que el ID de Especialidad está en la 3er columna.
+            int Turno = Convert.ToInt32(row.Cells[4].Text); // Suponiendo que el Turno está en la 5ta columna.
+            // Obtener el día de la semana según el ID del checkbox
+            string diaSemana = checkBox.ID.Replace("cb", "");
+
+            // Obtener el valor actual del checkbox (marcado o desmarcado)
+            bool atiende = checkBox.Checked;
+
+            // Realizar acciones según el día de la semana y el estado del checkbox
+            if (diaSemana == "Lunes")
+            {
+                string dia = "Atiende_Lunes";
+                if (atiende)
+                {
+                    NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
+                    negocioEspecialidadxMedico.reactivarDia(dia,idMedico,idEsp,Turno);
+                }
+                else
+                {
+                    NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
+                    negocioEspecialidadxMedico.DesactivarDia(dia, idMedico, idEsp, Turno);
+                }
+                
+            }
+            else if (diaSemana == "Martes")
+            {
+                string dia = "Atiende_Martes";
+                if (atiende)
+                {
+                    NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
+                    negocioEspecialidadxMedico.reactivarDia(dia, idMedico, idEsp, Turno);
+                }
+                else
+                {
+                    NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
+                    negocioEspecialidadxMedico.DesactivarDia(dia, idMedico, idEsp, Turno);
+                }
+            }
+            else if (diaSemana == "Miercoles")
+            {
+                string dia = "Atiende_Miercoles";
+                if (atiende)
+                {
+                    NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
+                    negocioEspecialidadxMedico.reactivarDia(dia, idMedico, idEsp, Turno);
+                }
+                else
+                {
+                    NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
+                    negocioEspecialidadxMedico.DesactivarDia(dia, idMedico, idEsp, Turno);
+                }
+            }
+            else if (diaSemana == "Jueves")
+            {
+                string dia = "Atiende_Jueves";
+                if (atiende)
+                {
+                    NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
+                    negocioEspecialidadxMedico.reactivarDia(dia, idMedico, idEsp, Turno);
+                }
+                else
+                {
+                    NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
+                    negocioEspecialidadxMedico.DesactivarDia(dia, idMedico, idEsp, Turno);
+                }
+            }
+            else if (diaSemana == "Viernes")
+            {
+                string dia = "Atiende_Viernes";
+                if (atiende)
+                {
+                    NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
+                    negocioEspecialidadxMedico.reactivarDia(dia, idMedico, idEsp, Turno);
+                }
+                else
+                {
+                    NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
+                    negocioEspecialidadxMedico.DesactivarDia(dia, idMedico, idEsp, Turno);
+                }
+            }
+            else if (diaSemana == "Sabado")
+            {
+                string dia = "Atiende_Sabado";
+                if (atiende)
+                {
+                    NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
+                    negocioEspecialidadxMedico.reactivarDia(dia, idMedico, idEsp, Turno);
+                }
+                else
+                {
+                    NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
+                    negocioEspecialidadxMedico.DesactivarDia(dia, idMedico, idEsp, Turno);
+                }
+            }
+            else if (diaSemana == "Domingo")
+            {
+                string dia = "Atiende_Domingo";
+                if (atiende)
+                {
+                    NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
+                    negocioEspecialidadxMedico.reactivarDia(dia, idMedico, idEsp, Turno);
+                }
+                else
+                {
+                    NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
+                    negocioEspecialidadxMedico.DesactivarDia(dia, idMedico, idEsp, Turno);
+                }
+            }
+
+        }
+
     }
 }

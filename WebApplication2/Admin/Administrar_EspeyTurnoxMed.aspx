@@ -32,13 +32,55 @@
                         <asp:BoundField HeaderText="ID Especialidad" DataField="ID_ESPECIALIDAD" />
                         <asp:BoundField HeaderText="Especialidad" DataField="ESPECIALIDAD" />
                         <asp:BoundField HeaderText="Turno" DataField="Turno_Horario" />
-                        <asp:CheckBoxField HeaderText="Lunes" DataField="Atiende_Lunes" />
-                        <asp:CheckBoxField HeaderText="Martes" DataField="Atiende_Martes" />
-                        <asp:CheckBoxField HeaderText="Miercoles" DataField="Atiende_Miercoles" />
-                        <asp:CheckBoxField HeaderText="Jueves" DataField="Atiende_Jueves" />
-                        <asp:CheckBoxField HeaderText="Viernes" DataField="Atiende_Viernes" />
-                        <asp:CheckBoxField HeaderText="Sabado" DataField="Atiende_Sabado" />
-                        <asp:CheckBoxField HeaderText="Domingo" DataField="Atiende_Domingo" />
+                        <%-- <asp:CheckBoxField HeaderText="Lunes" DataField="Atiende_Lunes"  />
+                            <asp:CheckBoxField HeaderText="Miercoles" DataField="Atiende_Miercoles" />
+                            <asp:CheckBoxField HeaderText="Jueves" DataField="Atiende_Jueves" />
+                            <asp:CheckBoxField HeaderText="Viernes" DataField="Atiende_Viernes" />
+                            <asp:CheckBoxField HeaderText="Sabado" DataField="Atiende_Sabado" />
+                            <asp:CheckBoxField HeaderText="Domingo" DataField="Atiende_Domingo" />--%>
+                        <asp:TemplateField HeaderText="Lunes">
+                            <ItemTemplate>
+                                <asp:CheckBox ID="cbLunes" runat="server" OnCheckedChanged="CheckBox_CheckedChanged" AutoPostBack="true"
+                                    Checked='<%# Eval("Atiende_Lunes") %>' />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Martes">
+                            <ItemTemplate>
+                                <asp:CheckBox ID="cbMartes" runat="server" OnCheckedChanged="CheckBox_CheckedChanged" AutoPostBack="true"
+                                    Checked='<%# Eval("Atiende_Martes") %>' />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Miercoles">
+                            <ItemTemplate>
+                                <asp:CheckBox ID="cbMiercoles" runat="server" OnCheckedChanged="CheckBox_CheckedChanged" AutoPostBack="true"
+                                    Checked='<%# Eval("Atiende_Miercoles") %>' />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Jueves">
+                            <ItemTemplate>
+                                <asp:CheckBox ID="cbJueves" runat="server" OnCheckedChanged="CheckBox_CheckedChanged" AutoPostBack="true"
+                                    Checked='<%# Eval("Atiende_Jueves") %>' />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Viernes">
+                            <ItemTemplate>
+                                <asp:CheckBox ID="cbViernes" runat="server" OnCheckedChanged="CheckBox_CheckedChanged" AutoPostBack="true"
+                                    Checked='<%# Eval("Atiende_Viernes") %>' />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Sabado">
+                            <ItemTemplate>
+                                <asp:CheckBox ID="cbSabado" runat="server" OnCheckedChanged="CheckBox_CheckedChanged" AutoPostBack="true"
+                                    Checked='<%# Eval("Atiende_Sabado") %>' />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Domingo">
+                            <ItemTemplate>
+                                <asp:CheckBox ID="cbDomingo" runat="server" OnCheckedChanged="CheckBox_CheckedChanged" AutoPostBack="true"
+                                    Checked='<%# Eval("Atiende_Domingo") %>' />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+
                         <asp:TemplateField HeaderText="Acciones">
                             <ItemTemplate>
                                 <%--						<asp:Button ID="btnModificar" runat="server" CssClass="btn btn-primary btn-sm" Text="🛠" OnClick="btnModificar_Click" CommandArgument='<%# Eval("ID_MEDICO") + "," + Eval("ID_USUARIO") %>' />--%>
