@@ -54,22 +54,25 @@ namespace WebApplication2.Admin
 				{
 					Turnos turno = new Turnos();
 					NegocioTurno negocio = new NegocioTurno();
-					turno.Id_Turno= turno.Id_Turno;
+					turno.Id_Turno= Convert.ToInt32(formGroupId.Text);
 					turno.EstadoInf = Convert.ToInt32(inputEstado.SelectedValue);
 					turno.observacionMed = inputObs.Text;
 
 					negocio.UpdateTurnoMed(turno);
 					Session["OK"] = "Se actualizó el estado del paciente";
+               Response.Redirect("Medicos.aspx", false);
 				}
 				catch (Exception exception)
 				{
 					Console.WriteLine(exception);
 					Session["error"] = "No se pudo actualizar el estado del paciente";
+					Response.Redirect("Medicos.aspx", false);
 				}
 			}
 			else
 			{
 				Session["error"] = "El valor del Id del turno no es válido";
+				Response.Redirect("Medicos.aspx", false);
 			}
 		}
 	}
