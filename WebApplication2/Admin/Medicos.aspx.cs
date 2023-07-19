@@ -48,7 +48,7 @@ namespace WebApplication2.Admin
 
         protected void Button2_OnClick(object sender, EventArgs e)
         {
-            Console.WriteLine(Session["idmed"]+" asdasd "+inputEstado.SelectedValue+" asdasd "+inputObs.Text);
+            
             try
             {
                 Turnos turno = new Turnos();
@@ -59,6 +59,7 @@ namespace WebApplication2.Admin
                 
                 negocio.UpdateTurnoMed(turno);
                 Session["OK"] = "Se actualizo estado del paciente";
+                Response.Redirect("Medicos.aspx",false);
 
             }
             catch (Exception exception)

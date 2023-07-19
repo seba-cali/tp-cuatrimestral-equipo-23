@@ -11,7 +11,7 @@ namespace WebApplication2.Admin
 {
 
 
-    public partial class SisTurnos
+    public partial class SiSTurnos
     {
 
         /// <summary>
@@ -49,33 +49,6 @@ namespace WebApplication2.Admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label dnipac;
-
-        /// <summary>
-        /// chkVer control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkVer;
-
-        /// <summary>
-        /// reprogramoturno control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder reprogramoturno;
-
-        /// <summary>
-        /// butonEl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label butonEl;
 
         /// <summary>
         /// Muestra1 control.
@@ -256,15 +229,6 @@ namespace WebApplication2.Admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button sube;
-
-        /// <summary>
-        /// Button3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button3;
 
         /// <summary>
         /// Master property.

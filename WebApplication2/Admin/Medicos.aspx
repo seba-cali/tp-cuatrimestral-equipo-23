@@ -106,7 +106,7 @@
                             <label class="mb-1 small text-muted" for="formGroupName">Id</label>
                             <h3 class="elementoedit"></h3>
                             
-                                    <asp:TextBox class="form-control formGroupId" id="formGroupId" type="text" ReadOnly="True" AutoPostBack="false" runat="server"/>
+                                    <asp:TextBox class="form-control formGroupId" id="formGroupId" type="text"  runat="server"/>
                             
                         </div>
                         <div class="mb-0">
@@ -129,7 +129,7 @@
                         <div class="mb-0">
                             <label class="mb-1 small text-muted" for="formGroupURL">Observacion</label>
                             
-                                    <asp:TextBox class="form-control" TextMode="MultiLine" id="inputObs" AutoPostBack="False" runat="server"/>
+                                    <asp:TextBox class="form-control" TextMode="MultiLine" id="inputObs"  runat="server"/>
                             
                         </div>
                         <div class="mb-0">
@@ -140,7 +140,7 @@
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-danger-soft text-danger" type="button" data-bs-dismiss="modal">Cerrar</button>
-                        <asp:Button ID="Button2" runat="server" Text="Atender Paciente" CausesValidation="False" AutoPostBack="False" OnClick="Button2_OnClick" CssClass="btn btn-primary-soft text-primary"/>
+                        <asp:Button ID="Button2" runat="server" Text="Atender Paciente" CausesValidation="False" AutoPostBack="true" OnClick="Button2_OnClick" CssClass="btn btn-primary-soft text-primary"/>
                     </div>
 
                 </div>

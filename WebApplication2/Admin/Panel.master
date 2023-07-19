@@ -109,6 +109,9 @@
                                 <a class="nav-link" href="SisTurnos.aspx">
                                     <span class="badge bg-primary-soft text-primary ">Gestion de Turnos</span>
                                 </a>
+                                <a class="nav-link" href="SisReTurnos.aspx">
+                                    <span class="badge bg-primary-soft text-primary ">Reprogramacion de Turnos</span>
+                                </a>
 
                             </nav>
                         </div>

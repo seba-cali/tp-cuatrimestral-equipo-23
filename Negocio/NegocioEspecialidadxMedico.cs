@@ -19,11 +19,11 @@ namespace Negocio
             {
                 if (idEsp == "")
                 {
-                    db.setearConsulta("SELECT ID_MEDICO,ID_ESPECIALIDAD,turno_horario FROM EspecialidadxMedico");
+                    db.setearConsulta("SELECT ID_MEDICO,ID_ESPECIALIDAD,turno_horario, Atiende_Lunes,Atiende_Martes,Atiende_Miercoles,Atiende_Jueves,Atiende_Viernes,Atiende_Sabado,Atiende_Domingo FROM EspecialidadxMedico");
                 }
                 else
                 {
-                    db.setearConsulta("SELECT ID_MEDICO,ID_ESPECIALIDAD, turno_horario FROM EspecialidadxMedico where ID_ESPECIALIDAD = " + idEsp);
+                    db.setearConsulta("SELECT ID_MEDICO,ID_ESPECIALIDAD, turno_horario, Atiende_Lunes,Atiende_Martes,Atiende_Miercoles,Atiende_Jueves,Atiende_Viernes,Atiende_Sabado,Atiende_Domingo FROM EspecialidadxMedico where ID_ESPECIALIDAD = " + idEsp);
                 }
 
                 db.ejecutarLectura();
@@ -34,6 +34,13 @@ namespace Negocio
                     aux.ID_MEDICO = db.Lector.GetInt32(0);
                     aux.Id_Especialidad = db.Lector.GetInt32(1);
                     aux.Turno_Horario = db.Lector.GetInt32(2);
+                    aux.Lunes = db.Lector.GetBoolean(3);
+                    aux.Martes = db.Lector.GetBoolean(4);
+                    aux.Miercoles = db.Lector.GetBoolean(5);
+                    aux.Jueves = db.Lector.GetBoolean(6);
+                    aux.Viernes = db.Lector.GetBoolean(7);
+                    aux.Sabado = db.Lector.GetBoolean(8);
+                    aux.Domingo = db.Lector.GetBoolean(9);
 
 
                     especialidadesxmedico.Add(aux);

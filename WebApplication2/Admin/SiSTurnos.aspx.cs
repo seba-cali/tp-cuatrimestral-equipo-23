@@ -10,7 +10,7 @@ using WebGrease.Css.Ast.MediaQuery;
 
 namespace WebApplication2.Admin
 {
-    public partial class SisTurnos : Page
+    public partial class SiSTurnos : Page
     {
         protected Usuario usuario { get; set; }
         public bool pivot = false;
@@ -94,7 +94,7 @@ namespace WebApplication2.Admin
                             dnipac.Text = paciente.DNI;
                         }
 
-                        repro = negocioTurnos.listar(paciente.ID_PACIENTE);
+                        //repro = negocioTurnos.listar(paciente.ID_PACIENTE);
                     }
 
                     //Turnos loco= new Turnos();
@@ -102,7 +102,7 @@ namespace WebApplication2.Admin
 
                     if (repro != null)
                     {
-                        ListBox boxrepro = new ListBox();
+                        /*ListBox boxrepro = new ListBox();
                         boxrepro.SelectedIndexChanged += SelectRepro;
                         boxrepro.ID = "reprolist";
                         boxrepro.CssClass = "form-control findClose";
@@ -125,6 +125,7 @@ namespace WebApplication2.Admin
 
                             reprogramoturno.Controls.Add(boxrepro);
                         }
+                        */
 
 
                         NegocioEspecialidad negocioEspecialidad = new NegocioEspecialidad();
@@ -448,11 +449,13 @@ namespace WebApplication2.Admin
             {
                 emailService.preparaCorreo(usuario.CORREO, Turnos.EstadoInfArray[index] + " - Turnero Dr. Seba",
                     temlate);
+                
             }
             else
             {
                 emailService.preparaCorreo(returnUsuarioXIdPaciente(turnos.Id_Paciente).CORREO, Turnos.EstadoInfArray[index] + " - Turnero Dr. Seba",
                     temlate);
+                
             }
 
             emailService.enviarEmail();
@@ -482,7 +485,7 @@ namespace WebApplication2.Admin
         {
         }
 
-        protected void chk_CheckedChanged(object sender, EventArgs e)
+        /*protected void chk_CheckedChanged(object sender, EventArgs e)
         {
             Session["VerRep"] = chkVer.Checked;
             if (Convert.ToBoolean(Session["VerRep"]))
@@ -497,9 +500,9 @@ namespace WebApplication2.Admin
                 fafa.Enabled = true;
                 sube.Text = "Confirmar";
             }
-        }
+        }*/
 
-        protected void cancelar_Click(object sender, EventArgs e)
+        /*protected void cancelar_Click(object sender, EventArgs e)
         {
             if(Session["idrepro"]!="0"){
                 butonEl.Text = "";
@@ -538,13 +541,13 @@ namespace WebApplication2.Admin
                 
                 
                 emailService.enviarEmail();
-                
+                Response.Redirect("SisTurnos.aspx",false);
             }
             else
             {
                 butonEl.Text = "Error: Verifique el turno seleccionado";
             }
             
-        }
+        }*/
     }
 }

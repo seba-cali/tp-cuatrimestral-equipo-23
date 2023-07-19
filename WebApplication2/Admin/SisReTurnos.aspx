@@ -1,9 +1,10 @@
-﻿<%@ Page Title="Title" Language="C#" MasterPageFile="~/Admin/Panel.master" CodeBehind="SisTurnos.aspx.cs" Inherits="WebApplication2.Admin.SisTurnos" %>
+﻿<%@ Page Title="Title" Language="C#" MasterPageFile="~/Admin/Panel.master" CodeBehind="SisReTurnos.aspx.cs" Inherits="WebApplication2.Admin.SisReTurnos" %>
 <%@ Import Namespace="Dominio" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server" xmlns:aps="http://www.w3.org/1999/html">
 <% if (usuario != null)
    {
+       var loco = 3;
 %>
     <div id="layoutSidenav_content">
     <main>
@@ -16,7 +17,7 @@
                             <div class="page-header-icon">
                                 <i data-feather="arrow-right-circle"></i>
                             </div>
-                            Seleccionar Turno
+                            Reprogramar o Cancelar Turno
                         </h1>
 
                     </div>
@@ -84,48 +85,93 @@
 
                         <asp:TextBox ID="dni" runat="server" type="number" AutoPostBack="True"/>
 
-                        <asp:Button ID="buscaPaciente" OnClick="buscaPaciente_OnClick" Text="Buscar" runat="server"/>
+                        <asp:Button ID="buscaPaciente" OnClick="buscaPacientes_OnClick" Text="Buscar" runat="server"/>
                         <hr class="my-4"/>
                         <asp:Label ID="nompac" runat="server"/>
                         <asp:Label ID="dnipac" runat="server"/>
                         <hr class="my-4"/>
                     </div>
                 <% } %>
-
-                <div class="col-8 mb-3 <%: nompac.Text == "error" ? "pe-none" : "" %> ">
+                <hr class="my-4"/>
+                <div class="col-12 mb-3 <%: nompac.Text == "error" ? "pe-none" : "" %> ">
                     <div class="col-12 gx-3 ">
-                        <h3>¿Reprogramar o Cancelar turno activos? </h3>
-                        <label for="ManCheck " class=" form-label"> Ver turnos actvios</label>
-
-                        <asp:CheckBox Text="El Usuario es Medico?" class="form-check-label text-light" ID="chkVer"
-                                      runat="server" AutoPostBack="true" OnCheckedChanged="chk_CheckedChanged"/>
-                    </div>
-
-                    <div class="row gx-3 mb-3  <%: Convert.ToBoolean(Session["VerRep"]) ? "" : "mostrar" %>">
-                        <div class="col-8 mb3">
-
-                            <asp:PlaceHolder ID="reprogramoturno" runat="server"/>
-
-                        </div>
-                        <div class="col-4 mb3">
-                            <%--<asp:Button ID="cancelar" OnClick="cancelar_Click"  Text="Reprogramar" runat="server"/>--%>
-
-                            <asp:Label ID="butonEl" runat="server" Enabled="True"/>
-                            <a class="btn btn-sm btn-danger  delete" type="button" data-bs-toggle="modal" data-bs-target="#eliminaGroupModal">
-                                <i data-feather="trash-2"></i> Cancelar Turno
-                            </a>
-                        </div>
+                        <h3>Usted posee los siguientes turnos activos</h3>
 
                     </div>
+                    <hr class="my-4"/>
+                    <div class="col-12">
+                        <div class="container-fluid px-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <table id="datatablesSimple">
+                                        <thead>
+                                        <tr>
+                                            <th>id</th>
+                                            <th>Dia del Turno</th>
+                                            <th>Horario</th>
+                                            <th>Especialidad</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                        </thead>
+                                        <tfoot>
+                                        <tr>
+                                            <th>id</th>
+                                            <th>Dia del Turno</th>
+                                            <th>Horario</th>
+                                            <th>Especialidad</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                        </tfoot>
+                                        <tbody>
+                                        <%
+                                            if(repro!=null)
+                                            foreach (Turnos tux in repro)
+                                            {
+                                                    
+                                                Especialidad esp;
+                                                    esp = ListaEspecialidades.Find(x => x.id == tux.Id_Especialidad);
+                                                    if (esp != null && tux.Estado && tux.fecha > DateTime.Now )
+                                                    {
+                                        %>
+                                                    <tr>
+                                                        <td class="esp<%= tux.Id_Turno %>"><%: tux.Id_Turno %></td>
+                                                        <td><%: tux.fecha.Date.ToShortDateString() %></td>
+                                                        <td>
+                                                            <%: Turnos.GetRepro()[tux.Id_Hora] %>
 
+                                                        </td>
+                                                        
+                                                        <td><%= esp.nombre %></td>
+                                                        
+
+                                                        <td>
+                                                            <a id="<%= tux.Id_Turno %>" class="btn  btn-primary editar me-2" type="button" data-bs-toggle="modal" data-bs-target="#editGroupModal">
+                                                                <i data-feather="edit"></i> Reprogramar
+                                                            </a>
+                                                            <a id="<%= tux.Id_Turno %>" class="btn btn-danger delete me-2" type="button" data-bs-toggle="modal" data-bs-target="#eliminaGroupModal">
+                                                                <i data-feather="trash"></i> Cancelar
+                                                            </a>
+
+                                                        </td>
+                                                    </tr>
+
+                                        <% }
+                                            }
+                                        %>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <hr class="my-4"/>
-                <div class="mb-3 <%: nompac.Text == "error" ? "pe-none" : "" %>">
+                <%--<div class="mb-3 <%: nompac.Text == "error" ? "pe-none" : "" %>">
                     <asp:PlaceHolder ID="Muestra1" runat="server"/>
 
-                </div>
+                </div>--%>
 
-                <div class="mb-3 <%: nompac.Text == "error" ? "pe-none" : "" %>">
+                <%--<div class="mb-3 <%: nompac.Text == "error" ? "pe-none" : "" %>">
 
                     <asp:ListBox CssClass="form-control" OnSelectedIndexChanged="horarios_OnSelectedIndexChanged" ID="horarios" runat="server" AutoPostBack="true">
                         <asp:ListItem Text="Turnos 6 a 11Hs" Value="0"/>
@@ -133,9 +179,9 @@
                         <asp:ListItem Text="Turnos 18 a 21Hs" Value="2"/>
                     </asp:ListBox>
 
-                </div>
+                </div>--%>
 
-                <hr class="my-4"/>
+                
                 <div class="d-flex justify-content-between">
 
                     <button class="btn btn-light disabled" type="button" disabled>anterior</button>
@@ -294,31 +340,98 @@
     </div>
     </div>
     </main>
-    <div class="modal fade" id="eliminaGroupModal" tabindex="-1" role="dialog" aria-labelledby="eliminaGroupModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="eliminaGroupModal">Aviso</h5>
-                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
+    <!-- Edit group modal-->
+        
+        <div class="modal fade" id="editGroupModal" tabindex="-1" role="dialog" aria-labelledby="editGroupModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editGroupModalLabel">Edit Group</h5>
+                        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    
+                    <div class="modal-body">
+                        
+                        <div class="mb-0">
+                            <label class="mb-1 small text-muted" for="formGroupName">Id</label>
+                            <h3 class="elementoedit"></h3>
+                            <asp:TextBox class="form-control formGroupId" id="formGroupId" type="text"   runat="server"/>
+                        </div>
+                        <div class="mb-0">
+                            <label class="mb-1 small text-muted" for="formGroupName">Nombre</label>
+                            <asp:TextBox class="form-control formGroupNameEdit" id="formGroupNameEdit" type="text" placeholder="nombre..." runat="server"/>
+                        </div>
+                        <div class="mb-0">
+                            <label class="mb-1 small text-muted" for="formGroupDesc">Descripcion</label>
+                            <asp:TextBox class="form-control formGroupDescEdit" id="formGroupDescEdit" type="text" placeholder="descripcion..." runat="server"/>
+                        </div>
 
-                <div class="modal-body">
-                    <h1>¿Cancelar Turno?</h1>
-                    <h3 class="elemento"></h3>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-danger-soft text-danger" type="button" data-bs-dismiss="modal">Cerrar</button>
-                    <asp:Button ID="Button3" runat="server" Text="Cancelar Turno" CssClass="btn btn-primary-soft text-primary" CausesValidation="False" OnClick="cancelar_Click"/>
-                </div>
 
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-danger-soft text-danger" type="button" data-bs-dismiss="modal">Cerrar</button>
+                        <asp:Button ID="Button2" runat="server" Text="Modificar Especialidad" CausesValidation="False" OnClientClick="return ;" CssClass="btn btn-primary-soft text-primary" />
+                    </div>
+                    
+                </div>
             </div>
         </div>
+        <div class="modal fade" id="eliminaGroupModal" tabindex="-1" role="dialog" aria-labelledby="eliminaGroupModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="eliminaGroupModal">Edit Group</h5>
+                        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                        
+                    <div class="modal-body">
+                        <h1>Eliminar el elemento?</h1>
+                        <h1 class="elemento"></h1>
+                            <asp:TextBox class="form-control formGroupIdDelete" id="formGroupIdDelete" type="text" hidden  runat="server"/>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-danger-soft text-danger" type="button" data-bs-dismiss="modal">Cerrar</button>
+                        <asp:Button ID="Button3" runat="server"  Text="Eliminar Especialidad" CssClass="btn btn-primary-soft text-primary" CausesValidation="False" />
+                    </div>
 
-    </div>
+                </div>
+            </div>
+            
+        </div>
     </div>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script>
         $(function () {
+            
+            
+            $('.editar').on('click',function() {
+                                 
+                           
+                                    var index=$(this).attr('id');             
+                                    var indextab=$(this).closest('tr').attr('data-index');
+                                    indextab++
+                                    $('.elementoedit').text(indextab);
+                                    $('.formGroupId').attr('value', index);
+                                    $('.formGroupNameEdit').attr('value',$("#datatablesSimple tbody tr:nth-child( "+ indextab +" ) td:nth-child(2)").text());
+                                    $('.formGroupDescEdit').attr('value',$("#datatablesSimple tbody tr:nth-child( "+ indextab +" ) td:nth-child(3)").text());
+                                    
+                                    
+                                
+             
+                            });
+                            
+                            $('.delete').on('click',function() {
+                                
+                                var self = $(this);
+                           
+                                                        var index=self.attr('id');                
+                                                        $('.formGroupIdDelete').attr('value', index);
+                                                        $('.elemento').text(index);
+                                                        
+                            });
+                        
+            
+            
             $(".findClose").find(function () {
                 var selectedText = $(this).find("option:selected").text();
                 $(".elemento").text(selectedText)/*.html("</br>")*/;
@@ -326,16 +439,31 @@
             $(".mostrar").hide();
             $(".fecha").prop('readonly', true);
             $("#MainContent_fechanow").datepicker({
-                minDate: 1,
+                minDate: 0,
                 maxDate: "+7D",
                 dateFormat: "dd/mm/yy",
                 firstDay: 1,
                 showAnim: "slideDown",
                 dayNamesMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"],
-
+                monthNames: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+                beforeShowDay: noMondays
             });
-
+            
+            function noMondays(date){
+                
+                <% foreach(var tux in ListaEspecialidadxMedico){%>
+                  if (date.getDay() ===  <%: tux.Lunes ? 1:8  %> )  /* Monday */
+                        return [ false, "closed", "Closed on Monday" ]
+                        else if (date.getDay() ===  <%: tux.Martes ? 2:8  %> )  /* Monday */
+                                                return [ false, "closed", "Closed on Monday" ]
+                                                else if (date.getDay() ===  <%: tux.Miercoles ? 3:8  %> )  /* Monday */
+                                                                                                return [ false, "closed", "Closed on Monday" ]
+                  else
+                        return [ true, "", "" ]
+                        <% } %>
+            }
         });
+       
     </script>
 <% }
    else if (pivot)

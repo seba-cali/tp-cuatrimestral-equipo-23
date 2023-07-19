@@ -116,7 +116,8 @@
     <Content Include="Admin\Password.aspx" />
     <Content Include="Admin\Perfil.aspx" />
     <Content Include="Admin\Recuperar.aspx" />
-    <Content Include="Admin\SisTurnos.aspx" />
+    <Content Include="Admin\SisReTurnos.aspx" />
+    <Content Include="Admin\SiSTurnos.aspx" />
     <Content Include="Admin\Tablero.aspx" />
     <Content Include="Admin\Registrar.aspx" />
     <Content Include="Admin\Usuarios.aspx" />
@@ -303,12 +304,19 @@
     <Compile Include="Admin\Recuperar.aspx.designer.cs">
       <DependentUpon>Recuperar.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\SisTurnos.aspx.cs">
+    <Compile Include="Admin\SisReTurnos.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
-      <DependentUpon>SisTurnos.aspx</DependentUpon>
+      <DependentUpon>SisReTurnos.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\SisTurnos.aspx.designer.cs">
-      <DependentUpon>SisTurnos.aspx</DependentUpon>
+    <Compile Include="Admin\SisReTurnos.aspx.designer.cs">
+      <DependentUpon>SisReTurnos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\SiSTurnos.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>SiSTurnos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\SiSTurnos.aspx.designer.cs">
+      <DependentUpon>SiSTurnos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Tablero.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
