@@ -54,7 +54,7 @@ namespace WebApplication2.Admin
 				{
 					Turnos turno = new Turnos();
 					NegocioTurno negocio = new NegocioTurno();
-					turno.Id_Turno = turnoId;
+					turno.Id_Turno= turno.Id_Turno;
 					turno.EstadoInf = Convert.ToInt32(inputEstado.SelectedValue);
 					turno.observacionMed = inputObs.Text;
 
