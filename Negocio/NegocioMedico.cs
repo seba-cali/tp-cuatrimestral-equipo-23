@@ -6,7 +6,49 @@ namespace Negocio
 {
 	public class NegocioMedico
 	{
-		public List<Medico> listar(string idMedico = "")
+
+        public Medico LlamarMedico(string idMedico = "")
+        {
+            Medico medico = new Medico();
+            DBConnection db = new DBConnection();
+            try
+            {
+                
+             db.setearConsulta("SELECT ID_MEDICO, NOMBRE, APELLIDO, DIRECCION, FECHA_NACIMIENTO, SEXO, ESTADO, TELEFONO, ID_USUARIO, DNI,MATRICULA  FROM MEDICO where ID_MEDICO = " + idMedico);
+                
+                db.ejecutarLectura();
+
+                while (db.Lector.Read())
+                {
+                    
+                    medico.ID_MEDICO = db.Lector.GetInt32(0);
+                    medico.nombres = db.Lector.GetString(1);
+                    medico.apellidos = db.Lector.GetString(2);
+                    medico.direccion = db.Lector.GetString(3);
+                    medico.fechaNacimiento = db.Lector.GetDateTime(4);
+                    medico.sexo = db.Lector.GetString(5);
+                    medico.ESTADO = db.Lector.GetBoolean(6);
+                    medico.telefono = db.Lector.GetString(7);
+                    medico.ID_USUARIO = db.Lector.GetInt32(8);
+                    medico.DNI = db.Lector.GetString(9);
+                    medico.Matricula = db.Lector.GetString(10);
+                   
+                }
+                db.cerrarConexion();
+                return medico;
+            }
+            catch (System.Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw ex;
+            }
+            finally
+            {
+                db.cerrarConexion();
+            }
+        }
+
+        public List<Medico> listar(string idMedico = "")
 		{
 			List<Medico> medico = new List<Medico>();
 			DBConnection db = new DBConnection();

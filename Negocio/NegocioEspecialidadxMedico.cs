@@ -67,6 +67,7 @@ namespace Negocio
                 {
                     db.setearConsulta("SELECT E.ID_MEDICO, CONCAT_WS(', ', M.Nombre, M.Apellido) as Medico, E.ID_ESPECIALIDAD, Es.nombre as Especialidad, E.Turno_Horario, E.Atiende_Lunes, E.Atiende_Martes, E.Atiende_Miercoles, E.Atiende_Jueves, E.Atiende_Viernes, E.Atiende_Sabado, E.Atiende_Domingo FROM EspecialidadxMedico as E inner join Medico as M on E.ID_MEDICO = M.ID_MEDICO  inner join Especialidades as Es on E.ID_ESPECIALIDAD = Es.ID_ESP where E.ID_MEDICO = " + idMed);
                 }
+
                 db.ejecutarLectura();
                 while (db.Lector.Read())
                 {

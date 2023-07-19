@@ -8,18 +8,34 @@
             <div class="container">
                 <div class="row align-items-center justify-content-between pt-3">
                     <div class="col-auto mb-3"></div>
-                    <div class="col-12 col-xl-auto mb-3">
+                    <div class="col-3" style="display: flex">
 
-                        <button class="btn btn-sm btn-light text-primary" type="button" data-bs-toggle="modal" data-bs-target="#createGroupModal">
+                        <button class="btn btn-secondary" type="button" data-bs-toggle="modal" data-bs-target="#createGroupModal">
                             <i class="me-1" data-feather="plus"></i>
                             Crear Nueva Especialidad y Turno por Medico
                         </button>
                         <asp:Label ID="lblmsg" Text=""
                             Style="color: black; font-weight: bold;" runat="server" />
-                    </div>
+                    
+                    
+                        <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#createGroupModal">
+                            <i class="me-1" data-feather="plus"></i>
+                            Volver
+                        </button>
+                        </div>
                 </div>
             </div>
+                			<div style="display: flex" class="d-flex justify-content-center">
 
+                    <asp:Label ID="lblMedico" Text=""
+                        Style="color: darkslategrey; font-weight: bold;" runat="server" />
+                </div>
+            <div style="display: flex" class="d-flex justify-content-center">
+
+                    <asp:Label ID="lblMatricula" Text=""
+                        Style="color: dimgrey; font-weight: bold;" runat="server" />
+                </div>
+          <br />
             <div style="display: flex; justify-content: center;">
                 <asp:GridView ID="dgvEspecialidadxTurno" runat="server" CssClass="table table-striped table-bordered table-sm mx-auto" AutoGenerateColumns="false">
                     <%--<!-- Columnas del GridView para administración de médicos -->--%>
@@ -32,12 +48,6 @@
                         <asp:BoundField HeaderText="ID Especialidad" DataField="ID_ESPECIALIDAD" />
                         <asp:BoundField HeaderText="Especialidad" DataField="ESPECIALIDAD" />
                         <asp:BoundField HeaderText="Turno" DataField="Turno_Horario" />
-                        <%-- <asp:CheckBoxField HeaderText="Lunes" DataField="Atiende_Lunes"  />
-                            <asp:CheckBoxField HeaderText="Miercoles" DataField="Atiende_Miercoles" />
-                            <asp:CheckBoxField HeaderText="Jueves" DataField="Atiende_Jueves" />
-                            <asp:CheckBoxField HeaderText="Viernes" DataField="Atiende_Viernes" />
-                            <asp:CheckBoxField HeaderText="Sabado" DataField="Atiende_Sabado" />
-                            <asp:CheckBoxField HeaderText="Domingo" DataField="Atiende_Domingo" />--%>
                         <asp:TemplateField HeaderText="Lunes">
                             <ItemTemplate>
                                 <asp:CheckBox ID="cbLunes" runat="server" OnCheckedChanged="CheckBox_CheckedChanged" AutoPostBack="true"
@@ -92,6 +102,7 @@
                         </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
+                
                 <!-- Create group modal-->
                 <div class="modal fade" id="createGroupModal" tabindex="-1" role="dialog" aria-labelledby="createGroupModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -106,7 +117,7 @@
                                 </div>
                                 <div class="mb-0">
                                     <label class="mb-1 small text-muted" for="formGroupName">Medico</label>
-                                    <asp:DropDownList ID="inputMedico" runat="server" CssClass="form-control" AutoPostBack="false"></asp:DropDownList>
+                                    <asp:DropDownList ID="inputMedico" runat="server" CssClass="form-control" AutoPostBack="false" Enabled="false"></asp:DropDownList>
                                 </div>
                                 <div class="mb-0">
                                     <label class="mb-1 small text-muted" for="formGroupDesc">Especialidad</label>
@@ -133,6 +144,7 @@
 
                     </div>
                 </div>
+            
             </div>
         </main>
     </div>

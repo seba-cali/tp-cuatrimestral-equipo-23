@@ -21,10 +21,15 @@ namespace WebApplication2.Admin
             if (!IsPostBack)
             {
 
-
+                NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
                 NegocioMedico negocioMedico = new NegocioMedico();
+                Medico medico = new Medico();
 
-                inputMedico.DataSource = negocioMedico.listar();
+                string idMedico = Request.QueryString["idMedico"] != null ? Request.QueryString["idMedico"].ToString() : "";
+                inputMedico.DataSource = negocioMedico.listar(idMedico);
+                medico = negocioMedico.LlamarMedico(idMedico);
+                lblMedico.Text = "Medico: "+medico.NombreCompleto;
+                lblMatricula.Text = "M.N: "+medico.Matricula;
                 inputMedico.DataTextField = "NombreCompleto";
                 inputMedico.DataValueField = "ID_MEDICO";
                 inputMedico.DataBind();
@@ -36,14 +41,16 @@ namespace WebApplication2.Admin
                 inputEspecialidad.DataBind();
 
 
-                NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
 
-                string idMedico = Request.QueryString["idMedico"] != null ? Request.QueryString["idMedico"].ToString() : "";
+                
                 dgvEspecialidadxTurno.DataSource = negocioEspecialidadxMedico.listarxMedico(idMedico);
                 inputTurno.DataTextField = "Turno_Horario";
                 inputTurno.DataBind();
 
                 dgvEspecialidadxTurno.DataBind();
+                dgvEspecialidadxTurno.Columns[0].Visible = false;
+                dgvEspecialidadxTurno.Columns[1].Visible = false;
+                dgvEspecialidadxTurno.Columns[2].Visible = false;
                 //listMedico = negocioEspecialidadxMedico.listarxMedico(idMedico);
             }
         }
@@ -59,7 +66,7 @@ namespace WebApplication2.Admin
 
                 NegocioEspecialidadxMedico negocioEspecialidadxMed = new NegocioEspecialidadxMedico();
                 negocioEspecialidadxMed.eliminarfisico(int.Parse(idMedico),int.Parse(idEsp),int.Parse(TurnoHorario));
-                Response.Redirect("Administrar_EspeyTurnoxMed");
+                Response.Redirect("Administrar_EspeYTurnoxMed.aspx?idMedico=" + idMedico, false);
 
             }
         }
@@ -70,13 +77,14 @@ namespace WebApplication2.Admin
 
             try
             {
+                string idMedico = Request.QueryString["idMedico"] != null ? Request.QueryString["idMedico"].ToString() : "";
                 NegocioEspecialidadxMedico NegocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
                 EspecialidadxMedico especialidadxMedico = new EspecialidadxMedico();
                 especialidadxMedico.ID_MEDICO = int.Parse(inputMedico.SelectedValue);
                 especialidadxMedico.Id_Especialidad = int.Parse(inputEspecialidad.SelectedValue);
                 especialidadxMedico.Turno_Horario = int.Parse(inputTurno.SelectedValue);
                 NegocioEspecialidadxMedico.RegistrarEspecialidadxMedico(especialidadxMedico);
-                Response.Redirect("Administrar_EspeyTurnoxMed");
+                Response.Redirect("Administrar_EspeYTurnoxMed.aspx?idMedico=" + idMedico, false);
                 //lblmsg.Text = "Relacion cargada con exito.";
 
             }
