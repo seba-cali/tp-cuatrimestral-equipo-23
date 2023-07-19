@@ -183,11 +183,7 @@
 
                 
                 <div class="d-flex justify-content-between">
-
-                    <button class="btn btn-light disabled" type="button" disabled>anterior</button>
-
-                    <asp:Button CssClass="btn btn-primary " ID="bt2" CommandArgument="btn2" OnClick="button1_OnClick" Enabled="False" Text="Siguiente" runat="server"/>
-
+                    
                 </div>
 
             </div>
@@ -328,7 +324,7 @@
                 <hr class="my-4"/>
                 <div class="d-flex justify-content-between">
                     <asp:Button CssClass="btn btn-light" Text="anterior" ID="ant3" CommandArgument="btn3" OnClick="button1_OnClick" runat="server"/>
-                    <asp:Button CssClass="btn btn-primary" Text="Confirmar" CommandArgument="op1" Onclick="sube_Click" ID="sube" runat="server"/>
+                    <asp:Button CssClass="btn btn-primary" Text="Reprogramar" CommandArgument="op1" Onclick="sube_Click" ID="sube" runat="server"/>
                 </div>
             </div>
         </div>
@@ -358,19 +354,29 @@
                             <asp:TextBox class="form-control formGroupId" id="formGroupId" type="text"   runat="server"/>
                         </div>
                         <div class="mb-0">
-                            <label class="mb-1 small text-muted" for="formGroupName">Nombre</label>
+                            <label class="mb-1 small text-muted" for="formGroupName">Fecha</label>
                             <asp:TextBox class="form-control formGroupNameEdit" id="formGroupNameEdit" type="text" placeholder="nombre..." runat="server"/>
                         </div>
                         <div class="mb-0">
-                            <label class="mb-1 small text-muted" for="formGroupDesc">Descripcion</label>
+                            <label class="mb-1 small text-muted" for="formGroupDesc">Horarios</label>
                             <asp:TextBox class="form-control formGroupDescEdit" id="formGroupDescEdit" type="text" placeholder="descripcion..." runat="server"/>
                         </div>
-
+                        <div class="mb-0">
+                               <asp:UpdatePanel runat="server">
+                                   <ContentTemplate>
+                                       <asp:ListBox CssClass="form-control" OnSelectedIndexChanged="horarios_OnSelectedIndexChanged" ID="horarios" runat="server" AutoPostBack="true">
+                                                                                           <asp:ListItem Text="Turnos 6 a 11Hs" Value="0"/>
+                                                                                           <asp:ListItem Text="Turnos 12 a 17Hs" Value="1"/>
+                                                                                           <asp:ListItem Text="Turnos 18 a 21Hs" Value="2"/>
+                                                                                       </asp:ListBox>
+                                   </ContentTemplate>
+                               </asp:UpdatePanel>
+                        </div>
 
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-danger-soft text-danger" type="button" data-bs-dismiss="modal">Cerrar</button>
-                        <asp:Button ID="Button2" runat="server" Text="Modificar Especialidad" CausesValidation="False" OnClientClick="return ;" CssClass="btn btn-primary-soft text-primary" />
+                        <asp:Button ID="bt2" runat="server" Text="Reprogramar" CommandArgument="btn2" CausesValidation="False" OnClientClick="return ;" OnClick="button1_OnClick" CssClass="btn btn-primary-soft text-primary" />
                     </div>
                     
                 </div>
@@ -449,19 +455,31 @@
                 beforeShowDay: noMondays
             });
             
-            function noMondays(date){
-                
-                <% foreach(var tux in ListaEspecialidadxMedico){%>
-                  if (date.getDay() ===  <%: tux.Lunes ? 1:8  %> )  /* Monday */
-                        return [ false, "closed", "Closed on Monday" ]
-                        else if (date.getDay() ===  <%: tux.Martes ? 2:8  %> )  /* Monday */
-                                                return [ false, "closed", "Closed on Monday" ]
-                                                else if (date.getDay() ===  <%: tux.Miercoles ? 3:8  %> )  /* Monday */
-                                                                                                return [ false, "closed", "Closed on Monday" ]
-                  else
-                        return [ true, "", "" ]
-                        <% } %>
-            }
+           function noMondays(date){
+                                      <%: idespef%>
+                                      <%: idmedicof%>
+                                      <%  
+                                          if(ListaEspecialidadxMedico!=null)
+                                              foreach (var tux in ListaEspecialidadxMedico)
+                                              {
+                                                  
+                                                  if (idespef == tux.Id_Especialidad && tux.ID_MEDICO==idmedicof)
+                                                  { %>
+                                                  
+                                                   var my_array = new Array(<%: tux.Atiende_Lunes?1:8 %>,<%:tux.Atiende_Martes?2:8%>,<%:tux.Atiende_Miercoles?3:8%>,
+                                                   <%:tux.Atiende_Jueves?4:8%>,
+                                                   <%:tux.Atiende_Viernes?5:8%>,
+                                                   <%:tux.Atiende_Sabado?6:8%>,
+                                                   <%:tux.Atiende_Domingo?0:8%>);
+                                                                               
+                                              <% }
+                                              } %>
+                                              
+                                                                         if (date.getDay() !== my_array.find(x=> x === date.getDay() ) )  /* Monday */
+                                                                          return [ false, "closed", "Closed on Monday" ]
+                                                                           else
+                                                                               return [ true, "", "" ]
+                                  }
         });
        
     </script>

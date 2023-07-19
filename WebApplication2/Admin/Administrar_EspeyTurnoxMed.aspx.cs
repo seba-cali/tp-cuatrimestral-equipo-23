@@ -21,10 +21,15 @@ namespace WebApplication2.Admin
             if (!IsPostBack)
             {
 
-
+                NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
                 NegocioMedico negocioMedico = new NegocioMedico();
+                Medico medico = new Medico();
 
-                inputMedico.DataSource = negocioMedico.listar();
+                string idMedico = Request.QueryString["idMedico"] != null ? Request.QueryString["idMedico"].ToString() : "";
+                inputMedico.DataSource = negocioMedico.listar(idMedico);
+                medico = negocioMedico.LlamarMedico(idMedico);
+                lblMedico.Text = "Medico: "+medico.NombreCompleto;
+                lblMatricula.Text = "M.N: "+medico.Matricula;
                 inputMedico.DataTextField = "NombreCompleto";
                 inputMedico.DataValueField = "ID_MEDICO";
                 inputMedico.DataBind();
@@ -36,14 +41,17 @@ namespace WebApplication2.Admin
                 inputEspecialidad.DataBind();
 
 
-                NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
-                dgvEspecialidadxTurno.DataSource = negocioEspecialidadxMedico.listarconsulta();
+
+                
+                dgvEspecialidadxTurno.DataSource = negocioEspecialidadxMedico.listarxMedico(idMedico);
                 inputTurno.DataTextField = "Turno_Horario";
                 inputTurno.DataBind();
 
                 dgvEspecialidadxTurno.DataBind();
-
-                listMedico = negocioEspecialidadxMedico.listarconsulta();
+                dgvEspecialidadxTurno.Columns[0].Visible = false;
+                dgvEspecialidadxTurno.Columns[1].Visible = false;
+                dgvEspecialidadxTurno.Columns[2].Visible = false;
+                //listMedico = negocioEspecialidadxMedico.listarxMedico(idMedico);
             }
         }
         protected void btnEliminar_Click(object sender, EventArgs e)
@@ -58,7 +66,7 @@ namespace WebApplication2.Admin
 
                 NegocioEspecialidadxMedico negocioEspecialidadxMed = new NegocioEspecialidadxMedico();
                 negocioEspecialidadxMed.eliminarfisico(int.Parse(idMedico),int.Parse(idEsp),int.Parse(TurnoHorario));
-                Response.Redirect("Administrar_EspeyTurnoxMed");
+                Response.Redirect("Administrar_EspeYTurnoxMed.aspx?idMedico=" + idMedico, false);
 
             }
         }
@@ -69,13 +77,14 @@ namespace WebApplication2.Admin
 
             try
             {
+                string idMedico = Request.QueryString["idMedico"] != null ? Request.QueryString["idMedico"].ToString() : "";
                 NegocioEspecialidadxMedico NegocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
                 EspecialidadxMedico especialidadxMedico = new EspecialidadxMedico();
                 especialidadxMedico.ID_MEDICO = int.Parse(inputMedico.SelectedValue);
                 especialidadxMedico.Id_Especialidad = int.Parse(inputEspecialidad.SelectedValue);
                 especialidadxMedico.Turno_Horario = int.Parse(inputTurno.SelectedValue);
                 NegocioEspecialidadxMedico.RegistrarEspecialidadxMedico(especialidadxMedico);
-                Response.Redirect("Administrar_EspeyTurnoxMed");
+                Response.Redirect("Administrar_EspeYTurnoxMed.aspx?idMedico=" + idMedico, false);
                 //lblmsg.Text = "Relacion cargada con exito.";
 
             }
@@ -108,5 +117,122 @@ namespace WebApplication2.Admin
 
             return false;
         }
+
+        protected void CheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox checkBox = (CheckBox)sender;
+            GridViewRow row = (GridViewRow)checkBox.NamingContainer;
+            int idMedico = Convert.ToInt32(row.Cells[0].Text); // Suponiendo que el ID del médico está en la primera columna.
+            int idEsp = Convert.ToInt32(row.Cells[2].Text); // Suponiendo que el ID de Especialidad está en la 3er columna.
+            int Turno = Convert.ToInt32(row.Cells[4].Text); // Suponiendo que el Turno está en la 5ta columna.
+            // Obtener el día de la semana según el ID del checkbox
+            string diaSemana = checkBox.ID.Replace("cb", "");
+
+            // Obtener el valor actual del checkbox (marcado o desmarcado)
+            bool atiende = checkBox.Checked;
+
+            // Realizar acciones según el día de la semana y el estado del checkbox
+            if (diaSemana == "Lunes")
+            {
+                string dia = "Atiende_Lunes";
+                if (atiende)
+                {
+                    NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
+                    negocioEspecialidadxMedico.reactivarDia(dia,idMedico,idEsp,Turno);
+                }
+                else
+                {
+                    NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
+                    negocioEspecialidadxMedico.DesactivarDia(dia, idMedico, idEsp, Turno);
+                }
+                
+            }
+            else if (diaSemana == "Martes")
+            {
+                string dia = "Atiende_Martes";
+                if (atiende)
+                {
+                    NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
+                    negocioEspecialidadxMedico.reactivarDia(dia, idMedico, idEsp, Turno);
+                }
+                else
+                {
+                    NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
+                    negocioEspecialidadxMedico.DesactivarDia(dia, idMedico, idEsp, Turno);
+                }
+            }
+            else if (diaSemana == "Miercoles")
+            {
+                string dia = "Atiende_Miercoles";
+                if (atiende)
+                {
+                    NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
+                    negocioEspecialidadxMedico.reactivarDia(dia, idMedico, idEsp, Turno);
+                }
+                else
+                {
+                    NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
+                    negocioEspecialidadxMedico.DesactivarDia(dia, idMedico, idEsp, Turno);
+                }
+            }
+            else if (diaSemana == "Jueves")
+            {
+                string dia = "Atiende_Jueves";
+                if (atiende)
+                {
+                    NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
+                    negocioEspecialidadxMedico.reactivarDia(dia, idMedico, idEsp, Turno);
+                }
+                else
+                {
+                    NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
+                    negocioEspecialidadxMedico.DesactivarDia(dia, idMedico, idEsp, Turno);
+                }
+            }
+            else if (diaSemana == "Viernes")
+            {
+                string dia = "Atiende_Viernes";
+                if (atiende)
+                {
+                    NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
+                    negocioEspecialidadxMedico.reactivarDia(dia, idMedico, idEsp, Turno);
+                }
+                else
+                {
+                    NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
+                    negocioEspecialidadxMedico.DesactivarDia(dia, idMedico, idEsp, Turno);
+                }
+            }
+            else if (diaSemana == "Sabado")
+            {
+                string dia = "Atiende_Sabado";
+                if (atiende)
+                {
+                    NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
+                    negocioEspecialidadxMedico.reactivarDia(dia, idMedico, idEsp, Turno);
+                }
+                else
+                {
+                    NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
+                    negocioEspecialidadxMedico.DesactivarDia(dia, idMedico, idEsp, Turno);
+                }
+            }
+            else if (diaSemana == "Domingo")
+            {
+                string dia = "Atiende_Domingo";
+                if (atiende)
+                {
+                    NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
+                    negocioEspecialidadxMedico.reactivarDia(dia, idMedico, idEsp, Turno);
+                }
+                else
+                {
+                    NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
+                    negocioEspecialidadxMedico.DesactivarDia(dia, idMedico, idEsp, Turno);
+                }
+            }
+
+        }
+
     }
 }

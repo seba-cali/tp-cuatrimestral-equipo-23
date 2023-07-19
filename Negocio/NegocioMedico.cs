@@ -6,17 +6,57 @@ namespace Negocio
 {
 	public class NegocioMedico
 	{
-		public List<Medico> listar(string idMedico = "")
+
+        public Medico LlamarMedico(string idMedico = "")
+        {
+            Medico medico = new Medico();
+            DBConnection db = new DBConnection();
+            try
+            {
+                
+             db.setearConsulta("SELECT ID_MEDICO, NOMBRE, APELLIDO, DIRECCION, FECHA_NACIMIENTO, SEXO, ESTADO, TELEFONO, ID_USUARIO, DNI,MATRICULA  FROM MEDICO where ID_MEDICO = " + idMedico);
+                
+                db.ejecutarLectura();
+
+                while (db.Lector.Read())
+                {
+                    
+                    medico.ID_MEDICO = db.Lector.GetInt32(0);
+                    medico.nombres = db.Lector.GetString(1);
+                    medico.apellidos = db.Lector.GetString(2);
+                    medico.direccion = db.Lector.GetString(3);
+                    medico.fechaNacimiento = db.Lector.GetDateTime(4);
+                    medico.sexo = db.Lector.GetString(5);
+                    medico.ESTADO = db.Lector.GetBoolean(6);
+                    medico.telefono = db.Lector.GetString(7);
+                    medico.ID_USUARIO = db.Lector.GetInt32(8);
+                    medico.DNI = db.Lector.GetString(9);
+                    medico.Matricula = db.Lector.GetString(10);
+                   
+                }
+                db.cerrarConexion();
+                return medico;
+            }
+            catch (System.Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw ex;
+            }
+            finally
+            {
+                db.cerrarConexion();
+            }
+        }
+
+        public List<Medico> listar(string idMedico = "")
 		{
 			List<Medico> medico = new List<Medico>();
 			DBConnection db = new DBConnection();
-
 			try
 			{
 				if (idMedico == "")
 				{
 					db.setearConsulta("SELECT ID_MEDICO, NOMBRE, APELLIDO, DIRECCION, FECHA_NACIMIENTO, SEXO, ESTADO, TELEFONO, ID_USUARIO, DNI, MATRICULA  FROM MEDICO");
-
 				}
 				else
 				{
@@ -38,8 +78,6 @@ namespace Negocio
 					aux.ID_USUARIO = db.Lector.GetInt32(8);
 					aux.DNI = db.Lector.GetString(9);
 					aux.Matricula = db.Lector.GetString(10);
-
-
 					medico.Add(aux);
 				}
 				db.cerrarConexion();
@@ -55,8 +93,6 @@ namespace Negocio
 				db.cerrarConexion();
 			}
 		}
-
-
 		public void eliminarMedico(int id)
 		{
 			try
@@ -68,12 +104,9 @@ namespace Negocio
 			}
 			catch (Exception ex)
 			{
-
 				throw ex;
 			}
-
 		}
-
 		public void reactivarMedico(int id)
 		{
 			try
@@ -85,7 +118,6 @@ namespace Negocio
 			}
 			catch (Exception ex)
 			{
-
 				throw ex;
 			}
 		}
@@ -127,7 +159,6 @@ namespace Negocio
 					db.setearParametro("@matricula", nuevo.Matricula);
 					return db.ejecutarLecturaInt();
 				}
-
 			}
 			catch (Exception ex)
 			{
@@ -138,23 +169,19 @@ namespace Negocio
 			{
 				db.cerrarConexion();
 			}
-
 		}
 
 		public Medico buscaXId(int idMedico)
 		{
 			DBConnection db = new DBConnection();
-
 			try
 			{
-
 				db.setearConsulta("SELECT ID_MEDICO, NOMBRE, APELLIDO, DIRECCION, FECHA_NACIMIENTO, SEXO, ESTADO, TELEFONO, ID_USUARIO, DNI,MATRICULA  FROM MEDICO where ID_MEDICO = @idMedico");
 				db.setearParametro("@idMedico", idMedico);
 				db.ejecutarLectura();
 				Medico aux = new Medico();
 				if (db.Lector.Read())
 				{
-
 					aux.ID_MEDICO = db.Lector.GetInt32(0);
 					aux.nombres = db.Lector.GetString(1);
 					aux.apellidos = db.Lector.GetString(2);
@@ -166,9 +193,6 @@ namespace Negocio
 					aux.ID_USUARIO = db.Lector.GetInt32(8);
 					aux.DNI = db.Lector.GetString(9);
 					aux.Matricula = db.Lector.GetString(10);
-
-
-
 				}
 				db.cerrarConexion();
 				return aux;
@@ -182,7 +206,6 @@ namespace Negocio
 			{
 				db.cerrarConexion();
 			}
-
 		}
 	}
 }

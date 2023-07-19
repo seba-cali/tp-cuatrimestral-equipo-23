@@ -46,27 +46,33 @@ namespace WebApplication2.Admin
 
         }
 
-        protected void Button2_OnClick(object sender, EventArgs e)
-        {
-            
-            try
-            {
-                Turnos turno = new Turnos();
-                NegocioTurno negocio = new NegocioTurno();
-                turno.Id_Turno = Convert.ToInt32(formGroupId.Text);
-                turno.EstadoInf= Convert.ToInt32(inputEstado.SelectedValue);
-                turno.observacionMed = inputObs.Text;
-                
-                negocio.UpdateTurnoMed(turno);
-                Session["OK"] = "Se actualizo estado del paciente";
-                Response.Redirect("Medicos.aspx",false);
 
-            }
-            catch (Exception exception)
-            {
-                Console.WriteLine(exception);
-                Session["error"] = "No se pudo actualizar el estado del paciente";
-            }
-        }
-    }
+		protected void Button2_OnClick(object sender, EventArgs e)
+		{
+			if (int.TryParse(formGroupId.Text, out int turnoId))
+			{
+				try
+				{
+					Turnos turno = new Turnos();
+					NegocioTurno negocio = new NegocioTurno();
+					turno.Id_Turno = turnoId;
+					turno.EstadoInf = Convert.ToInt32(inputEstado.SelectedValue);
+					turno.observacionMed = inputObs.Text;
+
+
+					negocio.UpdateTurnoMed(turno);
+					Session["OK"] = "Se actualizó el estado del paciente";
+				}
+				catch (Exception exception)
+				{
+					Console.WriteLine(exception);
+					Session["error"] = "No se pudo actualizar el estado del paciente";
+				}
+			}
+			else
+			{
+				Session["error"] = "El valor del Id del turno no es válido";
+			}
+		}
+	}
 }

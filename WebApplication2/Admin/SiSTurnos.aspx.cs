@@ -14,6 +14,9 @@ namespace WebApplication2.Admin
     {
         protected Usuario usuario { get; set; }
         public bool pivot = false;
+        public List<EspecialidadxMedico> ListaEspecialidadxMedico { get; set; }
+        public int idmedicof { get; set; }
+        public int idespef { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -35,7 +38,14 @@ namespace WebApplication2.Admin
                 {
                     pivot = true;
 
-
+                    /*
+                    if (Session["idesp"] != "0")
+                    {
+                        
+                        NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
+                        //List<EspecialidadxMedico> ListaEspecialidadxMedico = new List<EspecialidadxMedico>();
+                        ListaEspecialidadxMedico = negocioEspecialidadxMedico.listar(Session["idesp"].ToString());
+                    }*/
                     if (!IsPostBack)
                     {
                         Session.Add("idmedi", "0");
@@ -54,7 +64,10 @@ namespace WebApplication2.Admin
                         Session.Add("MostrarFecha", null);
                         Session.Add("MostrarHora", null);
                     }
-
+                   
+                    idmedicof = Convert.ToInt32(Session["idmedi"]);
+                    idespef = Convert.ToInt32(Session["idesp"]);
+                    
                     //turnos del paciente
                     NegocioPaciente negocioPaciente = new NegocioPaciente();
                     Paciente paciente = new Paciente();
@@ -94,7 +107,7 @@ namespace WebApplication2.Admin
                             dnipac.Text = paciente.DNI;
                         }
 
-                        //repro = negocioTurnos.listar(paciente.ID_PACIENTE);
+                        repro = negocioTurnos.listar(paciente.ID_PACIENTE);
                     }
 
                     //Turnos loco= new Turnos();
@@ -153,7 +166,7 @@ namespace WebApplication2.Admin
                             Medico medico = new Medico();
 
                             NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
-                            List<EspecialidadxMedico> ListaEspecialidadxMedico = new List<EspecialidadxMedico>();
+                            //List<EspecialidadxMedico> ListaEspecialidadxMedico = new List<EspecialidadxMedico>();
                             ListaEspecialidadxMedico = negocioEspecialidadxMedico.listar(Session["idesp"].ToString());
 
                             ListBox medicos = new ListBox();
@@ -178,6 +191,7 @@ namespace WebApplication2.Admin
 
                         Medico dato = new Medico();
                         Turnos tux = new Turnos();
+                        Turnos tuxturn = new Turnos();
                         NegocioTurno negocioTurno = new NegocioTurno();
                         List<Turnos> ListaTurnos = new List<Turnos>();
                         ListaTurnos = negocioTurno.listar();
@@ -199,18 +213,18 @@ namespace WebApplication2.Admin
 
                         if (dato != null )
                         {
-                            Session["MostrarMed"] = dato.nombres + ", " + dato.apellidos;
-                            Console.WriteLine("Medico: " + dato.nombres + ", " + dato.apellidos);
-
                             var tata = Turnos.GetTurnos(Convert.ToInt32(Session["horario"]));
                             foreach (KeyValuePair<int, string> slot in tata)
                             {
                                 //Muestra los horarios disponibles
                                 tux = ListaTurnos.Find(x =>
                                     x.Id_Medico == dato.ID_MEDICO && x.Id_Hora == slot.Key &&
-                                    Convert.ToDateTime(x.fecha) == Convert.ToDateTime(fechanow.Text) && x.Estado);
-                                if (tux == null)
-                                {
+                                    Convert.ToDateTime(x.fecha) == Convert.ToDateTime(fechanow.Text) && x.Estado );
+                                tuxturn= ListaTurnos.Find(x =>
+                                     paciente != null && x.Id_Hora == slot.Key && Convert.ToDateTime(x.fecha) == Convert.ToDateTime(fechanow.Text) && x.Estado &&
+                                     x.Id_Paciente== paciente.ID_PACIENTE);
+                                if (tux == null && tuxturn == null)
+                                {   
                                     turnero.Items.Add(new ListItem(slot.Value, slot.Key.ToString()));
                                 }
                             }
@@ -347,6 +361,7 @@ namespace WebApplication2.Admin
             try
             {
                 Session["idmedi"] = Convert.ToInt32(((ListBox)sender).SelectedValue);
+                idmedicof = Convert.ToInt32(Session["idmedi"]);
                 Console.WriteLine(Session["idmedi"] + "seeeeee");
                 if (Session["idmedi"] == "0")
                     bt3.Enabled = false;

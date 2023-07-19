@@ -51,15 +51,6 @@ namespace WebApplication2.Admin
         protected global::System.Web.UI.WebControls.Label dnipac;
 
         /// <summary>
-        /// bt2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button bt2;
-
-        /// <summary>
         /// Muestra2 control.
         /// </summary>
         /// <remarks>
@@ -240,13 +231,22 @@ namespace WebApplication2.Admin
         protected global::System.Web.UI.WebControls.TextBox formGroupDescEdit;
 
         /// <summary>
-        /// Button2 control.
+        /// horarios control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
+        protected global::System.Web.UI.WebControls.ListBox horarios;
+
+        /// <summary>
+        /// bt2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button bt2;
 
         /// <summary>
         /// formGroupIdDelete control.

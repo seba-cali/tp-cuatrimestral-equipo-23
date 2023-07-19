@@ -19,7 +19,10 @@ namespace WebApplication2.Admin
         public List<Paciente> ListPacientes { get; set; }
         public List<Medico> ListMedicos { get; set; }
         public List<EspecialidadxMedico> ListaEspecialidadxMedico { get; set; }
+        public List<Turnos> ListaTurnos { get;set; }
         public List<Especialidad> ListaEspecialidades { get; set; }
+        public int idmedicof { get; set; }
+        public int idespef { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -42,10 +45,17 @@ namespace WebApplication2.Admin
                 {
                     pivot = true;
 
+                    /*if (Session["idesp"] != "0")
+                    {
+                        
+                        NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
+                        //List<EspecialidadxMedico> ListaEspecialidadxMedico = new List<EspecialidadxMedico>();
+                        ListaEspecialidadxMedico = negocioEspecialidadxMedico.listar(Session["idesp"].ToString());
+                    }*/
 
                     if (!IsPostBack)
                     {
-                        ListaEspecialidadxMedico = negocioEspecialidadxMedico.listar(Session["idesp"].ToString());
+                        
                         Session.Add("idmedi", "0");
                         Session.Add("VerRep", false);
                         Session.Add("idesp", "0");
@@ -62,7 +72,8 @@ namespace WebApplication2.Admin
                         Session.Add("MostrarFecha", null);
                         Session.Add("MostrarHora", null);
                     }
-
+                    idmedicof = Convert.ToInt32(Session["idmedi"]);
+                    idespef = Convert.ToInt32(Session["idesp"]);
                     //turnos del paciente
                     NegocioPaciente negocioPaciente = new NegocioPaciente();
                     Paciente paciente = new Paciente();
@@ -108,10 +119,12 @@ namespace WebApplication2.Admin
                     //Turnos loco= new Turnos();
 
 
+                    /*
                     if (repro != null)
                     {
 
                     }
+                    */
 
 
                     NegocioEspecialidad negocioEspecialidad = new NegocioEspecialidad();
@@ -139,10 +152,10 @@ namespace WebApplication2.Admin
                         Session["MostrarEsp"] =
                             ListaEspecialidades.Find(x => x.id == Convert.ToInt32(Session["idesp"])).nombre;
                         Medico medico = new Medico();
-
                         NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
                         //List<EspecialidadxMedico> ListaEspecialidadxMedico = new List<EspecialidadxMedico>();
                         ListaEspecialidadxMedico = negocioEspecialidadxMedico.listar(Session["idesp"].ToString());
+                        
 
                         ListBox medicos = new ListBox();
                         medicos.SelectedIndexChanged += SelectMedico;
@@ -166,8 +179,9 @@ namespace WebApplication2.Admin
 
                     Medico dato = new Medico();
                     Turnos tux = new Turnos();
+                    Turnos tuxturn = new Turnos();
                     NegocioTurno negocioTurno = new NegocioTurno();
-                    List<Turnos> ListaTurnos = new List<Turnos>();
+                    //List<Turnos> ListaTurnos = new List<Turnos>();
                     ListaTurnos = negocioTurno.listar();
                     ListBox turnero = new ListBox();
                     turnero.SelectedIndexChanged += turnnero_OnSelectedIndexChanged;
@@ -198,7 +212,10 @@ namespace WebApplication2.Admin
                             tux = ListaTurnos.Find(x =>
                                 x.Id_Medico == dato.ID_MEDICO && x.Id_Hora == slot.Key &&
                                 Convert.ToDateTime(x.fecha) == Convert.ToDateTime(fechanow.Text) && x.Estado);
-                            if (tux == null)
+                            tuxturn= ListaTurnos.Find(x =>
+                                paciente != null && x.Id_Hora == slot.Key && Convert.ToDateTime(x.fecha) == Convert.ToDateTime(fechanow.Text) && x.Estado &&
+                                x.Id_Paciente== paciente.ID_PACIENTE);
+                            if (tux == null && tuxturn == null)
                             {
                                 turnero.Items.Add(new ListItem(slot.Value, slot.Key.ToString()));
                             }
@@ -295,7 +312,7 @@ namespace WebApplication2.Admin
                 fechanow.Text = turnorep.fecha.Date.ToShortDateString();
                 int turnmedi = ListaEspecialidadxMedico.Find(x =>
                     x.Id_Especialidad == turnorep.Id_Especialidad && x.ID_MEDICO == turnorep.Id_Medico).Turno_Horario;
-                //horarios.SelectedIndex = turnmedi;
+                horarios.SelectedIndex = turnmedi;
 
                 Session["idturno"] = turnmedi;
                 Session["idesp"] = turnorep.Id_Especialidad;
@@ -338,6 +355,7 @@ namespace WebApplication2.Admin
             try
             {
                 Session["idmedi"] = Convert.ToInt32(((ListBox)sender).SelectedValue);
+                idmedicof = Convert.ToInt32(Session["idmedi"]);
                 Console.WriteLine(Session["idmedi"] + "seeeeee");
                 if (Session["idmedi"] == "0")
                     bt3.Enabled = false;
@@ -376,8 +394,9 @@ namespace WebApplication2.Admin
         {
             try
             {
+                Session["idesp"] = ListaEspecialidades.Find(x=> x.id == ListaTurnos.Find(y=> y.Id_Turno==Convert.ToInt32(formGroupId.Text)).Id_Especialidad).id;
                 Session["idturno"] = Convert.ToInt32(((ListBox)sender).SelectedValue);
-                Console.WriteLine(Session["idturno"]+"asdasdasd");
+                
                 if (Session["idturno"] == "0")
                     bt2.Enabled = false;
                 else
@@ -385,7 +404,8 @@ namespace WebApplication2.Admin
             }
             catch (Exception exception)
             {
-                Session["idturn"] = "0";
+                Session["idesp"]= "0";
+                Session["idturno"] = "0";
                 Console.WriteLine(exception);
             }
         }

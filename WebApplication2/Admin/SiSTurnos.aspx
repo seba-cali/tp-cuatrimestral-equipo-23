@@ -336,12 +336,31 @@
                 monthNames: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
                 beforeShowDay: noMondays
             });
-            function noMondays(date){
-                  if (date.getDay() ===  <%:loco%> )  /* Monday */
-                        return [ false, "closed", "Closed on Monday" ]
-                  else
-                        return [ true, "", "" ]
-            }
+             function noMondays(date){
+                           <%: idespef%>
+                           <%: idmedicof%>
+                           <%  
+                               if(ListaEspecialidadxMedico!=null)
+                                   foreach (var tux in ListaEspecialidadxMedico)
+                                   {
+                                       
+                                       if (idespef == tux.Id_Especialidad && tux.ID_MEDICO==idmedicof)
+                                       { %>
+                                       
+                                        var my_array = new Array(<%: tux.Atiende_Lunes?1:8 %>,<%:tux.Atiende_Martes?2:8%>,<%:tux.Atiende_Miercoles?3:8%>,
+                                        <%:tux.Atiende_Jueves?4:8%>,
+                                        <%:tux.Atiende_Viernes?5:8%>,
+                                        <%:tux.Atiende_Sabado?6:8%>,
+                                        <%:tux.Atiende_Domingo?0:8%>);
+                                                                    
+                                   <% }
+                                   } %>
+                                   
+                                                              if (date.getDay() !== my_array.find(x=> x === date.getDay() ) )  /* Monday */
+                                                               return [ false, "closed", "Closed on Monday" ]
+                                                                else
+                                                                    return [ true, "", "" ]
+                       }
         });
        
     </script>
