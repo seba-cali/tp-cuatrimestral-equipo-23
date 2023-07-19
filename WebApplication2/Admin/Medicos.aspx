@@ -293,9 +293,13 @@
 									<td><%= Turnos.EstadoInfArray[tux.EstadoInf] %></td>
 
 									<td>
+										<%if(tux.EstadoInf != 1 && tux.EstadoInf != 3) {  %>
+
+
 										<a id="<%= tux.Id_Turno %>" class="btn btn-datatable btn-icon btn-transparent-dark editar me-2" type="button" data-bs-toggle="modal" data-bs-target="#editGroupModal">
 											<i data-feather="edit"></i>
 										</a>
+										<%}%>
 
 									</td>
 								</tr>
@@ -324,7 +328,7 @@
 								<label class="mb-1 small text-muted" for="formGroupName">Id</label>
 								<h3 class="elementoedit"></h3>
 
-								<asp:TextBox class="form-control formGroupId" ID="formGroupId" type="text" ReadOnly="True" AutoPostBack="false" runat="server" />
+								<asp:TextBox class="form-control formGroupId" ID="formGroupId" type="text" AutoPostBack="false" runat="server" />
 
 							</div>
 							<div class="mb-0">

@@ -2,91 +2,96 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-	<main>
-		<%--Presenta--%>
-		<section id="fondo" class="d-flex align-items-center">
-			<div class="container">
-				<h1>Bienvenido al Sistema de Turnos</h1>
-				<h2>Nos destacamos por brindar el mejor servicio</h2>
-				<a href="#contact" class="btn-get-started scrollto">Contactanos</a>
-			</div>
-		</section>
+    <main>
+        <%--Presentación--%>
+        <section id="fondo" class="d-flex align-items-center py-5" style="margin-top: -60px;">
+            <div class="container text-center">
+                <h1 class="display-4">Bienvenido al Sistema de Turnos</h1>
+                <p class="lead">Nos destacamos por brindar el mejor servicio.</p>
+                <a href="#contact" class="btn btn-primary btn-lg scrollto">Contáctanos</a>
+            </div>
+        </section>
+        <%--Tarjetas de servicios--%>
+        <section class="py-5 bg-light">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-4 col-sm-6 mb-4">
+                        <div class="card h-100 shadow">
+                            <div class="card-header bg-info text-white">
+                                <h3 class="mb-0">¿Por Qué Elegirnos?</h3>
+                            </div>
+                            <div class="card-body">
+                                <p>
+                                    Somos una empresa seria con años de experiencia en el mercado, brindando el mejor servicio a nuestros clientes.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-6 mb-4">
+                        <div class="card h-100 shadow">
+                            <div class="card-header">
+                                <h3 class="mb-0">Medicina</h3>
+                            </div>
+                            <div class="card-body">
+                                <p>
+                                    Nuestros profesionales son médicos con gran vocación y pasión por su trabajo.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-6 mb-4">
+                        <div class="card h-100 shadow">
+                            <div class="card-header">
+                                <h3 class="mb-0">Laboratorio</h3>
+                            </div>
+                            <div class="card-body">
+                                <p>
+                                    Contamos con un Laboratorio propio, ágil en la gestión de muestras.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-6 mb-4">
+                        <div class="card h-100 shadow">
+                            <div class="card-header">
+                                <h3 class="mb-0">Enfermería</h3>
+                            </div>
+                            <div class="card-body">
+                                <p>
+                                    Enfermería disponible las 24 hs del día para el cuidado de nuestros pacientes.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-		<%-- Cards --%>
-		<section class="vw-100">
-			<div class="bg-light vw-100">
-				<div class="row justify-content-md-center">
-					<div class="col-md-4 col-sm-12 m-2  ">
-						<div class="card bg-info">
-							<div class="card-header border-0">
-								<h3>¿Por Que Elegirnos?</h3>
-							</div>
-							<div class="card-body border-0">
-								<p>
-									Somos una empresa seria con años de experiencia en el mercado, brindando el mejor servicio a nuestros clientes.
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-2 col-sm-12 m-1">
-						<div class="card">
-							<div class="card-header border-0">
-								<h3>Medicina</h3>
-							</div>
-							<div class="card-body border-0">
-								<p>
-									<span>Nustros profesionales son médicos con gran vocación y pasión por su trabajo.</span>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-2 col-sm-12 m-1">
-						<div class="card">
-							<div class="card-header border-0">
-								<h3>Laboratorio</h3>
-							</div>
-							<div class="card-body border-0">
-								<p>
-									<span>Contamos con un Laboratorio propio, agil en la gestión de muestras.</span>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-2 col-sm-12 m-1">
-						<div class="card">
-							<div class="card-header border-0">
-								<h3>Enfermeria</h3>
-							</div>
-							<div class="card-body border-0">
-								<p>
-									<span>Enfermeria disponible las 24 hs del dia para el cuidado de nuestros pacientes.</span>
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
+        <%--Iconos de servicios--%>
+        <section class="py-5 bg-info">
+            <div class="container text-center text-white">
+                <div class="row">
+                    <div class="col-4 mb-3">
+                        <i class="fas fa-users-medical fa-3x"></i>
+                        <h4 class="mt-3">Médicos Calificados</h4>
+                    </div>
+                    <div class="col-4 mb-3">
+                        <i class="fas fa-laptop-medical fa-3x"></i>
+                        <h4 class="mt-3">Tecnología Avanzada</h4>
+                    </div>
+                    <div class="col-4 mb-3">
+                        <i class="fas fa-clinic-medical fa-3x"></i>
+                        <h4 class="mt-3">Instalaciones Modernas</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-		<section class="vw-100">
-			<div class="container bg-info">
-				<div class="row">
-					<div class="col-4"><i class="fas fa-users-medical"></i></div>
-					<div class="col-4"><i class="fas fa-laptop-medical "></i></div>
-					<div class="col-4"><i class="fas fa-clinic-medical "></i></div>
-				</div>
-				<div class="row">
-					<div class="col-4"><i class="fas fa-users-medical fa-pulse"></i></div>
-					<div class="col-4"><i class="fas fa-laptop-medical fa-pulse"></i></div>
-					<div class="col-4"><i class="fas fa-clinic-medical fa-pulse"></i></div>
-				</div>
-			</div>
-		</section>
-		<section>
-			<div id="preloader"></div>
-			<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-		</section>
-	</main>
-
+        <section>
+            <div id="preloader"></div>
+            <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+        </section>
+    </main>
 
 </asp:Content>
+

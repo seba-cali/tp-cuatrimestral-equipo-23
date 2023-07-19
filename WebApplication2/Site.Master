@@ -4,79 +4,112 @@
 
 <html lang="es">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - Programacion III</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title><%: Page.Title %> - Programacion III</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-A5zY3CwF7z+V1Jzjr6U6Kejy2cxH7YO6lVQ6Wf/R5VJZ2Ppx4U6G7IbbV2ByX6Zw" crossorigin="anonymous">
 
-    <asp:PlaceHolder runat="server">
-        <%: Scripts.Render("~/bundles/modernizr") %>
-    </asp:PlaceHolder>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 
-    <webopt:bundlereference runat="server" path="~/Content/css" />
-    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+	<asp:PlaceHolder runat="server">
+		<%: Scripts.Render("~/bundles/modernizr") %>
+	</asp:PlaceHolder>
 
+	<webopt:BundleReference runat="server" Path="~/Content/css" />
+	<link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+	<style>
+		.navbar {
+			background-color: #6c42a1;
+		}
+
+		.navbar-dark .navbar-nav .nav-link {
+			color: #ffffff;
+		}
+
+			.navbar-dark .navbar-nav .nav-link:hover {
+				color: #e0d8f9;
+			}
+
+		.navbar-toggler-icon {
+			background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 100 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff'%3E%3Crect width='100' height='20'%3E%3C/rect%3E%3Crect y='30' width='100' height='20'%3E%3C/rect%3E%3Crect y='60' width='100' height='20'%3E%3C/rect%3E%3C/g%3E%3C/svg%3E");
+			border: none;
+			width: 30px;
+			height: 3px;
+		}
+
+		/* Estilo adicional para mejorar la visibilidad del ícono del botón de navegación */
+		.navbar-toggler {
+			border-color: #ffffff; /* Color del borde del botón */
+		}
+
+			.navbar-toggler:focus, .navbar-toggler:hover {
+				outline: none;
+				background-color: #ffffff; /* Color de fondo al pasar el cursor por encima */
+			}
+	</style>
 </head>
 <body>
-    <form runat="server">
-        <asp:ScriptManager runat="server">
-            <Scripts>
-                <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
-                <%--Framework Scripts--%>
-                <asp:ScriptReference Name="MsAjaxBundle" />
-                <asp:ScriptReference Name="jquery" />
-                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
-                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
-                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
-                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
-                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
-                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
-                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
-                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
-                <asp:ScriptReference Name="WebFormsBundle" />
-                <%--Site Scripts--%>
-            </Scripts>
-        </asp:ScriptManager>
+	<form runat="server">
+		<asp:ScriptManager runat="server">
+			<Scripts>
+				<%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
+				<%--Framework Scripts--%>
+				<asp:ScriptReference Name="MsAjaxBundle" />
+				<asp:ScriptReference Name="jquery" />
+				<asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+				<asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+				<asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+				<asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+				<asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+				<asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+				<asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+				<asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+				<asp:ScriptReference Name="WebFormsBundle" />
+				<%--Site Scripts--%>
+			</Scripts>
+		</asp:ScriptManager>
 
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-info">
-            <div class="container">
-                <a class="navbar-brand" runat="server" href="~/">El Dr.Seba</a>
-                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Alternar navegación" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/">Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Cartilla">Cartilla Médica</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/About">Acerca de</a></li>
-                        <%--<li class="nav-item"><a class="nav-link" runat="server" href="~/Turnos">Turnos</a></li>--%>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <%--<li class="m-2"><a class="btn btn-xs btn-success" href="">Ver Turno <i class="fa fa-search"></i></a></li>--%>
-                        <li class="m-2"><a class="btn btn-xs btn-success" runat="server" href="~/Admin/Default">Ingresar <i class="fas fa-user"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <div class="container-fluid body-content bg-gradient">
-            <asp:ContentPlaceHolder ID="MainContent" runat="server">
-            </asp:ContentPlaceHolder>
-            <hr />
-            <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - Programacion III</p>
-            </footer>
-        </div>
-    </form>
-    <asp:PlaceHolder runat="server">
-        <%: Scripts.Render("~/Scripts/bootstrap.js") %>
-        <%: Scripts.Render("~/Scripts/bootstrap.bundle.js") %>
-        <%: Scripts.Render("~/Scripts/Jquery-3.4.1.js") %>
-        <%: Scripts.Render("~/Scripts/script.js") %>
-    </asp:PlaceHolder>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+		<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-info">
+			<div class="container">
+				<a class="navbar-brand" runat="server" href="~/">El Dr.Seba</a>
+				<button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Alternar navegación" aria-controls="navbarSupportedContent"
+					aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+					<ul class="navbar-nav flex-grow-1">
+						<li class="nav-item"><a class="nav-link" runat="server" href="~/">Inicio</a></li>
+						<li class="nav-item"><a class="nav-link" runat="server" href="~/Cartilla">Cartilla Médica</a></li>
+						<li class="nav-item"><a class="nav-link" runat="server" href="~/About">Acerca de</a></li>
+						<%--<li class="nav-item"><a class="nav-link" runat="server" href="~/Turnos">Turnos</a></li>--%>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<%--<li class="m-2"><a class="btn btn-xs btn-success" href="">Ver Turno <i class="fa fa-search"></i></a></li>--%>
+						<li class="m-2"><a class="btn btn-xs btn-success" runat="server" href="~/Admin/Default">Ingresar <i class="fas fa-user"></i></a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<div class="container-fluid body-content bg-gradient">
+			<asp:ContentPlaceHolder ID="MainContent" runat="server">
+			</asp:ContentPlaceHolder>
+			<hr />
+			<footer>
+				<p>&copy; <%: DateTime.Now.Year %> - Programacion III</p>
+			</footer>
+		</div>
+	</form>
+	<asp:PlaceHolder runat="server">
+		<%: Scripts.Render("~/Scripts/bootstrap.js") %>
+		<%: Scripts.Render("~/Scripts/bootstrap.bundle.js") %>
+		<%: Scripts.Render("~/Scripts/Jquery-3.4.1.js") %>
+		<%: Scripts.Render("~/Scripts/script.js") %>
+	</asp:PlaceHolder>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 
 
 </body>
