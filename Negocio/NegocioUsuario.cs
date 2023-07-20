@@ -161,6 +161,23 @@ namespace Negocio
 				throw;
 			}
 		}
+		public void BuscarXIdUpdatePass(int val,string ant, string password)
+		{
+			DBConnection db = new DBConnection();
+			try
+			{
+				db.setearConsulta("UPDATE USUARIO SET PASSWORD = @password  WHERE ID_USUARIO= @id and PASSWORD = @ant");
+				db.setearParametro("@id", val);
+				db.setearParametro("@ant", ant);
+				db.setearParametro("@password", password);
+				db.ejecutarLectura();
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e);
+				throw;
+			}
+		}
 
 		public int RegistrarUsuario(Usuario nuevo, int id = 0)
 		{
