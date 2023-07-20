@@ -167,7 +167,7 @@
                                 </a>
                                 <div class="collapse" id="pagesCollapseAccount" data-bs-parent="#accordionSidenavPagesMenu">
                                     <nav class="sidenav-menu-nested nav">
-                                        <a class="nav-link" href="alta_Persona.aspx">
+                                        <a class="nav-link" href="alta_Medico.aspx">
                                             <span class="badge bg-primary-soft text-primary ">Alta Medico</span>
                                         </a>
                                         <a class="nav-link" href="Administrar_Medicos.aspx">
