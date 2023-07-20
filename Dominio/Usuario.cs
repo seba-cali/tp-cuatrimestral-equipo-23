@@ -13,7 +13,7 @@ namespace Dominio
 
         public int ID_TIPOUSUARIO { get; set; }
         
-        public int img_url { get; set; }
+        public string img_url { get; set; }
         
         public static string[] TipoUSUARIO= {"","Administrador","Recepcionista","Medico","Paciente"};
         public Usuario(){}

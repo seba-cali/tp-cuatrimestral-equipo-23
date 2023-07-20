@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Web.UI;
+using Dominio;
+using Negocio;
 
 namespace WebApplication2.Admin
 {
@@ -7,6 +9,7 @@ namespace WebApplication2.Admin
     {
         public string imgName ;
         public string imgPath ;
+        public Usuario usuario { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             
@@ -14,7 +17,7 @@ namespace WebApplication2.Admin
             {
                 Response.Redirect("Default.aspx", false);
             }
-            
+            usuario = (Usuario)Session["usuario"];
             if (!IsPostBack)
             {
                 
@@ -46,7 +49,7 @@ namespace WebApplication2.Admin
                     FileUpload1.SaveAs(Server.MapPath(imgPath));  
                     Image1.ImageUrl = imgPath;  
                     Session.Add("ok","Exito");  
-                    
+                    usuario.img_url = imgPath??usuario.img_url;
                 }    
             }  
         }
@@ -55,11 +58,33 @@ namespace WebApplication2.Admin
         {
             try
             {
+                
+                NegocioUsuario negocioUsuario = new NegocioUsuario();
+                    
+                NegocioPaciente negocioPaciente = new NegocioPaciente();
+                Paciente paciente = new Paciente();
+                paciente.ID_USUARIO = usuario.ID_USUARIO;
+                paciente.nombres = inputNombre.Text;
+                paciente.apellidos = inputApellido.Text;
+                paciente.DNI = inputDNI.Text;
+                paciente.fechaNacimiento = Convert.ToDateTime(inputFNacimiento.Text);
+                paciente.direccion = inputDomicilio.Text;
+                paciente.telefono = inputTelefono.Text;
+                paciente.sexo = inputSexo.SelectedValue;
+                
+                usuario.img_url = imgPath??usuario.img_url;
+                negocioUsuario.updateImg(usuario);
+                
+                negocioPaciente.RegistrarPaciente(paciente,0);
+                
+                Session.Add("ok","Exito: Se Creo Cliente");
+                Response.Redirect("Default.aspx",false);
 
             }
             catch (Exception ex)
             {
-                
+                Session.Add("error",ex.Message);
+                Console.WriteLine("Error: " + ex.Message);
             }
         }
     }

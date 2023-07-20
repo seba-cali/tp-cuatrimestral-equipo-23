@@ -154,7 +154,7 @@
 							<div class="mb-0">
 								<label class="mb-1 small text-muted" for="formGroupName">Id</label>
 								<h3 class="elementoedit"></h3>
-								<asp:TextBox class="form-control formGroupId" ID="formGroupId" type="text" <%--ReadOnly="True"--%> runat="server" />
+								<asp:TextBox class="form-control formGroupId" ID="formGroupIds" type="text" <%--ReadOnly="True"--%> runat="server" />
 							</div>
 							<div class="mb-0">
 								<label class="mb-1 small text-muted" for="formGroupName">Nombre</label>
