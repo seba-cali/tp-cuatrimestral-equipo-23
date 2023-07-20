@@ -57,7 +57,7 @@
                                 <!-- Form Group (username)-->
                                 <div class="mb-3">
 
-                                    <asp:Label ID="mensaje" runat="server"/>
+                                    <asp:Label ID="mensaje"  runat="server"/>
                                     <asp:Label ID="userlabel" runat="server"/>
                                 </div>
                                 <!-- Form Row-->
@@ -78,7 +78,11 @@
                                     <!-- Form Group (organization name)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="MainContent_inputSexo">Sexo</label>
-                                        <asp:DropDownList CssClass="form-control" id="inputSexo" type="text" runat="server"/>
+                                        <asp:DropDownList ID="inputSexo" runat="server" CssClass="form-control">
+                                        					<asp:ListItem Text="Sexo" Value="" Selected="True"></asp:ListItem>
+                                        					<asp:ListItem Text="M" Value="M"></asp:ListItem>
+                                        					<asp:ListItem Text="F" Value="F"></asp:ListItem>
+                                        				</asp:DropDownList>
 
                                     </div>
                                     <!-- Form Group (location)-->
