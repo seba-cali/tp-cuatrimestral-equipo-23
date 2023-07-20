@@ -31,7 +31,7 @@ namespace WebApplication2.Admin
                 Response.Redirect("Default.aspx", false);
             }
             usuario = (Usuario)Session["usuario"];
-            if (!VerificaUsuario( usuario.ID_USUARIO ))
+            if (!VerificaUsuario( usuario.ID_USUARIO ) && usuario.ID_TIPOUSUARIO!=3)
             {
                 Session.Add("debe","Debe Completar el formulario para operar en el sistema");
                 Response.Redirect("Perfil.aspx",false);

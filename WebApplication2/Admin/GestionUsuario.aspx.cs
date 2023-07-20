@@ -51,14 +51,15 @@ namespace WebApplication2.Admin
 		{
 			if (int.TryParse(Verdura.Text, out int id))
 			{
-				bool estado = inputEstado.SelectedValue == "true" ? true : false;
-
 				NegocioUsuario negocioUsuario = new NegocioUsuario();
-				negocioUsuario.bajaLogica(id, estado);
-
-				int nuevoRolId = int.Parse(inputSetUser.SelectedValue);
-				negocioUsuario.cambiarRol(id, nuevoRolId); // Llamar a la función cambiarRol con el nuevoRolId
-
+				if(inputEstado.SelectedValue!="0"){
+					bool estado = inputEstado.SelectedValue == "true" ? true : false;
+					negocioUsuario.bajaLogica(id, estado);
+				}
+				if(inputSetUser.SelectedValue!="0"){
+					int nuevoRolId = int.Parse(inputSetUser.SelectedValue);
+					negocioUsuario.cambiarRol(id, nuevoRolId); // Llamar a la función cambiarRol con el nuevoRolId
+				}
 				Response.Redirect("GestionUsuario.aspx", false);
 			}
 			else

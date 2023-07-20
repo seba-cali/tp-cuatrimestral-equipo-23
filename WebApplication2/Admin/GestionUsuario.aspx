@@ -168,7 +168,7 @@
 									<ContentTemplate>
 										<asp:DropDownList ID="inputSetUser" runat="server" CssClass="form-control">
 											<%--ACA--%>
-											<asp:ListItem Text="Rol" Value="" Selected="True"></asp:ListItem>
+											<asp:ListItem Text="Rol" Value="0" Selected="True"></asp:ListItem>
 											<asp:ListItem Text="Admin" Value="1"></asp:ListItem>
 											<asp:ListItem Text="Recepcionista" Value="2"></asp:ListItem>
 											<%--<asp:ListItem Text="Medico" Value="3"></asp:ListItem>--%>
@@ -184,7 +184,7 @@
 									<ContentTemplate>
 										<asp:DropDownList ID="inputEstado" runat="server" CssClass="form-control">
 											<%--ACA BAJA LOGICA--%>
-											<asp:ListItem Text="Cambiar estado" Value="" Selected="True"></asp:ListItem>
+											<asp:ListItem Text="Cambiar estado" Value="0" Selected="True"></asp:ListItem>
 											<asp:ListItem Text="Activo" Value="true"></asp:ListItem>
 											<asp:ListItem Text="Desactivado" Value="false"></asp:ListItem>
 										</asp:DropDownList>

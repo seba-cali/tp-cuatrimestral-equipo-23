@@ -14,12 +14,16 @@ namespace WebApplication2.Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["usuario"] == null)
+            if (Session["usuario"] == null )
             {
                 Response.Redirect("Default.aspx", false);
             }
-
+            
             usuario = (Usuario)Session["usuario"];
+            if (usuario.ID_TIPOUSUARIO == 3)
+            {
+                Response.Redirect("Tablero.aspx", false);
+            }
             mensaje.Text = Session["debe"] != null ? Session["debe"].ToString() : "";
             NegocioPaciente negocioPaciente = new NegocioPaciente();
             paciente = negocioPaciente.listar().Find(x => x.ID_USUARIO == usuario.ID_USUARIO);

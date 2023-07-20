@@ -48,10 +48,15 @@ namespace WebApplication2.Admin
                 }
                 else if (negocioUsuario.login(usuuario) != null)
                 {
+                    if(!usuuario.ESTADO)
+                    {
+                        Session.Add("error", "Usuario bloqueado");
+                        Response.Redirect("Default.aspx", false);
+                    }else{
                     Session.Remove("error");
                     Session.Add("usuario", usuuario);
                     Response.Redirect("~/Admin/Tablero.aspx", false);
-                    
+                    }
                 }
                 else
                 {
