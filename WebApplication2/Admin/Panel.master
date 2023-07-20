@@ -235,18 +235,20 @@
 
                             </nav>
                         </div>
+                    <% }
+                       if (usuario.ID_TIPOUSUARIO == 1)
+                       {
+                    %>
+                    <div class="sidenav-menu-heading">Administracion</div>
+                    
+                    <a class="nav-link" href="GestionUsuario.aspx">
+                        <div class="nav-link-icon">
+                            <i data-feather="user-plus"></i>
+                        </div>
+                        Gestion Usuarios
+                    </a>
                     <% } %>
-                    <%--<div class="sidenav-menu-heading">Plugins</div>
-                                                <!-- Sidenav Link (Charts)-->
-                                                <a class="nav-link" href="charts.html">
-                                                    <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
-                                                    Charts
-                                                </a>
-                                                <!-- Sidenav Link (Tables)-->
-                                                <a class="nav-link" href="tables.html">
-                                                    <div class="nav-link-icon"><i data-feather="filter"></i></div>
-                                                    Tables
-                                                </a>--%>
+                    
                 </div>
             </div>
             <!-- Sidenav Footer-->
