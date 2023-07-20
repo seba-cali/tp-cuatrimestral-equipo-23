@@ -202,7 +202,7 @@ namespace WebApplication2.Admin
 
                     if (dato != null)
                     {
-                        Session["MostrarMed"] = dato.nombres + ", " + dato.apellidos;
+                        Session["MostrarMed"] = dato.NombreCompleto;
                         Console.WriteLine("Medico: " + dato.nombres + ", " + dato.apellidos);
 
                         var tata = Turnos.GetTurnos(Convert.ToInt32(Session["horario"]));

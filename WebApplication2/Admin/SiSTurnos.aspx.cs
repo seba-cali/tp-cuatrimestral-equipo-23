@@ -213,6 +213,7 @@ namespace WebApplication2.Admin
 
                         if (dato != null )
                         {
+                            Session["MostrarMed"] = dato.NombreCompleto;
                             var tata = Turnos.GetTurnos(Convert.ToInt32(Session["horario"]));
                             foreach (KeyValuePair<int, string> slot in tata)
                             {

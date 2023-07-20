@@ -13,14 +13,14 @@ namespace Negocio
 
 			try
 			{
-				db.setearConsulta("SELECT ID_USUARIO, DNI, CORREO FROM USUARIO WHERE CORREO= @CORREO");
+				db.setearConsulta("SELECT ID_USUARIO, USERNAME, CORREO FROM USUARIO WHERE CORREO= @CORREO");
 				db.setearParametro("@correo", val);
 				db.ejecutarLectura();
 				if (db.Lector.Read())
 				{
 
 					aux.ID_USUARIO = db.Lector.GetInt32(0);
-					aux.DNI = db.Lector.GetString(1);
+					aux.username = db.Lector.GetString(1);
 					aux.CORREO = db.Lector.GetString(2);
 					db.cerrarConexion();
 					return aux;
