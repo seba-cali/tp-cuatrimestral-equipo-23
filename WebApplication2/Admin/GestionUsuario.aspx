@@ -154,7 +154,9 @@
 							<div class="mb-0">
 								<label class="mb-1 small text-muted" for="formGroupName">Id</label>
 								<h3 class="elementoedit"></h3>
-								<asp:TextBox class="form-control formGroupId" ID="formGroupIds" type="text" <%--ReadOnly="True"--%> runat="server" />
+
+								<asp:TextBox class="form-control formGroupId" ID="Verdura" type="text" ReadOnly="false" runat="server" />
+
 							</div>
 							<div class="mb-0">
 								<label class="mb-1 small text-muted" for="formGroupName">Nombre</label>
@@ -181,7 +183,7 @@
 								<asp:UpdatePanel runat="server">
 									<ContentTemplate>
 										<asp:DropDownList ID="inputEstado" runat="server" CssClass="form-control">
-											<%--ACA--%>
+											<%--ACA BAJA LOGICA--%>
 											<asp:ListItem Text="Cambiar estado" Value="" Selected="True"></asp:ListItem>
 											<asp:ListItem Text="Activo" Value="true"></asp:ListItem>
 											<asp:ListItem Text="Desactivado" Value="false"></asp:ListItem>

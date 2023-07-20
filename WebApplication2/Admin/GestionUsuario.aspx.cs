@@ -49,6 +49,14 @@ namespace WebApplication2.Admin
         protected void Button2_Click(object sender, EventArgs e)
         {
 
-        }
+
+			int id = Convert.ToInt32(Verdura.Text);
+			bool estado = inputEstado.SelectedValue == "true" ? true : false;
+
+			NegocioUsuario negocioUsuario = new NegocioUsuario();
+			negocioUsuario.bajaLogica(id, estado);
+			Response.Redirect("GestionUsuario.aspx",false);
+
+		}
     }
 }
