@@ -48,7 +48,7 @@
                                         <label class="small mb-1" for="MainContent_inputconfirmaPassword">Confirma Password</label>
                                         <asp:TextBox CssClass="form-control" id="inputConfirmaPassword" type="password"  runat="server"/>
                                     </div>
-                                    <asp:Button ID="guardaPassword" CssClass="btn btn-primary" Text="Guardar" runat="server"/>
+                                    <asp:Button ID="guardaPassword" CssClass="btn btn-primary" Text="Actualizar" OnClick="guardaPassword_OnClick" runat="server"/>
                                 
                             </div>
                         </div>
