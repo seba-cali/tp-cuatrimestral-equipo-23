@@ -118,6 +118,7 @@ namespace Negocio
 					db.setearParametro("@id_Usuario",nuevo.ID_USUARIO);
 					db.setearParametro("@DNI", nuevo.DNI);
 					db.ejecutarLectura();
+					Console.WriteLine("asdasd paso");
 					return 0;
 				}
 				else

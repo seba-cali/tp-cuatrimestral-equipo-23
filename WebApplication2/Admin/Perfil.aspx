@@ -57,7 +57,7 @@
                                 <!-- Form Group (username)-->
                                 <div class="mb-3">
 
-                                    <asp:Label ID="mensaje" runat="server"/>
+                                    <asp:Label ID="mensaje"  runat="server"/>
                                     <asp:Label ID="userlabel" runat="server"/>
                                 </div>
                                 <!-- Form Row-->
