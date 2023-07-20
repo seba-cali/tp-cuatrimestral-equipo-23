@@ -186,5 +186,27 @@ namespace Negocio
 				db.cerrarConexion();
 			}
 		}
+
+		public void bajaLogica(int id, bool estado)
+		{
+			DBConnection db = new DBConnection();
+			try
+			{
+				db.setearConsulta("UPDATE USUARIO SET ESTADO = @estado WHERE ID_USUARIO = @id");
+				db.setearParametro("@id", id);
+				db.setearParametro("@estado", estado ? 1 : 0); // 1 si estado es true (activado), 0 si estado es false (desactivado)
+				db.ejecutarLectura(); // Ejecutar el UPDATE
+
+			}
+			catch (Exception ex)
+			{
+
+				throw ex;
+			}
+			finally
+			{
+				db.cerrarConexion();
+			}
+		}
 	}
 }
