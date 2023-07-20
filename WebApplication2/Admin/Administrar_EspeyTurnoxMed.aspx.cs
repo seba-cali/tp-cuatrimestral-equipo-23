@@ -51,10 +51,10 @@ namespace WebApplication2.Admin
                 inputTurno.DataBind();
 
                 dgvEspecialidadxTurno.DataBind();
-                dgvEspecialidadxTurno.Columns[0].Visible = false;
-                dgvEspecialidadxTurno.Columns[1].Visible = false;
-                dgvEspecialidadxTurno.Columns[2].Visible = false;
-                dgvEspecialidadxTurno.Columns[4].Visible = false;
+                //dgvEspecialidadxTurno.Columns[0].Visible = false;
+                //dgvEspecialidadxTurno.Columns[1].Visible = false;
+               //dgvEspecialidadxTurno.Columns[2].Visible = false;
+                //dgvEspecialidadxTurno.Columns[4].Visible = false;
                 //listMedico = negocioEspecialidadxMedico.listarxMedico(idMedico);
             }
         }
@@ -272,11 +272,22 @@ namespace WebApplication2.Admin
                     lblMsje.Text = "Ocurrió un error al crear la relacion.";
                     Console.WriteLine(ex);
                 }
-                RadioButtonList rblTurnos = sender as RadioButtonList;
-                GridViewRow row = (GridViewRow)rblTurnos.NamingContainer;
-                int idMedico = Convert.ToInt32(row.Cells[0].Text); // Suponiendo que el ID del médico está en la primera columna
-                //Response.Redirect("Administrar_EspeYTurnoxMed.aspx?idMedico=" + idMedico, false);
+
             }
+        }
+
+        protected void AplicarFiltro_Click(object sender, EventArgs e)
+        {
+            string idMedico = Request.QueryString["idMedico"] != null ? Request.QueryString["idMedico"].ToString() : "";
+            NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
+            dgvEspecialidadxTurno.DataSource = negocioEspecialidadxMedico.listarfiltro(filtroEspecialidad.SelectedValue,idMedico);
+            dgvEspecialidadxTurno.DataBind();
+        }
+
+        protected void LimpiarFiltro_Click(object sender, EventArgs e)
+        {
+            string idMedico = Request.QueryString["idMedico"] != null ? Request.QueryString["idMedico"].ToString() : "";
+            Response.Redirect("Administrar_EspeYTurnoxMed.aspx?idMedico=" + idMedico, false);
         }
     }
 }

@@ -28,7 +28,8 @@
                                 <div class="mb-3">
                                     <asp:Label Text="Especialidad" ID="ddlEspecialidad" runat="server"></asp:Label>
                                     <asp:DropDownList ID="filtroEspecialidad" runat="server" CssClass="form-control" AutoPostBack="false"></asp:DropDownList>
-
+                                    <asp:Button class="btn btn-info" runat="server" Text="Filtrar" type="button" ID="AplicarFiltro" OnClick="AplicarFiltro_Click"></asp:Button>
+                                    <asp:Button class="btn btn-danger" runat="server" Text="🧹" type="button" ID="LimpiarFiltro" OnClick="LimpiarFiltro_Click"></asp:Button>
 
                                 </div>
 
@@ -105,7 +106,7 @@
                                 <i class="me-1" data-feather="plus"></i>
                                 Crear Nueva Especialidad y Turno por Medico
                             </button>
-                            
+
                         </div>
                         <div class="d-flex justify-content-center mt-3">
                             <asp:Button class="btn btn-danger" runat="server" Text="Volver" type="button" ID="btnVolver" OnClick="btnVolver_Click"></asp:Button>

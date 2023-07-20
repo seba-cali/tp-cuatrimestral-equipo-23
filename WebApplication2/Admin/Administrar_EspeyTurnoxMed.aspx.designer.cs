@@ -69,6 +69,24 @@ namespace WebApplication2.Admin
         protected global::System.Web.UI.WebControls.DropDownList filtroEspecialidad;
 
         /// <summary>
+        /// Control AplicarFiltro.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button AplicarFiltro;
+
+        /// <summary>
+        /// Control LimpiarFiltro.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button LimpiarFiltro;
+
+        /// <summary>
         /// Control dgvEspecialidadxTurno.
         /// </summary>
         /// <remarks>
