@@ -145,7 +145,7 @@
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title" id="editGroupModalLabel">Edit Group</h5>
+							<h5 class="modal-title" id="editGroupModalLabel">Administración de Usuarios</h5>
 							<button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
 						</div>
 
@@ -163,7 +163,7 @@
 								<asp:TextBox class="form-control formGroupNameEdit" ID="formGroupNameEdit" type="text" ReadOnly="True" placeholder="nombre..." runat="server" />
 							</div>
 							<div class="mb-0">
-								<label class="mb-1 small text-muted" for="formGroupDesc">Descripcion</label>
+								<label class="mb-1 small text-muted" for="formGroupDesc">Rol</label>
 								<asp:UpdatePanel runat="server">
 									<ContentTemplate>
 										<asp:DropDownList ID="inputSetUser" runat="server" CssClass="form-control">
@@ -171,7 +171,7 @@
 											<asp:ListItem Text="Rol" Value="" Selected="True"></asp:ListItem>
 											<asp:ListItem Text="Admin" Value="1"></asp:ListItem>
 											<asp:ListItem Text="Recepcionista" Value="2"></asp:ListItem>
-											<asp:ListItem Text="Medico" Value="3"></asp:ListItem>
+											<%--<asp:ListItem Text="Medico" Value="3"></asp:ListItem>--%>
 											<asp:ListItem Text="Paciente" Value="4"></asp:ListItem>
 										</asp:DropDownList>
 									</ContentTemplate>
@@ -179,7 +179,7 @@
 							</div>
 
 							<div class="mb-0">
-								<label class="mb-1 small text-muted" for="formGroupURL">Estado</label>
+								<label class="mb-1 small text-muted" for="formGroupURL">Estado de Usuario</label>
 								<asp:UpdatePanel runat="server">
 									<ContentTemplate>
 										<asp:DropDownList ID="inputEstado" runat="server" CssClass="form-control">
@@ -196,7 +196,7 @@
 						</div>
 						<div class="modal-footer">
 							<button class="btn btn-danger-soft text-danger" type="button" data-bs-dismiss="modal">Cerrar</button>
-							<asp:Button ID="Button2" runat="server" Text="Modificar Especialidad" CausesValidation="False" OnClick="Button2_Click" CssClass="btn btn-primary-soft text-primary" />
+							<asp:Button ID="Button2" runat="server" Text="Actualizar Estado" CausesValidation="False" OnClick="Button2_Click" CssClass="btn btn-primary-soft text-primary" />
 						</div>
 
 					</div>

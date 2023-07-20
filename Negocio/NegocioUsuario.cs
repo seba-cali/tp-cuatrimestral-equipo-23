@@ -215,7 +215,7 @@ namespace Negocio
 			}
 			catch (Exception ex)
 			{
-				
+
 				throw ex;
 			}
 			finally
@@ -227,8 +227,10 @@ namespace Negocio
 		}
 
 		public void bajaLogica(int id, bool estado)
-		{DBConnection db = new DBConnection();
-			try{
+		{
+			DBConnection db = new DBConnection();
+			try
+			{
 
 				db.setearConsulta("UPDATE USUARIO SET ESTADO = @estado WHERE ID_USUARIO = @id");
 				db.setearParametro("@id", id);
@@ -249,6 +251,40 @@ namespace Negocio
 
 
 
+		}
+
+		public void cambiarRol(int id, int nuevoRolId)
+		{
+			DBConnection db = new DBConnection();
+			try
+			{
+				NegocioUsuario negocioUsuario = new NegocioUsuario();
+				Usuario usuarioActual = negocioUsuario.BuscarXId(id);
+
+				if (usuarioActual != null)
+				{
+					// Si el nuevoRolId es diferente del rol actual del usuario, entonces actualizar el rol
+					if (nuevoRolId != usuarioActual.ID_TIPOUSUARIO)
+					{
+						db.setearConsulta("UPDATE USUARIO SET ID_TIPOUSUARIO = @nuevoRolId WHERE ID_USUARIO = @id");
+						db.setearParametro("@id", id);
+						db.setearParametro("@nuevoRolId", nuevoRolId);
+						db.ejecutarLectura(); // Ejecutar el UPDATE
+					}
+				}
+				else
+				{
+					// Mostrar mensaje de error: "No se encontró el usuario con el ID especificado."
+				}
+			}
+			catch (Exception ex)
+			{
+				throw ex;
+			}
+			finally
+			{
+				db.cerrarConexion();
+			}
 		}
 	}
 }
