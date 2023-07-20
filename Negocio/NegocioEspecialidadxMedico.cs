@@ -196,5 +196,22 @@ namespace Negocio
                 throw ex;
             }
         }
+
+        public void cambioTurno(int TurnoNuevo, int idMed, int idEsp, int TurnoViejo)
+        {
+            try
+            {
+                DBConnection datos = new DBConnection();
+                datos.setearParametro("@id", idMed);
+                datos.setearParametro("@idesp", idEsp);
+                datos.setearParametro("@turno", TurnoViejo);
+                datos.setearConsulta("UPDATE EspecialidadxMedico SET turno_horario="+TurnoNuevo+" where ID_MEDICO=@id and ID_ESPECIALIDAD=@idEsp and turno_horario=@turno");
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

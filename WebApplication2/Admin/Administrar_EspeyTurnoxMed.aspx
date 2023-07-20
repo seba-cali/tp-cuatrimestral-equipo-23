@@ -18,6 +18,24 @@
                         <div class="text-center">
                             <asp:Label ID="lblMatricula" Text="" Style="color: dimgrey; font-weight: bold;" runat="server" />
                         </div>
+                        <div class="text-center">
+                            <asp:Label ID="lblMsje" Text="" Style="color: red; font-weight: bold;" runat="server" />
+                            <asp:Label ID="lblmsg" Text="" Style="color: black; font-weight: bold;" runat="server" />
+                        </div>
+
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="mb-3">
+                                    <asp:Label Text="Especialidad" ID="ddlEspecialidad" runat="server"></asp:Label>
+                                    <asp:DropDownList ID="filtroEspecialidad" runat="server" CssClass="form-control" AutoPostBack="false"></asp:DropDownList>
+
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
                         <br />
                         <div class="table-responsive">
                             <asp:GridView ID="dgvEspecialidadxTurno" runat="server" CssClass="table table-striped table-bordered table-sm mx-auto" AutoGenerateColumns="false">
@@ -28,7 +46,16 @@
                                     <asp:BoundField HeaderText="Medico" DataField="Name" />
                                     <asp:BoundField HeaderText="ID Especialidad" DataField="ID_ESPECIALIDAD" />
                                     <asp:BoundField HeaderText="Especialidad" DataField="ESPECIALIDAD" />
-                                    <asp:BoundField HeaderText="Turno" DataField="Turno_Horario" />
+                                    <asp:BoundField HeaderText="TurnoOriginal" DataField="Turno_Horario" />
+                                    <asp:TemplateField HeaderText="Turno">
+                                        <ItemTemplate>
+                                            <asp:RadioButtonList ID="rblTurnos" runat="server" SelectedValue='<%# Eval("turno_horario") %>' OnSelectedIndexChanged="rblTurnos_SelectedIndexChanged" AutoPostBack="true">
+                                                <asp:ListItem Text="Mañana" Value="0" />
+                                                <asp:ListItem Text="Tarde" Value="1" />
+                                                <asp:ListItem Text="Noche" Value="2" />
+                                            </asp:RadioButtonList>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Lunes">
                                         <ItemTemplate>
                                             <asp:CheckBox ID="cbLunes" runat="server" OnCheckedChanged="CheckBox_CheckedChanged" AutoPostBack="true" Checked='<%# Eval("Atiende_Lunes") %>' />
@@ -78,13 +105,10 @@
                                 <i class="me-1" data-feather="plus"></i>
                                 Crear Nueva Especialidad y Turno por Medico
                             </button>
-                            <asp:Label ID="lblmsg" Text="" Style="color: black; font-weight: bold;" runat="server" />
+                            
                         </div>
                         <div class="d-flex justify-content-center mt-3">
-                            <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#createGroupModal">
-                                <i class="me-1" data-feather="plus"></i>
-                                Volver
-                            </button>
+                            <asp:Button class="btn btn-danger" runat="server" Text="Volver" type="button" ID="btnVolver" OnClick="btnVolver_Click"></asp:Button>
                         </div>
                     </div>
                 </div>

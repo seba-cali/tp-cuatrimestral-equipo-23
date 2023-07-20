@@ -103,65 +103,12 @@
 			</div>
 		</div>
 
-		<div class="row my-4">
 
-
-			<%if (!esPaciente)
-				{%>
-			<div class="col-3 ">
-				<asp:CheckBox Text="El Usuario es Medico?" class="form-check-label text-light" ID="chkMedico"
-					runat="server" AutoPostBack="true" OnCheckedChanged="chkMedico_CheckedChanged" />
-
-			</div>
-			<%}%>
-		</div>
-		<% if (MedicoElegido && !esPaciente)
-			{
-
-%>
-		<div class="row">
-			<div class="col-6 col-sm-3">
-				<asp:TextBox CssClass="form-control" ID="inputMatricula" type="text" placeholder="Matricula" runat="server" />
-				<%--validacion matricula requerido--%>
-				<asp:RequiredFieldValidator ID="rfvMatricula" runat="server" ControlToValidate="inputMatricula" ErrorMessage="⚠ Ingrese Matricula" ForeColor="pink" Font-Bold="true"></asp:RequiredFieldValidator>
-
-
-
-			</div>
-
-			<%//TODO: Comento esto si es que las relaciones de horarios laborales se hacen en otro lado%>
-			<%--			<div class="col-3 col-sm-3">
-
-				<asp:ListBox CssClass="form-control" ID="horarios" runat="server" AutoPostBack="false">
-					<asp:ListItem Text="Turnos 6 a 13Hs" Value="0" />
-					<asp:ListItem Text="Turnos 13 a 18Hs" Value="1" />
-					<asp:ListItem Text="Turnos 18 a 23Hs" Value="2" />
-				</asp:ListBox>
-
-			</div>--%>
-		</div>
-
-		<div class="row">
-			<%--			<div class="col-4">
-				<asp:Label ID="espMed" Text="Elija las especialidades del medico"
-					Style="color: white; font-weight: bold;" runat="server" />
-
-				<asp:PlaceHolder ID="loco" runat="server"></asp:PlaceHolder>
-			</div>--%>
-			<div class="row my-5">
-				<div class="col-3">
-					<%if (!esMedico) {%> 
-					<asp:Button runat="server" type="button" Text="Dar de Alta Medico" class="btn btn-primary btn-lg" OnClick="AltaMedico_Click" />
-					<%} %>
-				</div>
-			</div>
-		</div>
-		<%} %>
 
 		<div class="row my-5">
 			<div class="col-3">
 
-				<% if (!MedicoElegido && !esPaciente && !esMedico)
+				<% if (!esPaciente)
 
 					{
 				%>
@@ -170,12 +117,8 @@
 				<% }
 					else if (esPaciente)
 					{%>
-				<asp:Button ID="btnActualizarPaciente" type="button" class="btn btn-primary btn-lg" runat="server" Text="Actualizar Paciente" OnClick="btnActualizarPaciente_Click" /><%}
-																																																		 else if (esMedico)
-																																																		 {%>
-				<asp:Button ID="btnActualizarMedico" type="button" class="btn btn-primary btn-lg" runat="server" Text="Actualizar Medico" OnClick="btnActualizarMedico_Click" />
-
-				<%}%>
+				<asp:Button ID="btnActualizarPaciente" type="button" class="btn btn-primary btn-lg" runat="server" Text="Actualizar Paciente" OnClick="btnActualizarPaciente_Click" />
+				<%} %>
 			</div>
 		</div>
 	</div>
