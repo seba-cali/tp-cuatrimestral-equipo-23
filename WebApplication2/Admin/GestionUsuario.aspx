@@ -71,7 +71,7 @@
 									<td><%: tux.CORREO %></td>
 									<td><%= tux.ESTADO ? "Activado" : "Desactivado" %></td>
 									<td><%= Usuario.TipoUSUARIO[tux.ID_TIPOUSUARIO] %></td>
-									<td><%= tux.img_url %></td>
+									<td><img class="w-25 img-fluid" src="<%= tux.img_url %>" alt="Alternate Text" /></td>
 
 									<td>
 										<a id="<%= tux.ID_USUARIO %>" class="btn btn-datatable btn-icon btn-transparent-dark editar me-2" type="button" data-bs-toggle="modal" data-bs-target="#editGroupModal">
@@ -100,7 +100,7 @@
 									<td><%: tux.CORREO %></td>
 									<td><%= tux.ESTADO ? "Activado" : "Desactivado" %></td>
 									<td><%= Usuario.TipoUSUARIO[tux.ID_TIPOUSUARIO] %></td>
-									<td><%= tux.img_url %></td>
+									<td><img class="w-25 img-fluid" src="<%= tux.img_url %>" alt="Alternate Text" /></td></td>
 
 									<td>
 										<a id="<%= tux.ID_USUARIO %>" class="btn btn-datatable btn-icon btn-transparent-dark editar me-2" type="button" data-bs-toggle="modal" data-bs-target="#editGroupModal">
