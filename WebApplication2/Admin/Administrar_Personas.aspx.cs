@@ -22,6 +22,8 @@ namespace WebApplication2.Admin
 			Session.Add("listPacientes", negocioPaciente.listarConSp());
 			dgvPacientes.DataSource = Session["listPacientes"];
 			dgvPacientes.DataBind();
+			dgvPacientes.Columns[0].Visible = false;
+			dgvPacientes.Columns[1].Visible = false;
 
 
 

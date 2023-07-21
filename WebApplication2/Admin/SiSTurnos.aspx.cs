@@ -111,6 +111,7 @@ namespace WebApplication2.Admin
                     }
                     else
                     {
+                        dni.Text = ".";
                         paciente = negocioPaciente.BuscarXIdUsuario(usuario.ID_USUARIO);
                         Session["idPaciente"] = paciente.ID_PACIENTE;
                         if (usuario.ID_TIPOUSUARIO < 3)
@@ -123,7 +124,7 @@ namespace WebApplication2.Admin
                     }
 
                     //Turnos loco= new Turnos();
-
+                  
 
                     if (repro != null)
                     {
@@ -409,9 +410,16 @@ namespace WebApplication2.Admin
             {
                 Session["idesp"] = Convert.ToInt32(((ListBox)sender).SelectedValue);
                 if (Session["idesp"] == "0")
+                {
                     bt2.Enabled = false;
+                }
                 else
-                    bt2.Enabled = true;
+                {
+                    if (dni.Text == "")
+                        bt2.Enabled = false;
+                    else
+                        bt2.Enabled = true;
+                }
             }
             catch (Exception exception)
             {
@@ -428,8 +436,12 @@ namespace WebApplication2.Admin
                 Console.WriteLine(Session["idturno"]+"asdasdasd");
                 if (Session["idturno"] == "0")
                     bt2.Enabled = false;
-                else
-                    bt2.Enabled = true;
+                else{
+                    if (dni.Text == "")
+                        bt2.Enabled = false;
+                    else
+                        bt2.Enabled = true;
+                }
             }
             catch (Exception exception)
             {

@@ -348,7 +348,7 @@
                     
                     <div class="modal-body">
                         
-                        <div class="mb-0">
+                        <div class="mb-0 d-none" >
                             <label class="mb-1 small text-muted" for="formGroupName">Id</label>
                             <h3 class="elementoedit"></h3>
                             <asp:TextBox class="form-control formGroupId" id="formGroupId" type="text"   runat="server"/>
@@ -398,7 +398,7 @@
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-danger-soft text-danger" type="button" data-bs-dismiss="modal">Cerrar</button>
-                        <asp:Button ID="Button3" runat="server"  Text="Eliminar Especialidad" CssClass="btn btn-primary-soft text-primary" CausesValidation="False" OnClick="cancelar_Click" />
+                        <asp:Button ID="Button3" runat="server"  Text="Baja de turno" CssClass="btn btn-primary-soft text-primary" CausesValidation="False" OnClick="cancelar_Click" />
                     </div>
 
                 </div>

@@ -8,12 +8,19 @@
             <ContentTemplate>
 
                 <div style="display: flex" class="d-flex justify-content-center">
+                    <div class="row">
+                    <div class="col-3">
                     <asp:Label Text="🔍 Filtrar" runat="server" CssClass="mx-2"></asp:Label>
+                        </div>
+                    <div class="col-8">
                     <asp:TextBox runat="server" ID="filtro" AutoPostBack="true" OnTextChanged="filtro_TextChanged" CssClass="form-control" />
+                        </div>
+                        </div>
                 </div>
                 <br />
 
                 <div style="overflow-x:auto;">
+
                     <asp:GridView ID="dgvMedicos" runat="server" CssClass="table table-striped table-bordered table-sm mx-auto" AutoGenerateColumns="false">
                         <%--<!-- Columnas del GridView para administración de médicos -->--%>
                         <HeaderStyle HorizontalAlign="Center" />
