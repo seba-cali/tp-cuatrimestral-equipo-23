@@ -361,7 +361,7 @@ namespace WebApplication2.Admin
             {
                 Session["idmedi"] = Convert.ToInt32(((ListBox)sender).SelectedValue);
                 idmedicof = Convert.ToInt32(Session["idmedi"]);
-                Console.WriteLine(Session["idmedi"] + "seeeeee");
+                fechanow.Text = "";
                 if (Session["idmedi"] == "0")
                     bt3.Enabled = false;
                 else
@@ -447,7 +447,7 @@ namespace WebApplication2.Admin
             turnos.EstadoInf = index;//Nuevo
             turnos.NumGenerado =Convert.ToInt32(thisCode.Text);
             negocioTurnos.RegistrarTurno(turnos);
-            Session["OK"] = "Proceso Exitoso";
+            Session["OK"] = "Se proceso turno con Exitoso";
 
             EmailService emailService = new EmailService();
             StreamReader str = new StreamReader(Server.MapPath(@"~/assets/template/Truno.html"));

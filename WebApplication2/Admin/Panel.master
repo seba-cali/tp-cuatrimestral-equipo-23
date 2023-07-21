@@ -18,8 +18,7 @@
     <%--<link rel="icon" type="image/x-icon" href="../assets/dist/assets/img/favicon.png" />--%>
     <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
-
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 <form runat="server">
@@ -257,6 +256,7 @@
                 </div>
             </div>
         </nav>
+       
     </div>
 
 
@@ -293,4 +293,5 @@
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
 </body>
+
 </html>

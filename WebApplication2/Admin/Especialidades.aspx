@@ -210,7 +210,7 @@
                     </div>
                 </div>
                     <% }
-                    Session["error"] = null;
+                    
                     %>
     </main>
 </div>

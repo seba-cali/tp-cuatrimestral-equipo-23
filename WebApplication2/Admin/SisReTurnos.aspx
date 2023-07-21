@@ -409,7 +409,28 @@
     <script>
         $(function () {
             
-            
+                $('#MainContent_sube').on("click",function(e) { 
+                                     var self = $(this);
+                                                                   e.preventDefault();  
+                                   Swal.fire({
+                                                       title: '¿Estas seguro?',
+                                                       text: "No podras revertir esta accion!",
+                                                       icon: 'warning',
+                                                       showCancelButton: true,
+                                                       confirmButtonColor: '#3085d6',
+                                                       cancelButtonColor: '#d33',
+                                                       confirmButtonText: 'Confirmar'
+                                                   }).then((result) => {
+                                                       if (result.isConfirmed) {
+                                                           Swal.fire(
+                                                               'Confirmado!',
+                                                               'Tu turno fue reservado.',
+                                                               'success'
+                                                           )
+                                                           self.off("click").click();
+                                                       }
+                                                   })
+                                });
             $('.editar').on('click',function() {
                                  
                            

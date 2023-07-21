@@ -283,7 +283,7 @@
                 <hr class="my-4"/>
                 <div class="d-flex justify-content-between">
                     <asp:Button CssClass="btn btn-light" Text="anterior" ID="ant3" CommandArgument="btn3" OnClick="button1_OnClick" runat="server"/>
-                    <asp:Button CssClass="btn btn-primary" Text="Confirmar" CommandArgument="op1" Onclick="sube_Click" ID="sube" runat="server"/>
+                    <asp:Button CssClass="btn btn-primary " Text="Confirmar" CommandArgument="op1" Onclick="sube_Click" ID="sube" runat="server"/>
                 </div>
             </div>
         </div>
@@ -295,32 +295,55 @@
     </div>
     </div>
     </main>
-    <%--<div class="modal fade" id="eliminaGroupModal" tabindex="-1" role="dialog" aria-labelledby="eliminaGroupModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="eliminaGroupModal">Aviso</h5>
-                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-
-                <div class="modal-body">
-                    <h1>¿Cancelar Turno?</h1>
-                    <h3 class="elemento"></h3>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-danger-soft text-danger" type="button" data-bs-dismiss="modal">Cerrar</button>
-                    <asp:Button ID="Button3" runat="server" Text="Cancelar Turno" CssClass="btn btn-primary-soft text-primary" CausesValidation="False" OnClick="cancelar_Click"/>
-                </div>
-
-            </div>
-        </div>
-
-    </div>--%>
+      
     </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    
     <script>
+         function alertJS() {
+                Swal.fire({
+                    title: '¿Estas seguro?',
+                    text: "No podras revertir esta accion!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Confirmar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire(
+                            'Confirmado!',
+                            'Tu turno fue reservado.',
+                            'success'
+                        )
+                    }
+                })
+            }
         $(function () {
-            
+                $('#MainContent_sube').on("click",function(e) { 
+                     var self = $(this);
+                                                   e.preventDefault();  
+                   Swal.fire({
+                                       title: '¿Estas seguro?',
+                                       text: "No podras revertir esta accion!",
+                                       icon: 'warning',
+                                       showCancelButton: true,
+                                       confirmButtonColor: '#3085d6',
+                                       cancelButtonColor: '#d33',
+                                       confirmButtonText: 'Confirmar'
+                                   }).then((result) => {
+                                       if (result.isConfirmed) {
+                                           Swal.fire(
+                                               'Confirmado!',
+                                               'Tu turno fue reservado.',
+                                               'success'
+                                           )
+                                           self.off("click").click();
+                                       }
+                                   })
+                });
             $(".findClose").find(function () {
                 var selectedText = $(this).find("option:selected").text();
                 $(".elemento").text(selectedText)/*.html("</br>")*/;
