@@ -52,11 +52,61 @@
                                 
                             </div>
                         </div>
-                        
+                        <% if (Session["error"] != null)
+                           { %>
+                            <div class="alert alert-danger" role="alert">
+                                <strong>Error!</strong> <%= Session["error"] %>
+                            </div>
+                            <% } %>
                     </div>
                   
                 </div>
             </div>
         </main>
     </div>
+    <script>
+            $(function () {
+                
+                    $('#MainContent_guardaPassword').on("click",function(e) { 
+                                         var self = $(this);
+                                         e.preventDefault();
+                                       if ($("#MainContent_inputNuevoPassword").val()===$("#MainContent_inputConfirmaPassword").val()){
+                                         
+                                       Swal.fire({
+                                                           title: '¿Estas seguro?',
+                                                           text: "No podras revertir esta accion!",
+                                                           icon: 'warning',
+                                                           showCancelButton: true,
+                                                           confirmButtonColor: '#3085d6',
+                                                           cancelButtonColor: '#d33',
+                                                           confirmButtonText: 'Confirmar'
+                                                       }).then((result) => {
+                                                           if (result.isConfirmed) {
+                                                               Swal.fire({
+                                                                 title:  'Confirmado!',
+                                                                  text: 'Su password fue actualizado.',
+                                                                  icon: 'success',
+                                                                  confirmButtonText: 'Ok!',
+                                                                   
+                                                               }).then((result) => {
+                                                                   if (result.isConfirmed) {
+                                                                       self.off("click").click();
+                                                                   }
+                                                               })
+                                                               
+                                                           }
+                                                       })
+                                       }else{
+                                           Swal.fire({
+                                                           title: 'Error!',
+                                                           text: "Los passwords no coinciden",
+                                                           icon: 'error',
+                                                           confirmButtonColor: '#3085d6',
+                                                           confirmButtonText: 'Ok'
+                                                       })
+                                       }
+                                    });
+                                    });
+    </script>
+                    
 </asp:Content>

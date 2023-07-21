@@ -121,7 +121,7 @@ namespace WebApplication2.Admin
                     
                 }
 
-                Response.Redirect("Default.aspx", false);
+                Response.Redirect("~/Admin/Tablero.aspx", false);
             }
             catch (Exception ex)
             {

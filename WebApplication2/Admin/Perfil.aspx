@@ -121,4 +121,69 @@
             </div>
         </main>
     </div>
+      <script>
+                $(function () {
+                    
+                        $('#MainContent_Button1').on("click",function(e) { 
+                                             var self = $(this);
+                                             e.preventDefault();
+                                           
+                                             
+                                           Swal.fire({
+                                                               title: '¿Estas seguro?',
+                                                               text: "No podras revertir esta accion!",
+                                                               icon: 'warning',
+                                                               showCancelButton: true,
+                                                               confirmButtonColor: '#3085d6',
+                                                               cancelButtonColor: '#d33',
+                                                               confirmButtonText: 'Confirmar'
+                                                           }).then((result) => {
+                                                               if (result.isConfirmed) {
+                                                                    Swal.fire({
+                                                                                                                                    title:  'Confirmado!',
+                                                                                                                                     text: 'Su foto de perfil fue actualizada.',
+                                                                                                                                     icon: 'success',
+                                                                                                                                     confirmButtonText: 'Ok!',
+                                                                                                                                      
+                                                                                                                                  }).then((result) => {
+                                                                                                                                      if (result.isConfirmed) {
+                                                                                                                                          self.off("click").click();
+                                                                                                                                      }
+                                                                                                                                  })
+                                                               }
+                                                           })
+                                           
+                                        });
+                        $('#MainContent_guardar').on("click",function(e) { 
+                                                                     var self = $(this);
+                                                                     e.preventDefault();
+                                                                   
+                                                                     
+                                                                   Swal.fire({
+                                                                                       title: '¿Estas seguro?',
+                                                                                       text: "No podras revertir esta accion!",
+                                                                                       icon: 'warning',
+                                                                                       showCancelButton: true,
+                                                                                       confirmButtonColor: '#3085d6',
+                                                                                       cancelButtonColor: '#d33',
+                                                                                       confirmButtonText: 'Confirmar'
+                                                                                   }).then((result) => {
+                                                                                       if (result.isConfirmed) {
+                                                                                            Swal.fire({
+                                                                                                                                                            title:  'Confirmado!',
+                                                                                                                                                             text: 'Tu Datos Personales fueron actualizados.',
+                                                                                                                                                             icon: 'success',
+                                                                                                                                                             confirmButtonText: 'Ok!',
+                                                                                                                                                              
+                                                                                                                                                          }).then((result) => {
+                                                                                                                                                              if (result.isConfirmed) {
+                                                                                                                                                                  self.off("click").click();
+                                                                                                                                                              }
+                                                                                                                                                          })
+                                                                                       }
+                                                                                   })
+                                                                   
+                                                                });
+                });
+        </script>
 </asp:Content>

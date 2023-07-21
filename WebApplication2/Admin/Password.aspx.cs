@@ -34,14 +34,12 @@ namespace WebApplication2.Admin
                     string pass = Usuario.encriptar(inputNuevoPassword.Text);
                     
                     negocioUsuario.BuscarXIdUpdatePass(Usuario.ID_USUARIO,passant, pass);
-                    
-                    Session.Add("OK", "Contraseña actualizada");
-                    Response.Redirect("Default.aspx", false);;
+                    Session.Remove("error");
                 }
                 else
                 {
-                    Session.Add("errorreg", "password no valido");
-                    Response.Redirect("Password.aspx", false);
+                    Session.Add("error", "password no valido");
+                    
                 }
 
             }
