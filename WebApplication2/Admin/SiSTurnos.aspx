@@ -37,7 +37,7 @@
                 <div class="wizard-step-icon">1</div>
                 <div class="wizard-step-text">
                     <div class="wizard-step-text-name">Especialidad</div>
-                    <div class="wizard-step-text-details">Primer Paso</div>
+                    <div class="wizard-step-text-details">Primer Paso: Seleccione la Especialidad</div>
                 </div>
             </div>
             <!-- Wizard navigation item 2-->
@@ -45,7 +45,7 @@
                 <div class="wizard-step-icon">2</div>
                 <div class="wizard-step-text">
                     <div class="wizard-step-text-name">Medicos</div>
-                    <div class="wizard-step-text-details">Segundo Paso</div>
+                    <div class="wizard-step-text-details">Segundo Paso: Seleccione el Médico</div>
                 </div>
             </div>
             <!-- Wizard navigation item 3-->
@@ -53,7 +53,7 @@
                 <div class="wizard-step-icon">3</div>
                 <div class="wizard-step-text">
                     <div class="wizard-step-text-name">Fecha</div>
-                    <div class="wizard-step-text-details">Tercer Paso</div>
+                    <div class="wizard-step-text-details">Tercer Paso: Seleccione Fecha de Turno</div>
                 </div>
             </div>
             <!-- Wizard navigation item 4-->
@@ -61,7 +61,7 @@
                 <div class="wizard-step-icon">4</div>
                 <div class="wizard-step-text">
                     <div class="wizard-step-text-name">Confirmar</div>
-                    <div class="wizard-step-text-details">Ultimo Paso</div>
+                    <div class="wizard-step-text-details">Ultimo Paso: Le llegará un mail luego de confirmar con los datos de su turno.</div>
                 </div>
             </div>
         </div>
