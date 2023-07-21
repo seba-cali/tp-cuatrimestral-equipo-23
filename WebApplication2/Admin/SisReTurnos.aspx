@@ -362,6 +362,7 @@
                             <asp:TextBox class="form-control formGroupDescEdit" id="formGroupDescEdit" type="text" placeholder="descripcion..." runat="server"/>
                         </div>
                         <div class="mb-0">
+                            <h5 class="card-title mb-4">Seleccionar franja horaria laboral</h5>
                                <asp:UpdatePanel runat="server">
                                    <ContentTemplate>
                                        <asp:ListBox CssClass="form-control" OnSelectedIndexChanged="horarios_OnSelectedIndexChanged" ID="horarios" runat="server" AutoPostBack="true">

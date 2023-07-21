@@ -237,13 +237,19 @@ namespace WebApplication2.Admin
                                 tuxturn= ListaTurnos.Find(x =>
                                      paciente != null && x.Id_Hora == slot.Key && Convert.ToDateTime(x.fecha) == (fechanow.Text!="" ?Convert.ToDateTime(fechanow.Text): DateTime.Now) && x.Estado &&
                                      x.Id_Paciente== paciente.ID_PACIENTE);
-                                if (tux == null && tuxturn == null)
-                                {   
+                                int locos =ListaTurnos.FindAll(x=>x.Id_Paciente==paciente.ID_PACIENTE && Convert.ToDateTime(x.fecha) == (fechanow.Text!="" ?Convert.ToDateTime(fechanow.Text): DateTime.Now) && x.Estado && x.Id_Especialidad==Convert.ToInt32(Session["idesp"])).Count;
+                                if (tux == null && tuxturn == null && locos==0)
+                                {
                                     turnero.Items.Add(new ListItem(slot.Value, slot.Key.ToString()));
+                                }
+                                else
+                                {
+                                    turnero.Items.Clear();
+                                    turnero.Items.Add(new ListItem("ya posee turno con el especialista", "0"));
                                 }
                             }
                         }
-                        else
+                        /*else
                         {
                             if (dato != null)
                             {
@@ -253,7 +259,7 @@ namespace WebApplication2.Admin
                                     turnero.Items.Add(new ListItem(slot.Value, slot.Key.ToString()));
                                 }
                             }
-                        }
+                        }*/
 
                         Fecha.Controls.Add(turnero);
 
@@ -348,10 +354,12 @@ namespace WebApplication2.Admin
         {
             try
             {
-                var selectedValue = ((ListBox)sender).SelectedValue;
+                string selectedValue = ((ListBox)sender).SelectedValue;
+                
                 if (selectedValue != null)
                     Session["idturnero"] = Convert.ToInt32(selectedValue);
-                if (Session["idturnero"] == "0")
+                Console.WriteLine(selectedValue+"asdsad -> "+Session["idturnero"]);
+                if (selectedValue == "0")
                     btn4.Enabled = false;
                 else
                 {

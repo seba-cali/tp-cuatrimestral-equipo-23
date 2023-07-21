@@ -4,7 +4,7 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server" xmlns:aps="http://www.w3.org/1999/html">
 <% if (usuario != null)
    {
-       var loco = 3;
+       
 %>
     <div id="layoutSidenav_content">
     <main>
@@ -122,12 +122,13 @@
                 </div>--%>
                 <hr class="my-4"/>
                 <div class="mb-3 <%: nompac.Text == "error" ? "pe-none" : "" %>">
+                    <h5 class="card-title mb-4">Seleccionar Especialidad</h5>
                     <asp:PlaceHolder ID="Muestra1" runat="server"/>
 
                 </div>
 
                 <div class="mb-3 <%: nompac.Text == "error" ? "pe-none" : "" %>">
-
+                    <h5 class="card-title mb-4">Seleccionar franja horaria laboral</h5>
                     <asp:ListBox CssClass="form-control" OnSelectedIndexChanged="horarios_OnSelectedIndexChanged" ID="horarios" runat="server" AutoPostBack="true">
                         <asp:ListItem Text="Turnos 6 a 11Hs" Value="0"/>
                         <asp:ListItem Text="Turnos 12 a 17Hs" Value="1"/>
