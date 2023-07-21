@@ -21,6 +21,8 @@ namespace WebApplication2.Admin
 			dgvMedicos.DataSource = Session["listMedico"];
 			//dgvMedicos.DataSource = negocioMedico.listar();
 			dgvMedicos.DataBind();
+			dgvMedicos.Columns[0].Visible = false;
+			dgvMedicos.Columns[1].Visible = false;
 		}
 		protected void btnEliminar_Click(object sender, EventArgs e)
 		{

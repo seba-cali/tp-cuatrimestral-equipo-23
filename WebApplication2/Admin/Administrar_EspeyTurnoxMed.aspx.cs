@@ -51,10 +51,10 @@ namespace WebApplication2.Admin
                 inputTurno.DataBind();
 
                 dgvEspecialidadxTurno.DataBind();
-                //dgvEspecialidadxTurno.Columns[0].Visible = false;
-                //dgvEspecialidadxTurno.Columns[1].Visible = false;
-               //dgvEspecialidadxTurno.Columns[2].Visible = false;
-                //dgvEspecialidadxTurno.Columns[4].Visible = false;
+                dgvEspecialidadxTurno.Columns[0].Visible = false;
+                dgvEspecialidadxTurno.Columns[1].Visible = false;
+               dgvEspecialidadxTurno.Columns[2].Visible = false;
+                dgvEspecialidadxTurno.Columns[4].Visible = false;
                 //listMedico = negocioEspecialidadxMedico.listarxMedico(idMedico);
             }
         }
