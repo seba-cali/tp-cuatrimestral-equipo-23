@@ -26,36 +26,39 @@ namespace WebApplication2.Admin
                 Medico medico = new Medico();
 
                 string idMedico = Request.QueryString["idMedico"] != null ? Request.QueryString["idMedico"].ToString() : "";
-                inputMedico.DataSource = negocioMedico.listar(idMedico);
-                medico = negocioMedico.LlamarMedico(idMedico);
-                lblMedico.Text = "Medico: "+medico.NombreCompleto;
-                lblMatricula.Text = "M.N: "+medico.Matricula;
-                inputMedico.DataTextField = "NombreCompleto";
-                inputMedico.DataValueField = "ID_MEDICO";
-                inputMedico.DataBind();
+                if (idMedico != "")
+                {
+                    inputMedico.DataSource = negocioMedico.listar(idMedico);
+                    medico = negocioMedico.LlamarMedico(idMedico);
+                    lblMedico.Text = "Medico: " + medico.NombreCompleto;
+                    lblMatricula.Text = "M.N: " + medico.Matricula;
+                    inputMedico.DataTextField = "NombreCompleto";
+                    inputMedico.DataValueField = "ID_MEDICO";
+                    inputMedico.DataBind();
 
-                NegocioEspecialidad negocioEspecialidad = new NegocioEspecialidad();
-                inputEspecialidad.DataSource = negocioEspecialidad.listar();
-                inputEspecialidad.DataTextField = "nombre";
-                inputEspecialidad.DataValueField = "id";
-                inputEspecialidad.DataBind();
-                filtroEspecialidad.DataTextField= "nombre";
-                filtroEspecialidad.DataValueField = "id";
-                filtroEspecialidad.DataSource = negocioEspecialidad.listar();
-                filtroEspecialidad.DataBind();
+                    NegocioEspecialidad negocioEspecialidad = new NegocioEspecialidad();
+                    inputEspecialidad.DataSource = negocioEspecialidad.listar();
+                    inputEspecialidad.DataTextField = "nombre";
+                    inputEspecialidad.DataValueField = "id";
+                    inputEspecialidad.DataBind();
+                    filtroEspecialidad.DataTextField = "nombre";
+                    filtroEspecialidad.DataValueField = "id";
+                    filtroEspecialidad.DataSource = negocioEspecialidad.listar();
+                    filtroEspecialidad.DataBind();
 
 
-                
-                dgvEspecialidadxTurno.DataSource = negocioEspecialidadxMedico.listarxMedico(idMedico);
-                inputTurno.DataTextField = "Turno_Horario";
-                inputTurno.DataBind();
 
-                dgvEspecialidadxTurno.DataBind();
+                    dgvEspecialidadxTurno.DataSource = negocioEspecialidadxMedico.listarxMedico(idMedico);
+                    inputTurno.DataTextField = "Turno_Horario";
+                    inputTurno.DataBind();
+
+                    dgvEspecialidadxTurno.DataBind();
+                }
                 //dgvEspecialidadxTurno.Columns[0].Visible = false;
                 //dgvEspecialidadxTurno.Columns[1].Visible = false;
                //dgvEspecialidadxTurno.Columns[2].Visible = false;
                 //dgvEspecialidadxTurno.Columns[4].Visible = false;
-                //listMedico = negocioEspecialidadxMedico.listarxMedico(idMedico);
+                //listMedico = negocioEspecialidadxMedico.listarxMedico();
             }
         }
         protected void btnEliminar_Click(object sender, EventArgs e)

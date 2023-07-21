@@ -211,7 +211,7 @@
                 <div class="row gx-3">
                     <div class="mb-3 col-md-6">
 
-                        <asp:TextBox ID="fechanow" CssClass="form-control ps-0 pointer fecha" autocomplete="off" runat="server" type="text"/>
+                        <asp:TextBox ID="fechanow" AutoPostBack="True" CssClass="form-control ps-0 pointer fecha" autocomplete="off" runat="server" type="text"/>
 
                     </div>
                 </div>
@@ -397,7 +397,7 @@
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-danger-soft text-danger" type="button" data-bs-dismiss="modal">Cerrar</button>
-                        <asp:Button ID="Button3" runat="server"  Text="Eliminar Especialidad" CssClass="btn btn-primary-soft text-primary" CausesValidation="False" />
+                        <asp:Button ID="Button3" runat="server"  Text="Eliminar Especialidad" CssClass="btn btn-primary-soft text-primary" CausesValidation="False" OnClick="cancelar_Click" />
                     </div>
 
                 </div>

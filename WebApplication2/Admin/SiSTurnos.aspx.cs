@@ -67,6 +67,11 @@ namespace WebApplication2.Admin
                    
                     idmedicof = Convert.ToInt32(Session["idmedi"]);
                     idespef = Convert.ToInt32(Session["idesp"]);
+                    if (fechanow.Text != "" && idmedicof != 0)
+                    {
+                        bt3.Enabled = true;
+                        
+                    } 
                     
                     //turnos del paciente
                     NegocioPaciente negocioPaciente = new NegocioPaciente();
@@ -363,11 +368,13 @@ namespace WebApplication2.Admin
             {
                 Session["idmedi"] = Convert.ToInt32(((ListBox)sender).SelectedValue);
                 idmedicof = Convert.ToInt32(Session["idmedi"]);
-                Console.WriteLine(Session["idmedi"] + "seeeeee");
-                if (Session["idmedi"] == "0")
+                
+                if (Session["idmedi"] == "0") 
                     bt3.Enabled = false;
                 else
-                {
+                {   if(fechanow.Text=="")
+                    bt3.Enabled = false;
+                    else
                     bt3.Enabled = true;
                     // bt2.Enabled = false;
                 }
@@ -417,7 +424,9 @@ namespace WebApplication2.Admin
 
         protected void button1_OnClick(object sender, EventArgs e)
         {
-            Session["class"] = (((Button)sender).CommandArgument);
+                
+                Session["class"] = (((Button)sender).CommandArgument);
+            
         }
 
         protected void sube_Click(object sender, EventArgs e)
@@ -565,5 +574,6 @@ namespace WebApplication2.Admin
             }
             
         }*/
+        
     }
 }

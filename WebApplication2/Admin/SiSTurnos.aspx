@@ -83,7 +83,7 @@
                         <h3>Por favor Ingresar DNI:</h3>
 
 
-                        <asp:TextBox ID="dni" runat="server" type="number" AutoPostBack="True"/>
+                        <asp:TextBox ID="dni" runat="server"  type="number" AutoPostBack="True"/>
 
                         <asp:Button ID="buscaPaciente" OnClick="buscaPaciente_OnClick" Text="Buscar" runat="server"/>
                         <hr class="my-4"/>
@@ -170,7 +170,7 @@
                 <div class="row gx-3">
                     <div class="mb-3 col-md-6">
 
-                        <asp:TextBox ID="fechanow" CssClass="form-control ps-0 pointer fecha" autocomplete="off" runat="server" type="text"/>
+                        <asp:TextBox ID="fechanow" AutoPostBack="True" CssClass="form-control ps-0 pointer fecha" autocomplete="off" runat="server" type="text"/>
 
                     </div>
                 </div>
@@ -320,6 +320,7 @@
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script>
         $(function () {
+            
             $(".findClose").find(function () {
                 var selectedText = $(this).find("option:selected").text();
                 $(".elemento").text(selectedText)/*.html("</br>")*/;
@@ -336,6 +337,7 @@
                 monthNames: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
                 beforeShowDay: noMondays
             });
+            
              function noMondays(date){
                            <%: idespef%>
                            <%: idmedicof%>
@@ -361,6 +363,7 @@
                                                                 else
                                                                     return [ true, "", "" ]
                        }
+                       
         });
        
     </script>

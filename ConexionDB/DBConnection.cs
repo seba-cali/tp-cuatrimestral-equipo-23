@@ -17,6 +17,9 @@ namespace ConexionDB
 		{
 			//NICO
 			conexion = new SqlConnection("server=127.0.0.1;database=CLINICA_DB;uid=sa;pwd=Nicosj999@;encrypt=false");
+			//conexion = new SqlConnection("Data Source=SQL8005.site4now.net;Initial Catalog=db_a9c875_progra3;User Id=db_a9c875_progra3_admin;Password=Nicosj99@");
+			//conexion = new SqlConnection("Provider=SQLOLEDB;Data Source=SQL8005.site4now.net;Initial Catalog=;User Id=db_a9c875_progra3_admin;Password=YOUR_DB_PASSWORD");
+		
 
 			//ERIK
 			//conexion = new SqlConnection("server=localhost\\lab3sv;database=CLINICA2;uid=sa;pwd=0856;encrypt=false");

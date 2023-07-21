@@ -175,9 +175,7 @@
                                         <a class="nav-link" href="Administrar_Medicos.aspx">
                                             <span class="badge bg-primary-soft text-primary ">Administrar Datos Medicos</span>
                                         </a>
-                                        <a class="nav-link" href="Administrar_EspeyTurnoxMed.aspx">
-                                            <span class="badge bg-primary-soft text-primary ">Administrar Especialidades a Medicos</span>
-                                        </a>
+                                        
 
 
                                     </nav>

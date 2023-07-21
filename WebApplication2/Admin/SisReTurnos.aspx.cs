@@ -74,6 +74,11 @@ namespace WebApplication2.Admin
                     }
                     idmedicof = Convert.ToInt32(Session["idmedi"]);
                     idespef = Convert.ToInt32(Session["idesp"]);
+                    if (fechanow.Text != "" && idmedicof != 0)
+                    {
+                        bt3.Enabled = true;
+                        
+                    } 
                     //turnos del paciente
                     NegocioPaciente negocioPaciente = new NegocioPaciente();
                     Paciente paciente = new Paciente();
@@ -361,7 +366,10 @@ namespace WebApplication2.Admin
                     bt3.Enabled = false;
                 else
                 {
-                    bt3.Enabled = true;
+                    if(fechanow.Text=="")
+                        bt3.Enabled = false;
+                    else
+                        bt3.Enabled = true;
                     // bt2.Enabled = false;
                 }
             }
@@ -421,10 +429,10 @@ namespace WebApplication2.Admin
 
             int index = 0;
             
-            if (Session["idrepro"] != "0")
+            if (Convert.ToInt32(formGroupId.Text) > 0)
             {
                 index = 4;
-                negocioTurnos.UpdateTurno(Convert.ToInt32(Session["idrepro"]),index);//reprogramado
+                negocioTurnos.UpdateTurno(Convert.ToInt32(formGroupId.Text),index);//reprogramado
             }
 
             Turnos turnos = new Turnos();
@@ -500,10 +508,10 @@ namespace WebApplication2.Admin
 
         protected void cancelar_Click(object sender, EventArgs e)
         {
-            if(Session["idrepro"]!="0"){
+            if(Convert.ToInt32(formGroupIdDelete.Text)>0){
                // butonEl.Text = "";
                 NegocioTurno negocioTurnos = new NegocioTurno();
-                Turnos tux= negocioTurnos.turnRepro(Convert.ToInt32(Session["idrepro"]));
+                Turnos tux= negocioTurnos.turnRepro(Convert.ToInt32(formGroupIdDelete.Text));
                 
                 NegocioPaciente negocioPaciente = new NegocioPaciente();
                 Paciente paciente = negocioPaciente.BuscarXIdPaciente(Convert.ToInt32(tux.Id_Paciente));

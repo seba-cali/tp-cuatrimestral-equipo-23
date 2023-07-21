@@ -14,9 +14,10 @@ namespace Negocio
             try
             {
                 
-             db.setearConsulta("SELECT ID_MEDICO, NOMBRE, APELLIDO, DIRECCION, FECHA_NACIMIENTO, SEXO, ESTADO, TELEFONO, ID_USUARIO, DNI,MATRICULA  FROM MEDICO where ID_MEDICO = " + idMedico);
-                
-                db.ejecutarLectura();
+             db.setearConsulta("SELECT ID_MEDICO, NOMBRE, APELLIDO, DIRECCION, FECHA_NACIMIENTO, SEXO, ESTADO, TELEFONO, ID_USUARIO, DNI,MATRICULA  FROM MEDICO where ID_MEDICO =@idMedico");
+             db.setearParametro("@idMedico", Convert.ToInt32(idMedico));
+             db.ejecutarLectura();
+
 
                 while (db.Lector.Read())
                 {
