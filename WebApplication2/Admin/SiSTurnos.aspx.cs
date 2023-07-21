@@ -72,6 +72,13 @@ namespace WebApplication2.Admin
                         bt3.Enabled = true;
                         
                     } 
+                    if(dni.Text != "")
+                    {
+                        bt2.Enabled = true;
+                    }else
+                    {
+                        bt2.Enabled = false;
+                    }
                     
                     //turnos del paciente
                     NegocioPaciente negocioPaciente = new NegocioPaciente();
@@ -206,11 +213,12 @@ namespace WebApplication2.Admin
                         turnero.CssClass = "form-control";
                         turnero.AutoPostBack = true;
                         //busca medico
-                        Console.WriteLine(Session["idmedi"]+"asdddddddddd");
+                        /*Console.WriteLine(Session["idmedi"]+"asdddddddddd");
                         foreach (var medi in ListaMedicos)
                         {
                             Console.WriteLine(medi.ID_MEDICO+" --- "+medi.NombreCompleto);
-                        }
+                        }*/
+                        //ListaMedicos.Clear();
                         dato = ListaMedicos.Find(x => x.ID_MEDICO == Convert.ToInt32(Session["idmedi"]));
         
                         //Busca turno ocupados

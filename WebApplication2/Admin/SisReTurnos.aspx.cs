@@ -194,12 +194,12 @@ namespace WebApplication2.Admin
                     turnero.CssClass = "form-control";
                     turnero.AutoPostBack = true;
                     //busca medico
-                    Console.WriteLine(Session["idmedi"] + "asdddddddddd");
+                    /*Console.WriteLine(Session["idmedi"] + "asdddddddddd");
                     foreach (var medi in ListaMedicos)
                     {
                         Console.WriteLine(medi.ID_MEDICO + " --- " + medi.NombreCompleto);
-                    }
-
+                    }*/
+                    //ListaMedicos.Clear();
                     dato = ListaMedicos.Find(x => x.ID_MEDICO == Convert.ToInt32(Session["idmedi"]));
 
                     //Busca turno ocupados
@@ -534,7 +534,7 @@ namespace WebApplication2.Admin
                 str.Close();
                 temlate = temlate.Replace("[dni]", paciente.DNI);
                 temlate = temlate.Replace("[nombre]", paciente.nombreCompleto);
-                temlate = temlate.Replace("[especialidad]", especialidad.Find(x => x.id == Convert.ToInt32(tux.Id_Paciente)).nombre);
+                temlate = temlate.Replace("[especialidad]", especialidad.Find(x => x.id == Convert.ToInt32(tux.Id_Especialidad)).nombre);
                 temlate = temlate.Replace("[medico]", medico.NombreCompleto);
                 temlate = temlate.Replace("[fecha]", tux.fecha.Date.ToShortDateString());
                 temlate = temlate.Replace("[cancel]", "Cancelado");
