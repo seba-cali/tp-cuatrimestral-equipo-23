@@ -53,7 +53,7 @@
 									
 								</div>
 								<div class="card-footer text-center">
-									<div class="small"><a href="Default.aspx">ya tenes cuenta? Entraaaaaa...</a></div>
+									<div class="small"><a href="Default.aspx">Si ya posee una cuenta, por favor ingrese aquí</a></div>
 								</div>
 								<%
 									if (Session["errorreg"] != null)

@@ -480,13 +480,13 @@ namespace WebApplication2.Admin
 
             if (usuario.ID_TIPOUSUARIO == 4)
             {
-                emailService.preparaCorreo(usuario.CORREO, Turnos.EstadoInfArray[index] + " - Turnero Dr. Seba",
+                emailService.preparaCorreo(usuario.CORREO, Turnos.EstadoInfArray[index] + " - Turno Dr. Seba",
                     temlate);
                 
             }
             else
             {
-                emailService.preparaCorreo(returnUsuarioXIdPaciente(turnos.Id_Paciente).CORREO, Turnos.EstadoInfArray[index] + " - Turnero Dr. Seba",
+                emailService.preparaCorreo(returnUsuarioXIdPaciente(turnos.Id_Paciente).CORREO, Turnos.EstadoInfArray[index] + " - Turno Dr. Seba",
                     temlate);
                 
             }
