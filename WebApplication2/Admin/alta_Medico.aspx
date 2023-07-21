@@ -10,9 +10,20 @@
         }
     </style>
     <div class="container justify-content-center">
+    <%if (!esMedico)    
+        { %>
         <h1 style="color: white;">Alta de Medico</h1>
         <asp:Label ID="lblmsg" Text="Cargue los datos del Medico"
             Style="color: white; font-weight: bold;" runat="server" />
+        <%}
+            else
+            {  %>
+        
+        <h1 style="color: white;">Modificacion de Medico</h1>
+        <asp:Label ID="lblmod" Text="Modifique los datos del Medico"
+            Style="color: white; font-weight: bold;" runat="server" />
+        
+            <%} %>
         <div class="row">
             <div class="col-4">
                 <asp:TextBox CssClass="form-control" ID="inputNombres" type="text" placeholder="Nombres" runat="server" />

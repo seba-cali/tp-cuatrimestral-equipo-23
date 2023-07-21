@@ -1,6 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Panel.master" AutoEventWireup="true" CodeBehind="Administrar_EspeyTurnoxMed.aspx.cs" Inherits="WebApplication2.Admin.Administrar_EspeyTurnoxMed" %>
 
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+
+    <style>
+    .oculto,th:nth-child(1),th:nth-child(2),th:nth-child(3),th:nth-child(5) {
+        display: none;
+    }
+</style>
+ 
     <div id="layoutSidenav_content">
         <main>
             <h2 class="text-center">Administración de Turnos de trabajo y especialidades</h2>
@@ -43,11 +51,11 @@
                                 <HeaderStyle HorizontalAlign="Center" />
                                 <RowStyle VerticalAlign="Middle" HorizontalAlign="Center" />
                                 <Columns>
-                                    <asp:BoundField HeaderText="ID Medico" DataField="ID_MEDICO" />
-                                    <asp:BoundField HeaderText="Medico" DataField="Name" />
-                                    <asp:BoundField HeaderText="ID Especialidad" DataField="ID_ESPECIALIDAD" />
+                                    <asp:BoundField HeaderText="ID Medico"  DataField="ID_MEDICO" ItemStyle-CssClass="oculto"/>
+                                    <asp:BoundField HeaderText="Medico" DataField="Name" ItemStyle-CssClass="oculto"/>
+                                    <asp:BoundField HeaderText="ID Especialidad" DataField="ID_ESPECIALIDAD" ItemStyle-CssClass="oculto"/>
                                     <asp:BoundField HeaderText="Especialidad" DataField="ESPECIALIDAD" />
-                                    <asp:BoundField HeaderText="TurnoOriginal" DataField="Turno_Horario" />
+                                    <asp:BoundField HeaderText="TurnoOriginal" DataField="Turno_Horario" ItemStyle-CssClass="oculto"/>
                                     <asp:TemplateField HeaderText="Turno">
                                         <ItemTemplate>
                                             <asp:RadioButtonList ID="rblTurnos" runat="server" SelectedValue='<%# Eval("turno_horario") %>' OnSelectedIndexChanged="rblTurnos_SelectedIndexChanged" AutoPostBack="true">

@@ -216,9 +216,9 @@ namespace WebApplication2.Admin
                             //Muestra los horarios disponibles
                             tux = ListaTurnos.Find(x =>
                                 x.Id_Medico == dato.ID_MEDICO && x.Id_Hora == slot.Key &&
-                                Convert.ToDateTime(x.fecha) == Convert.ToDateTime(fechanow.Text) && x.Estado);
+                                Convert.ToDateTime(x.fecha) == (fechanow.Text!="" ?Convert.ToDateTime(fechanow.Text): DateTime.Now) && x.Estado);
                             tuxturn= ListaTurnos.Find(x =>
-                                paciente != null && x.Id_Hora == slot.Key && Convert.ToDateTime(x.fecha) == Convert.ToDateTime(fechanow.Text) && x.Estado &&
+                                paciente != null && x.Id_Hora == slot.Key && Convert.ToDateTime(x.fecha) == (fechanow.Text!="" ?Convert.ToDateTime(fechanow.Text): DateTime.Now) && x.Estado &&
                                 x.Id_Paciente== paciente.ID_PACIENTE);
                             if (tux == null && tuxturn == null)
                             {
@@ -268,7 +268,7 @@ namespace WebApplication2.Admin
             }
             catch(Exception ex)
             {
-                Response.Redirect("Default.aspx", false);
+                Response.Redirect("SiSReTurnos.aspx", false);
             }
         }
         

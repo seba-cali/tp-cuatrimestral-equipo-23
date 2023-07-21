@@ -22,10 +22,11 @@
                             <%--agregar encabezados--%>
                             <asp:BoundField HeaderText="ID Medico" DataField="ID_MEDICO" />
                             <asp:BoundField HeaderText="ID Usuario" DataField="ID_USUARIO" />
-                            <asp:BoundField HeaderText="Nombres" DataField="NOMBRES" />
-                            <asp:BoundField HeaderText="Apellidos" DataField="APELLIDOS" />
+                            <asp:BoundField HeaderText="Nombre" DataField="NOMBRES" />
+                            <asp:BoundField HeaderText="Apellido" DataField="APELLIDOS" />
                             <asp:BoundField HeaderText="DNI" DataField="DNI" />
-                            <asp:CheckBoxField HeaderText="Estado" DataField="ESTADO" />
+                            <asp:BoundField HeaderText="Matricula" DataField="MATRICULA" />
+                            <asp:CheckBoxField HeaderText="Activo" DataField="ESTADO" />
                             <asp:TemplateField HeaderText="Acciones">
                                 <ItemTemplate>
                                     <div class="btn-group" role="group" aria-label="Acciones">

@@ -48,6 +48,7 @@ namespace WebApplication2.Admin
 
 
 
+
                     dgvEspecialidadxTurno.DataSource = negocioEspecialidadxMedico.listarxMedico(idMedico);
                     inputTurno.DataTextField = "Turno_Horario";
                     inputTurno.DataBind();
@@ -55,6 +56,10 @@ namespace WebApplication2.Admin
                     dgvEspecialidadxTurno.DataBind();
                 }
                 //dgvEspecialidadxTurno.Columns[0].Visible = false;
+
+                dgvEspecialidadxTurno.DataBind();
+                //dgvEspecialidadxTurno.Columns[0].ControlStyle
+
                 //dgvEspecialidadxTurno.Columns[1].Visible = false;
                //dgvEspecialidadxTurno.Columns[2].Visible = false;
                 //dgvEspecialidadxTurno.Columns[4].Visible = false;
@@ -251,14 +256,15 @@ namespace WebApplication2.Admin
         {
             try
             {
+
                 // Obtener el valor seleccionado del RadioButtonList
                 RadioButtonList rblTurnos = sender as RadioButtonList;
                 int TurnoNuevo = Convert.ToInt32(rblTurnos.SelectedValue);
-                NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
                 GridViewRow row = (GridViewRow)rblTurnos.NamingContainer;
                 int idMedico = Convert.ToInt32(row.Cells[0].Text); // Suponiendo que el ID del médico está en la primera columna.
                 int idEsp = Convert.ToInt32(row.Cells[2].Text); // Suponiendo que el ID de Especialidad está en la 3er columna.
                 int TurnoViejo = Convert.ToInt32(row.Cells[4].Text); // Suponiendo que el Turno está en la 5ta columna.
+                NegocioEspecialidadxMedico negocioEspecialidadxMedico = new NegocioEspecialidadxMedico();
                 negocioEspecialidadxMedico.cambioTurno(TurnoNuevo, idMedico, idEsp, TurnoViejo);
                 Response.Redirect("Administrar_EspeYTurnoxMed.aspx?idMedico=" + idMedico, false);
             }

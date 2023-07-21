@@ -96,10 +96,7 @@ namespace WebApplication2.Admin
                 inputMatricula.Text = seleccionado.Matricula;
 
             }
-            else
-            {
-                esMedico = false;
-            }
+            
         }
         public bool esMedico { get; set; }
 
